@@ -1,0 +1,17 @@
+---
+title: try2
+authors:
+  - name: _ _
+    affiliation: _ _
+    roles: writing
+    corresponding: true
+bibliography: references.bib
+---
+
+## Section
+
+This is a simple placeholder for the manuscript's main document [@knuth84].
+
+```{r}
+1 + 1
+```
