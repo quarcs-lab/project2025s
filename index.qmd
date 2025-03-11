@@ -1,17 +1,172 @@
 ---
-title: try2
+title: "Regional growth, convergence, and spatial spillovers in India: A view from outer space"
 authors:
   - name: _ _
     affiliation: _ _
     roles: writing
     corresponding: true
+abstract: > 
+  Using satellite nighttime light data as proxy for economic activity, Chanda and Kabiraj (2020, World Development) studied regional growth and convergence across 520 districts in India. This article builds on their work by confirming and extending their main findings in three fronts. First, we illustrate regional convergence patterns using an interactive web-based tool for satellite image visualization. Second, we assess the degree of spatial dependence in their main econometric specification. Third, we employ a spatial Durbin model to measure the role of spatial spillovers in the convergence process. Our results indicate that spatial spillovers significantly increase the speed of regional convergence. Overall, the results emphasize the role of spatial dependence in regional convergence through the lens of satellite imagery, interactive visualizations, and spillover modeling.
+keywords:
+  - Regional luminosity
+  - Satellite nighttime lights
+  - Regional convergence
+  - Spatial spillovers
+  - Spatial Durbin model
+  - India
 bibliography: references.bib
 ---
 
-## Section
+## Introduction
 
-This is a simple placeholder for the manuscript's main document [@knuth84].
+Regional economic growth and convergence are key concerns in developing countries, particularly in large federal states like India where spatial inequalities can threaten social cohesion and political stability. However, studying regional convergence patterns in developing countries has been historically challenging due to limited availability of consistent economic data at subnational administrative levels. The emergence of satellite nighttime light data as a proxy for economic activity has created new opportunities to analyze regional growth dynamics at granular geographic scales.
 
-```{r}
-1 + 1
-```
+In an important contribution, @chanda2020 leveraged nighttime light data to document evidence of regional convergence across 520 districts in India between 1996 and 2010. Their analysis showed that poorer districts grew faster than richer ones during this period, suggesting a gradual reduction in spatial inequalities. However, their econometric approach did not account for potential spatial spillovers in the convergence process—the possibility that a district's growth trajectory might be influenced not only by its own initial conditions but also by those of its neighbors.
+
+In this context, this paper confirms and extends the study of @chanda2020 in three key methodological directions. First, we develop an interactive web-based visualization tool that allows researchers to dynamically explore spatial and temporal patterns in the nighttime light data. This tool facilitates the identification of converging regions and growth hotspots that may be difficult to detect in static representations. Second, we formally test for spatial dependence in both the dependent and independent variables of the convergence equations, highlighting that spatial autocorrelation is an inherent feature of satellite data and the regional convergence process. Third, we employ a spatial Durbin model that explicitly accounts for spatial spillovers, quantifying how neighborhood effects influence the speed of regional convergence.
+
+Our results yield three main findings that advance our understanding of regional convergence in India. First, interactive visualization tools reveal clear spatial patterns in both the initial distribution and subsequent growth of nighttime lights. Second, formal tests of spatial dependence indicate that district-level economic trajectories are not independent of their neighbors. Third, accounting for spatial spillovers through the spatial Durbin model shows that the total convergence effect is substantially larger than previous non-spatial estimates would suggest. Specifically, spatial spillovers appear to accelerate the convergence process by creating additional channels through which lagging regions can catch up.
+
+These findings have important implications for both research methodology and policy design. Methodologically, they demonstrate that conventional non-spatial approaches may significantly underestimate the speed of regional convergence by failing to account for inter-district spillovers. From a policy perspective, they suggest that the benefits of place-based development interventions may extend beyond target districts through spatial multiplier effects, potentially increasing their cost-effectiveness. The results also highlight the value of new data sources and methodological tools in advancing our understanding of regional economic dynamics in developing countries.
+
+The rest of this article is organized as follows. Section 2 provides an overview of the data and methods, describing our use of nighttime light data as a proxy for economic activity and introducing the spatial Durbin model that forms the basis of our empirical strategy. We also detail our methodological extensions related to interactive visualizations, spatial dependence testing, and spillover modeling. Section 3 presents our empirical results, beginning with an interactive exploration of regional convergence patterns, followed by formal tests of spatial dependence, and concluding with estimates of direct and indirect convergence effects from the spatial Durbin model. Finally, Section 4 offers some concluding remarks.
+
+## Data, model specification, and extensions
+
+### Data: Nightlights as a proxy for economic activity
+
+One of the key challenges in studying economic growth in developing countries like India is the limited availability and reliability of data on aggregate economic activity at finer administrative levels beyond the state level. To address this issue, a growing body of literature, pioneered by @henderson2012, has utilized satellite nighttime light data as a proxy for economic activity at sub-national levels.
+
+Nightlight data has been widely used to investigate economic growth and convergence across national and sub-national regions in various countries. For instance, @adhikari.dhitalEI2021 examine the impact of decentralization on regional convergence using nightlight data, while @pinkovskiy2016newer argue that nightlight data better captures aggregate economic activity compared to household surveys. Similarly, @lessmann2017 leverage nightlight data to estimate GDP per capita and income inequality globally, and @gennaioli2014growth study regional convergence through the lens of light data.
+
+Nightlight data has been widely utilized in India across various contexts. For example, @asher2016market and @cook.shahTRoEaS2022 use nightlight data to analyze the impact of road infrastructure and public welfare programs, respectively. Similarly, @jha.talathiEDaCC2023 examine the effects of colonization, while @chanda.cookJoM2022 investigate the impact of demonetization using nightlight data. @beyer.etalWD2021 employ it to study the effects of COVID-19. In the context of convergence studies, @chakravarty2017will finds state-level divergence in India using nightlight data, while [@chanda2020] highlights district-level convergence using the same.
+
+Our study draws inspiration from [@chanda2020]. Following their approach, we use the per capita growth in nightlights as the dependent variable and the initial nightlights per capita as the primary variable of interest. These variables are derived from nightlight data released by the National Geophysical Data Center (NGDC), based on observations from the DMSP/OLS satellites spanning the period from 1996 to 2010. To mitigate the issue of top-coding in light data, the NGDC released "radiance-calibrated" nighttime lights for eight specific years within this period. This dataset employs high magnification settings for low-light regions and low magnification settings for brightly lit areas. For this study, we utilize the "radiance-calibrated" nighttime lights data.[^1]
+
+[^1]: Following @chanda2020, our sample consists of 520 districts (out of a possible 593). There were 593 districts in 2001, which rose to 640 districts in the 2011 census. To match the districts among two census files, we summed up the curved-out districts with their origin districts in the 2011 census files. Eight districts among 47 new districts were created by curving out some areas from multiple districts. Those new districts along with their multiple-origin districts were dropped from our sample. We dropped all the districts in the state of Assam where more than 50% of districts were created in that manner.
+
+### Modeling regional convergence
+
+In neoclassical growth models, such as the Solow model, it is argued that the per capita growth rate should be negatively correlated with a region's initial endowment primarily due to diminishing returns to capital. Specifically, poorer regions, assuming similar technology and preferences, are expected to experience higher growth rates compared to their wealthier counterparts. Consequently, over the long run, regions with similar characteristics should converge to a common steady state. We would like to explore such convergence (denoted by **β-convergence**) employing a Barro-style growth regressions framework. Equation (1) analyzes absolute convergence.
+
+$$
+\boldsymbol{g_t} =  \beta_1 \boldsymbol{x_{t-1}} +  \boldsymbol{\varepsilon_t}
+$$ {#eq-matrix-form-abs}
+
+where $\boldsymbol{g_t}$ represents an $N\text{-by-}1$ vector of observations on NTL growth for each of the $N$ regions over the period $t$ and $\boldsymbol{x_{t-1}}$ represents an $N\text{-by-}1$ vector of observations on the initial (log) level of NTL. The scalar $\beta_1$ is a regression coefficient that indicates the direction and strength of regional convergence. Finally, $\boldsymbol{\varepsilon_t}$ represents a vector of idiosyncratic error terms.
+
+While absolute convergence implies that districts converge to a common steady state, regions may differ in various aspects such as geography, socio-economic conditions, and policy implementation. To account for these differences, we include state dummies in our analysis to examine whether heterogeneity in state-specific institutions and policies influences the rate of convergence. Additionally, we control for the initial share of unlit pixels in districts to address any potential under-coding in nightlights data.
+
+To further explore the determinants of district-level growth rates, we incorporate a range of geo-climatic controls alongside initial district-specific conditions related to demographics, human capital, and infrastructure. @eq-matrix-form-abs explores conditional convergence.
+
+$$
+\boldsymbol{g_t} =  \beta_1 \boldsymbol{x_{t-1}} + \boldsymbol{X_t} \boldsymbol{\alpha}  + \boldsymbol{\varepsilon_t}
+$$ {#eq-matrix-form-cond}
+
+Here, the matrix $\boldsymbol{X_t}$ is a $N\text{-by-}k$ collection of observations on control variables for each region. The vector $\boldsymbol{\alpha}$, with dimensions $k \times 1$, captures the regression coefficients for these variables. The control variables are listed in Table A.1 in @chanda2020.
+
+### Extensions: Interactive visualizations, spatial dependence testing, and spillover modeling
+
+#### Interactive spatial visualizations
+
+Interactive visualizations of nighttime lights imagery offer distinct methodological advantages over static representations, particularly when analyzing temporal and spatial heterogeneity in economic activity. The dynamic nature of these visualizations enables researchers to simultaneously examine multiple dimensions of the data, including temporal variations in light intensity, the spatial distribution of economic activity, and the relationship between nighttime lights and other georeferenced variables. This interactivity is especially valuable when investigating economic phenomena that exhibit significant spatial and temporal variation, such as urbanization patterns, economic shocks, or regional development disparities. The ability to dynamically adjust visualization parameters, such as temporal ranges, spatial scales, and light intensity thresholds, allows for more nuanced exploration of economic patterns that might be obscured in static representations.
+
+Google Earth Engine (GEE) substantially reduces the computational and technical barriers to creating such interactive visualizations, offering a particularly advantageous platform for economic research utilizing nighttime lights data. The platform's browser-based integrated development environment facilitates the creation of interactive web applications without requiring extensive infrastructure or specialized software installation. This capability is especially valuable for reproducible research, as it enables the development of web applications that can be shared with other researchers or stakeholders, allowing them to interact with the data and verify findings independently. The platform's ability to handle large-scale geospatial computations server-side, combined with its extensive catalog of pre-processed nighttime lights datasets, including the DMSP-OLS and VIIRS collections, significantly streamlines the workflow from raw data to interactive visualization. This computational efficiency is particularly beneficial when analyzing long time series or large geographic areas, which would be computationally intensive using traditional desktop-based approaches.
+
+Interactive visualizations of nighttime lights data are particularly instrumental in identifying and analyzing patterns of regional convergence in luminosity, providing visual insights into economic convergence processes. Through dynamic visualization tools, researchers can track the evolution of light intensity across regions over time, effectively identifying areas that exhibit catch-up growth patterns - where initially dim regions progressively converge toward the luminosity levels of their brighter counterparts.
+
+#### Spatial dependence testing
+
+The analysis of regional convergence using nighttime light data requires explicit consideration of spatial dependence patterns across Indian districts. To formally test and account for such spatial relationships, we employ the global Moran's I test and applied to the main variables of the convergence @eq-matrix-form-cond . The Moran's I test quantifies the degree of spatial autocorrelation among geographic units and can be expressed as:
+
+$$
+I=\frac{\sum_i \Sigma_j w_{i j} z_i \cdot z_j /\sum_i \Sigma_j w_{i j}}{\Sigma_i z_i^2 / n}
+$$ where $z_i$ represents the deviation of observation $i$ from the mean, and $w_{ij}$ denotes the spatial weight between units $i$ and $j$. The Moran statistic can range from -1 to +1, with positive values indicating spatial clustering and negative values suggesting spatial dispersion.
+
+The specification of the spatial weights matrix $\mathbf{W}$ is crucial for capturing the underlying spatial structure. We primarily employ a Queen contiguity matrix defined as:
+
+$$
+\mathbf{W}=\left[\begin{array}{ccccc}
+w_{11} & w_{12} & w_{13} & \cdots & w_{1 \mathrm{n}} \\
+w_{21} & w_{22} & w_{23} & \cdots & w_{2 \mathrm{n}} \\
+\vdots & \vdots & \vdots & w_{\mathrm{ij}} & \vdots \\
+w_{\mathrm{n} 1} & w_{\mathrm{n} 2} & w_{\mathrm{n} 3} & \cdots & w_{\mathrm{nn}}
+\end{array}\right]
+$$ where $w_{ij}=1$ for districts sharing either a border or vertex and 0 otherwise. Following standard practice, we row-normalize the weights matrix.
+
+The detection of significant spatial dependence would justify the use of spatial econometric techniques. In particular, @ertur2007growth and @fischer2011spatial argue that the spatial Durbin model can properly account for spatial spillovers in the convergence process. This methodological choice allows us to distinguish between direct effects of district characteristics and indirect effects operating through spatial channels.
+
+#### Spatial spillover modeling
+
+Our spatial spillover modeling builds upon the spatial Solow growth model developed by @ertur2007growth and @fischer2011spatial, which extends the traditional Solow framework to account for technological interdependence across regions. The model considers an economy of $N$ subnational regions, each characterized by a Cobb-Douglas production function with constant returns to scale:
+
+$$
+Y_{i t}=A_{i t} K_{i t}^{\alpha_{K}} H_{i t}^{\alpha_{H}} L_{i t}^{1-\alpha_{K} -\alpha_{H}}
+$$ {#eq-production}
+
+where $Y_{it}$ represents output, $K_{it}$ physical capital, $H_{it}$ human capital, $L_{it}$ labor force, and $A_{it}$ the level of technological knowledge for region $i$ at time $t$. The parameters $\alpha_K$ and $\alpha_H$ denote the output elasticities with respect to physical and human capital, respectively. A key innovation of this framework is the modeling of technological knowledge, which incorporates both internal and external factors:
+
+$$
+A_{i t}=\Omega_{t} k_{i t}^{\theta} h_{i t}^{\phi} \prod_{j \neq i}^{N} A_{j t}^{\rho W_{i j}}
+$$ {#eq-technology}
+
+This specification captures three distinct components of technological progress:
+
+-   An exogenous component ($\Omega_t$) representing the common stock of knowledge across regions
+-   An embodied component ($k_{i t}^{\theta} h_{i t}^{\phi}$) reflecting technology embedded in physical and human capital per worker
+-   A spatial component ($\prod_{j \neq i}^{N} A_{j t}^{\rho W_{i j}}$) capturing technological interdependence between regions
+
+Based on this theoretical framework, @ertur2007growth derived a spatial panel Durbin model that for regional spillovers across economies. Their model can be compactly written in matrix notation as:
+
+$$
+\boldsymbol{g_t} =  \beta_1 \boldsymbol{x_{t-1}} + \boldsymbol{X_t} \boldsymbol{\alpha} + \beta_2 \boldsymbol{W} \boldsymbol{x_{t-1}} + \boldsymbol{W} \boldsymbol{X_t} \boldsymbol{\gamma} + \lambda \boldsymbol{W} \boldsymbol{g_t}  + \boldsymbol{\varepsilon_t}
+$$ {#eq-matrix_form}
+
+In this model, $\boldsymbol{g_t}$ represents an $N\text{-by-}1$ vector of observations on NTL growth for each of the $N$ regions over the period $t$ and $\boldsymbol{x_{t-1}}$ represents an $N\text{-by-}1$ vector of observations on the initial (log) level of NTL. The scalar $\beta_1$ is a regression coefficient that indicates the direction and strength of regional convergence. The matrix $\boldsymbol{X_t}$ is a $N\text{-by-}k$ collection of observations on control variables for each region. The vector $\boldsymbol{\alpha}$, with dimensions $k \times 1$, captures the regression coefficients for these variables. Additionally, $\boldsymbol{WX_t}$ denotes a $N \times k$ matrix of spatially lagged observations, composed of a linear combination of neighboring values for the variables of interest in each region. The vector $\boldsymbol{\gamma}$ represents the regression coefficients associated with these spatial lags. The terms $\boldsymbol{W} \boldsymbol{x_{t-1}}$ and $\boldsymbol{W} \boldsymbol{g_t}$ refer to $N\text{-by-}1$ vectors capturing the spatial lags of initial (log) level of NTL, and the NTL growth, respectively. Finally, $\boldsymbol{\varepsilon_t}$ represents a vector of idiosyncratic error terms.
+
+## Results: Replication and extensions
+
+### Regional convergence: An interactive exploration from outer space
+
+Before presenting the regression results, we conducted three exercises to visually illustrate the concepts of growth and convergence in nightlights. Firstly, we created an interactive map of India displaying regional luminosity levels for 1996 and 2010.[^2]
+Secondly, we examine absolute convergence by constructing a scatterplot that depicts the relationship between per capita growth rates in nightlights (1996–2010) and the initial per capita nightlight levels (1996) at the district level.
+Finally, we used case studies to emphasize the nightlight growth that occurred during our study period. Focusing on some of the poorest regions in the country, we demonstrate an increase in nighttime lights that aligns with our convergence hypothesis.
+
+[^2]: The Interactive web application is available at <https://bit.ly/india-rc-ntl>.
+
+Figure 1 presents static maps (captured from our interactive maps) of luminosity for our boundary years (1996 and 2010), using the same index scale for comparison. The maps show a noticeable increase in brightness across most parts of the country in 2010. Since nightlights serve as a proxy for economic activity, this increase in luminosity reflects economic growth over the period.
+Figure 2 illustrates the relationship between per capita growth in nightlights and initial per capita nightlight levels. The scatter plot reveals a clear inverse relationship, indicating a $\beta$-convergence rate of 2% consistent with Barro's "Iron Law" of convergence.
+
+Next, we examine case studies of three economically disadvantaged states in India to illustrate their growth patterns over the study period. Among these, Bihar is the poorest, with a per capita income at 39.2% of the national average, while Uttar Pradesh and Chhattisgarh have per capita incomes of 43.8% and 52.3% of the national average, respectively.[^3]
+Figure 3 displays the change in luminosity in these three states during our study period. Although these states remain among the poorest, there is a noticeable increase in luminosity over the course of the study.
+
+[^3]: The data is taken from a report by the Economic Advisory Council to the Prime Minister (EAC-PM), released on September 18, 2024.
+
+### Spatial dependence is a feature of the convergence process
+
+In this study, the spatial lag terms of luminosity per capita growth and initial luminosity per capita are computed by applying the Queen contiguity weight matrix. 
+FigureX visually presents the relationship between local luminosity per capita growth rate and initial luminosity per capita and its spatial lag term, respectively.
+The strong positive spatial correlations observed between the variables and their neighboring regions suggest that regional convergence is not an isolated phenomenon, but rather a process intrinsically shaped by the influence of adjacent regions.
+The Moran's I values of 0.644 and 0.739 for the variables, coupled with a statistically significant spatial autocorrelation in the error term, underscore the critical importance of spatial dependence in convergence research. These findings demonstrate that spatial interactions profoundly influence the convergence process, rendering it imperative to incorporate spatial effects in empirical analyses.
+
+### Spatial spillovers accelerate regional convergence
+
+The regression results of TableX provide evidence of both unconditional and conditional convergence across districts in India, with both conventional OLS and spatial econometric approaches indicating significant negative relationships between initial luminosity levels and subsequent growth rates. 
+The direct effects, representing within-district convergence, remain remarkably stable across specifications, ranging from -0.020 to -0.026. 
+This consistency across different model specifications and estimation methods provides evidence that poorer districts are indeed catching up to their wealthier counterparts, even after controlling for various district characteristics and state-level fixed effects.
+
+
+Importantly, the spatial Durbin model uncovers significant spatial spillover effects that are masked in traditional OLS estimations.
+These indirect effects, which capture the influence of neighboring districts' initial conditions on a district's growth rate, become increasingly prominent and statistically significant as we add controls and state fixed effects to our specifications. 
+In our most comprehensive model, we find a significant indirect effect of -0.009, suggesting that a district's growth trajectory is meaningfully influenced by the initial economic conditions of its neighbors. This finding highlights the importance of geographical proximity and spatial interactions in the convergence process.
+
+The total impact of initial conditions on growth, combining both direct and spillover effects, is substantially larger when we account for spatial dependence. 
+In our fully specified model, the total convergence effect in the spatial Durbin model (-0.034) is approximately 36% larger than the OLS estimate (-0.025). 
+This difference, supported by better model fit statistics, indicates that conventional non-spatial approaches may significantly underestimate the speed of regional convergence by failing to capture the additional convergence channels created through spatial spillovers. 
+These results emphasize that regional convergence in India operates not only through district-specific factors but also through significant spatial interactions between neighboring districts.
+
+## Concluding remarks
+
+This article examines regional convergence patterns across Indian districts using satellite nighttime light data, interactive visualizations, and spatial econometric modeling. Expanding on the work of @chanda2020, we developed an interactive web-based visualization tool that illustrates spatial and convergence patterns across Indian districts. Spatial autocorrelation tests confirm that spatial dependence is a fundamental characteristic of satellite data and the regional convergence process in India. Estimates from our spatial Durbin model indicate that incorporating spatial spillovers significantly increases the estimated speed of regional convergence. The total convergence effect in our fully specified model is approximately 36% larger than conventional non-spatial estimates of @chanda2020. This finding implies that non-spatial convergence models may considerably underestimate the speed of regional convergence. Additionally, it suggests that place-based development interventions may have broader impacts, as their benefits can extend to neighboring districts through spatial spillover effects.
+
+These results have important implications for both research methodology and policy design in developing countries. From a methodological perspective, they highlight the value of combining new data sources, interactive geospatial visualization tools, and spatial econometric methods to better understand regional economic dynamics. From a policy standpoint, they suggest that regional convergence operates not just through district-specific factors, but through complex spatial interactions that create additional channels for catch-up growth. This spatial perspective is crucial for the analysis and design of policies aimed at reducing regional inequalities in developing countries.

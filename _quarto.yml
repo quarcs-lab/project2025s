@@ -10,6 +10,7 @@ format:
       hypothesis: true
   docx: default
   jats: default
+  pdf: default
 
   # (other formats)
   # pdf: default
