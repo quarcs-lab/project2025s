@@ -1,0 +1,23 @@
+---
+title: "scatterplots"
+---
+
+```{r}
+library(ggstatsplot)
+```
+
+```{r}
+p <- ggscatterstats(
+  iris,
+  x = Sepal.Width,
+  y = Petal.Length,
+  label.var = Species,
+  label.expression = Sepal.Length > 7.6
+) +
+  ggplot2::geom_rug(sides = "b")
+
+# looking at the plot
+p
+```
+
+
