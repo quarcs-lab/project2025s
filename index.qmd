@@ -128,42 +128,48 @@ In this model, $\boldsymbol{g_t}$ represents an $N\text{-by-}1$ vector of observ
 
 ### Regional convergence: An interactive exploration from outer space
 
-Before presenting the regression results, we conducted three exercises to visually illustrate the concepts of growth and convergence in nightlights. Firstly, we created an interactive map of India displaying regional luminosity levels for 1996 and 2010.[^2]
-Secondly, we examine absolute convergence by constructing a scatterplot that depicts the relationship between per capita growth rates in nightlights (1996–2010) and the initial per capita nightlight levels (1996) at the district level.
-Finally, we used case studies to emphasize the nightlight growth that occurred during our study period. Focusing on some of the poorest regions in the country, we demonstrate an increase in nighttime lights that aligns with our convergence hypothesis.
+Before presenting the regression results, we conducted three exercises to visually illustrate the concepts of growth and convergence in nightlights. Firstly, we created an interactive map of India displaying regional luminosity levels for 1996 and 2010.[^2] Secondly, we examine absolute convergence by constructing a scatterplot that depicts the relationship between per capita growth rates in nightlights (1996–2010) and the initial per capita nightlight levels (1996) at the district level. Finally, we used case studies to emphasize the nightlight growth that occurred during our study period. Focusing on some of the poorest regions in the country, we demonstrate an increase in nighttime lights that aligns with our convergence hypothesis.
 
 [^2]: The Interactive web application is available at <https://bit.ly/india-rc-ntl>.
 
-Figure 1 presents static maps (captured from our interactive maps) of luminosity for our boundary years (1996 and 2010), using the same index scale for comparison. The maps show a noticeable increase in brightness across most parts of the country in 2010. Since nightlights serve as a proxy for economic activity, this increase in luminosity reflects economic growth over the period.
-Figure 2 illustrates the relationship between per capita growth in nightlights and initial per capita nightlight levels. The scatter plot reveals a clear inverse relationship, indicating a $\beta$-convergence rate of 2% consistent with Barro's "Iron Law" of convergence.
+![Regional luminosity in India: 1996 vs 2010 <br> Notes: The unit of measurement for Nighttime Light (NTL) luminosity TBA. Interactive web application available at https://bit.ly/india-rc-ntl . <br> Source: Pre-processed luminosity images are from the Earth Observation Group TBA.](images/luminosity_map.png){#fig-map}
 
-Next, we examine case studies of three economically disadvantaged states in India to illustrate their growth patterns over the study period. Among these, Bihar is the poorest, with a per capita income at 39.2% of the national average, while Uttar Pradesh and Chhattisgarh have per capita incomes of 43.8% and 52.3% of the national average, respectively.[^3]
-Figure 3 displays the change in luminosity in these three states during our study period. Although these states remain among the poorest, there is a noticeable increase in luminosity over the course of the study.
+Figure 1 presents static maps (captured from our interactive maps) of luminosity for our boundary years (1996 and 2010), using the same index scale for comparison. The maps show a noticeable increase in brightness across most parts of the country in 2010. Since nightlights serve as a proxy for economic activity, this increase in luminosity reflects economic growth over the period. Figure 2 illustrates the relationship between per capita growth in nightlights and initial per capita nightlight levels. The scatter plot reveals a clear inverse relationship, indicating a $\beta$-convergence rate of 2% consistent with Barro's "Iron Law" of convergence.
+
+![Some illustrative examples of regional convergence <br> Notes: The unit of measurement for Nighttime Light (NTL) luminosity TBA. Interactive web application available at https://bit.ly/india-rc-ntl . <br> Source: Pre-processed luminosity images are from the Earth Observation Group TBA.](images/luminosity_map2.png){#fig-map2}
+
+Next, we examine case studies of three economically disadvantaged states in India to illustrate their growth patterns over the study period. Among these, Bihar is the poorest, with a per capita income at 39.2% of the national average, while Uttar Pradesh and Chhattisgarh have per capita incomes of 43.8% and 52.3% of the national average, respectively.[^3] Figure 3 displays the change in luminosity in these three states during our study period. Although these states remain among the poorest, there is a noticeable increase in luminosity over the course of the study.
 
 [^3]: The data is taken from a report by the Economic Advisory Council to the Prime Minister (EAC-PM), released on September 18, 2024.
 
+{{< embed notebooks/scatterplots.qmd#fig-convergence >}}
+
 ### Spatial dependence is a feature of the convergence process
 
-In this study, the spatial lag terms of luminosity per capita growth and initial luminosity per capita are computed by applying the Queen contiguity weight matrix. 
-FigureX visually presents the relationship between local luminosity per capita growth rate and initial luminosity per capita and its spatial lag term, respectively.
-The strong positive spatial correlations observed between the variables and their neighboring regions suggest that regional convergence is not an isolated phenomenon, but rather a process intrinsically shaped by the influence of adjacent regions.
-The Moran's I values of 0.644 and 0.739 for the variables, coupled with a statistically significant spatial autocorrelation in the error term, underscore the critical importance of spatial dependence in convergence research. These findings demonstrate that spatial interactions profoundly influence the convergence process, rendering it imperative to incorporate spatial effects in empirical analyses.
+In this study, the spatial lag terms of luminosity per capita growth and initial luminosity per capita are computed by applying the Queen contiguity weight matrix. FigureX visually presents the relationship between local luminosity per capita growth rate and initial luminosity per capita and its spatial lag term, respectively. The strong positive spatial correlations observed between the variables and their neighboring regions suggest that regional convergence is not an isolated phenomenon, but rather a process intrinsically shaped by the influence of adjacent regions. The Moran's I values of 0.644 and 0.739 for the variables, coupled with a statistically significant spatial autocorrelation in the error term, underscore the critical importance of spatial dependence in convergence research. These findings demonstrate that spatial interactions profoundly influence the convergence process, rendering it imperative to incorporate spatial effects in empirical analyses.
+
+{{< embed notebooks/dependence.qmd#fig-dependence-combined >}}
 
 ### Spatial spillovers accelerate regional convergence
 
-The regression results of TableX provide evidence of both unconditional and conditional convergence across districts in India, with both conventional OLS and spatial econometric approaches indicating significant negative relationships between initial luminosity levels and subsequent growth rates. 
-The direct effects, representing within-district convergence, remain remarkably stable across specifications, ranging from -0.020 to -0.026. 
-This consistency across different model specifications and estimation methods provides evidence that poorer districts are indeed catching up to their wealthier counterparts, even after controlling for various district characteristics and state-level fixed effects.
+The regression results of TableX provide evidence of both unconditional and conditional convergence across districts in India, with both conventional OLS and spatial econometric approaches indicating significant negative relationships between initial luminosity levels and subsequent growth rates. The direct effects, representing within-district convergence, remain remarkably stable across specifications, ranging from -0.020 to -0.026. This consistency across different model specifications and estimation methods provides evidence that poorer districts are indeed catching up to their wealthier counterparts, even after controlling for various district characteristics and state-level fixed effects.
 
 
-Importantly, the spatial Durbin model uncovers significant spatial spillover effects that are masked in traditional OLS estimations.
-These indirect effects, which capture the influence of neighboring districts' initial conditions on a district's growth rate, become increasingly prominent and statistically significant as we add controls and state fixed effects to our specifications. 
-In our most comprehensive model, we find a significant indirect effect of -0.009, suggesting that a district's growth trajectory is meaningfully influenced by the initial economic conditions of its neighbors. This finding highlights the importance of geographical proximity and spatial interactions in the convergence process.
+| Effect   | OLS                           | SDM                           | OLS                           | SDM                           | OLS                           | SDM                           | OLS                           | SDM                           |
+|----------|-------------------------------|-------------------------------|-------------------------------|-------------------------------|-------------------------------|-------------------------------|-------------------------------|-------------------------------|
+| Direct   | -0.020***<br>(0.002)          | -0.020***<br>(0.002)          | -0.022***<br>(0.003)          | -0.021***<br>(0.002)          | -0.025***<br>(0.003)          | -0.026***<br>(0.002)          | -0.025***<br>(0.003)          | -0.025***<br>(0.002)          |
+| Indirect | --                            | -0.002<br>(0.004)             | --                            | -0.008<br>(0.006)             | --                            | -0.008<br>(0.006)             | --                            | -0.009*<br>(0.005)            |
+| Total    | -0.020***<br>(0.002)          | -0.022***<br>(0.005)          | -0.022***<br>(0.003)          | -0.029***<br>(0.007)          | -0.025***<br>(0.003)          | -0.034***<br>(0.007)          | -0.025***<br>(0.003)          | -0.034***<br>(0.005)          |
+| Controls | No                            | No                            | No                            | No                            | Yes                           | Yes                           | Yes                           | Yes                           |
+| State FE | No                            | No                            | Yes                           | Yes                           | No                            | No                            | Yes                           | Yes                           |
+| AIC      | -1945                         | -2278                         | -2413                         | -2457                         | -2211                         | -2345                         | -2469                         | -2462                         |
 
-The total impact of initial conditions on growth, combining both direct and spillover effects, is substantially larger when we account for spatial dependence. 
-In our fully specified model, the total convergence effect in the spatial Durbin model (-0.034) is approximately 36% larger than the OLS estimate (-0.025). 
-This difference, supported by better model fit statistics, indicates that conventional non-spatial approaches may significantly underestimate the speed of regional convergence by failing to capture the additional convergence channels created through spatial spillovers. 
-These results emphasize that regional convergence in India operates not only through district-specific factors but also through significant spatial interactions between neighboring districts.
+: Unconditional and conditional convergence across districts {#tbl-models}
+
+
+Importantly, the spatial Durbin model uncovers significant spatial spillover effects that are masked in traditional OLS estimations. These indirect effects, which capture the influence of neighboring districts' initial conditions on a district's growth rate, become increasingly prominent and statistically significant as we add controls and state fixed effects to our specifications. In our most comprehensive model, we find a significant indirect effect of -0.009, suggesting that a district's growth trajectory is meaningfully influenced by the initial economic conditions of its neighbors. This finding highlights the importance of geographical proximity and spatial interactions in the convergence process.
+
+The total impact of initial conditions on growth, combining both direct and spillover effects, is substantially larger when we account for spatial dependence. In our fully specified model, the total convergence effect in the spatial Durbin model (-0.034) is approximately 36% larger than the OLS estimate (-0.025). This difference, supported by better model fit statistics, indicates that conventional non-spatial approaches may significantly underestimate the speed of regional convergence by failing to capture the additional convergence channels created through spatial spillovers. These results emphasize that regional convergence in India operates not only through district-specific factors but also through significant spatial interactions between neighboring districts.
 
 ## Concluding remarks
 
