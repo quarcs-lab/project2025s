@@ -3,6 +3,12 @@ project:
 
 manuscript:
   article: index.qmd
+  notebooks:
+    - notebooks/scatterplots.qmd
+    - notebooks/dependence.qmd
+    - notebooks/gee_app.qmd
+    - notebooks/code_models.ipynb
+    - notebooks/code_scatterplots.ipynb
 
 format:
   html:

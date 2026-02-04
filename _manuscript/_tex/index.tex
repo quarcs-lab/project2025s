@@ -1,4 +1,5 @@
 % Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
@@ -7,21 +8,22 @@
   letterpaper,
   DIV=11,
   numbers=noendperiod]{scrartcl}
-
+\usepackage{xcolor}
 \usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
 \usepackage{lmodern}
-\ifPDFTeX\else  
-    % xetex/luatex font selection
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -39,9 +41,6 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
-\usepackage{xcolor}
-\setlength{\emergencystretch}{3em} % prevent overfull lines
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 % Make \paragraph and \subparagraph free-standing
 \makeatletter
 \ifx\paragraph\undefined\else
@@ -67,8 +66,7 @@
 \makeatother
 
 
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -80,17 +78,21 @@
 \makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
 % Set default figure placement to htbp
-\makeatletter
 \def\fps@figure{htbp}
 \makeatother
+
+
 % definitions for citeproc citations
 \NewDocumentCommand\citeproctext{}{}
 \NewDocumentCommand\citeproc{mm}{%
@@ -124,6 +126,18 @@
 \newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
 
 \KOMAoption{captions}{tableheading}
 \makeatletter
@@ -167,14 +181,9 @@
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
-
-\ifLuaTeX
-  \usepackage{selnolig}  % disable illegal ligatures
-\fi
 \usepackage{bookmark}
-
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same} % disable monospaced font for URLs
+\urlstyle{same}
 \hypersetup{
   pdftitle={Regional growth, convergence, and spatial spillovers in India: A view from outer space},
   pdfkeywords={Regional luminosity, Satellite nighttime lights, Regional
@@ -191,7 +200,6 @@ convergence, Spatial spillovers, Spatial Durbin model, India},
 view from outer space}
 \author{\_ \_}
 \date{}
-
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -576,7 +584,7 @@ in nighttime lights that aligns with our convergence hypothesis.
 
 \centering{
 
-\includegraphics{images/luminosity_map.png}
+\pandocbounded{\includegraphics[keepaspectratio]{images/luminosity_map.png}}
 
 }
 
@@ -603,7 +611,7 @@ with Barro's ``Iron Law'' of convergence.
 
 \centering{
 
-\includegraphics{images/luminosity_map2.png}
+\pandocbounded{\includegraphics[keepaspectratio]{images/luminosity_map2.png}}
 
 }
 
@@ -631,7 +639,7 @@ the study.
 
 \centering{
 
-\includegraphics{index_files/figure-latex/notebooks-scatterplots-fig-convergence-output-2.png}
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-latex/notebooks-scatterplots-fig-convergence-output-2.png}}
 
 }
 
@@ -667,7 +675,7 @@ analyses.
 
 \centering{
 
-\includegraphics{index_files/figure-latex/notebooks-dependence-fig-dependence-combined-output-2.png}
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-latex/notebooks-dependence-fig-dependence-combined-output-2.png}}
 
 }
 
@@ -696,71 +704,64 @@ counterparts, even after controlling for various district
 characteristics and state-level fixed effects.
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.0388}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.1202}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.1202}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.1202}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.1202}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.1202}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.1202}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.1202}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.1202}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1282}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1154}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.0897}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1154}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1154}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1154}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.0897}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1154}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1154}}@{}}
 \caption{Unconditional and conditional convergence across
 districts}\label{tbl-models}\tabularnewline
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
-Effect
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-OLS
+Model 1
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-SDM
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-OLS
+Model 2
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-SDM
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-OLS
+Model 3
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-SDM
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-OLS
+Model 4
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-SDM
 \end{minipage} \\
 \midrule\noalign{}
 \endfirsthead
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
-Effect
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-OLS
+Model 1
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-SDM
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-OLS
+Model 2
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-SDM
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-OLS
+Model 3
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-SDM
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-OLS
+Model 4
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-SDM
 \end{minipage} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-Direct & -0.020***(0.002) & -0.020***(0.002) & -0.022***(0.003) &
--0.021***(0.002) & -0.025***(0.003) & -0.026***(0.002) &
--0.025***(0.003) & -0.025***(0.002) \\
-Indirect & -- & -0.002(0.004) & -- & -0.008(0.006) & -- & -0.008(0.006)
-& -- & -0.009*(0.005) \\
-Total & -0.020***(0.002) & -0.022***(0.005) & -0.022***(0.003) &
--0.029***(0.007) & -0.025***(0.003) & -0.034***(0.007) &
--0.025***(0.003) & -0.034***(0.005) \\
+& OLS & SDM & OLS & SDM & OLS & SDM & OLS & SDM \\
+Direct & -0.020*** & -0.020*** & -0.022*** & -0.021*** & -0.025*** &
+-0.026*** & -0.025*** & -0.025*** \\
+& (0.002) & (0.002) & (0.003) & (0.002) & (0.003) & (0.002) & (0.003) &
+(0.002) \\
+Indirect & -- & -0.002 & -- & -0.008 & -- & -0.008 & -- & -0.009* \\
+& & (0.004) & & (0.006) & & (0.006) & & (0.005) \\
+Total & -0.020*** & -0.022*** & -0.022*** & -0.029*** & -0.025*** &
+-0.034*** & -0.025*** & -0.034*** \\
+& (0.002) & (0.005) & (0.003) & (0.007) & (0.003) & (0.007) & (0.003) &
+(0.005) \\
 Controls & No & No & No & No & Yes & Yes & Yes & Yes \\
 State FE & No & No & Yes & Yes & No & No & Yes & Yes \\
 AIC & -1945 & -2278 & -2413 & -2457 & -2211 & -2345 & -2469 & -2462 \\

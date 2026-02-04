@@ -861,62 +861,106 @@ visualizations, and spillover modeling.</p>
           <table-wrap>
             <table>
               <colgroup>
-                <col width="4%"/>
+                <col width="13%"/>
+                <col width="12%"/>
+                <col width="9%"/>
                 <col width="12%"/>
                 <col width="12%"/>
                 <col width="12%"/>
-                <col width="12%"/>
-                <col width="12%"/>
-                <col width="12%"/>
+                <col width="9%"/>
                 <col width="12%"/>
                 <col width="12%"/>
               </colgroup>
               <thead>
                 <tr>
-                  <th>Effect</th>
-                  <th>OLS</th>
-                  <th>SDM</th>
-                  <th>OLS</th>
-                  <th>SDM</th>
-                  <th>OLS</th>
-                  <th>SDM</th>
-                  <th>OLS</th>
-                  <th>SDM</th>
+                  <th/>
+                  <th>Model 1</th>
+                  <th/>
+                  <th>Model 2</th>
+                  <th/>
+                  <th>Model 3</th>
+                  <th/>
+                  <th>Model 4</th>
+                  <th/>
                 </tr>
               </thead>
               <tbody>
                 <tr>
+                  <td/>
+                  <td>OLS</td>
+                  <td>SDM</td>
+                  <td>OLS</td>
+                  <td>SDM</td>
+                  <td>OLS</td>
+                  <td>SDM</td>
+                  <td>OLS</td>
+                  <td>SDM</td>
+                </tr>
+                <tr>
                   <td>Direct</td>
-                  <td>-0.020***(0.002)</td>
-                  <td>-0.020***(0.002)</td>
-                  <td>-0.022***(0.003)</td>
-                  <td>-0.021***(0.002)</td>
-                  <td>-0.025***(0.003)</td>
-                  <td>-0.026***(0.002)</td>
-                  <td>-0.025***(0.003)</td>
-                  <td>-0.025***(0.002)</td>
+                  <td>-0.020***</td>
+                  <td>-0.020***</td>
+                  <td>-0.022***</td>
+                  <td>-0.021***</td>
+                  <td>-0.025***</td>
+                  <td>-0.026***</td>
+                  <td>-0.025***</td>
+                  <td>-0.025***</td>
+                </tr>
+                <tr>
+                  <td/>
+                  <td>(0.002)</td>
+                  <td>(0.002)</td>
+                  <td>(0.003)</td>
+                  <td>(0.002)</td>
+                  <td>(0.003)</td>
+                  <td>(0.002)</td>
+                  <td>(0.003)</td>
+                  <td>(0.002)</td>
                 </tr>
                 <tr>
                   <td>Indirect</td>
                   <td>–</td>
-                  <td>-0.002(0.004)</td>
+                  <td>-0.002</td>
                   <td>–</td>
-                  <td>-0.008(0.006)</td>
+                  <td>-0.008</td>
                   <td>–</td>
-                  <td>-0.008(0.006)</td>
+                  <td>-0.008</td>
                   <td>–</td>
-                  <td>-0.009*(0.005)</td>
+                  <td>-0.009*</td>
+                </tr>
+                <tr>
+                  <td/>
+                  <td/>
+                  <td>(0.004)</td>
+                  <td/>
+                  <td>(0.006)</td>
+                  <td/>
+                  <td>(0.006)</td>
+                  <td/>
+                  <td>(0.005)</td>
                 </tr>
                 <tr>
                   <td>Total</td>
-                  <td>-0.020***(0.002)</td>
-                  <td>-0.022***(0.005)</td>
-                  <td>-0.022***(0.003)</td>
-                  <td>-0.029***(0.007)</td>
-                  <td>-0.025***(0.003)</td>
-                  <td>-0.034***(0.007)</td>
-                  <td>-0.025***(0.003)</td>
-                  <td>-0.034***(0.005)</td>
+                  <td>-0.020***</td>
+                  <td>-0.022***</td>
+                  <td>-0.022***</td>
+                  <td>-0.029***</td>
+                  <td>-0.025***</td>
+                  <td>-0.034***</td>
+                  <td>-0.025***</td>
+                  <td>-0.034***</td>
+                </tr>
+                <tr>
+                  <td/>
+                  <td>(0.002)</td>
+                  <td>(0.005)</td>
+                  <td>(0.003)</td>
+                  <td>(0.007)</td>
+                  <td>(0.003)</td>
+                  <td>(0.007)</td>
+                  <td>(0.003)</td>
+                  <td>(0.005)</td>
                 </tr>
                 <tr>
                   <td>Controls</td>
@@ -1370,9 +1414,9 @@ visualizations, and spillover modeling.</p>
       </fn>
     </fn-group>
   </back>
-  <!-- (F2ED4C6E)[nb-1]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/code_models.ipynb -->
-  <!-- (F2ED4C6E)[nb-2]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/gee_app.qmd -->
-  <!-- (F2ED4C6E)[nb-3]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/code_scatterplots.ipynb -->
-  <!-- (F2ED4C6E)[nb-4]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/scatterplots.qmd -->
-  <!-- (F2ED4C6E)[nb-5]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/dependence.qmd -->
+  <!-- (F2ED4C6E)[nb-1]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/scatterplots.qmd -->
+  <!-- (F2ED4C6E)[nb-2]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/dependence.qmd -->
+  <!-- (F2ED4C6E)[nb-3]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/gee_app.qmd -->
+  <!-- (F2ED4C6E)[nb-4]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/code_models.ipynb -->
+  <!-- (F2ED4C6E)[nb-5]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/code_scatterplots.ipynb -->
 </article>
