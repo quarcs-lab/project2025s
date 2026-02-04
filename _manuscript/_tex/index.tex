@@ -4,13 +4,15 @@
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
 %
+
 \documentclass[
-  letterpaper,
-  DIV=11,
-  numbers=noendperiod]{scrartcl}
+  a4paper, 
+  twoside,
+  review
+]{article}
 \usepackage{xcolor}
 \usepackage{amsmath,amssymb}
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\setcounter{secnumdepth}{5}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
@@ -93,39 +95,6 @@
 \makeatother
 
 
-% definitions for citeproc citations
-\NewDocumentCommand\citeproctext{}{}
-\NewDocumentCommand\citeproc{mm}{%
-  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
-\makeatletter
- % allow citations to break across lines
- \let\@cite@ofmt\@firstofone
- % avoid brackets around text for \cite:
- \def\@biblabel#1{}
- \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
-\makeatother
-\newlength{\cslhangindent}
-\setlength{\cslhangindent}{1.5em}
-\newlength{\csllabelwidth}
-\setlength{\csllabelwidth}{3em}
-\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
- {\begin{list}{}{%
-  \setlength{\itemindent}{0pt}
-  \setlength{\leftmargin}{0pt}
-  \setlength{\parsep}{0pt}
-  % turn on hanging indent if param 1 is 1
-  \ifodd #1
-   \setlength{\leftmargin}{\cslhangindent}
-   \setlength{\itemindent}{-1\cslhangindent}
-  \fi
-  % set entry spacing
-  \setlength{\itemsep}{#2\baselineskip}}}
- {\end{list}}
-\usepackage{calc}
-\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
-\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
-\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
-\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 
 
@@ -137,9 +106,12 @@
 
 
  
+\usepackage[]{natbib}
+\bibliographystyle{region}
 
 
-\KOMAoption{captions}{tableheading}
+\usepackage{region,hyperref,multirow}
+\definecolor{mypink}{RGB}{219, 48, 122}
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
@@ -186,20 +158,74 @@
 \urlstyle{same}
 \hypersetup{
   pdftitle={Regional growth, convergence, and spatial spillovers in India: A view from outer space},
+  pdfauthor={Carlos Mendez},
   pdfkeywords={Regional luminosity, Satellite nighttime lights, Regional
 convergence, Spatial spillovers, Spatial Durbin model, India},
   colorlinks=true,
   linkcolor={blue},
   filecolor={Maroon},
   citecolor={Blue},
-  urlcolor={Blue},
+  urlcolor={blue},
   pdfcreator={LaTeX via pandoc}}
+
+
 
 
 \title{Regional growth, convergence, and spatial spillovers in India: A
 view from outer space}
-\author{\_ \_}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Replication and extension using spatial Durbin models}
+\author{%
+Carlos Mendez\parnote{Nagoya University, Nagoya, Japan}}
 \date{}
+
+\setcounter{page}{999}
+\renewcommand{\thepage}{\arabic{page}}  % L for Letters, R for Resources, E for Editorial
+\jvol{1} 
+\jnum{1} 
+\jyear{2020} 
+\jpages{999--999} 
+\jauthor{MISSING} 
+\received{February 4, 2026} 
+\accepted{} 
+
+\jdoi{10.18335/region.v??i??.???} 
+
+\setlength{\parskip}{0pt plus1pt}
+\setlength{\parindent}{15pt}
+
+% %\bibliographystyle{plainnat}
+\bibpunct{(}{)}{,}{a}{}{,}   % % changes formatting in natbib, see http://merkel.zoneo.net/Latex/natbib.php
+% % It can be moved into the package call!
+
+%%%%%%%%%%% GM inserted %%%%%%%%%%%%%%%
+\usepackage[breakable]{tcolorbox}
+
+% prompt
+\makeatletter
+\newcommand{\boxspacing}{\kern\kvtcb@left@rule\kern\kvtcb@boxsep}
+\makeatother
+\newcommand{\prompt}[4]{
+	\ttfamily\llap{{\color{#2}[#3]:\hspace{3pt}#4}}\vspace{-\baselineskip}
+}
+
+\definecolor{incolor}{HTML}{303F9F}
+\definecolor{outcolor}{HTML}{D84315}
+\definecolor{cellborder}{HTML}{CFCFCF}
+\definecolor{cellbackground}{HTML}{F7F7F7}
+\definecolor{celloutborder}{HTML}{FFAFAF}
+\definecolor{celloutbackground}{HTML}{F7E7E7}
+
+\newcounter{code}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{ROutput}{\definecolor{shadecolor}{HTML}{F7E7E7}\begin{snugshade}}{\end{snugshade}}
+\newenvironment*{RInput}{}{}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -219,7 +245,7 @@ visualizations, and spillover modeling.
 \end{abstract}
 
 
-\subsection{Introduction}\label{introduction}
+\section{Introduction}\label{introduction}
 
 Regional economic growth and convergence are key concerns in developing
 countries, particularly in large federal states like India where spatial
@@ -231,9 +257,9 @@ emergence of satellite nighttime light data as a proxy for economic
 activity has created new opportunities to analyze regional growth
 dynamics at granular geographic scales.
 
-In an important contribution, Chanda and Kabiraj (2020) leveraged
-nighttime light data to document evidence of regional convergence across
-520 districts in India between 1996 and 2010. Their analysis showed that
+In an important contribution, \citet{chanda2020} leveraged nighttime
+light data to document evidence of regional convergence across 520
+districts in India between 1996 and 2010. Their analysis showed that
 poorer districts grew faster than richer ones during this period,
 suggesting a gradual reduction in spatial inequalities. However, their
 econometric approach did not account for potential spatial spillovers in
@@ -241,19 +267,19 @@ the convergence process---the possibility that a district's growth
 trajectory might be influenced not only by its own initial conditions
 but also by those of its neighbors.
 
-In this context, this paper confirms and extends the study of Chanda and
-Kabiraj (2020) in three key methodological directions. First, we develop
-an interactive web-based visualization tool that allows researchers to
-dynamically explore spatial and temporal patterns in the nighttime light
-data. This tool facilitates the identification of converging regions and
-growth hotspots that may be difficult to detect in static
-representations. Second, we formally test for spatial dependence in both
-the dependent and independent variables of the convergence equations,
-highlighting that spatial autocorrelation is an inherent feature of
-satellite data and the regional convergence process. Third, we employ a
-spatial Durbin model that explicitly accounts for spatial spillovers,
-quantifying how neighborhood effects influence the speed of regional
-convergence.
+In this context, this paper confirms and extends the study of
+\citet{chanda2020} in three key methodological directions. First, we
+develop an interactive web-based visualization tool that allows
+researchers to dynamically explore spatial and temporal patterns in the
+nighttime light data. This tool facilitates the identification of
+converging regions and growth hotspots that may be difficult to detect
+in static representations. Second, we formally test for spatial
+dependence in both the dependent and independent variables of the
+convergence equations, highlighting that spatial autocorrelation is an
+inherent feature of satellite data and the regional convergence process.
+Third, we employ a spatial Durbin model that explicitly accounts for
+spatial spillovers, quantifying how neighborhood effects influence the
+speed of regional convergence.
 
 Our results yield three main findings that advance our understanding of
 regional convergence in India. First, interactive visualization tools
@@ -290,66 +316,65 @@ and concluding with estimates of direct and indirect convergence effects
 from the spatial Durbin model. Finally, Section 4 offers some concluding
 remarks.
 
-\subsection{Data, model specification, and
+\section{Data, model specification, and
 extensions}\label{data-model-specification-and-extensions}
 
-\subsubsection{Data: Nightlights as a proxy for economic
+\subsection{Data: Nightlights as a proxy for economic
 activity}\label{data-nightlights-as-a-proxy-for-economic-activity}
 
 One of the key challenges in studying economic growth in developing
 countries like India is the limited availability and reliability of data
 on aggregate economic activity at finer administrative levels beyond the
 state level. To address this issue, a growing body of literature,
-pioneered by Henderson, Storeygard, and Weil (2012), has utilized
-satellite nighttime light data as a proxy for economic activity at
-sub-national levels.
+pioneered by \citet{henderson2012}, has utilized satellite nighttime
+light data as a proxy for economic activity at sub-national levels.
 
 Nightlight data has been widely used to investigate economic growth and
 convergence across national and sub-national regions in various
-countries. For instance, Adhikari and Dhital (2021) examine the impact
-of decentralization on regional convergence using nightlight data, while
-Pinkovskiy and Sala-i-Martin (2016) argue that nightlight data better
-captures aggregate economic activity compared to household surveys.
-Similarly, Lessmann and Seidel (2017) leverage nightlight data to
-estimate GDP per capita and income inequality globally, and Gennaioli et
-al. (2014) study regional convergence through the lens of light data.
+countries. For instance, \citet{adhikari.dhitalEI2021} examine the
+impact of decentralization on regional convergence using nightlight
+data, while \citet{pinkovskiy2016newer} argue that nightlight data
+better captures aggregate economic activity compared to household
+surveys. Similarly, \citet{lessmann2017} leverage nightlight data to
+estimate GDP per capita and income inequality globally, and
+\citet{gennaioli2014growth} study regional convergence through the lens
+of light data.
 
 Nightlight data has been widely utilized in India across various
-contexts. For example, Asher and Novosad (2016) and Cook and Shah (2022)
-use nightlight data to analyze the impact of road infrastructure and
-public welfare programs, respectively. Similarly, Jha and Talathi (2023)
-examine the effects of colonization, while Chanda and Cook (2022)
-investigate the impact of demonetization using nightlight data. Beyer,
-Franco-Bedoya, and Galdo (2021) employ it to study the effects of
-COVID-19. In the context of convergence studies, Chakravarty and Dehejia
-(2017) finds state-level divergence in India using nightlight data,
-while (Chanda and Kabiraj 2020) highlights district-level convergence
-using the same.
+contexts. For example, \citet{asher2016market} and
+\citet{cook.shahTRoEaS2022} use nightlight data to analyze the impact of
+road infrastructure and public welfare programs, respectively.
+Similarly, \citet{jha.talathiEDaCC2023} examine the effects of
+colonization, while \citet{chanda.cookJoM2022} investigate the impact of
+demonetization using nightlight data. \citet{beyer.etalWD2021} employ it
+to study the effects of COVID-19. In the context of convergence studies,
+\citet{chakravarty2017will} finds state-level divergence in India using
+nightlight data, while \citep{chanda2020} highlights district-level
+convergence using the same.
 
-Our study draws inspiration from (Chanda and Kabiraj 2020). Following
-their approach, we use the per capita growth in nightlights as the
-dependent variable and the initial nightlights per capita as the primary
-variable of interest. These variables are derived from nightlight data
-released by the National Geophysical Data Center (NGDC), based on
-observations from the DMSP/OLS satellites spanning the period from 1996
-to 2010. To mitigate the issue of top-coding in light data, the NGDC
-released ``radiance-calibrated'' nighttime lights for eight specific
-years within this period. This dataset employs high magnification
-settings for low-light regions and low magnification settings for
-brightly lit areas. For this study, we utilize the
-``radiance-calibrated'' nighttime lights data.\footnote{Following Chanda
-  and Kabiraj (2020), our sample consists of 520 districts (out of a
-  possible 593). There were 593 districts in 2001, which rose to 640
-  districts in the 2011 census. To match the districts among two census
-  files, we summed up the curved-out districts with their origin
-  districts in the 2011 census files. Eight districts among 47 new
-  districts were created by curving out some areas from multiple
+Our study draws inspiration from \citep{chanda2020}. Following their
+approach, we use the per capita growth in nightlights as the dependent
+variable and the initial nightlights per capita as the primary variable
+of interest. These variables are derived from nightlight data released
+by the National Geophysical Data Center (NGDC), based on observations
+from the DMSP/OLS satellites spanning the period from 1996 to 2010. To
+mitigate the issue of top-coding in light data, the NGDC released
+``radiance-calibrated'' nighttime lights for eight specific years within
+this period. This dataset employs high magnification settings for
+low-light regions and low magnification settings for brightly lit areas.
+For this study, we utilize the ``radiance-calibrated'' nighttime lights
+data.\footnote{Following \citet{chanda2020}, our sample consists of 520
+  districts (out of a possible 593). There were 593 districts in 2001,
+  which rose to 640 districts in the 2011 census. To match the districts
+  among two census files, we summed up the curved-out districts with
+  their origin districts in the 2011 census files. Eight districts among
+  47 new districts were created by curving out some areas from multiple
   districts. Those new districts along with their multiple-origin
   districts were dropped from our sample. We dropped all the districts
   in the state of Assam where more than 50\% of districts were created
   in that manner.}
 
-\subsubsection{Modeling regional
+\subsection{Modeling regional
 convergence}\label{modeling-regional-convergence}
 
 In neoclassical growth models, such as the Solow model, it is argued
@@ -360,8 +385,8 @@ preferences, are expected to experience higher growth rates compared to
 their wealthier counterparts. Consequently, over the long run, regions
 with similar characteristics should converge to a common steady state.
 We would like to explore such convergence (denoted by
-\textbf{β-convergence}) employing a Barro-style growth regressions
-framework. Equation (1) analyzes absolute convergence.
+\textbf{\(\beta\)-convergence}) employing a Barro-style growth
+regressions framework. Equation (1) analyzes absolute convergence.
 
 \begin{equation}\phantomsection\label{eq-matrix-form-abs}{
 \boldsymbol{g_t} =  \beta_1 \boldsymbol{x_{t-1}} +  \boldsymbol{\varepsilon_t}
@@ -399,13 +424,13 @@ Here, the matrix \(\boldsymbol{X_t}\) is a \(N\text{-by-}k\) collection
 of observations on control variables for each region. The vector
 \(\boldsymbol{\alpha}\), with dimensions \(k \times 1\), captures the
 regression coefficients for these variables. The control variables are
-listed in Table A.1 in Chanda and Kabiraj (2020).
+listed in Table A.1 in \citet{chanda2020}.
 
-\subsubsection{Extensions: Interactive visualizations, spatial
-dependence testing, and spillover
+\subsection{Extensions: Interactive visualizations, spatial dependence
+testing, and spillover
 modeling}\label{extensions-interactive-visualizations-spatial-dependence-testing-and-spillover-modeling}
 
-\paragraph{Interactive spatial
+\subsubsection{Interactive spatial
 visualizations}\label{interactive-spatial-visualizations}
 
 Interactive visualizations of nighttime lights imagery offer distinct
@@ -450,7 +475,8 @@ effectively identifying areas that exhibit catch-up growth patterns -
 where initially dim regions progressively converge toward the luminosity
 levels of their brighter counterparts.
 
-\paragraph{Spatial dependence testing}\label{spatial-dependence-testing}
+\subsubsection{Spatial dependence
+testing}\label{spatial-dependence-testing}
 
 The analysis of regional convergence using nighttime light data requires
 explicit consideration of spatial dependence patterns across Indian
@@ -484,20 +510,23 @@ and 0 otherwise. Following standard practice, we row-normalize the
 weights matrix.
 
 The detection of significant spatial dependence would justify the use of
-spatial econometric techniques. In particular, Ertur and Koch (2007) and
-Fischer (2011) argue that the spatial Durbin model can properly account
-for spatial spillovers in the convergence process. This methodological
-choice allows us to distinguish between direct effects of district
-characteristics and indirect effects operating through spatial channels.
+spatial econometric techniques. In particular, \citet{ertur2007growth}
+and \citet{fischer2011spatial} argue that the spatial Durbin model can
+properly account for spatial spillovers in the convergence process. This
+methodological choice allows us to distinguish between direct effects of
+district characteristics and indirect effects operating through spatial
+channels.
 
-\paragraph{Spatial spillover modeling}\label{spatial-spillover-modeling}
+\subsubsection{Spatial spillover
+modeling}\label{spatial-spillover-modeling}
 
 Our spatial spillover modeling builds upon the spatial Solow growth
-model developed by Ertur and Koch (2007) and Fischer (2011), which
-extends the traditional Solow framework to account for technological
-interdependence across regions. The model considers an economy of \(N\)
-subnational regions, each characterized by a Cobb-Douglas production
-function with constant returns to scale:
+model developed by \citet{ertur2007growth} and
+\citet{fischer2011spatial}, which extends the traditional Solow
+framework to account for technological interdependence across regions.
+The model considers an economy of \(N\) subnational regions, each
+characterized by a Cobb-Douglas production function with constant
+returns to scale:
 
 \begin{equation}\phantomsection\label{eq-production}{
 Y_{i t}=A_{i t} K_{i t}^{\alpha_{K}} H_{i t}^{\alpha_{H}} L_{i t}^{1-\alpha_{K} -\alpha_{H}}
@@ -531,7 +560,7 @@ progress:
   capturing technological interdependence between regions
 \end{itemize}
 
-Based on this theoretical framework, Ertur and Koch (2007) derived a
+Based on this theoretical framework, \citet{ertur2007growth} derived a
 spatial panel Durbin model that for regional spillovers across
 economies. Their model can be compactly written in matrix notation as:
 
@@ -560,11 +589,10 @@ capturing the spatial lags of initial (log) level of NTL, and the NTL
 growth, respectively. Finally, \(\boldsymbol{\varepsilon_t}\) represents
 a vector of idiosyncratic error terms.
 
-\subsection{Results: Replication and
+\section{Results: Replication and
 extensions}\label{results-replication-and-extensions}
 
-\subsubsection{Regional convergence: An interactive exploration from
-outer
+\subsection{Regional convergence: An interactive exploration from outer
 space}\label{regional-convergence-an-interactive-exploration-from-outer-space}
 
 Before presenting the regression results, we conducted three exercises
@@ -611,7 +639,7 @@ with Barro's ``Iron Law'' of convergence.
 
 \centering{
 
-\pandocbounded{\includegraphics[keepaspectratio]{images/luminosity_map2.png}}
+\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{images/luminosity_map2.png}
 
 }
 
@@ -652,7 +680,7 @@ districts in India}
 \href{https://quarcs-lab.github.io/project2025s/notebooks/scatterplots-preview.html\#cell-fig-convergence}{Scatterplots
 for Regional Convergence Analysis}}
 
-\subsubsection{Spatial dependence is a feature of the convergence
+\subsection{Spatial dependence is a feature of the convergence
 process}\label{spatial-dependence-is-a-feature-of-the-convergence-process}
 
 In this study, the spatial lag terms of luminosity per capita growth and
@@ -688,7 +716,7 @@ rate and initial level of luminosity}
 \href{https://quarcs-lab.github.io/project2025s/notebooks/dependence-preview.html\#cell-fig-dependence-combined}{Spatial
 dependence}}
 
-\subsubsection{Spatial spillovers accelerate regional
+\subsection{Spatial spillovers accelerate regional
 convergence}\label{spatial-spillovers-accelerate-regional-convergence}
 
 The regression results of TableX provide evidence of both unconditional
@@ -791,12 +819,12 @@ spatial spillovers. These results emphasize that regional convergence in
 India operates not only through district-specific factors but also
 through significant spatial interactions between neighboring districts.
 
-\subsection{Concluding remarks}\label{concluding-remarks}
+\section{Concluding remarks}\label{concluding-remarks}
 
 This article examines regional convergence patterns across Indian
 districts using satellite nighttime light data, interactive
 visualizations, and spatial econometric modeling. Expanding on the work
-of Chanda and Kabiraj (2020), we developed an interactive web-based
+of \citet{chanda2020}, we developed an interactive web-based
 visualization tool that illustrates spatial and convergence patterns
 across Indian districts. Spatial autocorrelation tests confirm that
 spatial dependence is a fundamental characteristic of satellite data and
@@ -804,9 +832,9 @@ the regional convergence process in India. Estimates from our spatial
 Durbin model indicate that incorporating spatial spillovers
 significantly increases the estimated speed of regional convergence. The
 total convergence effect in our fully specified model is approximately
-36\% larger than conventional non-spatial estimates of Chanda and
-Kabiraj (2020). This finding implies that non-spatial convergence models
-may considerably underestimate the speed of regional convergence.
+36\% larger than conventional non-spatial estimates of
+\citet{chanda2020}. This finding implies that non-spatial convergence
+models may considerably underestimate the speed of regional convergence.
 Additionally, it suggests that place-based development interventions may
 have broader impacts, as their benefits can extend to neighboring
 districts through spatial spillover effects.
@@ -822,86 +850,22 @@ interactions that create additional channels for catch-up growth. This
 spatial perspective is crucial for the analysis and design of policies
 aimed at reducing regional inequalities in developing countries.
 
-\phantomsection\label{refs}
-\begin{CSLReferences}{1}{0}
-\bibitem[\citeproctext]{ref-adhikari.dhitalEI2021}
-Adhikari, Bibek, and Saroj Dhital. 2021. {``Decentralization and
-Regional Convergence: Evidence from Night-Time Lights Data.''}
-\emph{Economic Inquiry} 59 (3): 1066--88.
-https://doi.org/\url{https://doi.org/10.1111/ecin.12967}.
 
-\bibitem[\citeproctext]{ref-asher2016market}
-Asher, Sam, and Paul Novosad. 2016. {``Market Access and Structural
-Transformation: {Evidence} from Rural Roads in {India}.''} \emph{Job
-Market Paper January} 11: 2016.
-
-\bibitem[\citeproctext]{ref-beyer.etalWD2021}
-Beyer, Robert CM, Sebastian Franco-Bedoya, and Virgilio Galdo. 2021.
-{``Examining the Economic Impact of COVID-19 in India Through Daily
-Electricity Consumption and Nighttime Light Intensity.''} \emph{World
-Development} 140: 105287.
-
-\bibitem[\citeproctext]{ref-chakravarty2017will}
-Chakravarty, Praveen, and Vivek Dehejia. 2017. {``Will GST Exacerbate
-Regional Divergence.''} \emph{Economic and Political Weekly} 52
-(25\&26): 97--101.
-
-\bibitem[\citeproctext]{ref-chanda.cookJoM2022}
-Chanda, Areendam, and C. Justin Cook. 2022. {``Was {India's}
-Demonetization Redistributive? Insights from Satellites and Surveys.''}
-\emph{Journal of Macroeconomics} 73 (September): 103438.
-\url{https://doi.org/10.1016/j.jmacro.2022.103438}.
-
-\bibitem[\citeproctext]{ref-chanda2020}
-Chanda, Areendam, and Sujana Kabiraj. 2020. {``Shedding Light on
-Regional Growth and Convergence in India.''} \emph{World Development}
-133: 104961.
-
-\bibitem[\citeproctext]{ref-cook.shahTRoEaS2022}
-Cook, C. Justin, and Manisha Shah. 2022. {``Aggregate Effects from
-Public Works: {Evidence} from {India}.''} \emph{The Review of Economics
-and Statistics} 104 (4): 797--806.
-\url{https://doi.org/10.1162/rest_a_00993}.
-
-\bibitem[\citeproctext]{ref-ertur2007growth}
-Ertur, Cem, and Wilfried Koch. 2007. {``Growth, Technological
-Interdependence and Spatial Externalities: Theory and Evidence.''}
-\emph{Journal of Applied Econometrics} 22 (6): 1033--62.
-
-\bibitem[\citeproctext]{ref-fischer2011spatial}
-Fischer, Manfred M. 2011. {``A Spatial Mankiw--Romer--Weil Model: Theory
-and Evidence.''} \emph{The Annals of Regional Science} 47 (2): 419--36.
-
-\bibitem[\citeproctext]{ref-gennaioli2014growth}
-Gennaioli, Nicola, Rafael La Porta, Florencio Lopez De Silanes, and
-Andrei Shleifer. 2014. {``Growth in Regions.''} \emph{Journal of
-Economic Growth} 19 (3): 259--309.
-
-\bibitem[\citeproctext]{ref-henderson2012}
-Henderson, J Vernon, Adam Storeygard, and David N Weil. 2012.
-{``Measuring Economic Growth from Outer Space.''} \emph{American
-Economic Review} 102 (2): 994--1028.
-
-\bibitem[\citeproctext]{ref-jha.talathiEDaCC2023}
-Jha, Priyaranjan, and Karan Talathi. 2023. {``Impact of Colonial
-Institutions on Economic Growth and Development in {India}: Evidence
-from Night Lights Data.''} \emph{Economic Development and Cultural
-Change} 72 (4): 1653--1708. \url{https://doi.org/10.1086/725058}.
-
-\bibitem[\citeproctext]{ref-lessmann2017}
-Lessmann, Christian, and André Seidel. 2017. {``Regional Inequality,
-Convergence, and Its Determinants--a View from Outer Space.''}
-\emph{European Economic Review} 92: 110--32.
-
-\bibitem[\citeproctext]{ref-pinkovskiy2016newer}
-Pinkovskiy, Maxim, and Xavier Sala-i-Martin. 2016. {``Lights, Camera
-\ldots{} Income! Illuminating the National Accounts-Household Surveys
-Debate.''} \emph{The Quarterly Journal of Economics} 131 (2): 579--631.
-\url{https://doi.org/10.1093/qje/qjw003}.
-
-\end{CSLReferences}
+\bibliography{references.bib}
 
 
 
+% This is the COPYRIGHT statement for the article.
+\vspace*{\fill}
+\tabcolsep0mm
+\noindent
+\begin{tabular*}{\textwidth}{ll}
+	\toprule
+	\multirow{2}{19mm}{\includegraphics[width=18mm,height=10mm]{_extensions/region-ersa/REGION/CC-BY-88x31}} & {\small \multirow{2}{328pt}{\textcopyright\  by the authors. Licensee: REGION -- The Journal of ERSA, European Regional Science Association, Louvain-la-Neuve, Belgium. This article is distri-}} \\
+	& \\[-1pt]
+	\multicolumn{2}{l}{\small \multirow{2}{\textwidth}{buted under the terms and conditions of the Creative Commons Attri\-bution (CC BY) license (\href{http://creativecommons.org/licenses/by/4.0/}{http://creativecommons.org/licenses/by/4.0/}).}}\\
+	& \\
+	\bottomrule
+\end{tabular*}
 
 \end{document}

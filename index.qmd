@@ -1,12 +1,21 @@
 ---
 title: "Regional growth, convergence, and spatial spillovers in India: A view from outer space"
-authors:
-  - name: _ _
-    affiliation: _ _
-    roles: writing
+subtitle: "Replication and extension using spatial Durbin models"
+
+# REGION-compatible author format
+author:
+  - name: "Carlos Mendez"
+    affiliations:
+      - name: "Nagoya University"
+        city: "Nagoya"
+        country: "Japan"
+    orcid: "0000-0002-8885-0318"
+    email: "carlosmendez777@gmail.com"
     corresponding: true
-abstract: > 
+
+abstract: |
   Using satellite nighttime light data as proxy for economic activity, Chanda and Kabiraj (2020, World Development) studied regional growth and convergence across 520 districts in India. This article builds on their work by confirming and extending their main findings in three fronts. First, we illustrate regional convergence patterns using an interactive web-based tool for satellite image visualization. Second, we assess the degree of spatial dependence in their main econometric specification. Third, we employ a spatial Durbin model to measure the role of spatial spillovers in the convergence process. Our results indicate that spatial spillovers significantly increase the speed of regional convergence. Overall, the results emphasize the role of spatial dependence in regional convergence through the lens of satellite imagery, interactive visualizations, and spillover modeling.
+
 keywords:
   - Regional luminosity
   - Satellite nighttime lights
@@ -14,7 +23,25 @@ keywords:
   - Spatial spillovers
   - Spatial Durbin model
   - India
+
 bibliography: references.bib
+
+# REGION journal metadata
+received: "February 4, 2026"
+accepted: ""  # Leave blank until accepted
+
+# JEL classification codes (optional but recommended for economics journals)
+jel:
+  - R11  # Regional Economic Activity: Growth, Development
+  - R12  # Size and Spatial Distributions of Regional Economic Activity
+  - C21  # Cross-Sectional Models; Spatial Models
+
+# Optional: For published version (uncomment when assigned by journal)
+# jvol: 11
+# jnum: 1
+# jyear: 2026
+# jpages: "1-30"
+# ojsnum: 456  # Assigned by journal for DOI generation
 ---
 
 ## Introduction
@@ -47,7 +74,7 @@ Our study draws inspiration from [@chanda2020]. Following their approach, we use
 
 ### Modeling regional convergence
 
-In neoclassical growth models, such as the Solow model, it is argued that the per capita growth rate should be negatively correlated with a region's initial endowment primarily due to diminishing returns to capital. Specifically, poorer regions, assuming similar technology and preferences, are expected to experience higher growth rates compared to their wealthier counterparts. Consequently, over the long run, regions with similar characteristics should converge to a common steady state. We would like to explore such convergence (denoted by **β-convergence**) employing a Barro-style growth regressions framework. Equation (1) analyzes absolute convergence.
+In neoclassical growth models, such as the Solow model, it is argued that the per capita growth rate should be negatively correlated with a region's initial endowment primarily due to diminishing returns to capital. Specifically, poorer regions, assuming similar technology and preferences, are expected to experience higher growth rates compared to their wealthier counterparts. Consequently, over the long run, regions with similar characteristics should converge to a common steady state. We would like to explore such convergence (denoted by **$\beta$-convergence**) employing a Barro-style growth regressions framework. Equation (1) analyzes absolute convergence.
 
 $$
 \boldsymbol{g_t} =  \beta_1 \boldsymbol{x_{t-1}} +  \boldsymbol{\varepsilon_t}
@@ -136,7 +163,7 @@ Before presenting the regression results, we conducted three exercises to visual
 
 Figure 1 presents static maps (captured from our interactive maps) of luminosity for our boundary years (1996 and 2010), using the same index scale for comparison. The maps show a noticeable increase in brightness across most parts of the country in 2010. Since nightlights serve as a proxy for economic activity, this increase in luminosity reflects economic growth over the period. Figure 2 illustrates the relationship between per capita growth in nightlights and initial per capita nightlight levels. The scatter plot reveals a clear inverse relationship, indicating a $\beta$-convergence rate of 2% consistent with Barro's "Iron Law" of convergence.
 
-![Some illustrative examples of regional convergence <br> Notes: The unit of measurement for Nighttime Light (NTL) luminosity TBA. Interactive web application available at https://bit.ly/india-rc-ntl . <br> Source: Pre-processed luminosity images are from the Earth Observation Group TBA.](images/luminosity_map2.png){#fig-map2}
+![Some illustrative examples of regional convergence <br> Notes: The unit of measurement for Nighttime Light (NTL) luminosity TBA. Interactive web application available at https://bit.ly/india-rc-ntl . <br> Source: Pre-processed luminosity images are from the Earth Observation Group TBA.](images/luminosity_map2.png){#fig-map2 width=75%}
 
 Next, we examine case studies of three economically disadvantaged states in India to illustrate their growth patterns over the study period. Among these, Bihar is the poorest, with a per capita income at 39.2% of the national average, while Uttar Pradesh and Chhattisgarh have per capita incomes of 43.8% and 52.3% of the national average, respectively.[^3] Figure 3 displays the change in luminosity in these three states during our study period. Although these states remain among the poorest, there is a noticeable increase in luminosity over the course of the study.
 

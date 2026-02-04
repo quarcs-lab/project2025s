@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Carlos Mendez">
 <meta name="keywords" content="Regional luminosity, Satellite nighttime lights, Regional convergence, Spatial spillovers, Spatial Durbin model, India">
 
 <title>Regional growth, convergence, and spatial spillovers in India: A view from outer space</title>
@@ -59,12 +60,6 @@ div.csl-indent {
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
-<script async="" src="https://hypothes.is/embed.js"></script>
-<script>
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    document.body.classList.add('hypothesis-enabled');
-  });
-</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -100,7 +95,7 @@ window.Quarto = {
 <meta name="citation_abstract" content="Using satellite nighttime light data as proxy for economic activity, Chanda and Kabiraj (2020, World Development) studied regional growth and convergence across 520 districts in India. This article builds on their work by confirming and extending their main findings in three fronts. First, we illustrate regional convergence patterns using an interactive web-based tool for satellite image visualization. Second, we assess the degree of spatial dependence in their main econometric specification. Third, we employ a spatial Durbin model to measure the role of spatial spillovers in the convergence process. Our results indicate that spatial spillovers significantly increase the speed of regional convergence. Overall, the results emphasize the role of spatial dependence in regional convergence through the lens of satellite imagery, interactive visualizations, and spillover modeling.
 ">
 <meta name="citation_keywords" content="Regional luminosity,Satellite nighttime lights,Regional convergence,Spatial spillovers,Spatial Durbin model,India">
-<meta name="citation_author" content="_ _">
+<meta name="citation_author" content="Carlos Mendez">
 <meta name="citation_language" content="en">
 <meta name="citation_reference" content="citation_title=Monitoring economic development from space: Using nighttime light and land cover data to measure economic growth;,citation_author=Souknilanh Keola;,citation_author=Magnus Andersson;,citation_author=Ola Hall;,citation_publication_date=2015;,citation_cover_date=2015;,citation_year=2015;,citation_volume=66;,citation_journal_title=World Development;,citation_publisher=Elsevier;">
 <meta name="citation_reference" content="citation_title=How much should we trust the dictator’s GDP growth estimates?;,citation_author=Luis R Martinez;,citation_publication_date=2022;,citation_cover_date=2022;,citation_year=2022;,citation_issue=10;,citation_volume=130;,citation_journal_title=Journal of Political Economy;,citation_publisher=The University of Chicago Press Chicago, IL;">
@@ -283,6 +278,7 @@ window.Quarto = {
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Regional growth, convergence, and spatial spillovers in India: A view from outer space</h1>
+            <p class="subtitle lead">Replication and extension using spatial Durbin models</p>
           </div>
 
     
@@ -293,11 +289,11 @@ window.Quarto = {
           <div class="quarto-title-meta-heading">Affiliation</div>
           
                 <div class="quarto-title-meta-contents">
-            <p class="author">_ _ </p>
+            <p class="author">Carlos Mendez <a href="mailto:carlosmendez777@gmail.com" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0002-8885-0318" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
           </div>
                 <div class="quarto-title-meta-contents">
                     <p class="affiliation">
-                        _ _
+                        Nagoya University
                       </p>
                   </div>
                     </div>
@@ -310,7 +306,7 @@ window.Quarto = {
               </div>
       </div>
       <div class="quarto-title-meta-column-end quarto-other-formats-target">
-      <div class="quarto-alternate-formats"><div class="quarto-title-meta-heading">Other Formats</div><div class="quarto-title-meta-contents"><p><a href="index.docx"><i class="bi bi-file-word"></i>MS Word</a></p></div><div class="quarto-title-meta-contents"><p><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></p></div><div class="quarto-title-meta-contents"><p><a href="index-meca.zip" data-meca-link="true"><i class="bi bi-archive"></i>MECA Bundle</a></p></div></div></div>
+      </div>
     </div>
 
     <div>
@@ -329,31 +325,9 @@ window.Quarto = {
 
     <div class="quarto-other-links-text-target">
     </div>  </div>
-</header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
-<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
-  <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#data-model-specification-and-extensions" id="toc-data-model-specification-and-extensions" class="nav-link" data-scroll-target="#data-model-specification-and-extensions">Data, model specification, and extensions</a>
-  <ul class="collapse">
-  <li><a href="#data-nightlights-as-a-proxy-for-economic-activity" id="toc-data-nightlights-as-a-proxy-for-economic-activity" class="nav-link" data-scroll-target="#data-nightlights-as-a-proxy-for-economic-activity">Data: Nightlights as a proxy for economic activity</a></li>
-  <li><a href="#modeling-regional-convergence" id="toc-modeling-regional-convergence" class="nav-link" data-scroll-target="#modeling-regional-convergence">Modeling regional convergence</a></li>
-  <li><a href="#extensions-interactive-visualizations-spatial-dependence-testing-and-spillover-modeling" id="toc-extensions-interactive-visualizations-spatial-dependence-testing-and-spillover-modeling" class="nav-link" data-scroll-target="#extensions-interactive-visualizations-spatial-dependence-testing-and-spillover-modeling">Extensions: Interactive visualizations, spatial dependence testing, and spillover modeling</a></li>
-  </ul></li>
-  <li><a href="#results-replication-and-extensions" id="toc-results-replication-and-extensions" class="nav-link" data-scroll-target="#results-replication-and-extensions">Results: Replication and extensions</a>
-  <ul class="collapse">
-  <li><a href="#regional-convergence-an-interactive-exploration-from-outer-space" id="toc-regional-convergence-an-interactive-exploration-from-outer-space" class="nav-link" data-scroll-target="#regional-convergence-an-interactive-exploration-from-outer-space">Regional convergence: An interactive exploration from outer space</a></li>
-  <li><a href="#spatial-dependence-is-a-feature-of-the-convergence-process" id="toc-spatial-dependence-is-a-feature-of-the-convergence-process" class="nav-link" data-scroll-target="#spatial-dependence-is-a-feature-of-the-convergence-process">Spatial dependence is a feature of the convergence process</a></li>
-  <li><a href="#spatial-spillovers-accelerate-regional-convergence" id="toc-spatial-spillovers-accelerate-regional-convergence" class="nav-link" data-scroll-target="#spatial-spillovers-accelerate-regional-convergence">Spatial spillovers accelerate regional convergence</a></li>
-  </ul></li>
-  <li><a href="#concluding-remarks" id="toc-concluding-remarks" class="nav-link" data-scroll-target="#concluding-remarks">Concluding remarks</a></li>
-  </ul>
-<div class="quarto-alternate-notebooks"><h2>Notebooks</h2><ul><li><a href="notebooks/scatterplots-preview.html"><i class="bi bi-journal-code"></i>Scatterplots for Regional Convergence Analysis</a></li><li><a href="notebooks/dependence-preview.html"><i class="bi bi-journal-code"></i>Spatial dependence</a></li><li><a href="notebooks/gee_app-preview.html"><i class="bi bi-journal-code"></i>gee_app</a></li><li><a href="notebooks/code_models-preview.html"><i class="bi bi-journal-code"></i>code_models.ipynb</a></li><li><a href="notebooks/code_scatterplots-preview.html"><i class="bi bi-journal-code"></i>code_scatterplots.ipynb</a></li></ul></div></nav>
-</div>
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-</div>
+</header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div class="quarto-alternate-notebooks"><h2>Notebooks</h2><ul><li><a href="notebooks/scatterplots-preview.html"><i class="bi bi-journal-code"></i>Scatterplots for Regional Convergence Analysis</a></li><li><a href="notebooks/dependence-preview.html"><i class="bi bi-journal-code"></i>Spatial dependence</a></li><li><a href="notebooks/gee_app-preview.html"><i class="bi bi-journal-code"></i>gee_app</a></li><li><a href="notebooks/code_models-preview.html"><i class="bi bi-journal-code"></i>code_models.ipynb</a></li><li><a href="notebooks/code_scatterplots-preview.html"><i class="bi bi-journal-code"></i>code_scatterplots.ipynb</a></li></ul></div></div>
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
@@ -361,8 +335,8 @@ window.Quarto = {
   
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<section id="introduction" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
 <p>Regional economic growth and convergence are key concerns in developing countries, particularly in large federal states like India where spatial inequalities can threaten social cohesion and political stability. However, studying regional convergence patterns in developing countries has been historically challenging due to limited availability of consistent economic data at subnational administrative levels. The emergence of satellite nighttime light data as a proxy for economic activity has created new opportunities to analyze regional growth dynamics at granular geographic scales.</p>
 <p>In an important contribution, <span class="citation" data-cites="chanda2020">Chanda and Kabiraj (<a href="#ref-chanda2020" role="doc-biblioref">2020</a>)</span> leveraged nighttime light data to document evidence of regional convergence across 520 districts in India between 1996 and 2010. Their analysis showed that poorer districts grew faster than richer ones during this period, suggesting a gradual reduction in spatial inequalities. However, their econometric approach did not account for potential spatial spillovers in the convergence process—the possibility that a district’s growth trajectory might be influenced not only by its own initial conditions but also by those of its neighbors.</p>
 <p>In this context, this paper confirms and extends the study of <span class="citation" data-cites="chanda2020">Chanda and Kabiraj (<a href="#ref-chanda2020" role="doc-biblioref">2020</a>)</span> in three key methodological directions. First, we develop an interactive web-based visualization tool that allows researchers to dynamically explore spatial and temporal patterns in the nighttime light data. This tool facilitates the identification of converging regions and growth hotspots that may be difficult to detect in static representations. Second, we formally test for spatial dependence in both the dependent and independent variables of the convergence equations, highlighting that spatial autocorrelation is an inherent feature of satellite data and the regional convergence process. Third, we employ a spatial Durbin model that explicitly accounts for spatial spillovers, quantifying how neighborhood effects influence the speed of regional convergence.</p>
@@ -370,18 +344,18 @@ window.Quarto = {
 <p>These findings have important implications for both research methodology and policy design. Methodologically, they demonstrate that conventional non-spatial approaches may significantly underestimate the speed of regional convergence by failing to account for inter-district spillovers. From a policy perspective, they suggest that the benefits of place-based development interventions may extend beyond target districts through spatial multiplier effects, potentially increasing their cost-effectiveness. The results also highlight the value of new data sources and methodological tools in advancing our understanding of regional economic dynamics in developing countries.</p>
 <p>The rest of this article is organized as follows. Section 2 provides an overview of the data and methods, describing our use of nighttime light data as a proxy for economic activity and introducing the spatial Durbin model that forms the basis of our empirical strategy. We also detail our methodological extensions related to interactive visualizations, spatial dependence testing, and spillover modeling. Section 3 presents our empirical results, beginning with an interactive exploration of regional convergence patterns, followed by formal tests of spatial dependence, and concluding with estimates of direct and indirect convergence effects from the spatial Durbin model. Finally, Section 4 offers some concluding remarks.</p>
 </section>
-<section id="data-model-specification-and-extensions" class="level2">
-<h2 class="anchored" data-anchor-id="data-model-specification-and-extensions">Data, model specification, and extensions</h2>
-<section id="data-nightlights-as-a-proxy-for-economic-activity" class="level3">
-<h3 class="anchored" data-anchor-id="data-nightlights-as-a-proxy-for-economic-activity">Data: Nightlights as a proxy for economic activity</h3>
-<p>One of the key challenges in studying economic growth in developing countries like India is the limited availability and reliability of data on aggregate economic activity at finer administrative levels beyond the state level. To address this issue, a growing body of literature, pioneered by <span class="citation" data-cites="henderson2012">Henderson, Storeygard, and Weil (<a href="#ref-henderson2012" role="doc-biblioref">2012</a>)</span>, has utilized satellite nighttime light data as a proxy for economic activity at sub-national levels.</p>
+<section id="data-model-specification-and-extensions" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="data-model-specification-and-extensions"><span class="header-section-number">2</span> Data, model specification, and extensions</h2>
+<section id="data-nightlights-as-a-proxy-for-economic-activity" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="data-nightlights-as-a-proxy-for-economic-activity"><span class="header-section-number">2.1</span> Data: Nightlights as a proxy for economic activity</h3>
+<p>One of the key challenges in studying economic growth in developing countries like India is the limited availability and reliability of data on aggregate economic activity at finer administrative levels beyond the state level. To address this issue, a growing body of literature, pioneered by <span class="citation" data-cites="henderson2012">Henderson et al. (<a href="#ref-henderson2012" role="doc-biblioref">2012</a>)</span>, has utilized satellite nighttime light data as a proxy for economic activity at sub-national levels.</p>
 <p>Nightlight data has been widely used to investigate economic growth and convergence across national and sub-national regions in various countries. For instance, <span class="citation" data-cites="adhikari.dhitalEI2021">Adhikari and Dhital (<a href="#ref-adhikari.dhitalEI2021" role="doc-biblioref">2021</a>)</span> examine the impact of decentralization on regional convergence using nightlight data, while <span class="citation" data-cites="pinkovskiy2016newer">Pinkovskiy and Sala-i-Martin (<a href="#ref-pinkovskiy2016newer" role="doc-biblioref">2016</a>)</span> argue that nightlight data better captures aggregate economic activity compared to household surveys. Similarly, <span class="citation" data-cites="lessmann2017">Lessmann and Seidel (<a href="#ref-lessmann2017" role="doc-biblioref">2017</a>)</span> leverage nightlight data to estimate GDP per capita and income inequality globally, and <span class="citation" data-cites="gennaioli2014growth">Gennaioli et al. (<a href="#ref-gennaioli2014growth" role="doc-biblioref">2014</a>)</span> study regional convergence through the lens of light data.</p>
-<p>Nightlight data has been widely utilized in India across various contexts. For example, <span class="citation" data-cites="asher2016market">Asher and Novosad (<a href="#ref-asher2016market" role="doc-biblioref">2016</a>)</span> and <span class="citation" data-cites="cook.shahTRoEaS2022">Cook and Shah (<a href="#ref-cook.shahTRoEaS2022" role="doc-biblioref">2022</a>)</span> use nightlight data to analyze the impact of road infrastructure and public welfare programs, respectively. Similarly, <span class="citation" data-cites="jha.talathiEDaCC2023">Jha and Talathi (<a href="#ref-jha.talathiEDaCC2023" role="doc-biblioref">2023</a>)</span> examine the effects of colonization, while <span class="citation" data-cites="chanda.cookJoM2022">Chanda and Cook (<a href="#ref-chanda.cookJoM2022" role="doc-biblioref">2022</a>)</span> investigate the impact of demonetization using nightlight data. <span class="citation" data-cites="beyer.etalWD2021">Beyer, Franco-Bedoya, and Galdo (<a href="#ref-beyer.etalWD2021" role="doc-biblioref">2021</a>)</span> employ it to study the effects of COVID-19. In the context of convergence studies, <span class="citation" data-cites="chakravarty2017will">Chakravarty and Dehejia (<a href="#ref-chakravarty2017will" role="doc-biblioref">2017</a>)</span> finds state-level divergence in India using nightlight data, while <span class="citation" data-cites="chanda2020">(<a href="#ref-chanda2020" role="doc-biblioref">Chanda and Kabiraj 2020</a>)</span> highlights district-level convergence using the same.</p>
-<p>Our study draws inspiration from <span class="citation" data-cites="chanda2020">(<a href="#ref-chanda2020" role="doc-biblioref">Chanda and Kabiraj 2020</a>)</span>. Following their approach, we use the per capita growth in nightlights as the dependent variable and the initial nightlights per capita as the primary variable of interest. These variables are derived from nightlight data released by the National Geophysical Data Center (NGDC), based on observations from the DMSP/OLS satellites spanning the period from 1996 to 2010. To mitigate the issue of top-coding in light data, the NGDC released “radiance-calibrated” nighttime lights for eight specific years within this period. This dataset employs high magnification settings for low-light regions and low magnification settings for brightly lit areas. For this study, we utilize the “radiance-calibrated” nighttime lights data.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>Nightlight data has been widely utilized in India across various contexts. For example, <span class="citation" data-cites="asher2016market">Asher and Novosad (<a href="#ref-asher2016market" role="doc-biblioref">2016</a>)</span> and <span class="citation" data-cites="cook.shahTRoEaS2022">Cook and Shah (<a href="#ref-cook.shahTRoEaS2022" role="doc-biblioref">2022</a>)</span> use nightlight data to analyze the impact of road infrastructure and public welfare programs, respectively. Similarly, <span class="citation" data-cites="jha.talathiEDaCC2023">Jha and Talathi (<a href="#ref-jha.talathiEDaCC2023" role="doc-biblioref">2023</a>)</span> examine the effects of colonization, while <span class="citation" data-cites="chanda.cookJoM2022">Chanda and Cook (<a href="#ref-chanda.cookJoM2022" role="doc-biblioref">2022</a>)</span> investigate the impact of demonetization using nightlight data. <span class="citation" data-cites="beyer.etalWD2021">Beyer et al. (<a href="#ref-beyer.etalWD2021" role="doc-biblioref">2021</a>)</span> employ it to study the effects of COVID-19. In the context of convergence studies, <span class="citation" data-cites="chakravarty2017will">Chakravarty and Dehejia (<a href="#ref-chakravarty2017will" role="doc-biblioref">2017</a>)</span> finds state-level divergence in India using nightlight data, while <span class="citation" data-cites="chanda2020">(<a href="#ref-chanda2020" role="doc-biblioref">Chanda and Kabiraj, 2020</a>)</span> highlights district-level convergence using the same.</p>
+<p>Our study draws inspiration from <span class="citation" data-cites="chanda2020">(<a href="#ref-chanda2020" role="doc-biblioref">Chanda and Kabiraj, 2020</a>)</span>. Following their approach, we use the per capita growth in nightlights as the dependent variable and the initial nightlights per capita as the primary variable of interest. These variables are derived from nightlight data released by the National Geophysical Data Center (NGDC), based on observations from the DMSP/OLS satellites spanning the period from 1996 to 2010. To mitigate the issue of top-coding in light data, the NGDC released “radiance-calibrated” nighttime lights for eight specific years within this period. This dataset employs high magnification settings for low-light regions and low magnification settings for brightly lit areas. For this study, we utilize the “radiance-calibrated” nighttime lights data.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 </section>
-<section id="modeling-regional-convergence" class="level3">
-<h3 class="anchored" data-anchor-id="modeling-regional-convergence">Modeling regional convergence</h3>
-<p>In neoclassical growth models, such as the Solow model, it is argued that the per capita growth rate should be negatively correlated with a region’s initial endowment primarily due to diminishing returns to capital. Specifically, poorer regions, assuming similar technology and preferences, are expected to experience higher growth rates compared to their wealthier counterparts. Consequently, over the long run, regions with similar characteristics should converge to a common steady state. We would like to explore such convergence (denoted by <strong>β-convergence</strong>) employing a Barro-style growth regressions framework. Equation (1) analyzes absolute convergence.</p>
+<section id="modeling-regional-convergence" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="modeling-regional-convergence"><span class="header-section-number">2.2</span> Modeling regional convergence</h3>
+<p>In neoclassical growth models, such as the Solow model, it is argued that the per capita growth rate should be negatively correlated with a region’s initial endowment primarily due to diminishing returns to capital. Specifically, poorer regions, assuming similar technology and preferences, are expected to experience higher growth rates compared to their wealthier counterparts. Consequently, over the long run, regions with similar characteristics should converge to a common steady state. We would like to explore such convergence (denoted by <strong><span class="math inline">\(\beta\)</span>-convergence</strong>) employing a Barro-style growth regressions framework. Equation (1) analyzes absolute convergence.</p>
 <p><span id="eq-matrix-form-abs"><span class="math display">\[
 \boldsymbol{g_t} =  \beta_1 \boldsymbol{x_{t-1}} +  \boldsymbol{\varepsilon_t}
 \tag{1}\]</span></span></p>
@@ -393,16 +367,16 @@ window.Quarto = {
 \tag{2}\]</span></span></p>
 <p>Here, the matrix <span class="math inline">\(\boldsymbol{X_t}\)</span> is a <span class="math inline">\(N\text{-by-}k\)</span> collection of observations on control variables for each region. The vector <span class="math inline">\(\boldsymbol{\alpha}\)</span>, with dimensions <span class="math inline">\(k \times 1\)</span>, captures the regression coefficients for these variables. The control variables are listed in Table A.1 in <span class="citation" data-cites="chanda2020">Chanda and Kabiraj (<a href="#ref-chanda2020" role="doc-biblioref">2020</a>)</span>.</p>
 </section>
-<section id="extensions-interactive-visualizations-spatial-dependence-testing-and-spillover-modeling" class="level3">
-<h3 class="anchored" data-anchor-id="extensions-interactive-visualizations-spatial-dependence-testing-and-spillover-modeling">Extensions: Interactive visualizations, spatial dependence testing, and spillover modeling</h3>
-<section id="interactive-spatial-visualizations" class="level4">
-<h4 class="anchored" data-anchor-id="interactive-spatial-visualizations">Interactive spatial visualizations</h4>
+<section id="extensions-interactive-visualizations-spatial-dependence-testing-and-spillover-modeling" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="extensions-interactive-visualizations-spatial-dependence-testing-and-spillover-modeling"><span class="header-section-number">2.3</span> Extensions: Interactive visualizations, spatial dependence testing, and spillover modeling</h3>
+<section id="interactive-spatial-visualizations" class="level4" data-number="2.3.1">
+<h4 data-number="2.3.1" class="anchored" data-anchor-id="interactive-spatial-visualizations"><span class="header-section-number">2.3.1</span> Interactive spatial visualizations</h4>
 <p>Interactive visualizations of nighttime lights imagery offer distinct methodological advantages over static representations, particularly when analyzing temporal and spatial heterogeneity in economic activity. The dynamic nature of these visualizations enables researchers to simultaneously examine multiple dimensions of the data, including temporal variations in light intensity, the spatial distribution of economic activity, and the relationship between nighttime lights and other georeferenced variables. This interactivity is especially valuable when investigating economic phenomena that exhibit significant spatial and temporal variation, such as urbanization patterns, economic shocks, or regional development disparities. The ability to dynamically adjust visualization parameters, such as temporal ranges, spatial scales, and light intensity thresholds, allows for more nuanced exploration of economic patterns that might be obscured in static representations.</p>
 <p>Google Earth Engine (GEE) substantially reduces the computational and technical barriers to creating such interactive visualizations, offering a particularly advantageous platform for economic research utilizing nighttime lights data. The platform’s browser-based integrated development environment facilitates the creation of interactive web applications without requiring extensive infrastructure or specialized software installation. This capability is especially valuable for reproducible research, as it enables the development of web applications that can be shared with other researchers or stakeholders, allowing them to interact with the data and verify findings independently. The platform’s ability to handle large-scale geospatial computations server-side, combined with its extensive catalog of pre-processed nighttime lights datasets, including the DMSP-OLS and VIIRS collections, significantly streamlines the workflow from raw data to interactive visualization. This computational efficiency is particularly beneficial when analyzing long time series or large geographic areas, which would be computationally intensive using traditional desktop-based approaches.</p>
 <p>Interactive visualizations of nighttime lights data are particularly instrumental in identifying and analyzing patterns of regional convergence in luminosity, providing visual insights into economic convergence processes. Through dynamic visualization tools, researchers can track the evolution of light intensity across regions over time, effectively identifying areas that exhibit catch-up growth patterns - where initially dim regions progressively converge toward the luminosity levels of their brighter counterparts.</p>
 </section>
-<section id="spatial-dependence-testing" class="level4">
-<h4 class="anchored" data-anchor-id="spatial-dependence-testing">Spatial dependence testing</h4>
+<section id="spatial-dependence-testing" class="level4" data-number="2.3.2">
+<h4 data-number="2.3.2" class="anchored" data-anchor-id="spatial-dependence-testing"><span class="header-section-number">2.3.2</span> Spatial dependence testing</h4>
 <p>The analysis of regional convergence using nighttime light data requires explicit consideration of spatial dependence patterns across Indian districts. To formally test and account for such spatial relationships, we employ the global Moran’s I test and applied to the main variables of the convergence <a href="#eq-matrix-form-cond" class="quarto-xref">Equation&nbsp;2</a> . The Moran’s I test quantifies the degree of spatial autocorrelation among geographic units and can be expressed as:</p>
 <p><span class="math display">\[
 I=\frac{\sum_i \Sigma_j w_{i j} z_i \cdot z_j /\sum_i \Sigma_j w_{i j}}{\Sigma_i z_i^2 / n}
@@ -418,8 +392,8 @@ w_{\mathrm{n} 1} &amp; w_{\mathrm{n} 2} &amp; w_{\mathrm{n} 3} &amp; \cdots &amp
 \]</span> where <span class="math inline">\(w_{ij}=1\)</span> for districts sharing either a border or vertex and 0 otherwise. Following standard practice, we row-normalize the weights matrix.</p>
 <p>The detection of significant spatial dependence would justify the use of spatial econometric techniques. In particular, <span class="citation" data-cites="ertur2007growth">Ertur and Koch (<a href="#ref-ertur2007growth" role="doc-biblioref">2007</a>)</span> and <span class="citation" data-cites="fischer2011spatial">Fischer (<a href="#ref-fischer2011spatial" role="doc-biblioref">2011</a>)</span> argue that the spatial Durbin model can properly account for spatial spillovers in the convergence process. This methodological choice allows us to distinguish between direct effects of district characteristics and indirect effects operating through spatial channels.</p>
 </section>
-<section id="spatial-spillover-modeling" class="level4">
-<h4 class="anchored" data-anchor-id="spatial-spillover-modeling">Spatial spillover modeling</h4>
+<section id="spatial-spillover-modeling" class="level4" data-number="2.3.3">
+<h4 data-number="2.3.3" class="anchored" data-anchor-id="spatial-spillover-modeling"><span class="header-section-number">2.3.3</span> Spatial spillover modeling</h4>
 <p>Our spatial spillover modeling builds upon the spatial Solow growth model developed by <span class="citation" data-cites="ertur2007growth">Ertur and Koch (<a href="#ref-ertur2007growth" role="doc-biblioref">2007</a>)</span> and <span class="citation" data-cites="fischer2011spatial">Fischer (<a href="#ref-fischer2011spatial" role="doc-biblioref">2011</a>)</span>, which extends the traditional Solow framework to account for technological interdependence across regions. The model considers an economy of <span class="math inline">\(N\)</span> subnational regions, each characterized by a Cobb-Douglas production function with constant returns to scale:</p>
 <p><span id="eq-production"><span class="math display">\[
 Y_{i t}=A_{i t} K_{i t}^{\alpha_{K}} H_{i t}^{\alpha_{H}} L_{i t}^{1-\alpha_{K} -\alpha_{H}}
@@ -442,10 +416,10 @@ A_{i t}=\Omega_{t} k_{i t}^{\theta} h_{i t}^{\phi} \prod_{j \neq i}^{N} A_{j t}^
 </section>
 </section>
 </section>
-<section id="results-replication-and-extensions" class="level2">
-<h2 class="anchored" data-anchor-id="results-replication-and-extensions">Results: Replication and extensions</h2>
-<section id="regional-convergence-an-interactive-exploration-from-outer-space" class="level3">
-<h3 class="anchored" data-anchor-id="regional-convergence-an-interactive-exploration-from-outer-space">Regional convergence: An interactive exploration from outer space</h3>
+<section id="results-replication-and-extensions" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="results-replication-and-extensions"><span class="header-section-number">3</span> Results: Replication and extensions</h2>
+<section id="regional-convergence-an-interactive-exploration-from-outer-space" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="regional-convergence-an-interactive-exploration-from-outer-space"><span class="header-section-number">3.1</span> Regional convergence: An interactive exploration from outer space</h3>
 <p>Before presenting the regression results, we conducted three exercises to visually illustrate the concepts of growth and convergence in nightlights. Firstly, we created an interactive map of India displaying regional luminosity levels for 1996 and 2010.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Secondly, we examine absolute convergence by constructing a scatterplot that depicts the relationship between per capita growth rates in nightlights (1996–2010) and the initial per capita nightlight levels (1996) at the district level. Finally, we used case studies to emphasize the nightlight growth that occurred during our study period. Focusing on some of the poorest regions in the country, we demonstrate an increase in nighttime lights that aligns with our convergence hypothesis.</p>
 <div id="fig-map" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -486,8 +460,8 @@ Figure&nbsp;3: Regional luminosity convergence across districts in India
 </div>
 </div>
 </section>
-<section id="spatial-dependence-is-a-feature-of-the-convergence-process" class="level3">
-<h3 class="anchored" data-anchor-id="spatial-dependence-is-a-feature-of-the-convergence-process">Spatial dependence is a feature of the convergence process</h3>
+<section id="spatial-dependence-is-a-feature-of-the-convergence-process" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="spatial-dependence-is-a-feature-of-the-convergence-process"><span class="header-section-number">3.2</span> Spatial dependence is a feature of the convergence process</h3>
 <p>In this study, the spatial lag terms of luminosity per capita growth and initial luminosity per capita are computed by applying the Queen contiguity weight matrix. FigureX visually presents the relationship between local luminosity per capita growth rate and initial luminosity per capita and its spatial lag term, respectively. The strong positive spatial correlations observed between the variables and their neighboring regions suggest that regional convergence is not an isolated phenomenon, but rather a process intrinsically shaped by the influence of adjacent regions. The Moran’s I values of 0.644 and 0.739 for the variables, coupled with a statistically significant spatial autocorrelation in the error term, underscore the critical importance of spatial dependence in convergence research. These findings demonstrate that spatial interactions profoundly influence the convergence process, rendering it imperative to incorporate spatial effects in empirical analyses.</p>
 <div class="quarto-embed-nb-cell">
 <div id="cell-fig-dependence-combined" class="cell">
@@ -506,8 +480,8 @@ Figure&nbsp;4: Spatial dependence in the growth rate and initial level of lumino
 </div>
 </div>
 </section>
-<section id="spatial-spillovers-accelerate-regional-convergence" class="level3">
-<h3 class="anchored" data-anchor-id="spatial-spillovers-accelerate-regional-convergence">Spatial spillovers accelerate regional convergence</h3>
+<section id="spatial-spillovers-accelerate-regional-convergence" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="spatial-spillovers-accelerate-regional-convergence"><span class="header-section-number">3.3</span> Spatial spillovers accelerate regional convergence</h3>
 <p>The regression results of TableX provide evidence of both unconditional and conditional convergence across districts in India, with both conventional OLS and spatial econometric approaches indicating significant negative relationships between initial luminosity levels and subsequent growth rates. The direct effects, representing within-district convergence, remain remarkably stable across specifications, ranging from -0.020 to -0.026. This consistency across different model specifications and estimation methods provides evidence that poorer districts are indeed catching up to their wealthier counterparts, even after controlling for various district characteristics and state-level fixed effects.</p>
 <div id="tbl-models" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -660,8 +634,8 @@ Table&nbsp;1: Unconditional and conditional convergence across districts
 <p>The total impact of initial conditions on growth, combining both direct and spillover effects, is substantially larger when we account for spatial dependence. In our fully specified model, the total convergence effect in the spatial Durbin model (-0.034) is approximately 36% larger than the OLS estimate (-0.025). This difference, supported by better model fit statistics, indicates that conventional non-spatial approaches may significantly underestimate the speed of regional convergence by failing to capture the additional convergence channels created through spatial spillovers. These results emphasize that regional convergence in India operates not only through district-specific factors but also through significant spatial interactions between neighboring districts.</p>
 </section>
 </section>
-<section id="concluding-remarks" class="level2">
-<h2 class="anchored" data-anchor-id="concluding-remarks">Concluding remarks</h2>
+<section id="concluding-remarks" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="concluding-remarks"><span class="header-section-number">4</span> Concluding remarks</h2>
 <p>This article examines regional convergence patterns across Indian districts using satellite nighttime light data, interactive visualizations, and spatial econometric modeling. Expanding on the work of <span class="citation" data-cites="chanda2020">Chanda and Kabiraj (<a href="#ref-chanda2020" role="doc-biblioref">2020</a>)</span>, we developed an interactive web-based visualization tool that illustrates spatial and convergence patterns across Indian districts. Spatial autocorrelation tests confirm that spatial dependence is a fundamental characteristic of satellite data and the regional convergence process in India. Estimates from our spatial Durbin model indicate that incorporating spatial spillovers significantly increases the estimated speed of regional convergence. The total convergence effect in our fully specified model is approximately 36% larger than conventional non-spatial estimates of <span class="citation" data-cites="chanda2020">Chanda and Kabiraj (<a href="#ref-chanda2020" role="doc-biblioref">2020</a>)</span>. This finding implies that non-spatial convergence models may considerably underestimate the speed of regional convergence. Additionally, it suggests that place-based development interventions may have broader impacts, as their benefits can extend to neighboring districts through spatial spillover effects.</p>
 <p>These results have important implications for both research methodology and policy design in developing countries. From a methodological perspective, they highlight the value of combining new data sources, interactive geospatial visualization tools, and spatial econometric methods to better understand regional economic dynamics. From a policy standpoint, they suggest that regional convergence operates not just through district-specific factors, but through complex spatial interactions that create additional channels for catch-up growth. This spatial perspective is crucial for the analysis and design of policies aimed at reducing regional inequalities in developing countries.</p>
 
@@ -670,46 +644,46 @@ Table&nbsp;1: Unconditional and conditional convergence across districts
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-adhikari.dhitalEI2021" class="csl-entry" role="listitem">
-Adhikari, Bibek, and Saroj Dhital. 2021. <span>“Decentralization and Regional Convergence: Evidence from Night-Time Lights Data.”</span> <em>Economic Inquiry</em> 59 (3): 1066–88. https://doi.org/<a href="https://doi.org/10.1111/ecin.12967">https://doi.org/10.1111/ecin.12967</a>.
+Adhikari, B., and S. Dhital (2021), <span>“<a href="https://doi.org/10.1111/ecin.12967">Decentralization and regional convergence: Evidence from night-time lights data</a>,”</span> <em>Economic Inquiry</em>, 59(3), 1066–1088.
 </div>
 <div id="ref-asher2016market" class="csl-entry" role="listitem">
-Asher, Sam, and Paul Novosad. 2016. <span>“Market Access and Structural Transformation: <span>Evidence</span> from Rural Roads in <span>India</span>.”</span> <em>Job Market Paper January</em> 11: 2016.
+Asher, S., and P. Novosad (2016), <span>“Market access and structural transformation: <span>Evidence</span> from rural roads in <span>India</span>,”</span> <em>Job Market Paper January</em>, 11, 2016.
 </div>
 <div id="ref-beyer.etalWD2021" class="csl-entry" role="listitem">
-Beyer, Robert CM, Sebastian Franco-Bedoya, and Virgilio Galdo. 2021. <span>“Examining the Economic Impact of COVID-19 in India Through Daily Electricity Consumption and Nighttime Light Intensity.”</span> <em>World Development</em> 140: 105287.
+Beyer, R.C., S. Franco-Bedoya, and V. Galdo (2021), <span>“Examining the economic impact of COVID-19 in india through daily electricity consumption and nighttime light intensity,”</span> <em>World Development</em>, 140, 105287.
 </div>
 <div id="ref-chakravarty2017will" class="csl-entry" role="listitem">
-Chakravarty, Praveen, and Vivek Dehejia. 2017. <span>“Will GST Exacerbate Regional Divergence.”</span> <em>Economic and Political Weekly</em> 52 (25&amp;26): 97–101.
+Chakravarty, P., and V. Dehejia (2017), <span>“Will GST exacerbate regional divergence,”</span> <em>Economic and Political Weekly</em>, 52(25&amp;26), 97–101.
 </div>
 <div id="ref-chanda.cookJoM2022" class="csl-entry" role="listitem">
-Chanda, Areendam, and C. Justin Cook. 2022. <span>“Was <span class="nocase">India’s</span> Demonetization Redistributive? Insights from Satellites and Surveys.”</span> <em>Journal of Macroeconomics</em> 73 (September): 103438. <a href="https://doi.org/10.1016/j.jmacro.2022.103438">https://doi.org/10.1016/j.jmacro.2022.103438</a>.
+Chanda, A., and C.J. Cook (2022), <span>“<a href="https://doi.org/10.1016/j.jmacro.2022.103438">Was <span class="nocase">India’s</span> demonetization redistributive? Insights from satellites and surveys</a>,”</span> <em>Journal of Macroeconomics</em>, 73, 103438.
 </div>
 <div id="ref-chanda2020" class="csl-entry" role="listitem">
-Chanda, Areendam, and Sujana Kabiraj. 2020. <span>“Shedding Light on Regional Growth and Convergence in India.”</span> <em>World Development</em> 133: 104961.
+Chanda, A., and S. Kabiraj (2020), <span>“Shedding light on regional growth and convergence in india,”</span> <em>World Development</em>, 133, 104961.
 </div>
 <div id="ref-cook.shahTRoEaS2022" class="csl-entry" role="listitem">
-Cook, C. Justin, and Manisha Shah. 2022. <span>“Aggregate Effects from Public Works: <span>Evidence</span> from <span>India</span>.”</span> <em>The Review of Economics and Statistics</em> 104 (4): 797–806. <a href="https://doi.org/10.1162/rest_a_00993">https://doi.org/10.1162/rest_a_00993</a>.
+Cook, C.J., and M. Shah (2022), <span>“<a href="https://doi.org/10.1162/rest_a_00993">Aggregate effects from public works: <span>Evidence</span> from <span>India</span></a>,”</span> <em>The Review of Economics and Statistics</em>, 104(4), 797–806.
 </div>
 <div id="ref-ertur2007growth" class="csl-entry" role="listitem">
-Ertur, Cem, and Wilfried Koch. 2007. <span>“Growth, Technological Interdependence and Spatial Externalities: Theory and Evidence.”</span> <em>Journal of Applied Econometrics</em> 22 (6): 1033–62.
+Ertur, C., and W. Koch (2007), <span>“Growth, technological interdependence and spatial externalities: Theory and evidence,”</span> <em>Journal of applied econometrics</em>, 22(6), 1033–1062.
 </div>
 <div id="ref-fischer2011spatial" class="csl-entry" role="listitem">
-Fischer, Manfred M. 2011. <span>“A Spatial Mankiw–Romer–Weil Model: Theory and Evidence.”</span> <em>The Annals of Regional Science</em> 47 (2): 419–36.
+Fischer, M.M. (2011), <span>“A spatial mankiw–romer–weil model: Theory and evidence,”</span> <em>The Annals of Regional Science</em>, 47(2), 419–436.
 </div>
 <div id="ref-gennaioli2014growth" class="csl-entry" role="listitem">
-Gennaioli, Nicola, Rafael La Porta, Florencio Lopez De Silanes, and Andrei Shleifer. 2014. <span>“Growth in Regions.”</span> <em>Journal of Economic Growth</em> 19 (3): 259–309.
+Gennaioli, N., R. La Porta, F.L. De Silanes, and A. Shleifer (2014), <span>“Growth in regions,”</span> <em>Journal of Economic growth</em>, 19(3), 259–309.
 </div>
 <div id="ref-henderson2012" class="csl-entry" role="listitem">
-Henderson, J Vernon, Adam Storeygard, and David N Weil. 2012. <span>“Measuring Economic Growth from Outer Space.”</span> <em>American Economic Review</em> 102 (2): 994–1028.
+Henderson, J.V., A. Storeygard, and D.N. Weil (2012), <span>“Measuring economic growth from outer space,”</span> <em>American economic review</em>, 102(2), 994–1028.
 </div>
 <div id="ref-jha.talathiEDaCC2023" class="csl-entry" role="listitem">
-Jha, Priyaranjan, and Karan Talathi. 2023. <span>“Impact of Colonial Institutions on Economic Growth and Development in <span>India</span>: Evidence from Night Lights Data.”</span> <em>Economic Development and Cultural Change</em> 72 (4): 1653–1708. <a href="https://doi.org/10.1086/725058">https://doi.org/10.1086/725058</a>.
+Jha, P., and K. Talathi (2023), <span>“<a href="https://doi.org/10.1086/725058">Impact of colonial institutions on economic growth and development in <span>India</span>: Evidence from night lights data</a>,”</span> <em>Economic Development and Cultural Change</em>, 72(4), 1653–1708.
 </div>
 <div id="ref-lessmann2017" class="csl-entry" role="listitem">
-Lessmann, Christian, and André Seidel. 2017. <span>“Regional Inequality, Convergence, and Its Determinants–a View from Outer Space.”</span> <em>European Economic Review</em> 92: 110–32.
+Lessmann, C., and A. Seidel (2017), <span>“Regional inequality, convergence, and its determinants–a view from outer space,”</span> <em>European Economic Review</em>, 92, 110–132.
 </div>
 <div id="ref-pinkovskiy2016newer" class="csl-entry" role="listitem">
-Pinkovskiy, Maxim, and Xavier Sala-i-Martin. 2016. <span>“Lights, Camera … Income! Illuminating the National Accounts-Household Surveys Debate.”</span> <em>The Quarterly Journal of Economics</em> 131 (2): 579–631. <a href="https://doi.org/10.1093/qje/qjw003">https://doi.org/10.1093/qje/qjw003</a>.
+Pinkovskiy, M., and X. Sala-i-Martin (2016), <span>“<a href="https://doi.org/10.1093/qje/qjw003">Lights, camera … income! Illuminating the national accounts-household surveys debate</a>,”</span> <em>The Quarterly Journal of Economics</em>, 131(2), 579–631.
 </div>
 </div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 

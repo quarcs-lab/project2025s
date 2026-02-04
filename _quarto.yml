@@ -11,15 +11,23 @@ manuscript:
     - notebooks/code_scatterplots.ipynb
 
 format:
+  # REGION journal formats
+  REGION-pdf:
+    keep-tex: true
+    pdf-engine: pdflatex
+    docstatus: review  # Options: review, final, uncorrected
+
+  REGION-html:
+    toc: false
+    format-links: false
+
+  # Existing formats (kept for comparison/flexibility)
   html:
     comments:
       hypothesis: true
   docx: default
   jats: default
   pdf: default
-
-  # (other formats)
-  # pdf: default
 
 execute:
   freeze: true

@@ -154,6 +154,51 @@ Both Python and R configurations set:
 
 **R:** Source `config.R` for environment setup
 
+### Editing the Manuscript
+
+To add or modify content in the manuscript:
+
+**Main Source File:** [`index.qmd`](index.qmd)
+
+This is the primary manuscript file where all content should be added or edited. It contains:
+
+- YAML front matter (metadata, author info, keywords, JEL codes)
+- Introduction, Methods, Results, and Conclusions sections
+- Embedded figures and tables
+- References to analysis notebooks
+
+**Compiling the Manuscript:**
+
+After editing `index.qmd`, compile to different formats:
+
+```bash
+# REGION journal PDF (for submission)
+quarto render index.qmd --to REGION-pdf
+
+# Standard HTML
+quarto render index.qmd --to html
+
+# Microsoft Word
+quarto render index.qmd --to docx
+
+# All formats
+quarto render index.qmd
+```
+
+**Important Notes:**
+
+- The compiled outputs are saved in [`_manuscript/`](_manuscript/) directory
+- LaTeX source is saved alongside the PDF: [`_manuscript/index.tex`](_manuscript/index.tex)
+- Keep `index.qmd` and `_manuscript/index.qmd` synchronized (they should have identical content)
+- REGION template is configured for peer review (anonymized author info, line numbers, no watermark)
+
+**Switching Between Review and Final Modes:**
+
+Edit [`_quarto.yml`](_quarto.yml) to change document status:
+
+- `docstatus: review` - For peer review (anonymized, line numbers)
+- `docstatus: final` - For publication (full author info, no line numbers)
+
 ## Key Outputs
 
 ### Visualizations
