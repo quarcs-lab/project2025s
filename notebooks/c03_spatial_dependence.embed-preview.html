@@ -378,7 +378,7 @@
 </div>
 <main class="content quarto-banner-title-block" id="quarto-document-content">        
 
-     <div class="cell-container"><div class="cell-decorator"><pre>In [1]:</pre></div><div id="2940dedb-b491-4170-9eec-f2a22753b29c" class="cell">
+     <div class="cell-container"><div class="cell-decorator"><pre>In [1]:</pre></div><div id="9677c4ed-c8de-48ff-b0a4-05fdf0cacde1" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 📚 Setup ---------------------------------------------------------------------</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>library(haven)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>library(ggstatsplot)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -388,11 +388,11 @@
      Journal of Open Source Software, 6(61), 3167, doi:10.21105/joss.03167</code></pre>
 </div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div id="e8aa1f61-aed1-4df2-a569-4e0c412e1d28" class="cell">
+<div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div id="4d2c4a19-9bb5-4ecb-862d-39f0b4051179" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load dataset</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">&lt;-</span> read_dta(<span class="st">"../data/india520.dta"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div id="00a0c3ba-ade5-4514-bf89-44ac01a84a24" class="cell">
+<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div id="e2069a86-7f12-4c90-a526-6fc8540f906f" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 🏗 Basic OLS Regression -----------------------------------------------------</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>model1 <span class="op">&lt;-</span> lm(light_growth96_10rcr_cap <span class="op">~</span> log_light96_rcr_cap, data <span class="op">=</span> data)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>summary(model1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -418,7 +418,7 @@ Multiple R-squared:  0.2547,    Adjusted R-squared:  0.2533
 F-statistic:   177 on 1 and 518 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div id="f7525611-00b4-4255-9cfc-cf16f6c7f085" class="cell">
+<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div id="dc25afe4-8d57-4570-b346-04ff1e9a9a22" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 📝 Compute regression model for annotation ----------------------------------</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">&lt;-</span> lm(light_growth96_10rcr_cap <span class="op">~</span> log_light96_rcr_cap, data <span class="op">=</span> data)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>slope <span class="op">&lt;-</span> <span class="bu">round</span>(coef(model)[<span class="dv">2</span>], <span class="dv">3</span>)</span>
