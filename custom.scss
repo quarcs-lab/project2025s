@@ -1,0 +1,25 @@
+/*-- scss:defaults --*/
+
+// Chad Jones' color palette
+// Based on LaTeX implementation from Chad Jones
+$link-color: #4d00b3 !default;              // Purple for internal links
+$code-link-color: #006600 !default;         // Green for URL links
+
+/*-- scss:rules --*/
+
+// Title and all heading levels (h1-h6) in Chad Blue
+h1, h2, h3, h4, h5, h6 {
+  color: #1a1a80;  // Chad Blue - rgb(0.1, 0.1, 0.5)
+}
+
+// Citation links in Chad Cite Color
+.citation a,
+a.citation {
+  color: #1a1aa6;  // Chad Cite Color - rgb(0.1, 0.1, 0.65)
+}
+
+// External URLs in Chad Green
+a[href^="http"],
+a[href^="https"] {
+  color: #006600;  // Chad Green - rgb(0, 0.4, 0)
+}
