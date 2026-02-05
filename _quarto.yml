@@ -18,11 +18,12 @@ format:
     pdf-engine: pdflatex
     docstatus: review  # Options: review, final, uncorrected
 
-  REGION-html:
-    toc: false
-    format-links: false
+  # REGION-html format commented out to prevent duplicate Notebooks section
+  # REGION-html:
+  #   toc: false
+  #   format-links: false
 
-  # Existing formats (kept for comparison/flexibility)
+  # Main HTML format for GitHub Pages
   html:
     # Table of Contents
     toc: true
