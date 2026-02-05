@@ -23,8 +23,39 @@ format:
 
   # Existing formats (kept for comparison/flexibility)
   html:
+    # Table of Contents
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    toc-title: "Contents"
+
+    # Theme and Appearance
+    theme:
+      light: cosmo
+      dark: darkly
+
+    # Code Display
+    code-fold: false
+    code-tools: true
+    code-copy: true
+
+    # Interactive Features
+    lightbox: true
+
+    # Navigation
+    anchor-sections: true
+    smooth-scroll: true
+
+    # Citations and References
+    citation-location: document
+
+    # Comments (keep existing)
     comments:
       hypothesis: true
+
+    # Format Links
+    format-links: true
+
   docx: default
   jats: default
   pdf: default
