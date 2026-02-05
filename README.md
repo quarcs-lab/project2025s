@@ -317,7 +317,7 @@ Session-by-session progress is documented in [`log/`](log/) using timestamped en
 
 - ✅ **Analysis Complete** - All spatial convergence analyses finished
 - ✅ **Manuscript Ready** - Formatted for REGION journal peer review submission
-- ✅ **GitHub Pages Live** - Interactive HTML version hosted at: `https://<username>.github.io/project2025s/`
+- ✅ **GitHub Pages Live** - Interactive HTML version hosted at: [https://quarcs-lab.github.io/project2025s/](https://quarcs-lab.github.io/project2025s/)
 - ✅ **Multiple Formats** - PDF, HTML, DOCX, and JATS outputs available
 
 **Manuscript Modes:**
@@ -331,20 +331,22 @@ Session-by-session progress is documented in [`log/`](log/) using timestamped en
 - Share GitHub Pages link for interactive exploration
 - Prepare revisions based on peer review feedback
 
-## Author
+## Authors
 
-Carlos Mendez - <carlosmendez777@gmail.com>
+- **Carlos Mendez** (Corresponding) - <carlosmendez777@gmail.com> - Nagoya University
+- **Sujana Kabiraj** - Indian Institute of Management Indore
+- **Jiaqi Li** - Nagoya University
 
-Repository: project2025s
+Repository: [https://github.com/quarcs-lab/project2025s](https://github.com/quarcs-lab/project2025s)
 
 ## Citation
 
 ```bibtex
-@misc{mendez2025india,
-  author = {Mendez, Carlos},
+@misc{mendez2026india,
+  author = {Mendez, Carlos and Kabiraj, Sujana and Li, Jiaqi},
   title = {Spatial Convergence Analysis of Nighttime Lights in India (1996-2010)},
-  year = {2025},
-  howpublished = {\url{<repository-url>}}
+  year = {2026},
+  howpublished = {\url{https://github.com/quarcs-lab/project2025s}}
 }
 ```
 
