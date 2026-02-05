@@ -185,7 +185,8 @@ quarto render index.qmd
 
 This generates all outputs directly in the repository root:
 - **`index.html`** - Web version (served by GitHub Pages)
-- **`index.pdf`** - REGION journal PDF format
+- **`index.pdf`** - Standard PDF (Letter size, KOMA-Script, numeric citations)
+- **`index-REGION.pdf`** - REGION journal PDF (A4, author-year citations, line numbers)
 - **`index.docx`** - Microsoft Word format
 - **`index.xml`** - JATS XML format
 - **`site_libs/`** - Quarto web dependencies
@@ -193,11 +194,33 @@ This generates all outputs directly in the repository root:
 - **`images/`** - Manuscript images
 - **`notebooks/`** - Notebook HTML previews
 
+**Note on PDF Formats:**
+
+The project generates two distinct PDFs with different formatting:
+
+1. **Standard PDF (`index.pdf`)**:
+   - Letter paper (8.5" × 11")
+   - KOMA-Script document class (scrartcl)
+   - Numeric citations: [1], [2], [3]
+   - No line numbers
+   - General-purpose format for sharing
+
+2. **REGION Journal PDF (`index-REGION.pdf`)**:
+   - A4 paper (8.27" × 11.69")
+   - REGION journal template (article class)
+   - Author-year citations: (Chanda and Kabiraj 2020)
+   - Line numbers (review mode)
+   - ERSA branding and journal styling
+   - Ready for journal submission
+
 **Optional: Render specific formats**
 
 ```bash
+# Standard PDF only
+quarto render index.qmd --to pdf
+
 # REGION journal PDF only
-quarto render index.qmd --to REGION-pdf
+quarto render index.qmd --to region-ersa/REGION-pdf
 
 # HTML only
 quarto render index.qmd --to html
@@ -210,7 +233,7 @@ quarto render index.qmd --to docx
 
 ```bash
 # Stage all changes
-git add index.qmd index.html index.pdf index.docx index.xml site_libs/ index_files/ images/ notebooks/
+git add index.qmd index.html index.pdf index-REGION.pdf index.docx index.xml site_libs/ index_files/ images/ notebooks/
 
 # Commit with descriptive message
 git commit -m "Update manuscript: [describe changes]"

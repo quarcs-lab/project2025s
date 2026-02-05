@@ -54,7 +54,15 @@ format:
 
   docx: default
   jats: default
-  pdf: default
+
+  # Standard PDF (distinct from REGION format)
+  pdf:
+    documentclass: scrartcl
+    papersize: letter
+    number-sections: true
+    colorlinks: true
+    keep-tex: true  # For debugging/comparison
+    output-file: index
 
 execute:
   freeze: true
