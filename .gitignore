@@ -23,6 +23,9 @@ __pycache__/
 # Old output directories (no longer used)
 _manuscript/
 
+# MECA bundle (too large for GitHub)
+index-meca.zip
+
 # Keep compiled outputs for transparency:
 # index.html
 # index.pdf

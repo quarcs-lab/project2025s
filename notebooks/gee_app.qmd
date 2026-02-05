@@ -1,5 +1,5 @@
 ---
-title: "gee_app"
+title: "View from outer space"
 ---
 
 - [WEB APP URL](https://carlos-mendez.projects.earthengine.app/view/rc-dmsp-ntl)
