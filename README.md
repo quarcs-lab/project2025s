@@ -334,7 +334,7 @@ Session-by-session progress is documented in [`log/`](log/) using timestamped en
 ## Authors
 
 - **Carlos Mendez** (Corresponding) - <carlosmendez777@gmail.com> - Nagoya University
-- **Sujana Kabiraj** - Indian Institute of Management Indore
+- **Sujana Kabiraj** - Shiv Nadar University
 - **Jiaqi Li** - Nagoya University
 
 Repository: [https://github.com/quarcs-lab/project2025s](https://github.com/quarcs-lab/project2025s)

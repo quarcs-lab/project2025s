@@ -14,8 +14,8 @@ author:
     corresponding: true
   - name: "Sujana Kabiraj"
     affiliations:
-      - name: "Indian Institute of Management Indore"
-        city: "Indore"
+      - name: "Shiv Nadar University"
+        city: "Greater Noida"
         country: "India"
     orcid: "0000-0002-3844-1197"
   - name: "Jiaqi Li"
