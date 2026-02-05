@@ -8,6 +8,7 @@ This directory contains the HTML version of the manuscript for hosting on GitHub
 - `site_libs/` - Quarto JavaScript and CSS libraries
 - `index_files/` - Supporting files for the HTML (plots, figures)
 - `images/` - Manuscript images
+- `notebooks/` - Notebook preview HTML files (for interactive exploration)
 - `.nojekyll` - Prevents GitHub from processing files with Jekyll
 
 ## Updating This Site
@@ -23,6 +24,7 @@ This script will automatically copy the latest HTML and supporting files from `_
 ## Source
 
 The content in this folder is automatically generated from:
+
 - Source file: `index.qmd`
 - Build directory: `_manuscript/`
 - Build command: `quarto render index.qmd --to html`

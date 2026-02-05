@@ -23,6 +23,9 @@ cp -r _manuscript/index_files docs/
 echo "  Copying images/..."
 cp -r _manuscript/images docs/
 
+echo "  Copying notebooks/..."
+cp -r _manuscript/notebooks docs/
+
 # Create .nojekyll file to prevent Jekyll processing
 echo "  Creating .nojekyll file..."
 touch docs/.nojekyll
