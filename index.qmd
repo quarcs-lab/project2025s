@@ -70,7 +70,7 @@ These findings have important implications for both research methodology and pol
 
 The rest of this article is organized as follows. Section 2 provides an overview of the data and methods, describing our use of nighttime light data as a proxy for economic activity and introducing the spatial Durbin model that forms the basis of our empirical strategy. We also detail our methodological extensions related to interactive visualizations, spatial dependence testing, and spillover modeling. Section 3 presents our empirical results, beginning with an interactive exploration of regional convergence patterns, followed by formal tests of spatial dependence, and concluding with estimates of direct and indirect convergence effects from the spatial Durbin model. Finally, Section 4 offers some concluding remarks.
 
-## Data, model specification, and extensions
+## Data and methods
 
 ### Data: Nightlights as a proxy for economic activity
 
@@ -104,9 +104,8 @@ $$ {#eq-matrix-form-cond}
 
 Here, the matrix $\boldsymbol{X_t}$ is a $N\text{-by-}k$ collection of observations on control variables for each region. The vector $\boldsymbol{\alpha}$, with dimensions $k \times 1$, captures the regression coefficients for these variables. The control variables are listed in Table A.1 in @chanda2020.
 
-### Extensions: Interactive visualizations, spatial dependence testing, and spillover modeling
 
-#### Interactive spatial visualizations
+### Interactive spatial visualizations
 
 Interactive visualizations of nighttime lights imagery offer distinct methodological advantages over static representations, particularly when analyzing temporal and spatial heterogeneity in economic activity. The dynamic nature of these visualizations enables researchers to simultaneously examine multiple dimensions of the data, including temporal variations in light intensity, the spatial distribution of economic activity, and the relationship between nighttime lights and other georeferenced variables. This interactivity is especially valuable when investigating economic phenomena that exhibit significant spatial and temporal variation, such as urbanization patterns, economic shocks, or regional development disparities. The ability to dynamically adjust visualization parameters, such as temporal ranges, spatial scales, and light intensity thresholds, allows for more nuanced exploration of economic patterns that might be obscured in static representations.
 
@@ -114,7 +113,7 @@ Google Earth Engine (GEE) substantially reduces the computational and technical 
 
 Interactive visualizations of nighttime lights data are particularly instrumental in identifying and analyzing patterns of regional convergence in luminosity, providing visual insights into economic convergence processes. Through dynamic visualization tools, researchers can track the evolution of light intensity across regions over time, effectively identifying areas that exhibit catch-up growth patterns - where initially dim regions progressively converge toward the luminosity levels of their brighter counterparts.
 
-#### Spatial dependence testing
+### Spatial dependence testing
 
 The analysis of regional convergence using nighttime light data requires explicit consideration of spatial dependence patterns across Indian districts. To formally test and account for such spatial relationships, we employ the global Moran's I test and applied to the main variables of the convergence @eq-matrix-form-cond . The Moran's I test quantifies the degree of spatial autocorrelation among geographic units and can be expressed as:
 
@@ -135,7 +134,7 @@ $$ where $w_{ij}=1$ for districts sharing either a border or vertex and 0 otherw
 
 The detection of significant spatial dependence would justify the use of spatial econometric techniques. In particular, @ertur2007growth and @fischer2011spatial argue that the spatial Durbin model can properly account for spatial spillovers in the convergence process. This methodological choice allows us to distinguish between direct effects of district characteristics and indirect effects operating through spatial channels.
 
-#### Spatial spillover modeling
+### Spatial spillover modeling
 
 Our spatial spillover modeling builds upon the spatial Solow growth model developed by @ertur2007growth and @fischer2011spatial, which extends the traditional Solow framework to account for technological interdependence across regions. The model considers an economy of $N$ subnational regions, each characterized by a Cobb-Douglas production function with constant returns to scale:
 
@@ -163,7 +162,7 @@ $$ {#eq-matrix_form}
 
 In this model, $\boldsymbol{g_t}$ represents an $N\text{-by-}1$ vector of observations on NTL growth for each of the $N$ regions over the period $t$ and $\boldsymbol{x_{t-1}}$ represents an $N\text{-by-}1$ vector of observations on the initial (log) level of NTL. The scalar $\beta_1$ is a regression coefficient that indicates the direction and strength of regional convergence. The matrix $\boldsymbol{X_t}$ is a $N\text{-by-}k$ collection of observations on control variables for each region. The vector $\boldsymbol{\alpha}$, with dimensions $k \times 1$, captures the regression coefficients for these variables. Additionally, $\boldsymbol{WX_t}$ denotes a $N \times k$ matrix of spatially lagged observations, composed of a linear combination of neighboring values for the variables of interest in each region. The vector $\boldsymbol{\gamma}$ represents the regression coefficients associated with these spatial lags. The terms $\boldsymbol{W} \boldsymbol{x_{t-1}}$ and $\boldsymbol{W} \boldsymbol{g_t}$ refer to $N\text{-by-}1$ vectors capturing the spatial lags of initial (log) level of NTL, and the NTL growth, respectively. Finally, $\boldsymbol{\varepsilon_t}$ represents a vector of idiosyncratic error terms.
 
-## Results: Replication and extensions
+## Results
 
 ### Regional convergence: An interactive exploration from outer space
 

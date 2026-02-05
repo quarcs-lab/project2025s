@@ -155,8 +155,8 @@ visualizations, and spillover modeling.</p>
   direct and indirect convergence effects from the spatial Durbin model.
   Finally, Section 4 offers some concluding remarks.</p>
     </sec>
-    <sec id="data-model-specification-and-extensions">
-      <title>Data, model specification, and extensions</title>
+    <sec id="data-and-methods">
+      <title>Data and methods</title>
       <sec id="data-nightlights-as-a-proxy-for-economic-activity">
         <title>Data: Nightlights as a proxy for economic activity</title>
         <p>One of the key challenges in studying economic growth in
@@ -361,421 +361,415 @@ visualizations, and spillover modeling.</p>
     control variables are listed in Table A.1 in Chanda and Kabiraj
     (<xref alt="2020" rid="ref-chanda2020" ref-type="bibr">2020</xref>).</p>
       </sec>
-      <sec id="extensions-interactive-visualizations-spatial-dependence-testing-and-spillover-modeling">
-        <title>Extensions: Interactive visualizations, spatial dependence
-    testing, and spillover modeling</title>
-        <sec id="interactive-spatial-visualizations">
-          <title>Interactive spatial visualizations</title>
-          <p>Interactive visualizations of nighttime lights imagery offer
-      distinct methodological advantages over static representations,
-      particularly when analyzing temporal and spatial heterogeneity in
-      economic activity. The dynamic nature of these visualizations
-      enables researchers to simultaneously examine multiple dimensions
-      of the data, including temporal variations in light intensity, the
-      spatial distribution of economic activity, and the relationship
-      between nighttime lights and other georeferenced variables. This
-      interactivity is especially valuable when investigating economic
-      phenomena that exhibit significant spatial and temporal variation,
-      such as urbanization patterns, economic shocks, or regional
-      development disparities. The ability to dynamically adjust
-      visualization parameters, such as temporal ranges, spatial scales,
-      and light intensity thresholds, allows for more nuanced
-      exploration of economic patterns that might be obscured in static
-      representations.</p>
-          <p>Google Earth Engine (GEE) substantially reduces the
-      computational and technical barriers to creating such interactive
-      visualizations, offering a particularly advantageous platform for
-      economic research utilizing nighttime lights data. The platform’s
-      browser-based integrated development environment facilitates the
-      creation of interactive web applications without requiring
-      extensive infrastructure or specialized software installation.
-      This capability is especially valuable for reproducible research,
-      as it enables the development of web applications that can be
-      shared with other researchers or stakeholders, allowing them to
-      interact with the data and verify findings independently. The
-      platform’s ability to handle large-scale geospatial computations
-      server-side, combined with its extensive catalog of pre-processed
-      nighttime lights datasets, including the DMSP-OLS and VIIRS
-      collections, significantly streamlines the workflow from raw data
-      to interactive visualization. This computational efficiency is
-      particularly beneficial when analyzing long time series or large
-      geographic areas, which would be computationally intensive using
-      traditional desktop-based approaches.</p>
-          <p>Interactive visualizations of nighttime lights data are
-      particularly instrumental in identifying and analyzing patterns of
-      regional convergence in luminosity, providing visual insights into
-      economic convergence processes. Through dynamic visualization
-      tools, researchers can track the evolution of light intensity
-      across regions over time, effectively identifying areas that
-      exhibit catch-up growth patterns - where initially dim regions
-      progressively converge toward the luminosity levels of their
-      brighter counterparts.</p>
-        </sec>
-        <sec id="spatial-dependence-testing">
-          <title>Spatial dependence testing</title>
-          <p>The analysis of regional convergence using nighttime light data
-      requires explicit consideration of spatial dependence patterns
-      across Indian districts. To formally test and account for such
-      spatial relationships, we employ the global Moran’s I test and
-      applied to the main variables of the convergence
-      <xref alt="Equation 2" rid="eq-matrix-form-cond">Equation 2</xref>
-      . The Moran’s I test quantifies the degree of spatial
-      autocorrelation among geographic units and can be expressed
-      as:</p>
-          <p><disp-formula><alternatives><tex-math><![CDATA[
-      I=\frac{\sum_i \Sigma_j w_{i j} z_i \cdot z_j /\sum_i \Sigma_j w_{i j}}{\Sigma_i z_i^2 / n}
-      ]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="block"><mml:mrow><mml:mi>I</mml:mi><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:munder><mml:mo>∑</mml:mo><mml:mi>i</mml:mi></mml:munder><mml:msub><mml:mi>Σ</mml:mi><mml:mi>j</mml:mi></mml:msub><mml:msub><mml:mi>w</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:msub><mml:mi>z</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>⋅</mml:mo><mml:msub><mml:mi>z</mml:mi><mml:mi>j</mml:mi></mml:msub><mml:mi>/</mml:mi><mml:munder><mml:mo>∑</mml:mo><mml:mi>i</mml:mi></mml:munder><mml:msub><mml:mi>Σ</mml:mi><mml:mi>j</mml:mi></mml:msub><mml:msub><mml:mi>w</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mi>Σ</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:msubsup><mml:mi>z</mml:mi><mml:mi>i</mml:mi><mml:mn>2</mml:mn></mml:msubsup><mml:mi>/</mml:mi><mml:mi>n</mml:mi></mml:mrow></mml:mfrac></mml:mrow></mml:math></alternatives></disp-formula>
-      where <inline-formula><alternatives><tex-math><![CDATA[z_i]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>z</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math></alternatives></inline-formula>
-      represents the deviation of observation
-      <inline-formula><alternatives><tex-math><![CDATA[i]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>i</mml:mi></mml:math></alternatives></inline-formula>
-      from the mean, and <inline-formula><alternatives><tex-math><![CDATA[w_{ij}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>w</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>
-      denotes the spatial weight between units
-      <inline-formula><alternatives><tex-math><![CDATA[i]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>i</mml:mi></mml:math></alternatives></inline-formula>
-      and <inline-formula><alternatives><tex-math><![CDATA[j]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>j</mml:mi></mml:math></alternatives></inline-formula>.
-      The Moran statistic can range from -1 to +1, with positive values
-      indicating spatial clustering and negative values suggesting
-      spatial dispersion.</p>
-          <p>The specification of the spatial weights matrix
-      <inline-formula><alternatives><tex-math><![CDATA[\mathbf{W}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>𝐖</mml:mi></mml:math></alternatives></inline-formula>
-      is crucial for capturing the underlying spatial structure. We
-      primarily employ a Queen contiguity matrix defined as:</p>
-          <p><disp-formula><alternatives><tex-math><![CDATA[
-      \mathbf{W}=\left[\begin{array}{ccccc}
-      w_{11} & w_{12} & w_{13} & \cdots & w_{1 \mathrm{n}} \\
-      w_{21} & w_{22} & w_{23} & \cdots & w_{2 \mathrm{n}} \\
-      \vdots & \vdots & \vdots & w_{\mathrm{ij}} & \vdots \\
-      w_{\mathrm{n} 1} & w_{\mathrm{n} 2} & w_{\mathrm{n} 3} & \cdots & w_{\mathrm{nn}}
-      \end{array}\right]
-      ]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="block"><mml:mrow><mml:mi>𝐖</mml:mi><mml:mo>=</mml:mo><mml:mrow><mml:mo stretchy="true" form="prefix">[</mml:mo><mml:mtable><mml:mtr><mml:mtd columnalign="center" style="text-align: center"><mml:msub><mml:mi>w</mml:mi><mml:mn>11</mml:mn></mml:msub></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:msub><mml:mi>w</mml:mi><mml:mn>12</mml:mn></mml:msub></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:msub><mml:mi>w</mml:mi><mml:mn>13</mml:mn></mml:msub></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:mi>⋯</mml:mi></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:msub><mml:mi>w</mml:mi><mml:mrow><mml:mn>1</mml:mn><mml:mi mathvariant="normal">n</mml:mi></mml:mrow></mml:msub></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center" style="text-align: center"><mml:msub><mml:mi>w</mml:mi><mml:mn>21</mml:mn></mml:msub></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:msub><mml:mi>w</mml:mi><mml:mn>22</mml:mn></mml:msub></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:msub><mml:mi>w</mml:mi><mml:mn>23</mml:mn></mml:msub></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:mi>⋯</mml:mi></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:msub><mml:mi>w</mml:mi><mml:mrow><mml:mn>2</mml:mn><mml:mi mathvariant="normal">n</mml:mi></mml:mrow></mml:msub></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center" style="text-align: center"><mml:mi>⋮</mml:mi></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:mi>⋮</mml:mi></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:mi>⋮</mml:mi></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:msub><mml:mi>w</mml:mi><mml:mrow><mml:mi mathvariant="normal">i</mml:mi><mml:mi mathvariant="normal">j</mml:mi></mml:mrow></mml:msub></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:mi>⋮</mml:mi></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center" style="text-align: center"><mml:msub><mml:mi>w</mml:mi><mml:mrow><mml:mi mathvariant="normal">n</mml:mi><mml:mn>1</mml:mn></mml:mrow></mml:msub></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:msub><mml:mi>w</mml:mi><mml:mrow><mml:mi mathvariant="normal">n</mml:mi><mml:mn>2</mml:mn></mml:mrow></mml:msub></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:msub><mml:mi>w</mml:mi><mml:mrow><mml:mi mathvariant="normal">n</mml:mi><mml:mn>3</mml:mn></mml:mrow></mml:msub></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:mi>⋯</mml:mi></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:msub><mml:mi>w</mml:mi><mml:mrow><mml:mi mathvariant="normal">n</mml:mi><mml:mi mathvariant="normal">n</mml:mi></mml:mrow></mml:msub></mml:mtd></mml:mtr></mml:mtable><mml:mo stretchy="true" form="postfix">]</mml:mo></mml:mrow></mml:mrow></mml:math></alternatives></disp-formula>
-      where <inline-formula><alternatives><tex-math><![CDATA[w_{ij}=1]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:msub><mml:mi>w</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>
-      for districts sharing either a border or vertex and 0 otherwise.
-      Following standard practice, we row-normalize the weights
-      matrix.</p>
-          <p>The detection of significant spatial dependence would justify
-      the use of spatial econometric techniques. In particular, Ertur
-      and Koch
-      (<xref alt="2007" rid="ref-ertur2007growth" ref-type="bibr">2007</xref>)
-      and Fischer
-      (<xref alt="2011" rid="ref-fischer2011spatial" ref-type="bibr">2011</xref>)
-      argue that the spatial Durbin model can properly account for
-      spatial spillovers in the convergence process. This methodological
-      choice allows us to distinguish between direct effects of district
-      characteristics and indirect effects operating through spatial
-      channels.</p>
-        </sec>
-        <sec id="spatial-spillover-modeling">
-          <title>Spatial spillover modeling</title>
-          <p>Our spatial spillover modeling builds upon the spatial Solow
-      growth model developed by Ertur and Koch
-      (<xref alt="2007" rid="ref-ertur2007growth" ref-type="bibr">2007</xref>)
-      and Fischer
-      (<xref alt="2011" rid="ref-fischer2011spatial" ref-type="bibr">2011</xref>),
-      which extends the traditional Solow framework to account for
-      technological interdependence across regions. The model considers
-      an economy of <inline-formula><alternatives><tex-math><![CDATA[N]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>N</mml:mi></mml:math></alternatives></inline-formula>
-      subnational regions, each characterized by a Cobb-Douglas
-      production function with constant returns to scale:</p>
-          <p>
-            <styled-content id="eq-production">
-              <disp-formula>
-                <alternatives>
-                  <tex-math><![CDATA[
-      Y_{i t}=A_{i t} K_{i t}^{\alpha_{K}} H_{i t}^{\alpha_{H}} L_{i t}^{1-\alpha_{K} -\alpha_{H}}
-       \qquad(3)]]></tex-math>
-                  <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="block">
-                    <mml:mrow>
+      <sec id="interactive-spatial-visualizations">
+        <title>Interactive spatial visualizations</title>
+        <p>Interactive visualizations of nighttime lights imagery offer
+    distinct methodological advantages over static representations,
+    particularly when analyzing temporal and spatial heterogeneity in
+    economic activity. The dynamic nature of these visualizations
+    enables researchers to simultaneously examine multiple dimensions of
+    the data, including temporal variations in light intensity, the
+    spatial distribution of economic activity, and the relationship
+    between nighttime lights and other georeferenced variables. This
+    interactivity is especially valuable when investigating economic
+    phenomena that exhibit significant spatial and temporal variation,
+    such as urbanization patterns, economic shocks, or regional
+    development disparities. The ability to dynamically adjust
+    visualization parameters, such as temporal ranges, spatial scales,
+    and light intensity thresholds, allows for more nuanced exploration
+    of economic patterns that might be obscured in static
+    representations.</p>
+        <p>Google Earth Engine (GEE) substantially reduces the computational
+    and technical barriers to creating such interactive visualizations,
+    offering a particularly advantageous platform for economic research
+    utilizing nighttime lights data. The platform’s browser-based
+    integrated development environment facilitates the creation of
+    interactive web applications without requiring extensive
+    infrastructure or specialized software installation. This capability
+    is especially valuable for reproducible research, as it enables the
+    development of web applications that can be shared with other
+    researchers or stakeholders, allowing them to interact with the data
+    and verify findings independently. The platform’s ability to handle
+    large-scale geospatial computations server-side, combined with its
+    extensive catalog of pre-processed nighttime lights datasets,
+    including the DMSP-OLS and VIIRS collections, significantly
+    streamlines the workflow from raw data to interactive visualization.
+    This computational efficiency is particularly beneficial when
+    analyzing long time series or large geographic areas, which would be
+    computationally intensive using traditional desktop-based
+    approaches.</p>
+        <p>Interactive visualizations of nighttime lights data are
+    particularly instrumental in identifying and analyzing patterns of
+    regional convergence in luminosity, providing visual insights into
+    economic convergence processes. Through dynamic visualization tools,
+    researchers can track the evolution of light intensity across
+    regions over time, effectively identifying areas that exhibit
+    catch-up growth patterns - where initially dim regions progressively
+    converge toward the luminosity levels of their brighter
+    counterparts.</p>
+      </sec>
+      <sec id="spatial-dependence-testing">
+        <title>Spatial dependence testing</title>
+        <p>The analysis of regional convergence using nighttime light data
+    requires explicit consideration of spatial dependence patterns
+    across Indian districts. To formally test and account for such
+    spatial relationships, we employ the global Moran’s I test and
+    applied to the main variables of the convergence
+    <xref alt="Equation 2" rid="eq-matrix-form-cond">Equation 2</xref> .
+    The Moran’s I test quantifies the degree of spatial autocorrelation
+    among geographic units and can be expressed as:</p>
+        <p><disp-formula><alternatives><tex-math><![CDATA[
+    I=\frac{\sum_i \Sigma_j w_{i j} z_i \cdot z_j /\sum_i \Sigma_j w_{i j}}{\Sigma_i z_i^2 / n}
+    ]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="block"><mml:mrow><mml:mi>I</mml:mi><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:munder><mml:mo>∑</mml:mo><mml:mi>i</mml:mi></mml:munder><mml:msub><mml:mi>Σ</mml:mi><mml:mi>j</mml:mi></mml:msub><mml:msub><mml:mi>w</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:msub><mml:mi>z</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>⋅</mml:mo><mml:msub><mml:mi>z</mml:mi><mml:mi>j</mml:mi></mml:msub><mml:mi>/</mml:mi><mml:munder><mml:mo>∑</mml:mo><mml:mi>i</mml:mi></mml:munder><mml:msub><mml:mi>Σ</mml:mi><mml:mi>j</mml:mi></mml:msub><mml:msub><mml:mi>w</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mi>Σ</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:msubsup><mml:mi>z</mml:mi><mml:mi>i</mml:mi><mml:mn>2</mml:mn></mml:msubsup><mml:mi>/</mml:mi><mml:mi>n</mml:mi></mml:mrow></mml:mfrac></mml:mrow></mml:math></alternatives></disp-formula>
+    where <inline-formula><alternatives><tex-math><![CDATA[z_i]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>z</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math></alternatives></inline-formula>
+    represents the deviation of observation
+    <inline-formula><alternatives><tex-math><![CDATA[i]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>i</mml:mi></mml:math></alternatives></inline-formula>
+    from the mean, and <inline-formula><alternatives><tex-math><![CDATA[w_{ij}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>w</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>
+    denotes the spatial weight between units
+    <inline-formula><alternatives><tex-math><![CDATA[i]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>i</mml:mi></mml:math></alternatives></inline-formula>
+    and <inline-formula><alternatives><tex-math><![CDATA[j]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>j</mml:mi></mml:math></alternatives></inline-formula>.
+    The Moran statistic can range from -1 to +1, with positive values
+    indicating spatial clustering and negative values suggesting spatial
+    dispersion.</p>
+        <p>The specification of the spatial weights matrix
+    <inline-formula><alternatives><tex-math><![CDATA[\mathbf{W}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>𝐖</mml:mi></mml:math></alternatives></inline-formula>
+    is crucial for capturing the underlying spatial structure. We
+    primarily employ a Queen contiguity matrix defined as:</p>
+        <p><disp-formula><alternatives><tex-math><![CDATA[
+    \mathbf{W}=\left[\begin{array}{ccccc}
+    w_{11} & w_{12} & w_{13} & \cdots & w_{1 \mathrm{n}} \\
+    w_{21} & w_{22} & w_{23} & \cdots & w_{2 \mathrm{n}} \\
+    \vdots & \vdots & \vdots & w_{\mathrm{ij}} & \vdots \\
+    w_{\mathrm{n} 1} & w_{\mathrm{n} 2} & w_{\mathrm{n} 3} & \cdots & w_{\mathrm{nn}}
+    \end{array}\right]
+    ]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="block"><mml:mrow><mml:mi>𝐖</mml:mi><mml:mo>=</mml:mo><mml:mrow><mml:mo stretchy="true" form="prefix">[</mml:mo><mml:mtable><mml:mtr><mml:mtd columnalign="center" style="text-align: center"><mml:msub><mml:mi>w</mml:mi><mml:mn>11</mml:mn></mml:msub></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:msub><mml:mi>w</mml:mi><mml:mn>12</mml:mn></mml:msub></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:msub><mml:mi>w</mml:mi><mml:mn>13</mml:mn></mml:msub></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:mi>⋯</mml:mi></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:msub><mml:mi>w</mml:mi><mml:mrow><mml:mn>1</mml:mn><mml:mi mathvariant="normal">n</mml:mi></mml:mrow></mml:msub></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center" style="text-align: center"><mml:msub><mml:mi>w</mml:mi><mml:mn>21</mml:mn></mml:msub></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:msub><mml:mi>w</mml:mi><mml:mn>22</mml:mn></mml:msub></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:msub><mml:mi>w</mml:mi><mml:mn>23</mml:mn></mml:msub></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:mi>⋯</mml:mi></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:msub><mml:mi>w</mml:mi><mml:mrow><mml:mn>2</mml:mn><mml:mi mathvariant="normal">n</mml:mi></mml:mrow></mml:msub></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center" style="text-align: center"><mml:mi>⋮</mml:mi></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:mi>⋮</mml:mi></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:mi>⋮</mml:mi></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:msub><mml:mi>w</mml:mi><mml:mrow><mml:mi mathvariant="normal">i</mml:mi><mml:mi mathvariant="normal">j</mml:mi></mml:mrow></mml:msub></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:mi>⋮</mml:mi></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center" style="text-align: center"><mml:msub><mml:mi>w</mml:mi><mml:mrow><mml:mi mathvariant="normal">n</mml:mi><mml:mn>1</mml:mn></mml:mrow></mml:msub></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:msub><mml:mi>w</mml:mi><mml:mrow><mml:mi mathvariant="normal">n</mml:mi><mml:mn>2</mml:mn></mml:mrow></mml:msub></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:msub><mml:mi>w</mml:mi><mml:mrow><mml:mi mathvariant="normal">n</mml:mi><mml:mn>3</mml:mn></mml:mrow></mml:msub></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:mi>⋯</mml:mi></mml:mtd><mml:mtd columnalign="center" style="text-align: center"><mml:msub><mml:mi>w</mml:mi><mml:mrow><mml:mi mathvariant="normal">n</mml:mi><mml:mi mathvariant="normal">n</mml:mi></mml:mrow></mml:msub></mml:mtd></mml:mtr></mml:mtable><mml:mo stretchy="true" form="postfix">]</mml:mo></mml:mrow></mml:mrow></mml:math></alternatives></disp-formula>
+    where <inline-formula><alternatives><tex-math><![CDATA[w_{ij}=1]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:msub><mml:mi>w</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>
+    for districts sharing either a border or vertex and 0 otherwise.
+    Following standard practice, we row-normalize the weights
+    matrix.</p>
+        <p>The detection of significant spatial dependence would justify the
+    use of spatial econometric techniques. In particular, Ertur and Koch
+    (<xref alt="2007" rid="ref-ertur2007growth" ref-type="bibr">2007</xref>)
+    and Fischer
+    (<xref alt="2011" rid="ref-fischer2011spatial" ref-type="bibr">2011</xref>)
+    argue that the spatial Durbin model can properly account for spatial
+    spillovers in the convergence process. This methodological choice
+    allows us to distinguish between direct effects of district
+    characteristics and indirect effects operating through spatial
+    channels.</p>
+      </sec>
+      <sec id="spatial-spillover-modeling">
+        <title>Spatial spillover modeling</title>
+        <p>Our spatial spillover modeling builds upon the spatial Solow
+    growth model developed by Ertur and Koch
+    (<xref alt="2007" rid="ref-ertur2007growth" ref-type="bibr">2007</xref>)
+    and Fischer
+    (<xref alt="2011" rid="ref-fischer2011spatial" ref-type="bibr">2011</xref>),
+    which extends the traditional Solow framework to account for
+    technological interdependence across regions. The model considers an
+    economy of <inline-formula><alternatives><tex-math><![CDATA[N]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>N</mml:mi></mml:math></alternatives></inline-formula>
+    subnational regions, each characterized by a Cobb-Douglas production
+    function with constant returns to scale:</p>
+        <p>
+          <styled-content id="eq-production">
+            <disp-formula>
+              <alternatives>
+                <tex-math><![CDATA[
+    Y_{i t}=A_{i t} K_{i t}^{\alpha_{K}} H_{i t}^{\alpha_{H}} L_{i t}^{1-\alpha_{K} -\alpha_{H}}
+     \qquad(3)]]></tex-math>
+                <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="block">
+                  <mml:mrow>
+                    <mml:msub>
+                      <mml:mi>Y</mml:mi>
+                      <mml:mrow>
+                        <mml:mi>i</mml:mi>
+                        <mml:mi>t</mml:mi>
+                      </mml:mrow>
+                    </mml:msub>
+                    <mml:mo>=</mml:mo>
+                    <mml:msub>
+                      <mml:mi>A</mml:mi>
+                      <mml:mrow>
+                        <mml:mi>i</mml:mi>
+                        <mml:mi>t</mml:mi>
+                      </mml:mrow>
+                    </mml:msub>
+                    <mml:msubsup>
+                      <mml:mi>K</mml:mi>
+                      <mml:mrow>
+                        <mml:mi>i</mml:mi>
+                        <mml:mi>t</mml:mi>
+                      </mml:mrow>
                       <mml:msub>
-                        <mml:mi>Y</mml:mi>
-                        <mml:mrow>
-                          <mml:mi>i</mml:mi>
-                          <mml:mi>t</mml:mi>
-                        </mml:mrow>
-                      </mml:msub>
-                      <mml:mo>=</mml:mo>
-                      <mml:msub>
-                        <mml:mi>A</mml:mi>
-                        <mml:mrow>
-                          <mml:mi>i</mml:mi>
-                          <mml:mi>t</mml:mi>
-                        </mml:mrow>
-                      </mml:msub>
-                      <mml:msubsup>
+                        <mml:mi>α</mml:mi>
                         <mml:mi>K</mml:mi>
-                        <mml:mrow>
-                          <mml:mi>i</mml:mi>
-                          <mml:mi>t</mml:mi>
-                        </mml:mrow>
+                      </mml:msub>
+                    </mml:msubsup>
+                    <mml:msubsup>
+                      <mml:mi>H</mml:mi>
+                      <mml:mrow>
+                        <mml:mi>i</mml:mi>
+                        <mml:mi>t</mml:mi>
+                      </mml:mrow>
+                      <mml:msub>
+                        <mml:mi>α</mml:mi>
+                        <mml:mi>H</mml:mi>
+                      </mml:msub>
+                    </mml:msubsup>
+                    <mml:msubsup>
+                      <mml:mi>L</mml:mi>
+                      <mml:mrow>
+                        <mml:mi>i</mml:mi>
+                        <mml:mi>t</mml:mi>
+                      </mml:mrow>
+                      <mml:mrow>
+                        <mml:mn>1</mml:mn>
+                        <mml:mo>−</mml:mo>
                         <mml:msub>
                           <mml:mi>α</mml:mi>
                           <mml:mi>K</mml:mi>
                         </mml:msub>
-                      </mml:msubsup>
-                      <mml:msubsup>
-                        <mml:mi>H</mml:mi>
-                        <mml:mrow>
-                          <mml:mi>i</mml:mi>
-                          <mml:mi>t</mml:mi>
-                        </mml:mrow>
+                        <mml:mo>−</mml:mo>
                         <mml:msub>
                           <mml:mi>α</mml:mi>
                           <mml:mi>H</mml:mi>
                         </mml:msub>
-                      </mml:msubsup>
-                      <mml:msubsup>
-                        <mml:mi>L</mml:mi>
-                        <mml:mrow>
-                          <mml:mi>i</mml:mi>
-                          <mml:mi>t</mml:mi>
-                        </mml:mrow>
-                        <mml:mrow>
-                          <mml:mn>1</mml:mn>
-                          <mml:mo>−</mml:mo>
-                          <mml:msub>
-                            <mml:mi>α</mml:mi>
-                            <mml:mi>K</mml:mi>
-                          </mml:msub>
-                          <mml:mo>−</mml:mo>
-                          <mml:msub>
-                            <mml:mi>α</mml:mi>
-                            <mml:mi>H</mml:mi>
-                          </mml:msub>
-                        </mml:mrow>
-                      </mml:msubsup>
-                      <mml:mspace width="2.0em"/>
-                      <mml:mrow>
-                        <mml:mo stretchy="true" form="prefix">(</mml:mo>
-                        <mml:mn>3</mml:mn>
-                        <mml:mo stretchy="true" form="postfix">)</mml:mo>
                       </mml:mrow>
-                    </mml:mrow>
-                  </mml:math>
-                </alternatives>
-              </disp-formula>
-            </styled-content>
-          </p>
-          <p>where <inline-formula><alternatives><tex-math><![CDATA[Y_{it}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>Y</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>
-      represents output, <inline-formula><alternatives><tex-math><![CDATA[K_{it}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>K</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>
-      physical capital, <inline-formula><alternatives><tex-math><![CDATA[H_{it}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>H</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>
-      human capital, <inline-formula><alternatives><tex-math><![CDATA[L_{it}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>L</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>
-      labor force, and <inline-formula><alternatives><tex-math><![CDATA[A_{it}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>A</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>
-      the level of technological knowledge for region
-      <inline-formula><alternatives><tex-math><![CDATA[i]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>i</mml:mi></mml:math></alternatives></inline-formula>
-      at time <inline-formula><alternatives><tex-math><![CDATA[t]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>t</mml:mi></mml:math></alternatives></inline-formula>.
-      The parameters <inline-formula><alternatives><tex-math><![CDATA[\alpha_K]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>α</mml:mi><mml:mi>K</mml:mi></mml:msub></mml:math></alternatives></inline-formula>
-      and <inline-formula><alternatives><tex-math><![CDATA[\alpha_H]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>α</mml:mi><mml:mi>H</mml:mi></mml:msub></mml:math></alternatives></inline-formula>
-      denote the output elasticities with respect to physical and human
-      capital, respectively. A key innovation of this framework is the
-      modeling of technological knowledge, which incorporates both
-      internal and external factors:</p>
-          <p>
-            <styled-content id="eq-technology">
-              <disp-formula>
-                <alternatives>
-                  <tex-math><![CDATA[
-      A_{i t}=\Omega_{t} k_{i t}^{\theta} h_{i t}^{\phi} \prod_{j \neq i}^{N} A_{j t}^{\rho W_{i j}}
-       \qquad(4)]]></tex-math>
-                  <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="block">
+                    </mml:msubsup>
+                    <mml:mspace width="2.0em"/>
                     <mml:mrow>
-                      <mml:msub>
-                        <mml:mi>A</mml:mi>
-                        <mml:mrow>
-                          <mml:mi>i</mml:mi>
-                          <mml:mi>t</mml:mi>
-                        </mml:mrow>
-                      </mml:msub>
-                      <mml:mo>=</mml:mo>
-                      <mml:msub>
-                        <mml:mi>Ω</mml:mi>
+                      <mml:mo stretchy="true" form="prefix">(</mml:mo>
+                      <mml:mn>3</mml:mn>
+                      <mml:mo stretchy="true" form="postfix">)</mml:mo>
+                    </mml:mrow>
+                  </mml:mrow>
+                </mml:math>
+              </alternatives>
+            </disp-formula>
+          </styled-content>
+        </p>
+        <p>where <inline-formula><alternatives><tex-math><![CDATA[Y_{it}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>Y</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>
+    represents output, <inline-formula><alternatives><tex-math><![CDATA[K_{it}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>K</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>
+    physical capital, <inline-formula><alternatives><tex-math><![CDATA[H_{it}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>H</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>
+    human capital, <inline-formula><alternatives><tex-math><![CDATA[L_{it}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>L</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>
+    labor force, and <inline-formula><alternatives><tex-math><![CDATA[A_{it}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>A</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>
+    the level of technological knowledge for region
+    <inline-formula><alternatives><tex-math><![CDATA[i]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>i</mml:mi></mml:math></alternatives></inline-formula>
+    at time <inline-formula><alternatives><tex-math><![CDATA[t]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>t</mml:mi></mml:math></alternatives></inline-formula>.
+    The parameters <inline-formula><alternatives><tex-math><![CDATA[\alpha_K]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>α</mml:mi><mml:mi>K</mml:mi></mml:msub></mml:math></alternatives></inline-formula>
+    and <inline-formula><alternatives><tex-math><![CDATA[\alpha_H]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>α</mml:mi><mml:mi>H</mml:mi></mml:msub></mml:math></alternatives></inline-formula>
+    denote the output elasticities with respect to physical and human
+    capital, respectively. A key innovation of this framework is the
+    modeling of technological knowledge, which incorporates both
+    internal and external factors:</p>
+        <p>
+          <styled-content id="eq-technology">
+            <disp-formula>
+              <alternatives>
+                <tex-math><![CDATA[
+    A_{i t}=\Omega_{t} k_{i t}^{\theta} h_{i t}^{\phi} \prod_{j \neq i}^{N} A_{j t}^{\rho W_{i j}}
+     \qquad(4)]]></tex-math>
+                <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="block">
+                  <mml:mrow>
+                    <mml:msub>
+                      <mml:mi>A</mml:mi>
+                      <mml:mrow>
+                        <mml:mi>i</mml:mi>
                         <mml:mi>t</mml:mi>
-                      </mml:msub>
-                      <mml:msubsup>
-                        <mml:mi>k</mml:mi>
-                        <mml:mrow>
-                          <mml:mi>i</mml:mi>
-                          <mml:mi>t</mml:mi>
-                        </mml:mrow>
-                        <mml:mi>θ</mml:mi>
-                      </mml:msubsup>
-                      <mml:msubsup>
-                        <mml:mi>h</mml:mi>
-                        <mml:mrow>
-                          <mml:mi>i</mml:mi>
-                          <mml:mi>t</mml:mi>
-                        </mml:mrow>
-                        <mml:mi>ϕ</mml:mi>
-                      </mml:msubsup>
-                      <mml:munderover>
-                        <mml:mo>∏</mml:mo>
-                        <mml:mrow>
-                          <mml:mi>j</mml:mi>
-                          <mml:mo>≠</mml:mo>
-                          <mml:mi>i</mml:mi>
-                        </mml:mrow>
-                        <mml:mi>N</mml:mi>
-                      </mml:munderover>
-                      <mml:msubsup>
-                        <mml:mi>A</mml:mi>
-                        <mml:mrow>
-                          <mml:mi>j</mml:mi>
-                          <mml:mi>t</mml:mi>
-                        </mml:mrow>
-                        <mml:mrow>
-                          <mml:mi>ρ</mml:mi>
-                          <mml:msub>
-                            <mml:mi>W</mml:mi>
-                            <mml:mrow>
-                              <mml:mi>i</mml:mi>
-                              <mml:mi>j</mml:mi>
-                            </mml:mrow>
-                          </mml:msub>
-                        </mml:mrow>
-                      </mml:msubsup>
-                      <mml:mspace width="2.0em"/>
-                      <mml:mrow>
-                        <mml:mo stretchy="true" form="prefix">(</mml:mo>
-                        <mml:mn>4</mml:mn>
-                        <mml:mo stretchy="true" form="postfix">)</mml:mo>
                       </mml:mrow>
-                    </mml:mrow>
-                  </mml:math>
-                </alternatives>
-              </disp-formula>
-            </styled-content>
-          </p>
-          <p>This specification captures three distinct components of
-      technological progress:</p>
-          <list list-type="bullet">
-            <list-item>
-              <p>An exogenous component (<inline-formula><alternatives><tex-math><![CDATA[\Omega_t]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>Ω</mml:mi><mml:mi>t</mml:mi></mml:msub></mml:math></alternatives></inline-formula>)
-          representing the common stock of knowledge across regions</p>
-            </list-item>
-            <list-item>
-              <p>An embodied component (<inline-formula><alternatives><tex-math><![CDATA[k_{i t}^{\theta} h_{i t}^{\phi}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:msubsup><mml:mi>k</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>t</mml:mi></mml:mrow><mml:mi>θ</mml:mi></mml:msubsup><mml:msubsup><mml:mi>h</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>t</mml:mi></mml:mrow><mml:mi>ϕ</mml:mi></mml:msubsup></mml:mrow></mml:math></alternatives></inline-formula>)
-          reflecting technology embedded in physical and human capital
-          per worker</p>
-            </list-item>
-            <list-item>
-              <p>A spatial component (<inline-formula><alternatives><tex-math><![CDATA[\prod_{j \neq i}^{N} A_{j t}^{\rho W_{i j}}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:msubsup><mml:mo>∏</mml:mo><mml:mrow><mml:mi>j</mml:mi><mml:mo>≠</mml:mo><mml:mi>i</mml:mi></mml:mrow><mml:mi>N</mml:mi></mml:msubsup><mml:msubsup><mml:mi>A</mml:mi><mml:mrow><mml:mi>j</mml:mi><mml:mi>t</mml:mi></mml:mrow><mml:mrow><mml:mi>ρ</mml:mi><mml:msub><mml:mi>W</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msubsup></mml:mrow></mml:math></alternatives></inline-formula>)
-          capturing technological interdependence between regions</p>
-            </list-item>
-          </list>
-          <p>Based on this theoretical framework, Ertur and Koch
-      (<xref alt="2007" rid="ref-ertur2007growth" ref-type="bibr">2007</xref>)
-      derived a spatial panel Durbin model that for regional spillovers
-      across economies. Their model can be compactly written in matrix
-      notation as:</p>
-          <p>
-            <styled-content id="eq-matrix_form">
-              <disp-formula>
-                <alternatives>
-                  <tex-math><![CDATA[
-      \boldsymbol{g_t} =  \beta_1 \boldsymbol{x_{t-1}} + \boldsymbol{X_t} \boldsymbol{\alpha} + \beta_2 \boldsymbol{W} \boldsymbol{x_{t-1}} + \boldsymbol{W} \boldsymbol{X_t} \boldsymbol{\gamma} + \lambda \boldsymbol{W} \boldsymbol{g_t}  + \boldsymbol{\varepsilon_t}
-       \qquad(5)]]></tex-math>
-                  <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="block">
+                    </mml:msub>
+                    <mml:mo>=</mml:mo>
+                    <mml:msub>
+                      <mml:mi>Ω</mml:mi>
+                      <mml:mi>t</mml:mi>
+                    </mml:msub>
+                    <mml:msubsup>
+                      <mml:mi>k</mml:mi>
+                      <mml:mrow>
+                        <mml:mi>i</mml:mi>
+                        <mml:mi>t</mml:mi>
+                      </mml:mrow>
+                      <mml:mi>θ</mml:mi>
+                    </mml:msubsup>
+                    <mml:msubsup>
+                      <mml:mi>h</mml:mi>
+                      <mml:mrow>
+                        <mml:mi>i</mml:mi>
+                        <mml:mi>t</mml:mi>
+                      </mml:mrow>
+                      <mml:mi>ϕ</mml:mi>
+                    </mml:msubsup>
+                    <mml:munderover>
+                      <mml:mo>∏</mml:mo>
+                      <mml:mrow>
+                        <mml:mi>j</mml:mi>
+                        <mml:mo>≠</mml:mo>
+                        <mml:mi>i</mml:mi>
+                      </mml:mrow>
+                      <mml:mi>N</mml:mi>
+                    </mml:munderover>
+                    <mml:msubsup>
+                      <mml:mi>A</mml:mi>
+                      <mml:mrow>
+                        <mml:mi>j</mml:mi>
+                        <mml:mi>t</mml:mi>
+                      </mml:mrow>
+                      <mml:mrow>
+                        <mml:mi>ρ</mml:mi>
+                        <mml:msub>
+                          <mml:mi>W</mml:mi>
+                          <mml:mrow>
+                            <mml:mi>i</mml:mi>
+                            <mml:mi>j</mml:mi>
+                          </mml:mrow>
+                        </mml:msub>
+                      </mml:mrow>
+                    </mml:msubsup>
+                    <mml:mspace width="2.0em"/>
                     <mml:mrow>
-                      <mml:msub>
-                        <mml:mi>𝐠</mml:mi>
-                        <mml:mi>𝐭</mml:mi>
-                      </mml:msub>
-                      <mml:mo>=</mml:mo>
-                      <mml:msub>
-                        <mml:mi>β</mml:mi>
-                        <mml:mn>1</mml:mn>
-                      </mml:msub>
-                      <mml:msub>
-                        <mml:mi>𝐱</mml:mi>
-                        <mml:mrow>
-                          <mml:mi>𝐭</mml:mi>
-                          <mml:mo mathvariant="bold">−</mml:mo>
-                          <mml:mn>𝟏</mml:mn>
-                        </mml:mrow>
-                      </mml:msub>
-                      <mml:mo>+</mml:mo>
-                      <mml:msub>
-                        <mml:mi>𝐗</mml:mi>
-                        <mml:mi>𝐭</mml:mi>
-                      </mml:msub>
-                      <mml:mi>𝛂</mml:mi>
-                      <mml:mo>+</mml:mo>
-                      <mml:msub>
-                        <mml:mi>β</mml:mi>
-                        <mml:mn>2</mml:mn>
-                      </mml:msub>
-                      <mml:mi>𝐖</mml:mi>
-                      <mml:msub>
-                        <mml:mi>𝐱</mml:mi>
-                        <mml:mrow>
-                          <mml:mi>𝐭</mml:mi>
-                          <mml:mo mathvariant="bold">−</mml:mo>
-                          <mml:mn>𝟏</mml:mn>
-                        </mml:mrow>
-                      </mml:msub>
-                      <mml:mo>+</mml:mo>
-                      <mml:mi>𝐖</mml:mi>
-                      <mml:msub>
-                        <mml:mi>𝐗</mml:mi>
-                        <mml:mi>𝐭</mml:mi>
-                      </mml:msub>
-                      <mml:mi>𝛄</mml:mi>
-                      <mml:mo>+</mml:mo>
-                      <mml:mi>λ</mml:mi>
-                      <mml:mi>𝐖</mml:mi>
-                      <mml:msub>
-                        <mml:mi>𝐠</mml:mi>
-                        <mml:mi>𝐭</mml:mi>
-                      </mml:msub>
-                      <mml:mo>+</mml:mo>
-                      <mml:msub>
-                        <mml:mi>𝛆</mml:mi>
-                        <mml:mi>𝐭</mml:mi>
-                      </mml:msub>
-                      <mml:mspace width="2.0em"/>
-                      <mml:mrow>
-                        <mml:mo stretchy="true" form="prefix">(</mml:mo>
-                        <mml:mn>5</mml:mn>
-                        <mml:mo stretchy="true" form="postfix">)</mml:mo>
-                      </mml:mrow>
+                      <mml:mo stretchy="true" form="prefix">(</mml:mo>
+                      <mml:mn>4</mml:mn>
+                      <mml:mo stretchy="true" form="postfix">)</mml:mo>
                     </mml:mrow>
-                  </mml:math>
-                </alternatives>
-              </disp-formula>
-            </styled-content>
-          </p>
-          <p>In this model, <inline-formula><alternatives><tex-math><![CDATA[\boldsymbol{g_t}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>𝐠</mml:mi><mml:mi>𝐭</mml:mi></mml:msub></mml:math></alternatives></inline-formula>
-      represents an <inline-formula><alternatives><tex-math><![CDATA[N\text{-by-}1]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>N</mml:mi><mml:mtext mathvariant="normal">-by-</mml:mtext><mml:mn>1</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>
-      vector of observations on NTL growth for each of the
-      <inline-formula><alternatives><tex-math><![CDATA[N]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>N</mml:mi></mml:math></alternatives></inline-formula>
-      regions over the period <inline-formula><alternatives><tex-math><![CDATA[t]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>t</mml:mi></mml:math></alternatives></inline-formula>
-      and <inline-formula><alternatives><tex-math><![CDATA[\boldsymbol{x_{t-1}}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>𝐱</mml:mi><mml:mrow><mml:mi>𝐭</mml:mi><mml:mo mathvariant="bold">−</mml:mo><mml:mn>𝟏</mml:mn></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>
-      represents an <inline-formula><alternatives><tex-math><![CDATA[N\text{-by-}1]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>N</mml:mi><mml:mtext mathvariant="normal">-by-</mml:mtext><mml:mn>1</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>
-      vector of observations on the initial (log) level of NTL. The
-      scalar <inline-formula><alternatives><tex-math><![CDATA[\beta_1]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>β</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></alternatives></inline-formula>
-      is a regression coefficient that indicates the direction and
-      strength of regional convergence. The matrix
-      <inline-formula><alternatives><tex-math><![CDATA[\boldsymbol{X_t}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>𝐗</mml:mi><mml:mi>𝐭</mml:mi></mml:msub></mml:math></alternatives></inline-formula>
-      is a <inline-formula><alternatives><tex-math><![CDATA[N\text{-by-}k]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>N</mml:mi><mml:mtext mathvariant="normal">-by-</mml:mtext><mml:mi>k</mml:mi></mml:mrow></mml:math></alternatives></inline-formula>
-      collection of observations on control variables for each region.
-      The vector <inline-formula><alternatives><tex-math><![CDATA[\boldsymbol{\alpha}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>𝛂</mml:mi></mml:math></alternatives></inline-formula>,
-      with dimensions <inline-formula><alternatives><tex-math><![CDATA[k \times 1]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>k</mml:mi><mml:mo>×</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>,
-      captures the regression coefficients for these variables.
-      Additionally, <inline-formula><alternatives><tex-math><![CDATA[\boldsymbol{WX_t}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>𝐖</mml:mi><mml:msub><mml:mi>𝐗</mml:mi><mml:mi>𝐭</mml:mi></mml:msub></mml:mrow></mml:math></alternatives></inline-formula>
-      denotes a <inline-formula><alternatives><tex-math><![CDATA[N \times k]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>N</mml:mi><mml:mo>×</mml:mo><mml:mi>k</mml:mi></mml:mrow></mml:math></alternatives></inline-formula>
-      matrix of spatially lagged observations, composed of a linear
-      combination of neighboring values for the variables of interest in
-      each region. The vector <inline-formula><alternatives><tex-math><![CDATA[\boldsymbol{\gamma}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>𝛄</mml:mi></mml:math></alternatives></inline-formula>
-      represents the regression coefficients associated with these
-      spatial lags. The terms <inline-formula><alternatives><tex-math><![CDATA[\boldsymbol{W} \boldsymbol{x_{t-1}}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>𝐖</mml:mi><mml:msub><mml:mi>𝐱</mml:mi><mml:mrow><mml:mi>𝐭</mml:mi><mml:mo mathvariant="bold">−</mml:mo><mml:mn>𝟏</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula>
-      and <inline-formula><alternatives><tex-math><![CDATA[\boldsymbol{W} \boldsymbol{g_t}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>𝐖</mml:mi><mml:msub><mml:mi>𝐠</mml:mi><mml:mi>𝐭</mml:mi></mml:msub></mml:mrow></mml:math></alternatives></inline-formula>
-      refer to <inline-formula><alternatives><tex-math><![CDATA[N\text{-by-}1]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>N</mml:mi><mml:mtext mathvariant="normal">-by-</mml:mtext><mml:mn>1</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>
-      vectors capturing the spatial lags of initial (log) level of NTL,
-      and the NTL growth, respectively. Finally,
-      <inline-formula><alternatives><tex-math><![CDATA[\boldsymbol{\varepsilon_t}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>𝛆</mml:mi><mml:mi>𝐭</mml:mi></mml:msub></mml:math></alternatives></inline-formula>
-      represents a vector of idiosyncratic error terms.</p>
-        </sec>
+                  </mml:mrow>
+                </mml:math>
+              </alternatives>
+            </disp-formula>
+          </styled-content>
+        </p>
+        <p>This specification captures three distinct components of
+    technological progress:</p>
+        <list list-type="bullet">
+          <list-item>
+            <p>An exogenous component (<inline-formula><alternatives><tex-math><![CDATA[\Omega_t]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>Ω</mml:mi><mml:mi>t</mml:mi></mml:msub></mml:math></alternatives></inline-formula>)
+        representing the common stock of knowledge across regions</p>
+          </list-item>
+          <list-item>
+            <p>An embodied component (<inline-formula><alternatives><tex-math><![CDATA[k_{i t}^{\theta} h_{i t}^{\phi}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:msubsup><mml:mi>k</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>t</mml:mi></mml:mrow><mml:mi>θ</mml:mi></mml:msubsup><mml:msubsup><mml:mi>h</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>t</mml:mi></mml:mrow><mml:mi>ϕ</mml:mi></mml:msubsup></mml:mrow></mml:math></alternatives></inline-formula>)
+        reflecting technology embedded in physical and human capital per
+        worker</p>
+          </list-item>
+          <list-item>
+            <p>A spatial component (<inline-formula><alternatives><tex-math><![CDATA[\prod_{j \neq i}^{N} A_{j t}^{\rho W_{i j}}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:msubsup><mml:mo>∏</mml:mo><mml:mrow><mml:mi>j</mml:mi><mml:mo>≠</mml:mo><mml:mi>i</mml:mi></mml:mrow><mml:mi>N</mml:mi></mml:msubsup><mml:msubsup><mml:mi>A</mml:mi><mml:mrow><mml:mi>j</mml:mi><mml:mi>t</mml:mi></mml:mrow><mml:mrow><mml:mi>ρ</mml:mi><mml:msub><mml:mi>W</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msubsup></mml:mrow></mml:math></alternatives></inline-formula>)
+        capturing technological interdependence between regions</p>
+          </list-item>
+        </list>
+        <p>Based on this theoretical framework, Ertur and Koch
+    (<xref alt="2007" rid="ref-ertur2007growth" ref-type="bibr">2007</xref>)
+    derived a spatial panel Durbin model that for regional spillovers
+    across economies. Their model can be compactly written in matrix
+    notation as:</p>
+        <p>
+          <styled-content id="eq-matrix_form">
+            <disp-formula>
+              <alternatives>
+                <tex-math><![CDATA[
+    \boldsymbol{g_t} =  \beta_1 \boldsymbol{x_{t-1}} + \boldsymbol{X_t} \boldsymbol{\alpha} + \beta_2 \boldsymbol{W} \boldsymbol{x_{t-1}} + \boldsymbol{W} \boldsymbol{X_t} \boldsymbol{\gamma} + \lambda \boldsymbol{W} \boldsymbol{g_t}  + \boldsymbol{\varepsilon_t}
+     \qquad(5)]]></tex-math>
+                <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="block">
+                  <mml:mrow>
+                    <mml:msub>
+                      <mml:mi>𝐠</mml:mi>
+                      <mml:mi>𝐭</mml:mi>
+                    </mml:msub>
+                    <mml:mo>=</mml:mo>
+                    <mml:msub>
+                      <mml:mi>β</mml:mi>
+                      <mml:mn>1</mml:mn>
+                    </mml:msub>
+                    <mml:msub>
+                      <mml:mi>𝐱</mml:mi>
+                      <mml:mrow>
+                        <mml:mi>𝐭</mml:mi>
+                        <mml:mo mathvariant="bold">−</mml:mo>
+                        <mml:mn>𝟏</mml:mn>
+                      </mml:mrow>
+                    </mml:msub>
+                    <mml:mo>+</mml:mo>
+                    <mml:msub>
+                      <mml:mi>𝐗</mml:mi>
+                      <mml:mi>𝐭</mml:mi>
+                    </mml:msub>
+                    <mml:mi>𝛂</mml:mi>
+                    <mml:mo>+</mml:mo>
+                    <mml:msub>
+                      <mml:mi>β</mml:mi>
+                      <mml:mn>2</mml:mn>
+                    </mml:msub>
+                    <mml:mi>𝐖</mml:mi>
+                    <mml:msub>
+                      <mml:mi>𝐱</mml:mi>
+                      <mml:mrow>
+                        <mml:mi>𝐭</mml:mi>
+                        <mml:mo mathvariant="bold">−</mml:mo>
+                        <mml:mn>𝟏</mml:mn>
+                      </mml:mrow>
+                    </mml:msub>
+                    <mml:mo>+</mml:mo>
+                    <mml:mi>𝐖</mml:mi>
+                    <mml:msub>
+                      <mml:mi>𝐗</mml:mi>
+                      <mml:mi>𝐭</mml:mi>
+                    </mml:msub>
+                    <mml:mi>𝛄</mml:mi>
+                    <mml:mo>+</mml:mo>
+                    <mml:mi>λ</mml:mi>
+                    <mml:mi>𝐖</mml:mi>
+                    <mml:msub>
+                      <mml:mi>𝐠</mml:mi>
+                      <mml:mi>𝐭</mml:mi>
+                    </mml:msub>
+                    <mml:mo>+</mml:mo>
+                    <mml:msub>
+                      <mml:mi>𝛆</mml:mi>
+                      <mml:mi>𝐭</mml:mi>
+                    </mml:msub>
+                    <mml:mspace width="2.0em"/>
+                    <mml:mrow>
+                      <mml:mo stretchy="true" form="prefix">(</mml:mo>
+                      <mml:mn>5</mml:mn>
+                      <mml:mo stretchy="true" form="postfix">)</mml:mo>
+                    </mml:mrow>
+                  </mml:mrow>
+                </mml:math>
+              </alternatives>
+            </disp-formula>
+          </styled-content>
+        </p>
+        <p>In this model, <inline-formula><alternatives><tex-math><![CDATA[\boldsymbol{g_t}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>𝐠</mml:mi><mml:mi>𝐭</mml:mi></mml:msub></mml:math></alternatives></inline-formula>
+    represents an <inline-formula><alternatives><tex-math><![CDATA[N\text{-by-}1]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>N</mml:mi><mml:mtext mathvariant="normal">-by-</mml:mtext><mml:mn>1</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>
+    vector of observations on NTL growth for each of the
+    <inline-formula><alternatives><tex-math><![CDATA[N]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>N</mml:mi></mml:math></alternatives></inline-formula>
+    regions over the period <inline-formula><alternatives><tex-math><![CDATA[t]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>t</mml:mi></mml:math></alternatives></inline-formula>
+    and <inline-formula><alternatives><tex-math><![CDATA[\boldsymbol{x_{t-1}}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>𝐱</mml:mi><mml:mrow><mml:mi>𝐭</mml:mi><mml:mo mathvariant="bold">−</mml:mo><mml:mn>𝟏</mml:mn></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>
+    represents an <inline-formula><alternatives><tex-math><![CDATA[N\text{-by-}1]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>N</mml:mi><mml:mtext mathvariant="normal">-by-</mml:mtext><mml:mn>1</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>
+    vector of observations on the initial (log) level of NTL. The scalar
+    <inline-formula><alternatives><tex-math><![CDATA[\beta_1]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>β</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></alternatives></inline-formula>
+    is a regression coefficient that indicates the direction and
+    strength of regional convergence. The matrix
+    <inline-formula><alternatives><tex-math><![CDATA[\boldsymbol{X_t}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>𝐗</mml:mi><mml:mi>𝐭</mml:mi></mml:msub></mml:math></alternatives></inline-formula>
+    is a <inline-formula><alternatives><tex-math><![CDATA[N\text{-by-}k]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>N</mml:mi><mml:mtext mathvariant="normal">-by-</mml:mtext><mml:mi>k</mml:mi></mml:mrow></mml:math></alternatives></inline-formula>
+    collection of observations on control variables for each region. The
+    vector <inline-formula><alternatives><tex-math><![CDATA[\boldsymbol{\alpha}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>𝛂</mml:mi></mml:math></alternatives></inline-formula>,
+    with dimensions <inline-formula><alternatives><tex-math><![CDATA[k \times 1]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>k</mml:mi><mml:mo>×</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>,
+    captures the regression coefficients for these variables.
+    Additionally, <inline-formula><alternatives><tex-math><![CDATA[\boldsymbol{WX_t}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>𝐖</mml:mi><mml:msub><mml:mi>𝐗</mml:mi><mml:mi>𝐭</mml:mi></mml:msub></mml:mrow></mml:math></alternatives></inline-formula>
+    denotes a <inline-formula><alternatives><tex-math><![CDATA[N \times k]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>N</mml:mi><mml:mo>×</mml:mo><mml:mi>k</mml:mi></mml:mrow></mml:math></alternatives></inline-formula>
+    matrix of spatially lagged observations, composed of a linear
+    combination of neighboring values for the variables of interest in
+    each region. The vector <inline-formula><alternatives><tex-math><![CDATA[\boldsymbol{\gamma}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>𝛄</mml:mi></mml:math></alternatives></inline-formula>
+    represents the regression coefficients associated with these spatial
+    lags. The terms <inline-formula><alternatives><tex-math><![CDATA[\boldsymbol{W} \boldsymbol{x_{t-1}}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>𝐖</mml:mi><mml:msub><mml:mi>𝐱</mml:mi><mml:mrow><mml:mi>𝐭</mml:mi><mml:mo mathvariant="bold">−</mml:mo><mml:mn>𝟏</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula>
+    and <inline-formula><alternatives><tex-math><![CDATA[\boldsymbol{W} \boldsymbol{g_t}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>𝐖</mml:mi><mml:msub><mml:mi>𝐠</mml:mi><mml:mi>𝐭</mml:mi></mml:msub></mml:mrow></mml:math></alternatives></inline-formula>
+    refer to <inline-formula><alternatives><tex-math><![CDATA[N\text{-by-}1]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>N</mml:mi><mml:mtext mathvariant="normal">-by-</mml:mtext><mml:mn>1</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>
+    vectors capturing the spatial lags of initial (log) level of NTL,
+    and the NTL growth, respectively. Finally,
+    <inline-formula><alternatives><tex-math><![CDATA[\boldsymbol{\varepsilon_t}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msub><mml:mi>𝛆</mml:mi><mml:mi>𝐭</mml:mi></mml:msub></mml:math></alternatives></inline-formula>
+    represents a vector of idiosyncratic error terms.</p>
       </sec>
     </sec>
-    <sec id="results-replication-and-extensions">
-      <title>Results: Replication and extensions</title>
+    <sec id="results">
+      <title>Results</title>
       <sec id="regional-convergence-an-interactive-exploration-from-outer-space">
         <title>Regional convergence: An interactive exploration from outer
     space</title>
