@@ -59,20 +59,20 @@ project2025s/
 ├── code/                    # Modular code and scripts
 ├── data/                    # Raw data files
 │   └── india520.dta        # Main dataset (520 districts, 1996-2010)
-├── docs/                    # Documentation and reference files
 ├── figures/                 # Generated visualizations
 ├── notebooks/              # Analysis notebooks (QMD and Jupyter)
-│   ├── scatterplots.qmd   # Convergence analysis
-│   ├── dependence.qmd     # Spatial dependence testing
-│   ├── gee_app.qmd        # Google Earth Engine web app
-│   └── code_models.ipynb  # Spatial Durbin Models
+│   ├── c01_view_from_space.qmd      # Interactive GEE visualization
+│   ├── c02_scatterplots.qmd         # Convergence analysis
+│   ├── c03_spatial_dependence.qmd   # Spatial dependence testing
+│   └── c04_spillover_modeling.ipynb # Spatial Durbin Models
 ├── slides/                 # Quarto presentations
 ├── tables/                 # Generated tables
 ├── legacy/                 # Original project archive (Archive.zip)
 ├── log/                    # Progress logs across sessions
 ├── index.qmd              # Main manuscript source
 ├── index.html             # Manuscript HTML (GitHub Pages)
-├── index.pdf              # Manuscript PDF (REGION format)
+├── index.pdf              # Standard PDF format
+├── index-REGION.pdf       # REGION journal PDF format
 ├── index.docx             # Manuscript MS Word format
 ├── index.xml              # Manuscript JATS XML format
 ├── site_libs/             # Quarto web dependencies
