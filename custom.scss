@@ -7,7 +7,14 @@ $code-link-color: #006600 !default;         // Green for URL links
 
 /*-- scss:rules --*/
 
-// Title and all heading levels (h1-h6) in Chad Blue
+// Manuscript title in Chad Blue
+.quarto-title-block .quarto-title .title,
+.title,
+h1.title {
+  color: #1a1a80;  // Chad Blue - rgb(0.1, 0.1, 0.5)
+}
+
+// All heading levels (h1-h6) in Chad Blue
 h1, h2, h3, h4, h5, h6 {
   color: #1a1a80;  // Chad Blue - rgb(0.1, 0.1, 0.5)
 }
