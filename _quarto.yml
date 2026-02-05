@@ -16,6 +16,7 @@ format:
   region-ersa/REGION-pdf:
     keep-tex: true
     docstatus: review  # Options: review, final, uncorrected
+    output-file: index-REGION
 
   # Main HTML format for GitHub Pages
   html:
