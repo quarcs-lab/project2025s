@@ -156,26 +156,22 @@ Both Python and R configurations set:
 
 ### Editing the Manuscript
 
-To add or modify content in the manuscript:
-
-**Main Source File:** [`index.qmd`](index.qmd)
+**Main Source File:** [index.qmd](index.qmd)
 
 This is the primary manuscript file where all content should be added or edited. It contains:
 
 - YAML front matter (metadata, author info, keywords, JEL codes)
-- Introduction, Methods, Results, and Conclusions sections
+- Introduction, Methods, Results, Conclusions sections
 - Embedded figures and tables
 - References to analysis notebooks
 
-**Compiling the Manuscript:**
-
-After editing `index.qmd`, compile to different formats:
+**Quick Compilation Commands:**
 
 ```bash
 # REGION journal PDF (for submission)
 quarto render index.qmd --to REGION-pdf
 
-# Standard HTML
+# HTML for GitHub Pages
 quarto render index.qmd --to html
 
 # Microsoft Word
@@ -185,19 +181,311 @@ quarto render index.qmd --to docx
 quarto render index.qmd
 ```
 
+**For the complete workflow including GitHub Pages publishing and git commits, see the [Publishing Workflow](#publishing-workflow) section below.**
+
 **Important Notes:**
 
-- The compiled outputs are saved in [`_manuscript/`](_manuscript/) directory
-- LaTeX source is saved alongside the PDF: [`_manuscript/index.tex`](_manuscript/index.tex)
+- Compiled outputs are saved in [_manuscript/](_manuscript/) directory
+- LaTeX source is saved alongside PDF: [_manuscript/index.tex](_manuscript/index.tex)
 - Keep `index.qmd` and `_manuscript/index.qmd` synchronized (they should have identical content)
 - REGION template is configured for peer review (anonymized author info, line numbers, no watermark)
 
-**Switching Between Review and Final Modes:**
+**Switching Document Modes:**
 
-Edit [`_quarto.yml`](_quarto.yml) to change document status:
+Edit [_quarto.yml](_quarto.yml) to change document status:
 
 - `docstatus: review` - For peer review (anonymized, line numbers)
 - `docstatus: final` - For publication (full author info, no line numbers)
+
+## Publishing Workflow
+
+This section describes the complete end-to-end workflow for updating manuscript content and publishing changes to both the GitHub Pages website and PDF outputs.
+
+### Overview Diagram
+
+```text
+Edit Content → Compile Formats → Update GitHub Pages → Commit & Push
+   (index.qmd)   (quarto render)   (update script)      (git commands)
+```
+
+### Detailed Workflow
+
+#### Step 1: Edit Manuscript Content
+
+Edit the main manuscript file:
+
+**File:** [index.qmd](index.qmd)
+
+Make your changes to:
+- YAML front matter (metadata, authors, keywords)
+- Introduction, Methods, Results, Conclusions sections
+- Embedded figures and tables
+- References and citations
+
+#### Step 2: Compile to Desired Formats
+
+After editing, compile the manuscript to the formats you need.
+
+**For Peer Review Submission (REGION PDF):**
+
+```bash
+quarto render index.qmd --to REGION-pdf
+```
+
+Output: `_manuscript/index.pdf` (with line numbers, anonymized)
+
+**For GitHub Pages Website (HTML):**
+
+```bash
+quarto render index.qmd --to html
+```
+
+Output: `_manuscript/index.html` (with dark/light mode, TOC, lightbox)
+
+**For Other Formats:**
+
+```bash
+# Microsoft Word
+quarto render index.qmd --to docx
+
+# JATS XML (journal archiving format)
+quarto render index.qmd --to jats
+
+# All formats at once
+quarto render index.qmd
+```
+
+All outputs are saved in the [_manuscript/](_manuscript/) directory.
+
+#### Step 3: Update GitHub Pages (If HTML Changed)
+
+After compiling the HTML version, update the live website:
+
+```bash
+./update_gh_pages.sh
+```
+
+**What this script does:**
+
+1. Copies `_manuscript/index.html` to `docs/index.html`
+2. Copies supporting directories:
+   - `site_libs/` (Quarto JavaScript and CSS libraries)
+   - `index_files/` (plots, figures, supporting files)
+   - `images/` (manuscript images)
+   - `notebooks/` (notebook preview HTML files)
+3. Creates `.nojekyll` file (prevents GitHub from using Jekyll)
+
+**Script Location:** [update_gh_pages.sh](update_gh_pages.sh)
+
+**Destination:** [docs/](docs/) folder (served by GitHub Pages)
+
+#### Step 4: Review Changes
+
+Before committing, review what changed:
+
+```bash
+git status
+git diff
+```
+
+Check the following:
+
+- `index.qmd` - Your content edits
+- `_manuscript/index.pdf` - Compiled PDF looks correct
+- `_manuscript/index.html` - HTML renders properly
+- `docs/index.html` - Website copy is up-to-date
+
+#### Step 5: Commit and Push to GitHub
+
+Stage and commit your changes:
+
+```bash
+# Stage the files
+git add index.qmd _manuscript/ docs/
+
+# Commit with descriptive message
+git commit -m "Update manuscript: [describe your changes]"
+
+# Push to GitHub
+git push origin master
+```
+
+**Important:** GitHub Pages automatically rebuilds within 1-2 minutes after pushing to the `docs/` folder.
+
+#### Step 6: Verify Live Website
+
+After pushing, wait 1-2 minutes and check the live site:
+
+**URL:** `https://<username>.github.io/project2025s/`
+
+Verify:
+- Updated content appears correctly
+- All images and figures load
+- Notebook links work
+- Dark/light mode toggle functions
+- No broken links
+
+### Common Workflows
+
+**Workflow 1: Update Website Only**
+
+```bash
+# 1. Edit content
+vim index.qmd
+
+# 2. Compile HTML
+quarto render index.qmd --to html
+
+# 3. Update GitHub Pages
+./update_gh_pages.sh
+
+# 4. Commit and push
+git add index.qmd docs/ _manuscript/
+git commit -m "Update manuscript content"
+git push
+```
+
+**Workflow 2: Update PDF for Journal Submission**
+
+```bash
+# 1. Edit content
+vim index.qmd
+
+# 2. Compile REGION PDF
+quarto render index.qmd --to REGION-pdf
+
+# 3. Review PDF
+open _manuscript/index.pdf
+
+# 4. Commit (no GitHub Pages update needed)
+git add index.qmd _manuscript/index.pdf
+git commit -m "Update manuscript for journal submission"
+git push
+```
+
+**Workflow 3: Update All Formats**
+
+```bash
+# 1. Edit content
+vim index.qmd
+
+# 2. Compile all formats
+quarto render index.qmd
+
+# 3. Update GitHub Pages
+./update_gh_pages.sh
+
+# 4. Commit everything
+git add index.qmd _manuscript/ docs/
+git commit -m "Update manuscript - all formats"
+git push
+```
+
+### Switching Between Review and Final Modes
+
+The REGION PDF template supports two document modes:
+
+**Review Mode (Current):**
+- Anonymized author information
+- Line numbers for peer review
+- No watermark
+- Use for: Peer review submission
+
+**Final Mode:**
+- Full author metadata and affiliations
+- No line numbers
+- Professional formatting
+- Use for: Final publication
+
+**To Switch Modes:**
+
+Edit [_quarto.yml](_quarto.yml) line 18:
+
+```yaml
+# For peer review
+docstatus: review
+
+# For publication
+docstatus: final
+```
+
+Then recompile:
+
+```bash
+quarto render index.qmd --to REGION-pdf
+```
+
+### Troubleshooting
+
+**Problem: Quarto render fails with LaTeX errors**
+
+- Check for Unicode characters (use `$\beta$` instead of `β`)
+- Verify all image paths exist
+- Check for unescaped special characters in text
+
+**Problem: GitHub Pages not updating**
+
+- Verify `update_gh_pages.sh` ran successfully
+- Check that `docs/` folder is committed and pushed
+- Wait 2-3 minutes for GitHub Pages rebuild
+- Check GitHub repository settings → Pages → Source is set to "master branch /docs folder"
+
+**Problem: Images not appearing on website**
+
+- Verify images are in `_manuscript/images/` after rendering
+- Check that `update_gh_pages.sh` copied `images/` to `docs/`
+- Verify image paths in `index.qmd` are correct (should be `images/filename.png`)
+
+**Problem: Notebooks not accessible**
+
+- Verify notebooks are in `_manuscript/notebooks/` after rendering
+- Check that `update_gh_pages.sh` copied `notebooks/` to `docs/`
+- Ensure notebook files are `.html` format (Quarto generates these from `.qmd`/`.ipynb`)
+
+### GitHub Pages Configuration
+
+**Repository Settings:**
+
+1. Go to repository Settings → Pages
+2. Source: Deploy from a branch
+3. Branch: `master`
+4. Folder: `/docs`
+5. Save
+
+**Important Files:**
+
+- `docs/.nojekyll` - Tells GitHub not to process files with Jekyll (created automatically by `update_gh_pages.sh`)
+- `docs/index.html` - Main manuscript HTML
+- `docs/README.md` - Documentation about the docs folder
+
+### Format-Specific Notes
+
+**REGION-pdf:**
+- Output: PDF formatted for European Regional Science Association journal
+- LaTeX engine: pdflatex
+- Source TeX preserved at: `_manuscript/index.tex`
+- Review mode: anonymized, line numbers
+- Final mode: full metadata, no line numbers
+
+**HTML:**
+- Output: Interactive web version with modern features
+- Dark/light mode toggle
+- Clickable figures (lightbox)
+- Table of contents navigation
+- Code copy buttons
+- Embedded notebook previews
+- Hypothesis annotation system
+- Format download links (PDF, DOCX)
+
+**DOCX:**
+- Output: Microsoft Word format
+- Useful for: Track changes, collaborator comments
+- Preserves: Figures, tables, citations
+
+**JATS:**
+- Output: Journal Article Tag Suite XML
+- Useful for: Journal archiving, repository submission
+- Preserves: Full document structure and metadata
 
 ## Key Outputs
 
@@ -267,6 +555,26 @@ Session-by-session progress is documented in [`log/`](log/) using timestamped en
 - **Model Performance:** SDM specifications outperform OLS (lower AIC)
 - **Fixed Effects:** State-level controls improve model fit
 
+## Project Status
+
+**Current State (February 2026):**
+
+- ✅ **Analysis Complete** - All spatial convergence analyses finished
+- ✅ **Manuscript Ready** - Formatted for REGION journal peer review submission
+- ✅ **GitHub Pages Live** - Interactive HTML version hosted at: `https://<username>.github.io/project2025s/`
+- ✅ **Multiple Formats** - PDF, HTML, DOCX, and JATS outputs available
+
+**Manuscript Modes:**
+
+- **Review Mode (Current)** - Anonymized for peer review, includes line numbers, no watermark
+- **Final Mode** - Full author metadata, ready for publication
+
+**Next Steps:**
+
+- Submit PDF to REGION journal
+- Share GitHub Pages link for interactive exploration
+- Prepare revisions based on peer review feedback
+
 ## Author
 
 Carlos Mendez - <carlosmendez777@gmail.com>
@@ -296,8 +604,6 @@ Repository: project2025s
 
 ---
 
-**Last Updated:** February 4, 2026
-
-**Project Status:** Analysis complete, manuscript in progress
+**Last Updated:** February 5, 2026
 
 **Git Commit:** 9486c04 (add tables)
