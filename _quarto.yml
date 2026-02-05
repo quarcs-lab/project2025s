@@ -12,16 +12,10 @@ manuscript:
     - notebooks/code_scatterplots.ipynb
 
 format:
-  # REGION journal formats
-  REGION-pdf:
+  # REGION journal PDF (uses extension template)
+  region-ersa/REGION-pdf:
     keep-tex: true
-    pdf-engine: pdflatex
     docstatus: review  # Options: review, final, uncorrected
-
-  # REGION-html format commented out to prevent duplicate Notebooks section
-  # REGION-html:
-  #   toc: false
-  #   format-links: false
 
   # Main HTML format for GitHub Pages
   html:
