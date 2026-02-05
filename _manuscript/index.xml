@@ -7,26 +7,56 @@ and Interchange DTD v1.2 20190208//EN" "JATS-archivearticle1.dtd">
       <title-group>
         <article-title>Regional growth, convergence, and spatial spillovers in
 India: A view from outer space</article-title>
+        <subtitle>Replication and extension using spatial Durbin
+models</subtitle>
       </title-group>
       <contrib-group>
         <contrib contrib-type="author" corresp="yes">
+          <contrib-id contrib-id-type="orcid">0000-0001-7978-2815</contrib-id>
           <name>
-            <surname>_</surname>
-            <given-names/>
+            <surname>Mendez</surname>
+            <given-names>Carlos</given-names>
           </name>
-          <string-name>_ _</string-name>
-          <role vocab="https://credit.niso.org" vocab-term="writing – original draft" vocab-term-identifier="https://credit.niso.org/contributor-roles/writing-original-draft/">writing</role>
+          <string-name>Carlos Mendez</string-name>
+          <email>carlosmendez777@gmail.com</email>
           <xref ref-type="aff" rid="aff-1">a</xref>
           <xref ref-type="corresp" rid="cor-1">*</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <contrib-id contrib-id-type="orcid">0000-0002-3844-1197</contrib-id>
+          <name>
+            <surname>Kabiraj</surname>
+            <given-names>Sujana</given-names>
+          </name>
+          <string-name>Sujana Kabiraj</string-name>
+          <xref ref-type="aff" rid="aff-2">b</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <contrib-id contrib-id-type="orcid">0000-0002-8888-1234</contrib-id>
+          <name>
+            <surname>Li</surname>
+            <given-names>Jiaqi</given-names>
+          </name>
+          <string-name>Jiaqi Li</string-name>
+          <xref ref-type="aff" rid="aff-1">a</xref>
         </contrib>
       </contrib-group>
       <aff id="aff-1">
         <institution-wrap>
-          <institution>_ _</institution>
+          <institution>Nagoya University</institution>
         </institution-wrap>
+        <city>Nagoya</city>
+        <country>Japan</country>
+      </aff>
+      <aff id="aff-2">
+        <institution-wrap>
+          <institution>Indian Institute of Management Indore</institution>
+        </institution-wrap>
+        <city>Indore</city>
+        <country>India</country>
       </aff>
       <author-notes>
-        <corresp id="cor-1"/>
+        <corresp id="cor-1">carlosmendez777@gmail.com</corresp>
       </author-notes>
       <history/>
       <abstract>
@@ -200,9 +230,9 @@ visualizations, and spillover modeling.</p>
     counterparts. Consequently, over the long run, regions with similar
     characteristics should converge to a common steady state. We would
     like to explore such convergence (denoted by
-    <bold>β-convergence</bold>) employing a Barro-style growth
-    regressions framework. Equation (1) analyzes absolute
-    convergence.</p>
+    <bold><inline-formula><alternatives><tex-math><![CDATA[\beta]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>β</mml:mi></mml:math></alternatives></inline-formula>-convergence</bold>)
+    employing a Barro-style growth regressions framework. Equation (1)
+    analyzes absolute convergence.</p>
         <p>
           <styled-content id="eq-matrix-form-abs">
             <disp-formula>
