@@ -12,6 +12,37 @@ This project investigates regional economic convergence in India by analyzing ni
 - How do neighboring regions' luminosity levels influence local growth?
 - What spatial spillover effects exist in regional development patterns?
 
+## Reproducibility Philosophy
+
+**This project exemplifies reproducible research using Quarto's single-source publishing paradigm.**
+
+### Single-Source Authoring
+
+**Write once, publish everywhere:**
+
+- Author writes in **one file**: [index.qmd](index.qmd)
+- Quarto automatically generates **multiple outputs**: PDF, HTML, DOCX, XML, JATS
+- Each format optimized for its purpose (journal submission, web viewing, collaboration)
+
+### Computational Transparency
+
+**All analyses are fully reproducible:**
+
+- **Computational notebooks** ([notebooks/](notebooks/)) contain all data processing and analysis code
+- **Interactive HTML manuscript** links directly to executable notebooks
+- **Readers can verify** every figure, table, and result by running the notebooks
+- **No black boxes**: Complete chain from raw data to final results
+
+### Key Benefits
+
+1. **Reproducibility**: Everything generated from source code and data
+2. **Transparency**: All computational steps documented in notebooks
+3. **Accessibility**: HTML version with embedded interactive content
+4. **Collaboration**: Multiple formats from single source
+5. **Efficiency**: Update once, regenerate all outputs automatically
+
+This workflow embodies open science principles: transparent methods, reproducible results, and accessible research outputs.
+
 ## Data
 
 **Main Dataset:** [`data/india520.dta`](data/india520.dta) (Stata format, 1.2 MB)
@@ -212,6 +243,18 @@ The project generates two distinct PDFs with different formatting:
    - Line numbers (review mode)
    - ERSA branding and journal styling
    - Ready for journal submission
+
+**IMPORTANT - Template Verification:**
+
+To verify the REGION template is properly applied, check for these markers:
+
+- **Line numbers** on left margin (starting page 2)
+- **Author-year citations** in text: (Author YYYY)
+- **Bibliography style** using region.bst (4 LaTeX passes during compilation)
+- **ERSA logo** in footer
+- **Journal ISSN** (2409-5370) in footer
+
+If `index-REGION.pdf` looks identical to `index.pdf`, see the [troubleshooting guide](log/20260205_1245_fix_region_template.md) for detailed debugging steps.
 
 **Optional: Render specific formats**
 
