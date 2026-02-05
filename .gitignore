@@ -1,8 +1,34 @@
+# R files
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
 
+# Quarto cache
 /.quarto/
-
 **/*.quarto_ipynb
+
+# LaTeX intermediate files (keep only final outputs)
+index.tex
+index.log
+index.aux
+index.out
+index.bbl
+index.blg
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Old output directories (no longer used)
+_manuscript/
+
+# Keep compiled outputs for transparency:
+# index.html
+# index.pdf
+# index.docx
+# index.xml
+# site_libs/
+# index_files/
+# images/
+# notebooks/
