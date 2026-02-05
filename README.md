@@ -273,7 +273,12 @@ After compiling the HTML version, update the live website:
    - `index_files/` (plots, figures, supporting files)
    - `images/` (manuscript images)
    - `notebooks/` (notebook preview HTML files)
-3. Creates `.nojekyll` file (prevents GitHub from using Jekyll)
+3. Copies other format files for download:
+   - `index.pdf` (standard PDF)
+   - `REGION-pdf.pdf` (REGION journal PDF, if compiled)
+   - `index.docx` (Microsoft Word)
+   - `index.jats` (JATS XML, if compiled)
+4. Creates `.nojekyll` file (prevents GitHub from using Jekyll)
 
 **Script Location:** [update_gh_pages.sh](update_gh_pages.sh)
 

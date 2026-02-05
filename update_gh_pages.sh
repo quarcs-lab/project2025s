@@ -26,6 +26,21 @@ cp -r _manuscript/images docs/
 echo "  Copying notebooks/..."
 cp -r _manuscript/notebooks docs/
 
+# Copy other format files for download links
+echo "  Copying other format files (PDF, DOCX, JATS)..."
+if [ -f _manuscript/index.pdf ]; then
+    cp _manuscript/index.pdf docs/index.pdf
+fi
+if [ -f _manuscript/REGION-pdf.pdf ]; then
+    cp _manuscript/REGION-pdf.pdf docs/REGION-pdf.pdf
+fi
+if [ -f _manuscript/index.docx ]; then
+    cp _manuscript/index.docx docs/index.docx
+fi
+if [ -f _manuscript/index.jats ]; then
+    cp _manuscript/index.jats docs/index.jats
+fi
+
 # Create .nojekyll file to prevent Jekyll processing
 echo "  Creating .nojekyll file..."
 touch docs/.nojekyll
