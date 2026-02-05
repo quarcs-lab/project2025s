@@ -6,9 +6,8 @@ and Interchange DTD v1.2 20190208//EN" "JATS-archivearticle1.dtd">
     <article-meta>
       <title-group>
         <article-title>Regional growth, convergence, and spatial spillovers in
-India: A view from outer space</article-title>
-        <subtitle>Replication and extension using spatial Durbin
-models</subtitle>
+India:</article-title>
+        <subtitle>A view from outer space</subtitle>
       </title-group>
       <contrib-group>
         <contrib contrib-type="author" corresp="yes">
@@ -838,9 +837,9 @@ visualizations, and spillover modeling.</p>
         <fig id="fig-convergence">
           <caption>
             <p>Figure 3: Regional luminosity convergence across
-      districts in India</p>
+      districts in India Note: here Source: here</p>
           </caption>
-          <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/notebooks-scatterplots-fig-convergence-output-2.png"/>
+          <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/notebooks-c02_scatterplots-fig-convergence-output-2.png"/>
         </fig>
       </sec>
       <sec id="spatial-dependence-is-a-feature-of-the-convergence-process">
@@ -867,7 +866,7 @@ visualizations, and spillover modeling.</p>
             <p>Figure 4: Spatial dependence in the growth rate and
       initial level of luminosity</p>
           </caption>
-          <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/notebooks-dependence-fig-dependence-combined-output-2.png"/>
+          <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/notebooks-c03_spatial_dependence-fig-dependence-combined-output-2.png"/>
         </fig>
       </sec>
       <sec id="spatial-spillovers-accelerate-regional-convergence">
@@ -1444,9 +1443,8 @@ visualizations, and spillover modeling.</p>
       </fn>
     </fn-group>
   </back>
-  <!-- (F2ED4C6E)[nb-1]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/scatterplots.qmd -->
-  <!-- (F2ED4C6E)[nb-2]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/dependence.qmd -->
-  <!-- (F2ED4C6E)[nb-3]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/gee_app.qmd -->
-  <!-- (F2ED4C6E)[nb-4]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/code_models.ipynb -->
-  <!-- (F2ED4C6E)[nb-5]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/code_scatterplots.ipynb -->
+  <!-- (F2ED4C6E)[nb-1]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/c01_view_from_space.qmd -->
+  <!-- (F2ED4C6E)[nb-2]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/c02_scatterplots.qmd -->
+  <!-- (F2ED4C6E)[nb-3]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/c03_spatial_dependence.qmd -->
+  <!-- (F2ED4C6E)[nb-4]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/c04_spillover_modeling.ipynb -->
 </article>

@@ -1,6 +1,6 @@
 ---
-title: "Regional growth, convergence, and spatial spillovers in India: A view from outer space"
-subtitle: "Replication and extension using spatial Durbin models"
+title: "Regional growth, convergence, and spatial spillovers in India:"
+subtitle: "A view from outer space"
 
 # REGION-compatible author format
 author:
@@ -181,13 +181,13 @@ Next, we examine case studies of three economically disadvantaged states in Indi
 
 [^3]: The data is taken from a report by the Economic Advisory Council to the Prime Minister (EAC-PM), released on September 18, 2024.
 
-{{< embed notebooks/scatterplots.qmd#fig-convergence >}}
+{{< embed notebooks/c02_scatterplots.qmd#fig-convergence >}}
 
 ### Spatial dependence is a feature of the convergence process
 
 In this study, the spatial lag terms of luminosity per capita growth and initial luminosity per capita are computed by applying the Queen contiguity weight matrix. FigureX visually presents the relationship between local luminosity per capita growth rate and initial luminosity per capita and its spatial lag term, respectively. The strong positive spatial correlations observed between the variables and their neighboring regions suggest that regional convergence is not an isolated phenomenon, but rather a process intrinsically shaped by the influence of adjacent regions. The Moran's I values of 0.644 and 0.739 for the variables, coupled with a statistically significant spatial autocorrelation in the error term, underscore the critical importance of spatial dependence in convergence research. These findings demonstrate that spatial interactions profoundly influence the convergence process, rendering it imperative to incorporate spatial effects in empirical analyses.
 
-{{< embed notebooks/dependence.qmd#fig-dependence-combined >}}
+{{< embed notebooks/c03_spatial_dependence.qmd#fig-dependence-combined >}}
 
 ### Spatial spillovers accelerate regional convergence
 

@@ -5,11 +5,10 @@ project:
 manuscript:
   article: index.qmd
   notebooks:
-    - notebooks/scatterplots.qmd
-    - notebooks/dependence.qmd
-    - notebooks/gee_app.qmd
-    - notebooks/code_models.ipynb
-    - notebooks/code_scatterplots.ipynb
+    - notebooks/c01_view_from_space.qmd
+    - notebooks/c02_scatterplots.qmd
+    - notebooks/c03_spatial_dependence.qmd
+    - notebooks/c04_spillover_modeling.ipynb
 
 format:
   # REGION journal PDF (uses extension template)
