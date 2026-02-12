@@ -94,7 +94,7 @@ project2025s/
 ├── notebooks/              # Analysis notebooks (QMD and Jupyter)
 │   ├── c01_view_from_space.qmd      # Interactive GEE visualization
 │   ├── c02_regional_convergence_sc.qmd         # Convergence analysis
-│   ├── c03_spatial_dependence.qmd   # Spatial dependence testing
+│   ├── c03_spatial_dependence_lisa.ipynb  # Spatial dependence (LISA)
 │   └── c04_spillover_modeling.ipynb # Spatial Durbin Models
 ├── slides/                 # Quarto presentations
 ├── tables/                 # Generated tables
@@ -284,7 +284,7 @@ The computational analyses live in `notebooks/`. The manuscript (`index.qmd`) pu
 | --- | --- | --- | --- |
 | `c01_view_from_space.qmd` | View from outer space | GEE/JavaScript | No (supplementary) |
 | `c02_regional_convergence_sc.qmd` | Regional convergence | R | Yes — `fig-convergence` |
-| `c03_spatial_dependence.qmd` | Spatial dependence | R | Yes — `fig-dependence-combined` |
+| `c03_spatial_dependence_lisa.ipynb` | Spatial dependence (LISA) | Python | Yes — `fig-dependence-initial`, `fig-dependence-growth` |
 | `c04_spillover_modeling.ipynb` | Econometric models | Stata | No (supplementary) |
 
 #### Editing an existing notebook
@@ -306,7 +306,7 @@ The computational analyses live in `notebooks/`. The manuscript (`index.qmd`) pu
      notebooks:
        - notebooks/c01_view_from_space.qmd
        - notebooks/c02_regional_convergence_sc.qmd
-       - notebooks/c03_spatial_dependence.qmd
+       - notebooks/c03_spatial_dependence_lisa.ipynb
        - notebooks/c04_spillover_modeling.ipynb
        - notebooks/my_new_notebook.qmd  # <-- add here
    ```

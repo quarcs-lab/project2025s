@@ -186,7 +186,14 @@ Next, we examine case studies of three economically disadvantaged states in Indi
 
 In this study, the spatial lag terms of luminosity per capita growth and initial luminosity per capita are computed by applying the Queen contiguity weight matrix. FigureX visually presents the relationship between local luminosity per capita growth rate and initial luminosity per capita and its spatial lag term, respectively. The strong positive spatial correlations observed between the variables and their neighboring regions suggest that regional convergence is not an isolated phenomenon, but rather a process intrinsically shaped by the influence of adjacent regions. The Moran's I values of 0.644 and 0.739 for the variables, coupled with a statistically significant spatial autocorrelation in the error term, underscore the critical importance of spatial dependence in convergence research. These findings demonstrate that spatial interactions profoundly influence the convergence process, rendering it imperative to incorporate spatial effects in empirical analyses.
 
-{{< embed notebooks/c03_spatial_dependence.qmd#fig-dependence-combined >}}
+This is a new figure.
+
+{{< embed notebooks/c03_spatial_dependence_lisa.ipynb#fig-dependence-initial >}}
+
+
+This is another new figure.
+
+{{< embed notebooks/c03_spatial_dependence_lisa.ipynb#fig-dependence-growth >}}
 
 ### Spatial spillovers accelerate regional convergence
 

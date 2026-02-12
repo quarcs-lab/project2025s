@@ -7,7 +7,7 @@ manuscript:
   notebooks:
     - notebooks/c01_view_from_space.qmd
     - notebooks/c02_regional_convergence_sc.qmd
-    - notebooks/c03_spatial_dependence.qmd
+    - notebooks/c03_spatial_dependence_lisa.ipynb
     - notebooks/c04_spillover_modeling.ipynb
 
 format:

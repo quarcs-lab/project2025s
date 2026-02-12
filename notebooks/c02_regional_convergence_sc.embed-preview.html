@@ -385,7 +385,7 @@
        <p>This notebook examines absolute <span class="math inline">\(\beta\)</span>-convergence in nighttime luminosity across 520 Indian districts (1996–2010). We regress per capita luminosity growth on initial luminosity levels and visualize the relationship in an annotated scatterplot. This analysis corresponds to the first set of results discussed in the main manuscript.</p>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<div class="cell-container"><div class="cell-decorator"><pre>In [1]:</pre></div><div id="3d12a2dd-be43-4a2d-bd0a-7cef4ba25077" class="cell">
+<div class="cell-container"><div class="cell-decorator"><pre>In [1]:</pre></div><div id="b0812de5-5a18-463c-bc5e-83ca682c55c2" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>library(haven)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>library(ggplot2)</span>
@@ -400,7 +400,7 @@
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
 <p>We use district-level radiance-calibrated nighttime lights data from the DMSP-OLS satellites, covering 520 districts.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div id="0af5b5c8-e016-40c8-b3c9-2ecb25133434" class="cell">
+<div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div id="fa2773d1-d82d-43e9-8b67-4c62dba040ac" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load dataset</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">&lt;-</span> read_dta(<span class="st">"../data/india520.dta"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
@@ -408,7 +408,7 @@
 <section id="convergence-regression" class="level2">
 <h2 class="anchored" data-anchor-id="convergence-regression">Convergence regression</h2>
 <p>A negative slope on initial luminosity indicates <span class="math inline">\(\beta\)</span>-convergence: districts with lower initial luminosity grew faster over the period.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div id="24871e7c-1d06-40cd-b6e9-a87c2d71ed7d" class="cell">
+<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div id="2161b20b-4d34-4b95-9f4c-799442fa49cb" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic OLS Regression</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>model1 <span class="op">&lt;-</span> lm(light_growth96_10rcr_cap <span class="op">~</span> log_light96_rcr_cap, data <span class="op">=</span> data)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>summary(model1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -434,7 +434,7 @@ Multiple R-squared:  0.2547,    Adjusted R-squared:  0.2533
 F-statistic:   177 on 1 and 518 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div id="e540c224-b337-4aa4-83df-f9970f4f59cd" class="cell">
+<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div id="c2c73071-787e-4f74-aa77-cc8b8ca810cd" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute regression model for scatterplot annotation</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">&lt;-</span> lm(light_growth96_10rcr_cap <span class="op">~</span> log_light96_rcr_cap, data <span class="op">=</span> data)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>slope <span class="op">&lt;-</span> <span class="bu">round</span>(coef(model)[<span class="dv">2</span>], <span class="dv">3</span>)</span>

@@ -141,7 +141,8 @@ Current embeds in `index.qmd`:
 
 ```text
 {{< embed notebooks/c02_regional_convergence_sc.qmd#fig-convergence >}}
-{{< embed notebooks/c03_spatial_dependence.qmd#fig-dependence-combined >}}
+{{< embed notebooks/c03_spatial_dependence_lisa.ipynb#fig-dependence-initial >}}
+{{< embed notebooks/c03_spatial_dependence_lisa.ipynb#fig-dependence-growth >}}
 ```
 
 #### Updating an existing notebook
