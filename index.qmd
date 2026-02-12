@@ -197,28 +197,13 @@ This is another new figure.
 
 ### Spatial spillovers accelerate regional convergence
 
-The regression results of TableX provide evidence of both unconditional and conditional convergence across districts in India, with both conventional OLS and spatial econometric approaches indicating significant negative relationships between initial luminosity levels and subsequent growth rates. The direct effects, representing within-district convergence, remain remarkably stable across specifications, ranging from -0.020 to -0.026. This consistency across different model specifications and estimation methods provides evidence that poorer districts are indeed catching up to their wealthier counterparts, even after controlling for various district characteristics and state-level fixed effects.
+The regression results of @tbl-models provide evidence of both unconditional and conditional convergence across districts in India, with both conventional OLS and spatial econometric approaches indicating significant negative relationships between initial luminosity levels and subsequent growth rates. The direct effects, representing within-district convergence, remain remarkably stable across specifications, ranging from -0.020 to -0.026. This consistency across different model specifications and estimation methods provides evidence that poorer districts are indeed catching up to their wealthier counterparts, even after controlling for various district characteristics and state-level fixed effects.
 
+{{< include tables/c04_spillover_modeling_table.md >}}
 
-|          | Model 1 |       | Model 2 |         | Model 3 |       | Model 4 |         |
-|----------|---------|-------|---------|---------|---------|-------|---------|---------|
-|          | OLS     | SDM   | OLS     | SDM     | OLS     | SDM   | OLS     | SDM     |
-| Direct   | -0.020*** | -0.020*** | -0.022*** | -0.021*** | -0.025*** | -0.026*** | -0.025*** | -0.025*** |
-|          | (0.002) | (0.002) | (0.003) | (0.002) | (0.003) | (0.002) | (0.003) | (0.002) |
-| Indirect | --      | -0.002 | --      | -0.008  | --      | -0.008 | --      | -0.009* |
-|          |         | (0.004) |         | (0.006) |         | (0.006) |         | (0.005) |
-| Total    | -0.020*** | -0.022*** | -0.022*** | -0.029*** | -0.025*** | -0.034*** | -0.025*** | -0.034*** |
-|          | (0.002) | (0.005) | (0.003) | (0.007) | (0.003) | (0.007) | (0.003) | (0.005) |
-| Controls | No      | No    | No      | No      | Yes     | Yes   | Yes     | Yes     |
-| State FE | No      | No    | Yes     | Yes     | No      | No    | Yes     | Yes     |
-| AIC      | -1945   | -2278 | -2413   | -2457   | -2211   | -2345 | -2469   | -2462   |
+Importantly, the spatial Durbin model uncovers significant spatial spillover effects that are masked in traditional OLS estimations. These indirect effects, which capture the influence of neighboring districts' initial conditions on a district's growth rate, become increasingly prominent and statistically significant as we add controls and state fixed effects to our specifications. In our most comprehensive model, we find a significant indirect effect of -0.012, suggesting that a district's growth trajectory is meaningfully influenced by the initial economic conditions of its neighbors. This finding highlights the importance of geographical proximity and spatial interactions in the convergence process.
 
-: Unconditional and conditional convergence across districts {#tbl-models}
-
-
-Importantly, the spatial Durbin model uncovers significant spatial spillover effects that are masked in traditional OLS estimations. These indirect effects, which capture the influence of neighboring districts' initial conditions on a district's growth rate, become increasingly prominent and statistically significant as we add controls and state fixed effects to our specifications. In our most comprehensive model, we find a significant indirect effect of -0.009, suggesting that a district's growth trajectory is meaningfully influenced by the initial economic conditions of its neighbors. This finding highlights the importance of geographical proximity and spatial interactions in the convergence process.
-
-The total impact of initial conditions on growth, combining both direct and spillover effects, is substantially larger when we account for spatial dependence. In our fully specified model, the total convergence effect in the spatial Durbin model (-0.034) is approximately 36% larger than the OLS estimate (-0.025). This difference, supported by better model fit statistics, indicates that conventional non-spatial approaches may significantly underestimate the speed of regional convergence by failing to capture the additional convergence channels created through spatial spillovers. These results emphasize that regional convergence in India operates not only through district-specific factors but also through significant spatial interactions between neighboring districts.
+The total impact of initial conditions on growth, combining both direct and spillover effects, is substantially larger when we account for spatial dependence. In our fully specified model, the total convergence effect in the spatial Durbin model (-0.037) is approximately 48% larger than the OLS estimate (-0.025). This difference, supported by better model fit statistics, indicates that conventional non-spatial approaches may significantly underestimate the speed of regional convergence by failing to capture the additional convergence channels created through spatial spillovers. These results emphasize that regional convergence in India operates not only through district-specific factors but also through significant spatial interactions between neighboring districts.
 
 
 ## Discussion
