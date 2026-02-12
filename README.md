@@ -93,7 +93,7 @@ project2025s/
 ├── figures/                 # Generated visualizations
 ├── notebooks/              # Analysis notebooks (QMD and Jupyter)
 │   ├── c01_view_from_space.qmd      # Interactive GEE visualization
-│   ├── c02_scatterplots.qmd         # Convergence analysis
+│   ├── c02_regional_convergence_sc.qmd         # Convergence analysis
 │   ├── c03_spatial_dependence.qmd   # Spatial dependence testing
 │   └── c04_spillover_modeling.ipynb # Spatial Durbin Models
 ├── slides/                 # Quarto presentations
@@ -214,6 +214,8 @@ Compile all formats with a single command:
 quarto render index.qmd
 ```
 
+The project uses `freeze: auto`, so Quarto automatically re-executes only notebooks whose source has changed. Unchanged notebooks use cached results for faster builds.
+
 This generates all outputs directly in the repository root:
 - **`index.html`** - Web version (served by GitHub Pages)
 - **`index.pdf`** - Standard PDF (Letter size, KOMA-Script, numeric citations)
@@ -271,6 +273,57 @@ quarto render index.qmd --to html
 # MS Word only
 quarto render index.qmd --to docx
 ```
+
+### Working with Notebooks
+
+The computational analyses live in `notebooks/`. The manuscript (`index.qmd`) pulls specific figures and tables from these notebooks using Quarto's embed shortcode. When the manuscript is rendered, Quarto executes any changed notebooks, extracts the embedded content, and inlines it into all output formats.
+
+#### Current notebooks
+
+| Notebook | Title | Language | Embedded in manuscript |
+| --- | --- | --- | --- |
+| `c01_view_from_space.qmd` | View from outer space | GEE/JavaScript | No (supplementary) |
+| `c02_regional_convergence_sc.qmd` | Regional convergence | R | Yes — `fig-convergence` |
+| `c03_spatial_dependence.qmd` | Spatial dependence | R | Yes — `fig-dependence-combined` |
+| `c04_spillover_modeling.ipynb` | Econometric models | Stata | No (supplementary) |
+
+#### Editing an existing notebook
+
+1. Edit the `.qmd` or `.ipynb` file in `notebooks/`
+2. Run `bash scripts/clean-render.sh`
+3. The script clears Quarto's embed caches, re-executes changed notebooks, and rebuilds all outputs
+4. All outputs (HTML, PDF, DOCX, XML) update with the new content
+
+#### Adding a new notebook
+
+1. Create the notebook file in `notebooks/` (`.qmd` for R, `.ipynb` for Python/Stata)
+2. Add labeled figures or tables you want to embed (e.g., `#| label: fig-myplot`)
+3. Register it in `_quarto.yml` under `manuscript.notebooks`:
+
+   ```yaml
+   manuscript:
+     article: index.qmd
+     notebooks:
+       - notebooks/c01_view_from_space.qmd
+       - notebooks/c02_regional_convergence_sc.qmd
+       - notebooks/c03_spatial_dependence.qmd
+       - notebooks/c04_spillover_modeling.ipynb
+       - notebooks/my_new_notebook.qmd  # <-- add here
+   ```
+
+4. Embed its outputs in `index.qmd` using the shortcode:
+
+   ```markdown
+   {{< embed notebooks/my_new_notebook.qmd#fig-myplot >}}
+   ```
+
+5. Run `bash scripts/clean-render.sh`
+
+#### Why use `clean-render.sh` instead of `quarto render`?
+
+Quarto maintains three cache layers: `_freeze/` (execution results), `.quarto/embed/` (internal embed cache), and `notebooks/*.embed-preview.html` (embed previews). The `freeze: auto` setting only invalidates `_freeze/` when source changes — it does **not** clear the `.quarto/embed/` cache, which can leave embed previews stale even after notebook edits.
+
+`scripts/clean-render.sh` clears all three cache layers before rendering, guaranteeing that notebook changes propagate to the manuscript. Use it whenever you edit notebooks. For manuscript-only edits (changes to `index.qmd` text), plain `quarto render index.qmd` is sufficient.
 
 ### 3. Commit and Push
 

@@ -129,6 +129,58 @@ Edit index.qmd → Run "quarto render" → All outputs generated automatically
 
 **DO NOT complicate this workflow.** The simplicity is intentional and supports reproducibility.
 
+### Updating Notebooks and the Manuscript
+
+#### How notebooks feed into the manuscript
+
+- Notebooks in `notebooks/` are registered in `_quarto.yml` under `manuscript.notebooks`
+- `index.qmd` uses `{{< embed >}}` shortcodes to pull specific labeled figures/tables from notebooks
+- `freeze: auto` in `_quarto.yml` means Quarto re-executes only notebooks whose source has changed
+
+Current embeds in `index.qmd`:
+
+```text
+{{< embed notebooks/c02_regional_convergence_sc.qmd#fig-convergence >}}
+{{< embed notebooks/c03_spatial_dependence.qmd#fig-dependence-combined >}}
+```
+
+#### Updating an existing notebook
+
+1. Edit the notebook source in `notebooks/`
+2. Run `bash scripts/clean-render.sh`
+3. The script clears embed caches, re-executes changed notebooks, and rebuilds all outputs
+4. All manuscript outputs update
+
+#### Adding a new notebook
+
+1. Create the `.qmd` or `.ipynb` file in `notebooks/`
+2. Add it to `manuscript.notebooks` in `_quarto.yml`
+3. Add `{{< embed >}}` references in `index.qmd` for any figures/tables to embed
+4. Run `bash scripts/clean-render.sh`
+
+#### Cache architecture and troubleshooting
+
+Quarto maintains three cache layers:
+
+1. **`_freeze/`** — execution results (figures + JSON)
+2. **`.quarto/embed/`** — internal embed cache (hidden directory)
+3. **`notebooks/*.embed-preview.html`** — embed preview artifacts
+
+`freeze: auto` only handles `_freeze/` automatically. It does **NOT** invalidate `.quarto/embed/` or embed preview files — this causes stale embed previews even after notebook source changes. To ensure all caches are cleared, **always use after notebook edits:**
+
+```bash
+bash scripts/clean-render.sh
+```
+
+This clears all three cache layers and re-renders from scratch. For manuscript-only edits (changes to `index.qmd` text), plain `quarto render index.qmd` is sufficient.
+
+#### Important warnings
+
+- **Do NOT** change `freeze: auto` back to `freeze: true` — this breaks automatic notebook updates
+- **Do NOT** render notebooks in isolation (`quarto render notebooks/X.qmd`) as a substitute for rendering the manuscript — the manuscript render is what updates embeds
+- **Always** use `bash scripts/clean-render.sh` (not plain `quarto render index.qmd`) after notebook changes — Quarto's embed cache (`.quarto/embed/`) is not invalidated by a regular render
+- **Do NOT** manually delete individual cache files — use `scripts/clean-render.sh` for a clean sweep
+
 ### When Compilation Errors Occur
 
 #### FIRST STEP: Check the latest online Quarto documentation

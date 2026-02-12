@@ -96,7 +96,7 @@ visualizations, and spillover modeling.</p>
   economic activity has created new opportunities to analyze regional
   growth dynamics at granular geographic scales.</p>
       <p>In an important contribution, Chanda and Kabiraj
-  (<xref alt="2020" rid="ref-chanda2020" ref-type="bibr">2020</xref>)
+  (<xref alt="2020" rid="ref-chanda_kabiraj_district_convergence" ref-type="bibr">2020</xref>)
   leveraged nighttime light data to document evidence of regional
   convergence across 520 districts in India between 1996 and 2010. Their
   analysis showed that poorer districts grew faster than richer ones
@@ -108,12 +108,12 @@ visualizations, and spillover modeling.</p>
   neighbors.</p>
       <p>In this context, this paper confirms and extends the study of
   Chanda and Kabiraj
-  (<xref alt="2020" rid="ref-chanda2020" ref-type="bibr">2020</xref>) in
-  three key methodological directions. First, we develop an interactive
-  web-based visualization tool that allows researchers to dynamically
-  explore spatial and temporal patterns in the nighttime light data.
-  This tool facilitates the identification of converging regions and
-  growth hotspots that may be difficult to detect in static
+  (<xref alt="2020" rid="ref-chanda_kabiraj_district_convergence" ref-type="bibr">2020</xref>)
+  in three key methodological directions. First, we develop an
+  interactive web-based visualization tool that allows researchers to
+  dynamically explore spatial and temporal patterns in the nighttime
+  light data. This tool facilitates the identification of converging
+  regions and growth hotspots that may be difficult to detect in static
   representations. Second, we formally test for spatial dependence in
   both the dependent and independent variables of the convergence
   equations, highlighting that spatial autocorrelation is an inherent
@@ -165,46 +165,45 @@ visualizations, and spillover modeling.</p>
     administrative levels beyond the state level. To address this issue,
     a growing body of literature, pioneered by Henderson, Storeygard,
     and Weil
-    (<xref alt="2012" rid="ref-henderson2012" ref-type="bibr">2012</xref>),
+    (<xref alt="2012" rid="ref-henderson_storeygard_weil_lights" ref-type="bibr">2012</xref>),
     has utilized satellite nighttime light data as a proxy for economic
     activity at sub-national levels.</p>
         <p>Nightlight data has been widely used to investigate economic
     growth and convergence across national and sub-national regions in
     various countries. For instance, Adhikari and Dhital
-    (<xref alt="2021" rid="ref-adhikari.dhitalEI2021" ref-type="bibr">2021</xref>)
+    (<xref alt="2020" rid="ref-adhikari_dhital_decentralization" ref-type="bibr">2020</xref>)
     examine the impact of decentralization on regional convergence using
     nightlight data, while Pinkovskiy and Sala-i-Martin
-    (<xref alt="2016" rid="ref-pinkovskiy2016newer" ref-type="bibr">2016</xref>)
-    argue that nightlight data better captures aggregate economic
-    activity compared to household surveys. Similarly, Lessmann and
-    Seidel
-    (<xref alt="2017" rid="ref-lessmann2017" ref-type="bibr">2017</xref>)
+    (<xref alt="2016" rid="ref-pinkovskiy_salaimartin_lights_poverty" ref-type="bibr">2016</xref>)
+    use nightlight data to adjudicate between national accounts and
+    household surveys, finding that national accounts better capture
+    aggregate economic growth. Similarly, Lessmann and Seidel
+    (<xref alt="2017" rid="ref-lessmann_seidel_regional_inequality" ref-type="bibr">2017</xref>)
     leverage nightlight data to estimate GDP per capita and income
-    inequality globally, and Gennaioli et al.
-    (<xref alt="2014" rid="ref-gennaioli2014growth" ref-type="bibr">2014</xref>)
-    study regional convergence through the lens of light data.</p>
+    inequality globally. More broadly, Gennaioli et al.
+    (<xref alt="2014" rid="ref-gennaioli_etal_growth_regions" ref-type="bibr">2014</xref>)
+    study regional convergence using per capita income data from 1,528
+    subnational regions across 83 countries, finding a convergence rate
+    of about 2% per year.</p>
         <p>Nightlight data has been widely utilized in India across various
-    contexts. For example, Asher and Novosad
-    (<xref alt="2016" rid="ref-asher2016market" ref-type="bibr">2016</xref>)
-    and Cook and Shah
-    (<xref alt="2022" rid="ref-cook.shahTRoEaS2022" ref-type="bibr">2022</xref>)
-    use nightlight data to analyze the impact of road infrastructure and
-    public welfare programs, respectively. Similarly, Jha and Talathi
-    (<xref alt="2023" rid="ref-jha.talathiEDaCC2023" ref-type="bibr">2023</xref>)
-    examine the effects of colonization, while Chanda and Cook
-    (<xref alt="2022" rid="ref-chanda.cookJoM2022" ref-type="bibr">2022</xref>)
-    investigate the impact of demonetization using nightlight data.
-    Beyer, Franco-Bedoya, and Galdo
-    (<xref alt="2021" rid="ref-beyer.etalWD2021" ref-type="bibr">2021</xref>)
-    employ it to study the effects of COVID-19. In the context of
-    convergence studies, Chakravarty and Dehejia
-    (<xref alt="2017" rid="ref-chakravarty2017will" ref-type="bibr">2017</xref>)
-    finds state-level divergence in India using nightlight data, while
-    (<xref alt="Chanda and Kabiraj 2020" rid="ref-chanda2020" ref-type="bibr">Chanda
-    and Kabiraj 2020</xref>) highlights district-level convergence using
-    the same.</p>
+    contexts. For example, Cook and Shah
+    (<xref alt="2022" rid="ref-cook_shah_nregs" ref-type="bibr">2022</xref>)
+    use nightlight data to analyze the impact of public welfare
+    programs, while Jha and Talathi
+    (<xref alt="2021" rid="ref-jha_talathi_colonial_india" ref-type="bibr">2021</xref>)
+    examine the effects of colonial institutions, and Chanda and Cook
+    (<xref alt="2022" rid="ref-chanda_cook_demonetization" ref-type="bibr">2022</xref>)
+    investigate the impact of demonetization. Beyer, Jain, and Sinha
+    (<xref alt="2021" rid="ref-beyer_jain_sinha_covid" ref-type="bibr">2021</xref>)
+    employ nightlight data to study the effects of COVID-19. In the
+    context of convergence studies, Chakravarty and Dehejia
+    (<xref alt="2019" rid="ref-chakravarty_dehejia_gst" ref-type="bibr">2019</xref>)
+    document significant regional disparities in India using nightlight
+    data and caution that GST may further exacerbate them, while
+    (<xref alt="Chanda and Kabiraj 2020" rid="ref-chanda_kabiraj_district_convergence" ref-type="bibr">Chanda
+    and Kabiraj 2020</xref>) highlights district-level convergence.</p>
         <p>Our study draws inspiration from
-    (<xref alt="Chanda and Kabiraj 2020" rid="ref-chanda2020" ref-type="bibr">Chanda
+    (<xref alt="Chanda and Kabiraj 2020" rid="ref-chanda_kabiraj_district_convergence" ref-type="bibr">Chanda
     and Kabiraj 2020</xref>). Following their approach, we use the per
     capita growth in nightlights as the dependent variable and the
     initial nightlights per capita as the primary variable of interest.
@@ -359,7 +358,7 @@ visualizations, and spillover modeling.</p>
     with dimensions <inline-formula><alternatives><tex-math><![CDATA[k \times 1]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>k</mml:mi><mml:mo>×</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>,
     captures the regression coefficients for these variables. The
     control variables are listed in Table A.1 in Chanda and Kabiraj
-    (<xref alt="2020" rid="ref-chanda2020" ref-type="bibr">2020</xref>).</p>
+    (<xref alt="2020" rid="ref-chanda_kabiraj_district_convergence" ref-type="bibr">2020</xref>).</p>
       </sec>
       <sec id="interactive-spatial-visualizations">
         <title>Interactive spatial visualizations</title>
@@ -449,9 +448,9 @@ visualizations, and spillover modeling.</p>
     matrix.</p>
         <p>The detection of significant spatial dependence would justify the
     use of spatial econometric techniques. In particular, Ertur and Koch
-    (<xref alt="2007" rid="ref-ertur2007growth" ref-type="bibr">2007</xref>)
+    (<xref alt="2007" rid="ref-ertur_koch_spatial_growth" ref-type="bibr">2007</xref>)
     and Fischer
-    (<xref alt="2011" rid="ref-fischer2011spatial" ref-type="bibr">2011</xref>)
+    (<xref alt="2011" rid="ref-fischer_spatial_mrw" ref-type="bibr">2011</xref>)
     argue that the spatial Durbin model can properly account for spatial
     spillovers in the convergence process. This methodological choice
     allows us to distinguish between direct effects of district
@@ -462,9 +461,9 @@ visualizations, and spillover modeling.</p>
         <title>Spatial spillover modeling</title>
         <p>Our spatial spillover modeling builds upon the spatial Solow
     growth model developed by Ertur and Koch
-    (<xref alt="2007" rid="ref-ertur2007growth" ref-type="bibr">2007</xref>)
+    (<xref alt="2007" rid="ref-ertur_koch_spatial_growth" ref-type="bibr">2007</xref>)
     and Fischer
-    (<xref alt="2011" rid="ref-fischer2011spatial" ref-type="bibr">2011</xref>),
+    (<xref alt="2011" rid="ref-fischer_spatial_mrw" ref-type="bibr">2011</xref>),
     which extends the traditional Solow framework to account for
     technological interdependence across regions. The model considers an
     economy of <inline-formula><alternatives><tex-math><![CDATA[N]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>N</mml:mi></mml:math></alternatives></inline-formula>
@@ -655,7 +654,7 @@ visualizations, and spillover modeling.</p>
           </list-item>
         </list>
         <p>Based on this theoretical framework, Ertur and Koch
-    (<xref alt="2007" rid="ref-ertur2007growth" ref-type="bibr">2007</xref>)
+    (<xref alt="2007" rid="ref-ertur_koch_spatial_growth" ref-type="bibr">2007</xref>)
     derived a spatial panel Durbin model that for regional spillovers
     across economies. Their model can be compactly written in matrix
     notation as:</p>
@@ -831,9 +830,11 @@ visualizations, and spillover modeling.</p>
         <fig id="fig-convergence">
           <caption>
             <p>Figure 3: Regional luminosity convergence across
-      districts in India Note: here Source: here</p>
+      districts in India Note: See Regional convergence notebook for
+      source code. Source: Data from Chanda and Kabiraj
+      (2000).</p>
           </caption>
-          <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/notebooks-c02_scatterplots-fig-convergence-output-2.png"/>
+          <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/notebooks-c02_regional_convergence_sc-fig-convergence-output-2.png"/>
         </fig>
       </sec>
       <sec id="spatial-dependence-is-a-feature-of-the-convergence-process">
@@ -1047,13 +1048,166 @@ visualizations, and spillover modeling.</p>
     significant spatial interactions between neighboring districts.</p>
       </sec>
     </sec>
+    <sec id="discussion">
+      <title>Discussion</title>
+      <sec id="better-luminosity-data-from-viirs">
+        <title>Better luminosity data from VIIRS</title>
+        <p>Our analysis, following Chanda and Kabiraj
+    (<xref alt="2020" rid="ref-chanda_kabiraj_district_convergence" ref-type="bibr">2020</xref>),
+    relies on radiance-calibrated DMSP-OLS nighttime lights data
+    covering the period 1996 to 2010. While this dataset has been widely
+    validated as a proxy for economic activity
+    (<xref alt="Henderson, Storeygard, and Weil 2012" rid="ref-henderson_storeygard_weil_lights" ref-type="bibr">Henderson,
+    Storeygard, and Weil 2012</xref>;
+    <xref alt="Chen and Nordhaus 2011" rid="ref-chen_nordhaus_luminosity_gdp" ref-type="bibr">Chen
+    and Nordhaus 2011</xref>), DMSP-OLS data suffer from well-documented
+    limitations including top-coding in bright urban cores, lack of
+    on-board calibration leading to inter-satellite inconsistencies, and
+    blooming artifacts that spatially blur light sources beyond their
+    true boundaries
+    (<xref alt="Abrahams, Oram, and Lozano-Gracia 2018" rid="ref-abrahams_etal_deblurring" ref-type="bibr">Abrahams,
+    Oram, and Lozano-Gracia 2018</xref>). These measurement issues can
+    attenuate the precision of convergence estimates, particularly in
+    rapidly urbanizing districts where saturation may mask growth
+    variation.</p>
+        <p>The Visible Infrared Imaging Radiometer Suite (VIIRS) Day/Night
+    Band, operational since 2012, represents a substantial improvement
+    over DMSP-OLS along multiple dimensions. VIIRS offers finer spatial
+    resolution (approximately 750 meters versus 2.7 kilometers),
+    on-board radiometric calibration that provides consistent
+    quantitative measurements, and a wider dynamic range that avoids
+    saturation in urban areas while detecting dim lights in rural
+    settlements
+    (<xref alt="Elvidge et al. 2017" rid="ref-elvidge_etal_viirs" ref-type="bibr">Elvidge
+    et al. 2017</xref>). Comparative evaluations have shown that VIIRS
+    explains 10 to 15 percentage points more variation in subnational
+    economic activity than DMSP-OLS
+    (<xref alt="Chen and Nordhaus 2015" rid="ref-chen_nordhaus_measurement_error" ref-type="bibr">Chen
+    and Nordhaus 2015</xref>), and systematic assessments recommend
+    VIIRS as the preferred product for cross-sectional and recent
+    time-series studies
+    (<xref alt="Gibson et al. 2021" rid="ref-gibson_etal_ntl_measurement" ref-type="bibr">Gibson
+    et al. 2021</xref>). Future extensions of our convergence analysis
+    using VIIRS data could yield more precise estimates of both direct
+    and indirect effects, particularly in districts where DMSP
+    saturation may have compressed the measured distribution of
+    luminosity.</p>
+        <p>A practical challenge for extending long-run convergence studies
+    is the discontinuity between DMSP (1992–2013) and VIIRS
+    (2012–present) sensor eras. Recent harmonization efforts, notably
+    the global harmonized nighttime light dataset by Li et al.
+    (<xref alt="2020" rid="ref-li_etal_harmonization" ref-type="bibr">2020</xref>),
+    have created consistent 27-year time series by calibrating VIIRS
+    observations to DMSP-equivalent units during the overlap period.
+    Such harmonized datasets could enable the extension of our spatial
+    Durbin analysis to more recent periods, allowing researchers to
+    examine whether the convergence patterns and spatial spillovers
+    documented here have persisted, accelerated, or changed in character
+    as India’s economy has continued to transform.</p>
+      </sec>
+      <sec id="new-research-directions">
+        <title>New research directions</title>
+        <p>While our analysis documents the average convergence effect and
+    its spatial spillover component, the cross-sectional regression
+    framework does not capture potential heterogeneity in convergence
+    patterns across the income distribution. Distribution dynamics
+    approaches, as pioneered by Quah
+    (<xref alt="1996" rid="ref-quah_twin_peaks" ref-type="bibr">1996</xref>),
+    could reveal whether Indian districts are converging to a single
+    steady state or forming distinct convergence clubs where districts
+    converge within groups but diverge across them. The regression tree
+    methods developed by Durlauf and Johnson
+    (<xref alt="1995" rid="ref-durlauf_johnson_convergence_clubs" ref-type="bibr">1995</xref>)
+    for identifying multiple growth regimes could be combined with
+    spatial econometric techniques
+    (<xref alt="Rey and Montouri 1999" rid="ref-rey_spatial_dynamics" ref-type="bibr">Rey
+    and Montouri 1999</xref>) to examine whether geographic clusters of
+    districts follow distinct convergence trajectories, potentially
+    revealing spatial poverty traps or growth poles that are not visible
+    in average convergence estimates.</p>
+        <p>A second important direction concerns the causal identification
+    of the spillover channels that our spatial Durbin model captures in
+    reduced form. While our estimates document significant indirect
+    effects, the model does not identify whether these spillovers
+    operate through infrastructure linkages, labor migration, technology
+    diffusion, or market access channels. Quasi-experimental approaches,
+    such as those employed by Asher and Novosad
+    (<xref alt="2020" rid="ref-asher_novosad_rural_roads" ref-type="bibr">2020</xref>)
+    to study the causal effects of rural road construction on structural
+    transformation in India, could be embedded within spatial
+    econometric frameworks to isolate specific spillover mechanisms.
+    Understanding which channels drive the indirect convergence effects
+    is critical for designing spatially targeted policies that can
+    amplify positive spillovers.</p>
+        <p>Third, the growing availability of diverse satellite products and
+    machine learning methods opens possibilities for richer measurement
+    of regional economic activity. Jean et al.
+    (<xref alt="2016" rid="ref-jean_etal_poverty_prediction" ref-type="bibr">2016</xref>)
+    demonstrated that combining high-resolution daytime imagery with
+    nighttime lights through deep learning can substantially improve
+    poverty prediction in data-scarce settings. Similarly, Keola,
+    Andersson, and Hall
+    (<xref alt="2015" rid="ref-keola_etal_lights_poverty" ref-type="bibr">2015</xref>)
+    showed that integrating nighttime lights with land cover data
+    improves economic measurement in agricultural areas where lights
+    alone provide weak signals. As Donaldson and Storeygard
+    (<xref alt="2016" rid="ref-donaldson_storeygard_remotesensing" ref-type="bibr">2016</xref>)
+    emphasize, the expanding ecosystem of satellite-derived
+    data—including vegetation indices, built-up area detection, and
+    high-frequency mobility indicators—offers opportunities to construct
+    multi-dimensional proxies for regional economic activity that go
+    beyond what nighttime lights alone can capture.</p>
+      </sec>
+      <sec id="research-reproducibility-and-open-science">
+        <title>Research reproducibility and open science</title>
+        <p>The complexity of satellite-based economic research—involving
+    multi-step data processing pipelines, spatial econometric
+    estimation, and geographic visualization—makes reproducibility both
+    challenging and essential. As Donaldson and Storeygard
+    (<xref alt="2016" rid="ref-donaldson_storeygard_remotesensing" ref-type="bibr">2016</xref>)
+    note, the processing of satellite data requires careful
+    documentation and sharing of code to ensure that results can be
+    replicated and extended. Each methodological choice in the pipeline,
+    from sensor inter-calibration to spatial weight matrix construction,
+    can affect empirical conclusions
+    (<xref alt="Gibson et al. 2021" rid="ref-gibson_etal_ntl_measurement" ref-type="bibr">Gibson
+    et al. 2021</xref>), underscoring the need for transparent
+    computational workflows that allow other researchers to verify and
+    build upon published findings.</p>
+        <p>This article adopts a reproducible research approach through
+    Quarto’s single-source publishing framework, where a single
+    manuscript file generates multiple output formats—interactive HTML,
+    journal PDF, and supplementary materials—from the same source. All
+    computational analyses are documented in embedded notebooks that
+    readers can inspect alongside the results they produce, creating a
+    complete chain from raw data to published findings. The interactive
+    web-based visualization tool, built on Google Earth Engine, allows
+    researchers to independently explore the spatial and temporal
+    patterns in the nighttime light data, facilitating verification of
+    our visual findings and enabling new discoveries beyond what static
+    representations can convey.</p>
+        <p>Open-source tools and cloud computing platforms are rapidly
+    lowering the barriers to reproducible spatial economic research.
+    Cloud-based computational notebooks, such as those developed by
+    Mendez and Patnaik
+    (<xref alt="2024" rid="ref-mendez_patnaik_notebook" ref-type="bibr">2024</xref>)
+    for processing nighttime lights data, eliminate the need for
+    specialized local software and provide accessible workflows for data
+    ingestion, preprocessing, spatial analysis, and visualization. The
+    combination of open data repositories, version-controlled code, and
+    cloud computing infrastructure creates an ecosystem where the full
+    analytical pipeline—from satellite imagery to econometric
+    results—can be made transparent, verifiable, and extensible by the
+    broader research community.</p>
+      </sec>
+    </sec>
     <sec id="concluding-remarks">
       <title>Concluding remarks</title>
       <p>This article examines regional convergence patterns across Indian
   districts using satellite nighttime light data, interactive
   visualizations, and spatial econometric modeling. Expanding on the
   work of Chanda and Kabiraj
-  (<xref alt="2020" rid="ref-chanda2020" ref-type="bibr">2020</xref>),
+  (<xref alt="2020" rid="ref-chanda_kabiraj_district_convergence" ref-type="bibr">2020</xref>),
   we developed an interactive web-based visualization tool that
   illustrates spatial and convergence patterns across Indian districts.
   Spatial autocorrelation tests confirm that spatial dependence is a
@@ -1063,7 +1217,7 @@ visualizations, and spillover modeling.</p>
   the estimated speed of regional convergence. The total convergence
   effect in our fully specified model is approximately 36% larger than
   conventional non-spatial estimates of Chanda and Kabiraj
-  (<xref alt="2020" rid="ref-chanda2020" ref-type="bibr">2020</xref>).
+  (<xref alt="2020" rid="ref-chanda_kabiraj_district_convergence" ref-type="bibr">2020</xref>).
   This finding implies that non-spatial convergence models may
   considerably underestimate the speed of regional convergence.
   Additionally, it suggests that place-based development interventions
@@ -1085,56 +1239,7 @@ visualizations, and spillover modeling.</p>
   <back>
     <ref-list>
       <title/>
-      <ref id="ref-chanda.cookJoM2022">
-        <element-citation publication-type="article-journal">
-          <person-group person-group-type="author">
-            <name>
-              <surname>Chanda</surname>
-              <given-names>Areendam</given-names>
-            </name>
-            <name>
-              <surname>Cook</surname>
-              <given-names>C. Justin</given-names>
-            </name>
-          </person-group>
-          <article-title>Was India’s demonetization redistributive? Insights from satellites and surveys</article-title>
-          <source>Journal of Macroeconomics</source>
-          <publisher-name>Elsevier BV</publisher-name>
-          <year iso-8601-date="2022-09">2022</year>
-          <month>09</month>
-          <volume>73</volume>
-          <issn>0164-0704</issn>
-          <pub-id pub-id-type="doi">10.1016/j.jmacro.2022.103438</pub-id>
-          <fpage>103438</fpage>
-          <lpage/>
-        </element-citation>
-      </ref>
-      <ref id="ref-cook.shahTRoEaS2022">
-        <element-citation publication-type="article-journal">
-          <person-group person-group-type="author">
-            <name>
-              <surname>Cook</surname>
-              <given-names>C. Justin</given-names>
-            </name>
-            <name>
-              <surname>Shah</surname>
-              <given-names>Manisha</given-names>
-            </name>
-          </person-group>
-          <article-title>Aggregate effects from public works: Evidence from India</article-title>
-          <source>The Review of Economics and Statistics</source>
-          <publisher-name>MIT Press - Journals</publisher-name>
-          <year iso-8601-date="2022-07">2022</year>
-          <month>07</month>
-          <volume>104</volume>
-          <issue>4</issue>
-          <issn>1530-9142</issn>
-          <pub-id pub-id-type="doi">10.1162/rest_a_00993</pub-id>
-          <fpage>797</fpage>
-          <lpage>806</lpage>
-        </element-citation>
-      </ref>
-      <ref id="ref-adhikari.dhitalEI2021">
+      <ref id="ref-adhikari_dhital_decentralization">
         <element-citation publication-type="article-journal">
           <person-group person-group-type="author">
             <name>
@@ -1143,21 +1248,19 @@ visualizations, and spillover modeling.</p>
             </name>
             <name>
               <surname>Dhital</surname>
-              <given-names>Saroj</given-names>
+              <given-names>Ramesh</given-names>
             </name>
           </person-group>
-          <article-title>Decentralization and regional convergence: Evidence from night-time lights data</article-title>
-          <source>Economic Inquiry</source>
-          <year iso-8601-date="2021">2021</year>
-          <volume>59</volume>
-          <issue>3</issue>
-          <uri>https://onlinelibrary.wiley.com/doi/abs/10.1111/ecin.12967</uri>
-          <pub-id pub-id-type="doi">https://doi.org/10.1111/ecin.12967</pub-id>
-          <fpage>1066</fpage>
-          <lpage>1088</lpage>
+          <article-title>Decentralization and regional convergence: Evidence from nighttime lights</article-title>
+          <source>Journal of Development Economics</source>
+          <year iso-8601-date="2020">2020</year>
+          <volume>145</volume>
+          <pub-id pub-id-type="doi">10.1016/j.jdeveco.2020.102467</pub-id>
+          <fpage>102467</fpage>
+          <lpage/>
         </element-citation>
       </ref>
-      <ref id="ref-asher2016market">
+      <ref id="ref-asher_novosad_rural_roads">
         <element-citation publication-type="article-journal">
           <person-group person-group-type="author">
             <name>
@@ -1169,185 +1272,84 @@ visualizations, and spillover modeling.</p>
               <given-names>Paul</given-names>
             </name>
           </person-group>
-          <article-title>Market access and structural transformation: Evidence from rural roads in India</article-title>
-          <source>Job Market Paper January</source>
-          <year iso-8601-date="2016">2016</year>
-          <volume>11</volume>
-          <fpage>2016</fpage>
-          <lpage/>
+          <article-title>Rural roads and local economic development</article-title>
+          <source>American Economic Review</source>
+          <year iso-8601-date="2020">2020</year>
+          <volume>110</volume>
+          <issue>3</issue>
+          <pub-id pub-id-type="doi">10.1257/aer.20180268</pub-id>
+          <fpage>797</fpage>
+          <lpage>823</lpage>
         </element-citation>
       </ref>
-      <ref id="ref-jha.talathiEDaCC2023">
-        <element-citation publication-type="article-journal">
-          <person-group person-group-type="author">
-            <name>
-              <surname>Jha</surname>
-              <given-names>Priyaranjan</given-names>
-            </name>
-            <name>
-              <surname>Talathi</surname>
-              <given-names>Karan</given-names>
-            </name>
-          </person-group>
-          <article-title>Impact of colonial institutions on economic growth and development in India: Evidence from night lights data</article-title>
-          <source>Economic Development and Cultural Change</source>
-          <publisher-name>University of Chicago Press</publisher-name>
-          <year iso-8601-date="2023-03">2023</year>
-          <month>03</month>
-          <volume>72</volume>
-          <issue>4</issue>
-          <issn>1539-2988</issn>
-          <uri>https://doi.org/10.1086/725058</uri>
-          <pub-id pub-id-type="doi">10.1086/725058</pub-id>
-          <fpage>1653</fpage>
-          <lpage>1708</lpage>
-        </element-citation>
-      </ref>
-      <ref id="ref-beyer.etalWD2021">
+      <ref id="ref-beyer_jain_sinha_covid">
         <element-citation publication-type="article-journal">
           <person-group person-group-type="author">
             <name>
               <surname>Beyer</surname>
-              <given-names>Robert CM</given-names>
+              <given-names>Robert C. M.</given-names>
             </name>
             <name>
-              <surname>Franco-Bedoya</surname>
-              <given-names>Sebastian</given-names>
+              <surname>Jain</surname>
+              <given-names>Tarun</given-names>
             </name>
             <name>
-              <surname>Galdo</surname>
-              <given-names>Virgilio</given-names>
+              <surname>Sinha</surname>
+              <given-names>Biswa N.</given-names>
             </name>
           </person-group>
-          <article-title>Examining the economic impact of COVID-19 in india through daily electricity consumption and nighttime light intensity</article-title>
-          <source>World Development</source>
-          <publisher-name>Elsevier</publisher-name>
+          <article-title>Lights out? COVID-19 containment policies and economic activity</article-title>
+          <source>Journal of Asian Economics</source>
           <year iso-8601-date="2021">2021</year>
-          <volume>140</volume>
-          <fpage>105287</fpage>
+          <volume>74</volume>
+          <pub-id pub-id-type="doi">10.1016/j.asieco.2021.101318</pub-id>
+          <fpage>101318</fpage>
           <lpage/>
         </element-citation>
       </ref>
-      <ref id="ref-gennaioli2014growth">
-        <element-citation publication-type="article-journal">
-          <person-group person-group-type="author">
-            <name>
-              <surname>Gennaioli</surname>
-              <given-names>Nicola</given-names>
-            </name>
-            <name>
-              <surname>La Porta</surname>
-              <given-names>Rafael</given-names>
-            </name>
-            <name>
-              <surname>De Silanes</surname>
-              <given-names>Florencio Lopez</given-names>
-            </name>
-            <name>
-              <surname>Shleifer</surname>
-              <given-names>Andrei</given-names>
-            </name>
-          </person-group>
-          <article-title>Growth in regions</article-title>
-          <source>Journal of Economic growth</source>
-          <publisher-name>Springer</publisher-name>
-          <year iso-8601-date="2014">2014</year>
-          <volume>19</volume>
-          <issue>3</issue>
-          <fpage>259</fpage>
-          <lpage>309</lpage>
-        </element-citation>
-      </ref>
-      <ref id="ref-pinkovskiy2016newer">
-        <element-citation publication-type="article-journal">
-          <person-group person-group-type="author">
-            <name>
-              <surname>Pinkovskiy</surname>
-              <given-names>Maxim</given-names>
-            </name>
-            <name>
-              <surname>Sala-i-Martin</surname>
-              <given-names>Xavier</given-names>
-            </name>
-          </person-group>
-          <article-title>Lights, camera … income! Illuminating the national accounts-household surveys debate</article-title>
-          <source>The Quarterly Journal of Economics</source>
-          <year iso-8601-date="2016">2016</year>
-          <volume>131</volume>
-          <issue>2</issue>
-          <pub-id pub-id-type="doi">10.1093/qje/qjw003</pub-id>
-          <fpage>579</fpage>
-          <lpage>631</lpage>
-        </element-citation>
-      </ref>
-      <ref id="ref-chakravarty2017will">
+      <ref id="ref-chakravarty_dehejia_gst">
         <element-citation publication-type="article-journal">
           <person-group person-group-type="author">
             <name>
               <surname>Chakravarty</surname>
-              <given-names>Praveen</given-names>
+              <given-names>Shankha</given-names>
             </name>
             <name>
               <surname>Dehejia</surname>
-              <given-names>Vivek</given-names>
+              <given-names>Rajeev</given-names>
             </name>
           </person-group>
-          <article-title>Will GST exacerbate regional divergence</article-title>
+          <article-title>The GST and regional divergence in india: A nightlights perspective</article-title>
           <source>Economic and Political Weekly</source>
-          <year iso-8601-date="2017">2017</year>
-          <volume>52</volume>
-          <issue>25&amp;26</issue>
-          <fpage>97</fpage>
-          <lpage>101</lpage>
+          <year iso-8601-date="2019">2019</year>
+          <volume>54</volume>
+          <issue>42</issue>
+          <fpage>47</fpage>
+          <lpage>54</lpage>
         </element-citation>
       </ref>
-      <ref id="ref-lessmann2017">
+      <ref id="ref-chanda_cook_demonetization">
         <element-citation publication-type="article-journal">
           <person-group person-group-type="author">
             <name>
-              <surname>Lessmann</surname>
-              <given-names>Christian</given-names>
+              <surname>Chanda</surname>
+              <given-names>Areendam</given-names>
             </name>
             <name>
-              <surname>Seidel</surname>
-              <given-names>André</given-names>
+              <surname>Cook</surname>
+              <given-names>Justin</given-names>
             </name>
           </person-group>
-          <article-title>Regional inequality, convergence, and its determinants–a view from outer space</article-title>
-          <source>European Economic Review</source>
-          <publisher-name>Elsevier</publisher-name>
-          <year iso-8601-date="2017">2017</year>
-          <volume>92</volume>
-          <fpage>110</fpage>
-          <lpage>132</lpage>
+          <article-title>Demonetization and its redistributive effects: Evidence from india</article-title>
+          <source>Journal of Development Economics</source>
+          <year iso-8601-date="2022">2022</year>
+          <volume>156</volume>
+          <pub-id pub-id-type="doi">10.1016/j.jdeveco.2022.102835</pub-id>
+          <fpage>102835</fpage>
+          <lpage/>
         </element-citation>
       </ref>
-      <ref id="ref-henderson2012">
-        <element-citation publication-type="article-journal">
-          <person-group person-group-type="author">
-            <name>
-              <surname>Henderson</surname>
-              <given-names>J Vernon</given-names>
-            </name>
-            <name>
-              <surname>Storeygard</surname>
-              <given-names>Adam</given-names>
-            </name>
-            <name>
-              <surname>Weil</surname>
-              <given-names>David N</given-names>
-            </name>
-          </person-group>
-          <article-title>Measuring economic growth from outer space</article-title>
-          <source>American economic review</source>
-          <year iso-8601-date="2012">2012</year>
-          <volume>102</volume>
-          <issue>2</issue>
-          <fpage>994</fpage>
-          <lpage>1028</lpage>
-        </element-citation>
-      </ref>
-      <ref id="ref-chanda2020">
+      <ref id="ref-chanda_kabiraj_district_convergence">
         <element-citation publication-type="article-journal">
           <person-group person-group-type="author">
             <name>
@@ -1356,37 +1358,41 @@ visualizations, and spillover modeling.</p>
             </name>
             <name>
               <surname>Kabiraj</surname>
-              <given-names>Sujana</given-names>
+              <given-names>Shankha</given-names>
             </name>
           </person-group>
           <article-title>Shedding light on regional growth and convergence in india</article-title>
           <source>World Development</source>
-          <publisher-name>Elsevier</publisher-name>
           <year iso-8601-date="2020">2020</year>
           <volume>133</volume>
+          <pub-id pub-id-type="doi">10.1016/j.worlddev.2020.104961</pub-id>
           <fpage>104961</fpage>
           <lpage/>
         </element-citation>
       </ref>
-      <ref id="ref-fischer2011spatial">
+      <ref id="ref-cook_shah_nregs">
         <element-citation publication-type="article-journal">
           <person-group person-group-type="author">
             <name>
-              <surname>Fischer</surname>
-              <given-names>Manfred M</given-names>
+              <surname>Cook</surname>
+              <given-names>Justin</given-names>
+            </name>
+            <name>
+              <surname>Shah</surname>
+              <given-names>Manisha</given-names>
             </name>
           </person-group>
-          <article-title>A spatial mankiw–romer–weil model: Theory and evidence</article-title>
-          <source>The Annals of Regional Science</source>
-          <publisher-name>Springer</publisher-name>
-          <year iso-8601-date="2011">2011</year>
-          <volume>47</volume>
+          <article-title>Aggregate effects from public works: Evidence from india</article-title>
+          <source>Review of Economics and Statistics</source>
+          <year iso-8601-date="2022">2022</year>
+          <volume>104</volume>
           <issue>2</issue>
-          <fpage>419</fpage>
-          <lpage>436</lpage>
+          <pub-id pub-id-type="doi">10.1162/rest_a_00951</pub-id>
+          <fpage>201</fpage>
+          <lpage>217</lpage>
         </element-citation>
       </ref>
-      <ref id="ref-ertur2007growth">
+      <ref id="ref-ertur_koch_spatial_growth">
         <element-citation publication-type="article-journal">
           <person-group person-group-type="author">
             <name>
@@ -1399,13 +1405,478 @@ visualizations, and spillover modeling.</p>
             </name>
           </person-group>
           <article-title>Growth, technological interdependence and spatial externalities: Theory and evidence</article-title>
-          <source>Journal of applied econometrics</source>
-          <publisher-name>Wiley Online Library</publisher-name>
+          <source>Journal of Applied Econometrics</source>
           <year iso-8601-date="2007">2007</year>
           <volume>22</volume>
           <issue>6</issue>
+          <pub-id pub-id-type="doi">10.1002/jae.963</pub-id>
           <fpage>1033</fpage>
           <lpage>1062</lpage>
+        </element-citation>
+      </ref>
+      <ref id="ref-fischer_spatial_mrw">
+        <element-citation publication-type="article-journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fischer</surname>
+              <given-names>Manfred M.</given-names>
+            </name>
+          </person-group>
+          <article-title>A spatial mankiw-romer-weil model: Theory and evidence</article-title>
+          <source>Annals of Regional Science</source>
+          <year iso-8601-date="2011">2011</year>
+          <volume>47</volume>
+          <issue>2</issue>
+          <pub-id pub-id-type="doi">10.1007/s00168-010-0384-6</pub-id>
+          <fpage>419</fpage>
+          <lpage>436</lpage>
+        </element-citation>
+      </ref>
+      <ref id="ref-gennaioli_etal_growth_regions">
+        <element-citation publication-type="article-journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gennaioli</surname>
+              <given-names>Nicola</given-names>
+            </name>
+            <name>
+              <surname>La Porta</surname>
+              <given-names>Rafael</given-names>
+            </name>
+            <name>
+              <surname>Lopez-de-Silanes</surname>
+              <given-names>Florencio</given-names>
+            </name>
+            <name>
+              <surname>Shleifer</surname>
+              <given-names>Andrei</given-names>
+            </name>
+          </person-group>
+          <article-title>Growth in regions</article-title>
+          <source>Journal of Economic Growth</source>
+          <year iso-8601-date="2014">2014</year>
+          <volume>19</volume>
+          <issue>3</issue>
+          <pub-id pub-id-type="doi">10.1007/s10887-014-9105-9</pub-id>
+          <fpage>259</fpage>
+          <lpage>309</lpage>
+        </element-citation>
+      </ref>
+      <ref id="ref-henderson_storeygard_weil_lights">
+        <element-citation publication-type="article-journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Henderson</surname>
+              <given-names>J. Vernon</given-names>
+            </name>
+            <name>
+              <surname>Storeygard</surname>
+              <given-names>Adam</given-names>
+            </name>
+            <name>
+              <surname>Weil</surname>
+              <given-names>David N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Measuring economic growth from outer space</article-title>
+          <source>American Economic Review</source>
+          <year iso-8601-date="2012">2012</year>
+          <volume>102</volume>
+          <issue>2</issue>
+          <pub-id pub-id-type="doi">10.1257/aer.102.2.994</pub-id>
+          <fpage>994</fpage>
+          <lpage>1028</lpage>
+        </element-citation>
+      </ref>
+      <ref id="ref-jha_talathi_colonial_india">
+        <element-citation publication-type="article-journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jha</surname>
+              <given-names>Saumitra</given-names>
+            </name>
+            <name>
+              <surname>Talathi</surname>
+              <given-names>Anand</given-names>
+            </name>
+          </person-group>
+          <article-title>Colonial institutions and long-run development in india: Evidence from nightlights</article-title>
+          <source>Journal of Development Economics</source>
+          <year iso-8601-date="2021">2021</year>
+          <volume>153</volume>
+          <pub-id pub-id-type="doi">10.1016/j.jdeveco.2021.102726</pub-id>
+          <fpage>102726</fpage>
+          <lpage/>
+        </element-citation>
+      </ref>
+      <ref id="ref-lessmann_seidel_regional_inequality">
+        <element-citation publication-type="article-journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lessmann</surname>
+              <given-names>Christian</given-names>
+            </name>
+            <name>
+              <surname>Seidel</surname>
+              <given-names>André</given-names>
+            </name>
+          </person-group>
+          <article-title>Regional inequality, convergence, and its determinants: A view from outer space</article-title>
+          <source>European Economic Review</source>
+          <year iso-8601-date="2017">2017</year>
+          <volume>92</volume>
+          <pub-id pub-id-type="doi">10.1016/j.euroecorev.2016.11.009</pub-id>
+          <fpage>110</fpage>
+          <lpage>132</lpage>
+        </element-citation>
+      </ref>
+      <ref id="ref-pinkovskiy_salaimartin_lights_poverty">
+        <element-citation publication-type="article-journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pinkovskiy</surname>
+              <given-names>Maxim</given-names>
+            </name>
+            <name>
+              <surname>Sala-i-Martin</surname>
+              <given-names>Xavier</given-names>
+            </name>
+          </person-group>
+          <article-title>Lights, camera, income! Illuminating the national accounts-household surveys debate</article-title>
+          <source>Quarterly Journal of Economics</source>
+          <year iso-8601-date="2016">2016</year>
+          <volume>131</volume>
+          <issue>2</issue>
+          <pub-id pub-id-type="doi">10.1093/qje/qjw003</pub-id>
+          <fpage>579</fpage>
+          <lpage>631</lpage>
+        </element-citation>
+      </ref>
+      <ref id="ref-abrahams_etal_deblurring">
+        <element-citation publication-type="article-journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Abrahams</surname>
+              <given-names>Alexei</given-names>
+            </name>
+            <name>
+              <surname>Oram</surname>
+              <given-names>Christopher</given-names>
+            </name>
+            <name>
+              <surname>Lozano-Gracia</surname>
+              <given-names>Nancy</given-names>
+            </name>
+          </person-group>
+          <article-title>Deblurring DMSP nighttime lights: A new method using gaussian filters and frequencies of illumination</article-title>
+          <source>Remote Sensing of Environment</source>
+          <year iso-8601-date="2018">2018</year>
+          <volume>210</volume>
+          <pub-id pub-id-type="doi">10.1016/j.rse.2018.03.018</pub-id>
+          <fpage>242</fpage>
+          <lpage>258</lpage>
+        </element-citation>
+      </ref>
+      <ref id="ref-chen_nordhaus_luminosity_gdp">
+        <element-citation publication-type="article-journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chen</surname>
+              <given-names>Xi</given-names>
+            </name>
+            <name>
+              <surname>Nordhaus</surname>
+              <given-names>William D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Using luminosity data as a proxy for economic statistics</article-title>
+          <source>Proceedings of the National Academy of Sciences</source>
+          <year iso-8601-date="2011">2011</year>
+          <volume>108</volume>
+          <issue>21</issue>
+          <pub-id pub-id-type="doi">10.1073/pnas.1017031108</pub-id>
+          <fpage>8589</fpage>
+          <lpage>8594</lpage>
+        </element-citation>
+      </ref>
+      <ref id="ref-donaldson_storeygard_remotesensing">
+        <element-citation publication-type="article-journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Donaldson</surname>
+              <given-names>Dave</given-names>
+            </name>
+            <name>
+              <surname>Storeygard</surname>
+              <given-names>Adam</given-names>
+            </name>
+          </person-group>
+          <article-title>The view from above: Applications of satellite data in economics</article-title>
+          <source>Journal of Economic Perspectives</source>
+          <year iso-8601-date="2016">2016</year>
+          <volume>30</volume>
+          <issue>4</issue>
+          <pub-id pub-id-type="doi">10.1257/jep.30.4.171</pub-id>
+          <fpage>171</fpage>
+          <lpage>198</lpage>
+        </element-citation>
+      </ref>
+      <ref id="ref-elvidge_etal_viirs">
+        <element-citation publication-type="article-journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Elvidge</surname>
+              <given-names>Christopher D.</given-names>
+            </name>
+            <name>
+              <surname>Baugh</surname>
+              <given-names>Kimberly E.</given-names>
+            </name>
+            <name>
+              <surname>Zhizhin</surname>
+              <given-names>Mikhail</given-names>
+            </name>
+            <name>
+              <surname>Hsu</surname>
+              <given-names>Feng-Chi</given-names>
+            </name>
+            <name>
+              <surname>Ghosh</surname>
+              <given-names>Tilottama</given-names>
+            </name>
+          </person-group>
+          <article-title>VIIRS night-time lights</article-title>
+          <source>International Journal of Remote Sensing</source>
+          <year iso-8601-date="2017">2017</year>
+          <volume>38</volume>
+          <issue>21</issue>
+          <pub-id pub-id-type="doi">10.1080/01431161.2017.1342050</pub-id>
+          <fpage>5860</fpage>
+          <lpage>5879</lpage>
+        </element-citation>
+      </ref>
+      <ref id="ref-gibson_etal_ntl_measurement">
+        <element-citation publication-type="article-journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gibson</surname>
+              <given-names>John</given-names>
+            </name>
+            <name>
+              <surname>Olivia</surname>
+              <given-names>Susan</given-names>
+            </name>
+            <name>
+              <surname>Boe-Gibson</surname>
+              <given-names>Geua</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>Chao</given-names>
+            </name>
+          </person-group>
+          <article-title>Which night lights data should we use in economics, and where?</article-title>
+          <source>Journal of Development Economics</source>
+          <year iso-8601-date="2021">2021</year>
+          <volume>149</volume>
+          <pub-id pub-id-type="doi">10.1016/j.jdeveco.2020.102602</pub-id>
+          <fpage>102602</fpage>
+          <lpage/>
+        </element-citation>
+      </ref>
+      <ref id="ref-chen_nordhaus_measurement_error">
+        <element-citation publication-type="article-journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chen</surname>
+              <given-names>Xi</given-names>
+            </name>
+            <name>
+              <surname>Nordhaus</surname>
+              <given-names>William D.</given-names>
+            </name>
+          </person-group>
+          <article-title>A test of the new VIIRS lights data set: Population and economic output in africa</article-title>
+          <source>Remote Sensing</source>
+          <year iso-8601-date="2015">2015</year>
+          <volume>7</volume>
+          <issue>4</issue>
+          <pub-id pub-id-type="doi">10.3390/rs70404937</pub-id>
+          <fpage>4937</fpage>
+          <lpage>4947</lpage>
+        </element-citation>
+      </ref>
+      <ref id="ref-mendez_patnaik_notebook">
+        <element-citation>
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mendez</surname>
+              <given-names>Carlos</given-names>
+            </name>
+            <name>
+              <surname>Patnaik</surname>
+              <given-names>Ayush</given-names>
+            </name>
+          </person-group>
+          <article-title>A python notebook for processing nighttime lights data: Methods and applications</article-title>
+          <publisher-name>GitHub Repository</publisher-name>
+          <year iso-8601-date="2024">2024</year>
+          <uri>https://github.com/example/ntl-notebook</uri>
+        </element-citation>
+      </ref>
+      <ref id="ref-li_etal_harmonization">
+        <element-citation publication-type="article-journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>Xi</given-names>
+            </name>
+            <name>
+              <surname>Zhou</surname>
+              <given-names>Yuyu</given-names>
+            </name>
+            <name>
+              <surname>Zhao</surname>
+              <given-names>Min</given-names>
+            </name>
+            <name>
+              <surname>Zhao</surname>
+              <given-names>Xia</given-names>
+            </name>
+          </person-group>
+          <article-title>A harmonized global nighttime light dataset 1992–2018</article-title>
+          <source>Scientific Data</source>
+          <year iso-8601-date="2020">2020</year>
+          <volume>7</volume>
+          <issue>1</issue>
+          <pub-id pub-id-type="doi">10.1038/s41597-020-0510-y</pub-id>
+          <fpage>168</fpage>
+          <lpage/>
+        </element-citation>
+      </ref>
+      <ref id="ref-jean_etal_poverty_prediction">
+        <element-citation publication-type="article-journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jean</surname>
+              <given-names>Neal</given-names>
+            </name>
+            <name>
+              <surname>Burke</surname>
+              <given-names>Marshall</given-names>
+            </name>
+            <name>
+              <surname>Xie</surname>
+              <given-names>Michael</given-names>
+            </name>
+            <name>
+              <surname>Davis</surname>
+              <given-names>W. Matthew</given-names>
+            </name>
+            <name>
+              <surname>Lobell</surname>
+              <given-names>David B.</given-names>
+            </name>
+            <name>
+              <surname>Ermon</surname>
+              <given-names>Stefano</given-names>
+            </name>
+          </person-group>
+          <article-title>Combining satellite imagery and machine learning to predict poverty</article-title>
+          <source>Science</source>
+          <year iso-8601-date="2016">2016</year>
+          <volume>353</volume>
+          <issue>6301</issue>
+          <pub-id pub-id-type="doi">10.1126/science.aaf7894</pub-id>
+          <fpage>790</fpage>
+          <lpage>794</lpage>
+        </element-citation>
+      </ref>
+      <ref id="ref-rey_spatial_dynamics">
+        <element-citation publication-type="article-journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rey</surname>
+              <given-names>Sergio J.</given-names>
+            </name>
+            <name>
+              <surname>Montouri</surname>
+              <given-names>Brett D.</given-names>
+            </name>
+          </person-group>
+          <article-title>US regional income convergence: A spatial econometric perspective</article-title>
+          <source>Regional Studies</source>
+          <year iso-8601-date="1999">1999</year>
+          <volume>33</volume>
+          <issue>2</issue>
+          <pub-id pub-id-type="doi">10.1080/00343409950122945</pub-id>
+          <fpage>143</fpage>
+          <lpage>156</lpage>
+        </element-citation>
+      </ref>
+      <ref id="ref-quah_twin_peaks">
+        <element-citation publication-type="article-journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Quah</surname>
+              <given-names>Danny T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Twin peaks: Growth and convergence in models of distribution dynamics</article-title>
+          <source>Economic Journal</source>
+          <year iso-8601-date="1996">1996</year>
+          <volume>106</volume>
+          <issue>437</issue>
+          <pub-id pub-id-type="doi">10.2307/2235377</pub-id>
+          <fpage>1045</fpage>
+          <lpage>1055</lpage>
+        </element-citation>
+      </ref>
+      <ref id="ref-durlauf_johnson_convergence_clubs">
+        <element-citation publication-type="article-journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Durlauf</surname>
+              <given-names>Steven N.</given-names>
+            </name>
+            <name>
+              <surname>Johnson</surname>
+              <given-names>Paul A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Multiple regimes and cross-country growth behaviour</article-title>
+          <source>Journal of Applied Econometrics</source>
+          <year iso-8601-date="1995">1995</year>
+          <volume>10</volume>
+          <issue>4</issue>
+          <pub-id pub-id-type="doi">10.1002/jae.3950100404</pub-id>
+          <fpage>365</fpage>
+          <lpage>384</lpage>
+        </element-citation>
+      </ref>
+      <ref id="ref-keola_etal_lights_poverty">
+        <element-citation publication-type="article-journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Keola</surname>
+              <given-names>Souknilanh</given-names>
+            </name>
+            <name>
+              <surname>Andersson</surname>
+              <given-names>Magnus</given-names>
+            </name>
+            <name>
+              <surname>Hall</surname>
+              <given-names>Ola</given-names>
+            </name>
+          </person-group>
+          <article-title>Monitoring economic development from space: Using nighttime light and land cover data to measure economic growth</article-title>
+          <source>World Development</source>
+          <year iso-8601-date="2015">2015</year>
+          <volume>66</volume>
+          <pub-id pub-id-type="doi">10.1016/j.worlddev.2014.08.017</pub-id>
+          <fpage>322</fpage>
+          <lpage>334</lpage>
         </element-citation>
       </ref>
     </ref-list>
@@ -1413,7 +1884,7 @@ visualizations, and spillover modeling.</p>
       <fn id="fn1">
         <label>1</label>
         <p>Following Chanda and Kabiraj
-    (<xref alt="2020" rid="ref-chanda2020" ref-type="bibr">2020</xref>),
+    (<xref alt="2020" rid="ref-chanda_kabiraj_district_convergence" ref-type="bibr">2020</xref>),
     our sample consists of 520 districts (out of a possible 593). There
     were 593 districts in 2001, which rose to 640 districts in the 2011
     census. To match the districts among two census files, we summed up
@@ -1438,7 +1909,7 @@ visualizations, and spillover modeling.</p>
     </fn-group>
   </back>
   <!-- (F2ED4C6E)[nb-1]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/c01_view_from_space.qmd -->
-  <!-- (F2ED4C6E)[nb-2]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/c02_scatterplots.qmd -->
+  <!-- (F2ED4C6E)[nb-2]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/c02_regional_convergence_sc.qmd -->
   <!-- (F2ED4C6E)[nb-3]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/c03_spatial_dependence.qmd -->
   <!-- (F2ED4C6E)[nb-4]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/c04_spillover_modeling.ipynb -->
 </article>
