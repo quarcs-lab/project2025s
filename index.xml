@@ -1255,6 +1255,29 @@ visualizations, and spillover modeling.</p>
   and design of policies aimed at reducing regional inequalities in
   developing countries.</p>
     </sec>
+    <sec id="acknowledgments">
+      <title>Acknowledgments</title>
+      <p>This work was supported by JSPS KAKENHI Grant Number 24K04884.
+  During the preparation of this work, the authors used Claude Code
+  (Anthropic) to assist with manuscript editing, computational notebook
+  development, and research infrastructure setup. After using this tool,
+  the authors reviewed and edited all content and take full
+  responsibility for the content of the publication.</p>
+    </sec>
+    <sec id="conflict-of-interest">
+      <title>Conflict of Interest</title>
+      <p>The authors declare no conflict of interest.</p>
+    </sec>
+    <sec id="data-and-code-availability">
+      <title>Data and Code Availability</title>
+      <p>All data and computational code used in this study are available in
+  the project repository:
+  <ext-link ext-link-type="uri" xlink:href="https://github.com/quarcs-lab/project2025s">https://github.com/quarcs-lab/project2025s</ext-link>.
+  Also, the interactive HTML version of this manuscript
+  (<ext-link ext-link-type="uri" xlink:href="https://quarcs-lab.github.io/project2025s/">https://quarcs-lab.github.io/project2025s/</ext-link>)
+  embeds the computational notebooks, allowing readers to inspect the
+  complete analytical pipeline from raw data to published results.</p>
+    </sec>
   </body>
   <back>
     <ref-list>
@@ -1741,7 +1764,7 @@ visualizations, and spillover modeling.</p>
           <article-title>A python notebook for processing nighttime lights data: Methods and applications</article-title>
           <publisher-name>GitHub Repository</publisher-name>
           <year iso-8601-date="2024">2024</year>
-          <uri>https://github.com/example/ntl-notebook</uri>
+          <uri>https://github.com/quarcs-lab/project2022p</uri>
         </element-citation>
       </ref>
       <ref id="ref-li_etal_harmonization">

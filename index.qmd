@@ -240,3 +240,15 @@ Open-source tools and cloud computing platforms are rapidly lowering the barrier
 This article examines regional convergence patterns across Indian districts using satellite nighttime light data, interactive visualizations, and spatial econometric modeling. Expanding on the work of @chanda_kabiraj_district_convergence, we developed an interactive web-based visualization tool that illustrates spatial and convergence patterns across Indian districts. Spatial autocorrelation tests confirm that spatial dependence is a fundamental characteristic of satellite data and the regional convergence process in India. Estimates from our spatial Durbin model indicate that incorporating spatial spillovers significantly increases the estimated speed of regional convergence. The total convergence effect in our fully specified model is approximately 36% larger than conventional non-spatial estimates of @chanda_kabiraj_district_convergence. This finding implies that non-spatial convergence models may considerably underestimate the speed of regional convergence. Additionally, it suggests that place-based development interventions may have broader impacts, as their benefits can extend to neighboring districts through spatial spillover effects.
 
 These results have important implications for both research methodology and policy design in developing countries. From a methodological perspective, they highlight the value of combining new data sources, interactive geospatial visualization tools, and spatial econometric methods to better understand regional economic dynamics. From a policy standpoint, they suggest that regional convergence operates not just through district-specific factors, but through complex spatial interactions that create additional channels for catch-up growth. This spatial perspective is crucial for the analysis and design of policies aimed at reducing regional inequalities in developing countries.
+
+## Acknowledgments {.appendix}
+
+This work was supported by JSPS KAKENHI Grant Number 24K04884. During the preparation of this work, the authors used Claude Code (Anthropic) to assist with manuscript editing, computational notebook development, and research infrastructure setup. After using this tool, the authors reviewed and edited all content and take full responsibility for the content of the publication.
+
+## Conflict of Interest {.appendix}
+
+The authors declare no conflict of interest.
+
+## Data and Code Availability {.appendix}
+
+All data and computational code used in this study are available in the project repository: <https://github.com/quarcs-lab/project2025s>. Also, the interactive HTML version of this manuscript (<https://quarcs-lab.github.io/project2025s/>) embeds the computational notebooks, allowing readers to inspect the complete analytical pipeline from raw data to published results.
