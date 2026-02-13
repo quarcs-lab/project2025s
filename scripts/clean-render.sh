@@ -26,6 +26,8 @@ rm -rf .quarto/embed/
 rm -rf .quarto/_freeze/
 rm -f notebooks/*.embed-preview.html
 rm -rf notebooks/*.embed_files/
+rm -f notebooks/*.out.ipynb
+rm -f notebooks/*-preview.html
 
 echo "Rendering manuscript..."
 

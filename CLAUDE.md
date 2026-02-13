@@ -166,19 +166,21 @@ Current embeds in `index.qmd`:
 
 #### Cache architecture and troubleshooting
 
-Quarto maintains three cache layers:
+Quarto maintains five cache layers:
 
 1. **`_freeze/`** — execution results (figures + JSON)
 2. **`.quarto/embed/`** — internal embed cache (hidden directory)
 3. **`notebooks/*.embed-preview.html`** — embed preview artifacts
+4. **`notebooks/*.out.ipynb`** — Quarto's executed notebook outputs (stale copies cause label/content mismatches)
+5. **`notebooks/*-preview.html`** — notebook preview HTML pages
 
-`freeze: auto` only handles `_freeze/` automatically. It does **NOT** invalidate `.quarto/embed/` or embed preview files — this causes stale embed previews even after notebook source changes. To ensure all caches are cleared, **always use after notebook edits:**
+`freeze: auto` only handles `_freeze/` automatically. It does **NOT** invalidate the other cache layers — this causes stale previews and missing figure labels even after notebook source changes. To ensure all caches are cleared, **always use after notebook edits:**
 
 ```bash
 bash scripts/clean-render.sh
 ```
 
-This clears all three cache layers and re-renders from scratch. For manuscript-only edits (changes to `index.qmd` text), plain `quarto render index.qmd` is sufficient.
+This clears all five cache layers and re-renders from scratch. For manuscript-only edits (changes to `index.qmd` text), plain `quarto render index.qmd` is sufficient.
 
 #### Important warnings
 

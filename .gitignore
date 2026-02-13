@@ -7,6 +7,8 @@
 # Quarto cache
 /.quarto/
 **/*.quarto_ipynb
+notebooks/*.out.ipynb
+notebooks/*-preview.html
 
 # LaTeX intermediate files (keep only final outputs)
 index.log
