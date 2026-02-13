@@ -7,7 +7,7 @@ and Interchange DTD v1.2 20190208//EN" "JATS-archivearticle1.dtd">
       <title-group>
         <article-title>Regional growth, convergence, and spatial spillovers in
 India:</article-title>
-        <subtitle>A view from outer space</subtitle>
+        <subtitle>A reproducible view from outer space</subtitle>
       </title-group>
       <contrib-group>
         <contrib contrib-type="author" corresp="yes">
@@ -61,21 +61,22 @@ India:</article-title>
       <abstract>
         <p>Using satellite nighttime light data as proxy for economic activity,
 Chanda and Kabiraj (2020, World Development) studied regional growth and
-convergence across 520 districts in India. This article builds on their
-work by confirming and extending their main findings in three fronts.
-First, we illustrate regional convergence patterns using an interactive
-web-based tool for satellite image visualization. Second, we assess the
-degree of spatial dependence in their main econometric specification.
-Third, we employ a spatial Durbin model to measure the role of spatial
-spillovers in the convergence process. Our results indicate that spatial
-spillovers significantly increase the speed of regional convergence.
-Overall, the results emphasize the role of spatial dependence in
-regional convergence through the lens of satellite imagery, interactive
-visualizations, and spillover modeling.</p>
+convergence across 520 districts in India. Based on a reproducible
+(Quarto system) approach, this article builds on their work by
+confirming and extending their main findings in three fronts. First, we
+illustrate regional convergence patterns using an interactive web-based
+tool for satellite image visualization. Second, we assess the degree of
+spatial dependence in their main econometric specification. Third, we
+employ a spatial Durbin model to measure the role of spatial spillovers
+in the convergence process. Our results indicate that spatial spillovers
+significantly increase the speed of regional convergence. Overall, the
+results emphasize the role of spatial dependence in regional convergence
+through the lens of satellite imagery, interactive visualizations, and
+spillover modeling.</p>
       </abstract>
       <kwd-group kwd-group-type="author">
-        <kwd>Regional luminosity</kwd>
-        <kwd>Satellite nighttime lights</kwd>
+        <kwd>Reproducible research</kwd>
+        <kwd>Nighttime lights</kwd>
         <kwd>Regional convergence</kwd>
         <kwd>Spatial spillovers</kwd>
         <kwd>Spatial Durbin model</kwd>
