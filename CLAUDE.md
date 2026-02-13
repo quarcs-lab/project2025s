@@ -43,6 +43,8 @@ The `./legacy/` folder contains a complete snapshot of the original project stru
 
 **MECA bundle exclusion:** The `legacy/` and `log/` directories are excluded from the MECA bundle (`index-meca.zip`) because they are too large or unnecessary for replication. This is enforced in two places: `!legacy/` and `!log/` in `project.render` in `_quarto.yml`, and `zip -d` post-processing steps in `scripts/clean-render.sh`.
 
+**MECA bundle hosting:** The MECA bundle exceeds GitHub's 100 MB file size limit, so it is listed in `.gitignore` and hosted via a GitHub Release (tag: `meca-bundle`). The `clean-render.sh` script automatically uploads the bundle to the release and updates the MECA link in `index.html` to point to the release URL (`https://github.com/quarcs-lab/project2025s/releases/download/meca-bundle/index-meca.zip`). This ensures the "MECA Bundle" link in the HTML manuscript works for readers on GitHub Pages.
+
 ### 4. STAY WITHIN THIS DIRECTORY
 
 Under no circumstances are you ever to GO UP OUT OF THIS ONE FOLDER. All work must remain within this project directory.
