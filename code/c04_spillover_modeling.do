@@ -63,17 +63,15 @@
 
 clear all
 macro drop _all
-
+capture log close
 
 * Basic environment settings
 version 15
 set more off
 
-* Change to data directory (data files live here)
-cd "../data"
 
 * Start logging
-log using "../code/c04_spillover_modeling.log", replace
+log using "c04_spillover_modeling.log", replace
 
 
 *------------------------------------------------------------------------------
@@ -92,13 +90,8 @@ global controls suit_mean_snd rain_mean_snd ///
 *------------------------------------------------------------------------------
 * (2.2) Load Spatial Weights Matrix
 *------------------------------------------------------------------------------
-capture confirm file "W_matrix.dta"
-if _rc != 0 {
-    di as error "File W_matrix.dta not found. Please verify the file path."
-    exit 1
-}
 
-use "W_matrix.dta", clear
+use "https://github.com/quarcs-lab/project2025s/raw/refs/heads/master/data/W_matrix.dta", clear
 
 * Generate ID for each observation and set spatial data
 gen id = _n
@@ -114,13 +107,8 @@ spmatrix summarize W6nn
 *------------------------------------------------------------------------------
 * (2.3) Load Main Dataset and Set Spatial IDs
 *------------------------------------------------------------------------------
-capture confirm file "india520.dta"
-if _rc != 0 {
-    di as error "File india520.dta not found. Please verify the file path."
-    exit 1
-}
 
-use "india520.dta", clear
+use "https://github.com/quarcs-lab/project2025s/raw/refs/heads/master/data/india520.dta", clear
 encode state, generate(state_encoded)
 gen id = _n
 spset id
@@ -422,7 +410,7 @@ display "SDM = Spatial Durbin Model (ML). OLS Indirect = not applicable."
 *----------------------------------------------------------------------
 * (4.4) Write markdown table to file
 *----------------------------------------------------------------------
-local tbl "../tables/c04_spillover_modeling_table.md"
+local tbl "c04_spillover_modeling_table.md"
 
 tempname fh
 file open `fh' using "`tbl'", write replace

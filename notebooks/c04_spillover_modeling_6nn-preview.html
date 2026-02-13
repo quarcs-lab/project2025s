@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-    <title>Spillover modeling</title>
+    <title>c04_spillover_modeling_6nn</title>
     <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -163,9 +163,6 @@
 <link href="../site_libs/bootstrap/bootstrap-0f9f7490fdc41efd1abaa8c23df3f716.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark-7accdd558f52a9962c94b8c63686316b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../site_libs/bootstrap/bootstrap-0f9f7490fdc41efd1abaa8c23df3f716.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
-<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
      <style>html{ scroll-behavior: smooth; }</style>  
       </head>
 
@@ -340,32 +337,7 @@
             <a href="../notebooks/c04_spillover_modeling_6nn.ipynb" class="btn btn-primary quarto-download-embed" download="c04_spillover_modeling_6nn.ipynb">Download Notebook</a>
           </div>
 
-     <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">Spillover modeling</h1>
-          </div>
-
-    
-    <div class="quarto-title-meta-container">
-      <div class="quarto-title-meta-column-start">
-        
-        <div class="quarto-title-meta">
-
-                
-          
-                
-              </div>
-      </div>
-      <div class="quarto-title-meta-column-end quarto-other-formats-target">
-      </div>
-    </div>
-
-
-
-    <div class="quarto-other-links-text-target">
-    </div>  </div>
-</header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+     <div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
 <div id="quarto-sidebar-toc-left" class="sidebar toc-left">
   <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Contents</h2>
@@ -385,15 +357,7 @@
 </div>
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
 </div>
-<main class="content quarto-banner-title-block" id="quarto-document-content">        
-
-       <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid figure-img"></p>
-<figcaption>Open In Colab</figcaption>
-</figure>
-</div>
-<p>This notebook estimates <strong>8 econometric models</strong> to analyze convergence in nighttime light intensity across 520 Indian districts (1996–2010). It compares standard OLS regressions with <strong>Spatial Durbin Models (SDM)</strong> that account for spatial spillovers between neighboring districts. The models follow a 2×2×2 design: OLS vs SDM, unconditional vs conditional, without vs with state fixed effects. For details on the model design and spatial weights, see the Background &amp; Context section below.</p>
+<main class="content quarto-banner-title-block" id="quarto-document-content">        <p><a href="https://colab.research.google.com/github/quarcs-lab/project2025s/blob/master/notebooks/c04_spillover_modeling_6nn.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>This notebook estimates <strong>8 econometric models</strong> to analyze convergence in nighttime light intensity across 520 Indian districts (1996–2010). It compares standard OLS regressions with <strong>Spatial Durbin Models (SDM)</strong> that account for spatial spillovers between neighboring districts. The models follow a 2×2×2 design: OLS vs SDM, unconditional vs conditional, without vs with state fixed effects. For details on the model design and spatial weights, see the Background &amp; Context section below.</p>
 <section id="running-stata-in-jupyter-notebooks" class="level2">
 <h2 class="anchored" data-anchor-id="running-stata-in-jupyter-notebooks">Running Stata in Jupyter Notebooks</h2>
 <p>This notebook uses the <a href="https://kylebarron.dev/stata_kernel/"><strong>stata_kernel</strong></a> package, which lets you run Stata code natively inside Jupyter notebooks. Each code cell works like the Stata command window — the kernel maintains a live Stata session in the background, so variables, datasets, and estimation results persist across cells.</p>
@@ -524,7 +488,7 @@
 <li><strong>Controls:</strong> 16 variables capturing terrain, climate, demographics, infrastructure, and human capital</li>
 <li><strong>Spatial weights:</strong> <code>W6nn</code> — the row-normalized 6NN matrix loaded from <code>W_matrix.dta</code></li>
 </ul>
-<div class="cell-container"><div class="cell-decorator"><pre>In [1]:</pre></div><div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:32.979194Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:32.978843Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:33.021624Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:33.015434Z&quot;}}" data-execution_count="1">
+<div class="cell-container"><div class="cell-decorator"><pre>In [1]:</pre></div><div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:32.979194Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:32.978843Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:33.021624Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:33.015434Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*==============================================================================</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">   Spatial Convergence Analysis of NTL in India</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">   -------------------------------------------</span></span>
@@ -582,7 +546,7 @@
 <li><p><strong><code>india520.dta</code></strong> — The main analysis dataset with 520 district-level observations. After loading, we <code>encode</code> the <code>state</code> string variable to a numeric factor (needed for fixed effects) and register the spatial ID with <code>spset</code>.</p></li>
 </ol>
 <p>The <strong>16 control variables</strong> are stored in the global macro <code>$controls</code> for reuse across conditional models (Models 5–8).</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [1]:</pre></div><div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:33.025695Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:33.025480Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:33.275239Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:33.274171Z&quot;}}">
+<div class="cell-container"><div class="cell-decorator"><pre>In [1]:</pre></div><div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:33.025695Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:33.025480Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:33.275239Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:33.274171Z&quot;}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*==============================================================================</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">   2. SETUP</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">   ======================================</span></span>
@@ -673,7 +637,7 @@
 <p>For each model we store: - The estimation results via <code>eststo</code> (for potential use with <code>esttab</code>) - The AIC via <code>estat ic</code> for model comparison - Scalar coefficients and standard errors for the summary table</p>
 <p>For <strong>SDM models</strong>, <code>estat impact</code> decomposes the marginal effect of <code>log_light96_rcr_cap</code> into: - <strong>Direct effect:</strong> The impact of a district’s own initial light on its own growth - <strong>Indirect effect:</strong> The spillover impact from neighbors’ initial light - <strong>Total effect:</strong> Direct + Indirect</p>
 <p>For <strong>OLS models</strong>, the coefficient <em>is</em> the direct (and total) effect; indirect effects are not applicable.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:33.279694Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:33.279395Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:33.328929Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:33.328072Z&quot;}}" data-execution_count="3">
+<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div id="cell-7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:33.279694Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:33.279395Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:33.328929Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:33.328072Z&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*==============================================================================</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">   3. MAIN ANALYSIS</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">   ======================================</span></span>
@@ -696,7 +660,7 @@
 <li><strong>Model 4</strong> (SDM + State FE): Full spatial model with state fixed effects</li>
 </ul>
 <p>After each SDM estimation, <code>estat impact</code> computes the direct/indirect/total effects. These are saved into scalars for the summary table.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:33.332788Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:33.332469Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:33.893048Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:33.891386Z&quot;}}" data-execution_count="4">
+<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:33.332788Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:33.332469Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:33.893048Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:33.891386Z&quot;}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>* MODEL 1: Unconditional OLS</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
@@ -742,7 +706,7 @@ Note: BIC uses N = number of observations. See [R] IC note.
 </code></pre>
 </div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:33.896878Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:33.896598Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:36.763192Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:36.762439Z&quot;}}" data-execution_count="5">
+<div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:33.896878Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:33.896598Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:36.763192Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:36.762439Z&quot;}}" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>* MODEL 2: Unconditional SDM</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
@@ -819,7 +783,7 @@ log_light96~p |  -.0217392   .0057028    -3.81   0.000    -.0329165   -.0105619
 </code></pre>
 </div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div id="cell-12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:36.774071Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:36.773828Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:37.043677Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:37.041514Z&quot;}}" data-execution_count="6">
+<div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:36.774071Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:36.773828Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:37.043677Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:37.041514Z&quot;}}" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>* MODEL 3: Unconditional OLS with State FE</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
@@ -895,7 +859,7 @@ Note: BIC uses N = number of observations. See [R] IC note.
 </code></pre>
 </div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:37.054561Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:37.054210Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:48.548163Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:48.547006Z&quot;}}" data-execution_count="7">
+<div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div id="cell-12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:37.054561Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:37.054210Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:48.548163Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:48.547006Z&quot;}}" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>* MODEL 4: Unconditional SDM with State FE</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
@@ -1067,7 +1031,7 @@ Uttar Prad..  |  -.0413533   .0123487    -3.35   0.001    -.0655563   -.0171502
 <p>These models test for <strong>conditional (beta) convergence</strong> — whether districts converge <em>after controlling for</em> structural differences in terrain, climate, demographics, infrastructure, and human capital.</p>
 <p>The 16 controls stored in <code>$controls</code> include: - <strong>Geography:</strong> soil suitability, rainfall, malaria risk, temperature, ruggedness, distance to coast, latitude - <strong>Demographics:</strong> rural share, population density, SC/ST shares, worker participation - <strong>Human capital:</strong> literacy rate, higher education share - <strong>Infrastructure:</strong> electrification rate, pucca (paved) road density</p>
 <p>Models 5–8 mirror Models 1–4 but include these controls: - <strong>Model 5</strong> (OLS): Conditional convergence - <strong>Model 6</strong> (SDM): Conditional with spatial spillovers - <strong>Model 7</strong> (OLS + State FE): Conditional with state fixed effects - <strong>Model 8</strong> (SDM + State FE): Full model — the preferred specification</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [8]:</pre></div><div id="cell-15" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:48.552793Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:48.552591Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:48.785257Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:48.783982Z&quot;}}" data-execution_count="8">
+<div class="cell-container"><div class="cell-decorator"><pre>In [8]:</pre></div><div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:48.552793Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:48.552591Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:48.785257Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:48.783982Z&quot;}}" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>*------------------------------------------------------------------------------</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>* (3.2) Conditional Models</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>*     - Models that <span class="kw">include</span> the controls stored <span class="kw">in</span> <span class="ot">$controls</span></span>
@@ -1137,7 +1101,7 @@ Note: BIC uses N = number of observations. See [R] IC note.
 </code></pre>
 </div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [9]:</pre></div><div id="cell-16" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:48.788892Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:48.788676Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:54.125419Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:54.124412Z&quot;}}" data-execution_count="9">
+<div class="cell-container"><div class="cell-decorator"><pre>In [9]:</pre></div><div id="cell-15" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:48.788892Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:48.788676Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:54.125419Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:54.124412Z&quot;}}" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>* MODEL 6: Conditional SDM</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
@@ -1264,7 +1228,7 @@ log_puccaro~s |   .0174706   .0059118     2.96   0.003     .0058837    .0290575
 </code></pre>
 </div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [10]:</pre></div><div id="cell-17" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:54.130482Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:54.130225Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:54.309428Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:54.308271Z&quot;}}" data-execution_count="10">
+<div class="cell-container"><div class="cell-decorator"><pre>In [10]:</pre></div><div id="cell-16" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:54.130482Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:54.130225Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:54.309428Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:54.308271Z&quot;}}" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>* MODEL 7: Conditional OLS with State FE</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
@@ -1360,7 +1324,7 @@ Note: BIC uses N = number of observations. See [R] IC note.
 </code></pre>
 </div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [11]:</pre></div><div id="cell-18" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:54.314805Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:54.314454Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:58:22.182043Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:58:22.181299Z&quot;}}" data-execution_count="11">
+<div class="cell-container"><div class="cell-decorator"><pre>In [11]:</pre></div><div id="cell-17" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:54.314805Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:54.314454Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:58:22.182043Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:58:22.181299Z&quot;}}" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>* MODEL 8: Conditional SDM with State FE</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
@@ -1591,7 +1555,7 @@ Uttar Prad..  |  -.0561818   .0206838    -2.72   0.007    -.0967214   -.0156422
 <li><p><strong>Cell formatting loops</strong> — Iterates over OLS models (direct = coefficient, indirect = n/a) and SDM models (direct/indirect/total from <code>estat impact</code> results)</p></li>
 <li><p><strong>Output</strong> — The table is both displayed in the Stata log and written to a markdown file at <code>code/c04_spillover_modeling_table.md</code></p></li>
 </ol>
-<div class="cell-container"><div class="cell-decorator"><pre>In [12]:</pre></div><div id="cell-20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:58:22.192441Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:58:22.192228Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:58:22.526642Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:58:22.525737Z&quot;}}" data-execution_count="12">
+<div class="cell-container"><div class="cell-decorator"><pre>In [12]:</pre></div><div id="cell-19" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:58:22.192441Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:58:22.192228Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:58:22.526642Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:58:22.525737Z&quot;}}" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*==============================================================================</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co">   4. COMPILE RESULTS TABLE</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">   ======================================</span></span>
@@ -1753,7 +1717,7 @@ Note: Robust SE in parentheses. ***p&lt;0.01, **p&lt;0.05, *p&lt;0.10.
 SDM = Spatial Durbin Model (ML). OLS Indirect = not applicable.</code></pre>
 </div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div id="cell-21" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:58:22.531220Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:58:22.531004Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:58:22.673937Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:58:22.673101Z&quot;}}">
+<div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div id="cell-20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:58:22.531220Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:58:22.531004Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:58:22.673937Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:58:22.673101Z&quot;}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>*----------------------------------------------------------------------</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>* (4.4) Write markdown <span class="kw">table</span> to file</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>*----------------------------------------------------------------------</span>
@@ -1783,7 +1747,7 @@ SDM = Spatial Durbin Model (ML). OLS Indirect = not applicable.</code></pre>
 <span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a><span class="kw">display</span> <span class="dt">_n</span> <span class="st">"Table written to: `tbl'"</span></span>
 <span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div id="cell-22" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:58:22.678136Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:58:22.677928Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:58:22.782996Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:58:22.782267Z&quot;}}">
+<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div id="cell-21" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:58:22.678136Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:58:22.677928Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:58:22.782996Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:58:22.782267Z&quot;}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">capture</span> <span class="fu">log</span> <span class="kw">close</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 </section>
@@ -2251,38 +2215,7 @@ SDM = Spatial Durbin Model (ML). OLS Indirect = not applicable.</code></pre>
       }
     }
   });
-  </script>  </div> <!-- /content -->  <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script> 
+  </script>  </div> <!-- /content --> 
   
 <script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
