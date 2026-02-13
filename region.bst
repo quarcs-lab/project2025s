@@ -517,7 +517,7 @@ FUNCTION {format.authors}
   if$
 %%% GM
   authoradd empty$
-    { "" }
+    'skip$
     { author format.authoradd }
   if$
 }

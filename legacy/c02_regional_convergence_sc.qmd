@@ -1,0 +1,69 @@
+---
+title: "Regional convergence"
+---
+
+This notebook examines absolute $\beta$-convergence in nighttime luminosity across 520 Indian districts (1996--2010). We regress per capita luminosity growth on initial luminosity levels and visualize the relationship in an annotated scatterplot. This analysis corresponds to the first set of results discussed in the main manuscript.
+
+## Setup
+
+```{r}
+# Setup
+library(haven)
+library(ggplot2)
+library(ggstatsplot)
+library(cowplot)
+```
+
+## Data
+
+We use district-level radiance-calibrated nighttime lights data from the DMSP-OLS satellites, covering 520 districts.
+
+```{r}
+# Load dataset
+data <- read_dta("../data/india520.dta")
+```
+
+## Convergence regression
+
+A negative slope on initial luminosity indicates $\beta$-convergence: districts with lower initial luminosity grew faster over the period.
+
+```{r}
+# Basic OLS Regression
+model1 <- lm(light_growth96_10rcr_cap ~ log_light96_rcr_cap, data = data)
+summary(model1)
+```
+
+```{r}
+# Compute regression model for scatterplot annotation
+model <- lm(light_growth96_10rcr_cap ~ log_light96_rcr_cap, data = data)
+slope <- round(coef(model)[2], 3)
+rsq   <- round(summary(model)$r.squared, 3)
+```
+
+## Convergence scatterplot
+
+The scatterplot below visualizes the convergence relationship. Outlier districts are labeled to highlight cases that deviate notably from the overall trend---either bright districts that declined or dim districts that grew unusually fast.
+
+```{r}
+#| label: fig-convergence
+#| fig-cap: "Regional luminosity convergence across districts in India <br> Note: See Regional convergence notebook for source code. <br> Source: Data from Chanda and Kabiraj (2000)."
+# Annotated scatterplot
+p1 <- ggscatterstats(
+  data = data,
+  x = log_light96_rcr_cap,
+  y = light_growth96_10rcr_cap,
+  label.var = district,
+  label.expression = (log_light96_rcr_cap > -3 & light_growth96_10rcr_cap < 0) | (log_light96_rcr_cap <-7 & light_growth96_10rcr_cap > 0.2),
+  results.subtitle = FALSE,
+  xlab = "Log of luminosity per capita in 1996",
+  ylab = "Growth of luminosity per capita 1996-2010"
+) +
+annotate("label",
+           x = Inf,
+           y = Inf,
+           label = paste("Slope =", slope, "\nR² =", rsq),
+           hjust = 1.1,
+           vjust = 1.5,
+           size = 4)
+p1
+```

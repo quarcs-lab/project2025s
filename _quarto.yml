@@ -9,8 +9,8 @@ project:
 manuscript:
   article: index.qmd
   notebooks:
-    - notebooks/c01_view_from_space.qmd
-    - notebooks/c02_regional_convergence_sc.qmd
+    - notebooks/c01_view_from_space.ipynb
+    - notebooks/c02_regional_convergence_sc.ipynb
     - notebooks/c03_spatial_dependence_lisa.ipynb
     - notebooks/c04_spillover_modeling_6nn.ipynb
 

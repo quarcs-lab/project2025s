@@ -180,7 +180,7 @@ Next, we examine case studies of three economically disadvantaged states in Indi
 
 [^3]: The data is taken from a report by the Economic Advisory Council to the Prime Minister (EAC-PM), released on September 18, 2024.
 
-{{< embed notebooks/c02_regional_convergence_sc.qmd#fig-convergence >}}
+{{< embed notebooks/c02_regional_convergence_sc.ipynb#fig-convergence >}}
 
 ### Spatial dependence is a feature of the convergence process
 

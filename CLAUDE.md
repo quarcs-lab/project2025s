@@ -145,7 +145,7 @@ The script handles everything: cache clearing, separate PDF rendering, MECA stri
 Current embeds in `index.qmd`:
 
 ```text
-{{< embed notebooks/c02_regional_convergence_sc.qmd#fig-convergence >}}
+{{< embed notebooks/c02_regional_convergence_sc.ipynb#fig-convergence >}}
 {{< embed notebooks/c03_spatial_dependence_lisa.ipynb#fig-dependence-initial >}}
 {{< embed notebooks/c03_spatial_dependence_lisa.ipynb#fig-dependence-growth >}}
 ```
