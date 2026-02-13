@@ -359,7 +359,7 @@
 <p>This notebook examines absolute <span class="math inline">\(\beta\)</span>-convergence in nighttime luminosity across 520 Indian districts (1996–2010). We regress per capita luminosity growth on initial luminosity levels and visualize the relationship in an annotated scatterplot. This analysis corresponds to the first set of results discussed in the main manuscript.</p>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<div class="cell-container"><div class="cell-decorator"><pre>In [11]:</pre></div><div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="11">
+<div class="cell-container"><div class="cell-decorator"><pre>In [1]:</pre></div><div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -368,7 +368,7 @@
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
 <p>We use district-level radiance-calibrated nighttime lights data from the DMSP-OLS satellites, covering 520 districts.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [12]:</pre></div><div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="12">
+<div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load dataset from GitHub</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/quarcs-lab/project2025s/master/data/india520.dta"</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">".dta"</span>)</span>
@@ -379,7 +379,7 @@
 <section id="convergence-regression" class="level2">
 <h2 class="anchored" data-anchor-id="convergence-regression">Convergence regression</h2>
 <p>A negative slope on initial luminosity indicates <span class="math inline">\(\beta\)</span>-convergence: districts with lower initial luminosity grew faster over the period.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [13]:</pre></div><div id="cell-7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="13">
+<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div id="cell-7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic OLS Regression</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(light_growth96_10rcr_cap <span class="sc">~</span> log_light96_rcr_cap, <span class="at">data =</span> data)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -405,7 +405,7 @@ Multiple R-squared:  0.2547,    Adjusted R-squared:  0.2533
 F-statistic:   177 on 1 and 518 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [14]:</pre></div><div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="14">
+<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute regression model for scatterplot annotation</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(light_growth96_10rcr_cap <span class="sc">~</span> log_light96_rcr_cap, <span class="at">data =</span> data)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>slope <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">coef</span>(model)[<span class="dv">2</span>], <span class="dv">3</span>)</span>
@@ -415,7 +415,7 @@ F-statistic:   177 on 1 and 518 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="convergence-scatterplot" class="level2">
 <h2 class="anchored" data-anchor-id="convergence-scatterplot">Convergence scatterplot</h2>
 <p>The scatterplot below visualizes the convergence relationship. Outlier districts are labeled to highlight cases that deviate notably from the overall trend—either bright districts that declined or dim districts that grew unusually fast.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [15]:</pre></div><div id="cell-fig-convergence" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="15">
+<div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div id="cell-fig-convergence" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify outlier districts for labeling</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>outliers <span class="ot">&lt;-</span> data[</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  (data<span class="sc">$</span>log_light96_rcr_cap <span class="sc">&gt;</span> <span class="sc">-</span><span class="dv">3</span> <span class="sc">&amp;</span> data<span class="sc">$</span>light_growth96_10rcr_cap <span class="sc">&lt;</span> <span class="dv">0</span>) <span class="sc">|</span></span>
