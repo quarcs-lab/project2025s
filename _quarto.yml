@@ -10,13 +10,13 @@ manuscript:
   article: index.qmd
   notebooks:
     - notebook: notebooks/c01_view_from_space.ipynb
-      title: "View from outer space"
+      title: "N1: View from outer space"
     - notebook: notebooks/c02_regional_convergence_sc.ipynb
-      title: "Regional convergence"
+      title: "N2: Regional convergence"
     - notebook: notebooks/c03_spatial_dependence_lisa.ipynb
-      title: "Spatial dependence"
+      title: "N3: Spatial dependence"
     - notebook: notebooks/c04_spillover_modeling_6nn.ipynb
-      title: "Spillover modeling"
+      title: "N4: Spillover modeling"
 
 format:
   # REGION journal PDF (uses extension template)
