@@ -1,6 +1,18 @@
 #!/usr/bin/env bash
 # clean-render.sh — Clear all Quarto caches and re-render the manuscript
 #
+# Pipeline:
+#   1. Clear all Quarto caches (_freeze, .quarto/embed, embed previews)
+#   2. Render REGION PDF separately (4 LaTeX passes for natbib/region.bst)
+#   3. Render Standard PDF separately (2 LaTeX passes, scrartcl)
+#   4. Render HTML, DOCX, JATS together (JATS creates MECA bundle)
+#   5. Strip legacy/ and log/ from MECA bundle
+#   6. Upload MECA to GitHub Release (tag: meca-bundle)
+#   7. Update MECA link in index.html to point to release URL
+#
+# Prerequisites:
+#   - gh CLI installed and authenticated (gh auth login)
+#
 # Use this when:
 #   - Underlying data files changed but notebook source didn't
 #   - Embed previews are stale despite source changes

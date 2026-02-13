@@ -9,7 +9,6 @@
 **/*.quarto_ipynb
 
 # LaTeX intermediate files (keep only final outputs)
-index.tex
 index.log
 index.aux
 index.out
