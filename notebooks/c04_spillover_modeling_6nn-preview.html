@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
     <meta charset="utf-8">
-    <meta name="generator" content="quarto-1.5.57">
+    <meta name="generator" content="quarto-1.8.27">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,8 +20,9 @@
         vertical-align: middle;
       }
       /* CSS for syntax highlighting */
+      html { -webkit-text-size-adjust: 100%; }
       pre > code.sourceCode { white-space: pre; position: relative; }
-      pre > code.sourceCode > span { line-height: 1.25; }
+      pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
       pre > code.sourceCode > span:empty { height: 1.2em; }
       .sourceCode { overflow: visible; }
       code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -32,7 +33,7 @@
       }
       @media print {
       pre > code.sourceCode { white-space: pre-wrap; }
-      pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+      pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
       }
       pre.numberSource code
         { counter-reset: source-line 0; }
@@ -147,21 +148,187 @@
     
 <script src="../site_libs/manuscript-notebook/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-0f9f7490fdc41efd1abaa8c23df3f716.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-7accdd558f52a9962c94b8c63686316b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-0f9f7490fdc41efd1abaa8c23df3f716.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
      <style>html{ scroll-behavior: smooth; }</style>  
       </head>
 
-  <body class="quarto-notebook">
+  <body class="quarto-notebook quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
     <div id="quarto-embed-header" class="headroom fixed-top bg-primary">
       
       <a onclick="window.quartoBackToArticle(); return false;" class="btn btn-primary quarto-back-link" href=""><i class="bi bi-caret-left"></i> Back to Article</a>
@@ -206,6 +373,7 @@
   <ul class="collapse">
   <li><a href="#spatial-weights-6-nearest-neighbors-6nn" id="toc-spatial-weights-6-nearest-neighbors-6nn" class="nav-link" data-scroll-target="#spatial-weights-6-nearest-neighbors-6nn">Spatial weights: 6-nearest neighbors (6NN)</a></li>
   </ul></li>
+  <li><a href="#running-stata-in-jupyter-notebooksthis-notebook-uses-the-stata_kernel-package-which-lets-you-run-stata-code-natively-inside-jupyter-notebooks.-each-code-cell-works-like-the-stata-command-window-the-kernel-maintains-a-live-stata-session-in-the-background-so-variables-datasets-and-estimation-results-persist-across-cells.-prerequisites--stata-installed-on-your-machine-se-mp-or-be-version-14-or-later-recommended--python-3.6-with-jupyter-pip-install-jupyter-or-via-anaconda--a-valid-stata-license-activated-on-your-system-installationinstall-the-stata_kernel-package-and-register-it-with-jupyterbashpip-install-stata_kernelpython--m-stata_kernel.installif-you-use-conda-you-can-install-from-conda-forge-insteadbashconda-install--c-conda-forge-stata_kernel-configurationafter-installation-edit-or-create-the-configuration-file-.stata_kernel.conf-to-point-to-your-stata-executableinistata_kernel-path-to-stata-executable-adjust-for-your-system-macos-examplesstata_path-applicationsstatastatase.appcontentsmacosstatase-stata_path-applicationsstatastatamp.appcontentsmacosstatamp-windows-examples-stata_path-cprogram-filesstata18statase-64.exe-linux-examples-stata_path-usrlocalstata18stata-se-verify-the-installationrun-the-following-in-a-terminal-to-confirm-the-kernel-is-registeredbashjupyter-kernelspec-listyou-should-see-stata-in-the-output.-then-open-a-new-jupyter-notebook-select-the-stata-kernel-and-run-a-simple-command-like-display-hello-from-stata-to-confirm-it-works.-basic-usage-tips-feature-description-state-persistence-variables-datasets-and-scalars-carry-over-from-cell-to-cell-like-a-live-stata-session-graphics-stata-graphs-display-inline-automatically-help-magic-type-help-regress-to-display-stata-help-in-the-notebook-browse-magic-type-browse-to-view-the-current-dataset-head-tail-preview-the-first-or-last-rows-of-the-dataset-long-commands-use-for-line-continuation-just-as-in-a-.do-file-troubleshooting-problem-solution-kernel-not-found-re-run-python--m-stata_kernel.install-and-restart-jupyter-stata-not-found-error-check-that-stata_path-in-.stata_kernel.conf-points-to-the-correct-executable-license-error-ensure-stata-is-activated-try-launching-stata-normally-first-slow-startup-the-first-cell-may-take-a-few-seconds-while-stata-initializes-subsequent-cells-run-faster-graph-export-fails-stata-requires-a-display-server-on-linux-use-xvfb-run-jupyter-notebook-if-running-headless" id="toc-running-stata-in-jupyter-notebooksthis-notebook-uses-the-stata_kernel-package-which-lets-you-run-stata-code-natively-inside-jupyter-notebooks.-each-code-cell-works-like-the-stata-command-window-the-kernel-maintains-a-live-stata-session-in-the-background-so-variables-datasets-and-estimation-results-persist-across-cells.-prerequisites--stata-installed-on-your-machine-se-mp-or-be-version-14-or-later-recommended--python-3.6-with-jupyter-pip-install-jupyter-or-via-anaconda--a-valid-stata-license-activated-on-your-system-installationinstall-the-stata_kernel-package-and-register-it-with-jupyterbashpip-install-stata_kernelpython--m-stata_kernel.installif-you-use-conda-you-can-install-from-conda-forge-insteadbashconda-install--c-conda-forge-stata_kernel-configurationafter-installation-edit-or-create-the-configuration-file-.stata_kernel.conf-to-point-to-your-stata-executableinistata_kernel-path-to-stata-executable-adjust-for-your-system-macos-examplesstata_path-applicationsstatastatase.appcontentsmacosstatase-stata_path-applicationsstatastatamp.appcontentsmacosstatamp-windows-examples-stata_path-cprogram-filesstata18statase-64.exe-linux-examples-stata_path-usrlocalstata18stata-se-verify-the-installationrun-the-following-in-a-terminal-to-confirm-the-kernel-is-registeredbashjupyter-kernelspec-listyou-should-see-stata-in-the-output.-then-open-a-new-jupyter-notebook-select-the-stata-kernel-and-run-a-simple-command-like-display-hello-from-stata-to-confirm-it-works.-basic-usage-tips-feature-description-state-persistence-variables-datasets-and-scalars-carry-over-from-cell-to-cell-like-a-live-stata-session-graphics-stata-graphs-display-inline-automatically-help-magic-type-help-regress-to-display-stata-help-in-the-notebook-browse-magic-type-browse-to-view-the-current-dataset-head-tail-preview-the-first-or-last-rows-of-the-dataset-long-commands-use-for-line-continuation-just-as-in-a-.do-file-troubleshooting-problem-solution-kernel-not-found-re-run-python--m-stata_kernel.install-and-restart-jupyter-stata-not-found-error-check-that-stata_path-in-.stata_kernel.conf-points-to-the-correct-executable-license-error-ensure-stata-is-activated-try-launching-stata-normally-first-slow-startup-the-first-cell-may-take-a-few-seconds-while-stata-initializes-subsequent-cells-run-faster-graph-export-fails-stata-requires-a-display-server-on-linux-use-xvfb-run-jupyter-notebook-if-running-headless" class="nav-link" data-scroll-target="#running-stata-in-jupyter-notebooksthis-notebook-uses-the-stata_kernel-package-which-lets-you-run-stata-code-natively-inside-jupyter-notebooks.-each-code-cell-works-like-the-stata-command-window-the-kernel-maintains-a-live-stata-session-in-the-background-so-variables-datasets-and-estimation-results-persist-across-cells.-prerequisites--stata-installed-on-your-machine-se-mp-or-be-version-14-or-later-recommended--python-3.6-with-jupyter-pip-install-jupyter-or-via-anaconda--a-valid-stata-license-activated-on-your-system-installationinstall-the-stata_kernel-package-and-register-it-with-jupyterbashpip-install-stata_kernelpython--m-stata_kernel.installif-you-use-conda-you-can-install-from-conda-forge-insteadbashconda-install--c-conda-forge-stata_kernel-configurationafter-installation-edit-or-create-the-configuration-file-.stata_kernel.conf-to-point-to-your-stata-executableinistata_kernel-path-to-stata-executable-adjust-for-your-system-macos-examplesstata_path-applicationsstatastatase.appcontentsmacosstatase-stata_path-applicationsstatastatamp.appcontentsmacosstatamp-windows-examples-stata_path-cprogram-filesstata18statase-64.exe-linux-examples-stata_path-usrlocalstata18stata-se-verify-the-installationrun-the-following-in-a-terminal-to-confirm-the-kernel-is-registeredbashjupyter-kernelspec-listyou-should-see-stata-in-the-output.-then-open-a-new-jupyter-notebook-select-the-stata-kernel-and-run-a-simple-command-like-display-hello-from-stata-to-confirm-it-works.-basic-usage-tips-feature-description-state-persistence-variables-datasets-and-scalars-carry-over-from-cell-to-cell-like-a-live-stata-session-graphics-stata-graphs-display-inline-automatically-help-magic-type-help-regress-to-display-stata-help-in-the-notebook-browse-magic-type-browse-to-view-the-current-dataset-head-tail-preview-the-first-or-last-rows-of-the-dataset-long-commands-use-for-line-continuation-just-as-in-a-.do-file-troubleshooting-problem-solution-kernel-not-found-re-run-python--m-stata_kernel.install-and-restart-jupyter-stata-not-found-error-check-that-stata_path-in-.stata_kernel.conf-points-to-the-correct-executable-license-error-ensure-stata-is-activated-try-launching-stata-normally-first-slow-startup-the-first-cell-may-take-a-few-seconds-while-stata-initializes-subsequent-cells-run-faster-graph-export-fails-stata-requires-a-display-server-on-linux-use-xvfb-run-jupyter-notebook-if-running-headless">0. Running Stata in Jupyter NotebooksThis notebook uses the <strong>stata_kernel</strong> package, which lets you run Stata code natively inside Jupyter notebooks. Each code cell works like the Stata command window — the kernel maintains a live Stata session in the background, so variables, datasets, and estimation results persist across cells.### Prerequisites- <strong>Stata</strong> installed on your machine (SE, MP, or BE — version 14 or later recommended)- <strong>Python 3.6+</strong> with <strong>Jupyter</strong> (<code>pip install jupyter</code> or via Anaconda)- A valid Stata license activated on your system### InstallationInstall the <code>stata_kernel</code> package and register it with Jupyter:<code>bashpip install stata_kernelpython -m stata_kernel.install</code>If you use <strong>conda</strong>, you can install from conda-forge instead:<code>bashconda install -c conda-forge stata_kernel</code>### ConfigurationAfter installation, edit (or create) the configuration file <code>~/.stata_kernel.conf</code> to point to your Stata executable:<code>ini[stata_kernel]# Path to Stata executable (adjust for your system)# macOS examples:stata_path = /Applications/Stata/StataSE.app/Contents/MacOS/StataSE# stata_path = /Applications/Stata/StataMP.app/Contents/MacOS/StataMP# Windows examples:# stata_path = C:\Program Files\Stata18\StataSE-64.exe# Linux examples:# stata_path = /usr/local/stata18/stata-se</code>### Verify the installationRun the following in a terminal to confirm the kernel is registered:<code>bashjupyter kernelspec list</code>You should see <code>stata</code> in the output. Then open a new Jupyter notebook, select the <strong>Stata</strong> kernel, and run a simple command like <code>display "Hello from Stata!"</code> to confirm it works.### Basic usage tips| Feature | Description ||—|—|| <strong>State persistence</strong> | Variables, datasets, and scalars carry over from cell to cell (like a live Stata session) || <strong>Graphics</strong> | Stata graphs display inline automatically || <strong><code>%help</code> magic</strong> | Type <code>%help regress</code> to display Stata help in the notebook || <strong><code>%browse</code> magic</strong> | Type <code>%browse</code> to view the current dataset || <strong><code>%head</code> / <code>%tail</code></strong> | Preview the first or last rows of the dataset || <strong>Long commands</strong> | Use <code>///</code> for line continuation, just as in a <code>.do</code> file |### Troubleshooting| Problem | Solution ||—|—|| <strong>Kernel not found</strong> | Re-run <code>python -m stata_kernel.install</code> and restart Jupyter || <strong>“Stata not found” error</strong> | Check that <code>stata_path</code> in <code>~/.stata_kernel.conf</code> points to the correct executable || <strong>License error</strong> | Ensure Stata is activated — try launching Stata normally first || <strong>Slow startup</strong> | The first cell may take a few seconds while Stata initializes; subsequent cells run faster || <strong><code>graph export</code> fails</strong> | Stata requires a display server on Linux; use <code>xvfb-run jupyter notebook</code> if running headless |</a></li>
   <li><a href="#background-context" id="toc-background-context" class="nav-link" data-scroll-target="#background-context">1. Background &amp; Context</a></li>
   <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">2. Setup</a></li>
   <li><a href="#main-analysis" id="toc-main-analysis" class="nav-link" data-scroll-target="#main-analysis">3. Main Analysis</a>
@@ -219,12 +387,12 @@
 </div>
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
 </div>
-<main class="content quarto-banner-title-block" id="quarto-document-content">      
+<main class="content quarto-banner-title-block" id="quarto-document-content">        
 
        <p>This notebook estimates <strong>8 econometric models</strong> to analyze convergence in nighttime light intensity across 520 Indian districts (1996–2010). It compares standard OLS regressions with <strong>Spatial Durbin Models (SDM)</strong> that account for spatial spillovers between neighboring districts.</p>
 <section id="how-to-navigate-this-notebook" class="level2">
 <h2 class="anchored" data-anchor-id="how-to-navigate-this-notebook">How to navigate this notebook</h2>
-<p>The analysis is organized into four main sections:</p>
+<p>The analysis is organized into five main sections:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -238,18 +406,22 @@
 </thead>
 <tbody>
 <tr class="odd">
+<td><strong>0. Running Stata in Jupyter Notebooks</strong></td>
+<td>How to install and configure the Stata kernel for Jupyter notebooks</td>
+</tr>
+<tr class="even">
 <td><strong>1. Background &amp; Context</strong></td>
 <td>Documents the research motivation, theoretical framework, and variable descriptions</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong>2. Setup</strong></td>
 <td>Loads data, defines the 6-nearest-neighbor spatial weights matrix, and prepares the environment</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong>3. Main Analysis</strong></td>
 <td>Estimates 8 models in a 2x2x2 design: OLS vs SDM, unconditional vs conditional, without vs with state fixed effects</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong>4. Compile Results Table</strong></td>
 <td>Programmatically builds a formatted summary table from stored estimation results</td>
 </tr>
@@ -324,6 +496,9 @@
 <p>The spatial weights matrix <code>W_matrix.dta</code> encodes a <strong>6-nearest-neighbor</strong> adjacency structure for the 520 districts. Each district is connected to its 6 closest neighbors (by geographic distance), and the matrix is <strong>row-normalized</strong> so that each row sums to 1. This defines the “neighborhood” used to compute spatial lags in the SDM.</p>
 </section>
 </section>
+<section id="running-stata-in-jupyter-notebooksthis-notebook-uses-the-stata_kernel-package-which-lets-you-run-stata-code-natively-inside-jupyter-notebooks.-each-code-cell-works-like-the-stata-command-window-the-kernel-maintains-a-live-stata-session-in-the-background-so-variables-datasets-and-estimation-results-persist-across-cells.-prerequisites--stata-installed-on-your-machine-se-mp-or-be-version-14-or-later-recommended--python-3.6-with-jupyter-pip-install-jupyter-or-via-anaconda--a-valid-stata-license-activated-on-your-system-installationinstall-the-stata_kernel-package-and-register-it-with-jupyterbashpip-install-stata_kernelpython--m-stata_kernel.installif-you-use-conda-you-can-install-from-conda-forge-insteadbashconda-install--c-conda-forge-stata_kernel-configurationafter-installation-edit-or-create-the-configuration-file-.stata_kernel.conf-to-point-to-your-stata-executableinistata_kernel-path-to-stata-executable-adjust-for-your-system-macos-examplesstata_path-applicationsstatastatase.appcontentsmacosstatase-stata_path-applicationsstatastatamp.appcontentsmacosstatamp-windows-examples-stata_path-cprogram-filesstata18statase-64.exe-linux-examples-stata_path-usrlocalstata18stata-se-verify-the-installationrun-the-following-in-a-terminal-to-confirm-the-kernel-is-registeredbashjupyter-kernelspec-listyou-should-see-stata-in-the-output.-then-open-a-new-jupyter-notebook-select-the-stata-kernel-and-run-a-simple-command-like-display-hello-from-stata-to-confirm-it-works.-basic-usage-tips-feature-description-state-persistence-variables-datasets-and-scalars-carry-over-from-cell-to-cell-like-a-live-stata-session-graphics-stata-graphs-display-inline-automatically-help-magic-type-help-regress-to-display-stata-help-in-the-notebook-browse-magic-type-browse-to-view-the-current-dataset-head-tail-preview-the-first-or-last-rows-of-the-dataset-long-commands-use-for-line-continuation-just-as-in-a-.do-file-troubleshooting-problem-solution-kernel-not-found-re-run-python--m-stata_kernel.install-and-restart-jupyter-stata-not-found-error-check-that-stata_path-in-.stata_kernel.conf-points-to-the-correct-executable-license-error-ensure-stata-is-activated-try-launching-stata-normally-first-slow-startup-the-first-cell-may-take-a-few-seconds-while-stata-initializes-subsequent-cells-run-faster-graph-export-fails-stata-requires-a-display-server-on-linux-use-xvfb-run-jupyter-notebook-if-running-headless" class="level2">
+<h2 class="anchored" data-anchor-id="running-stata-in-jupyter-notebooksthis-notebook-uses-the-stata_kernel-package-which-lets-you-run-stata-code-natively-inside-jupyter-notebooks.-each-code-cell-works-like-the-stata-command-window-the-kernel-maintains-a-live-stata-session-in-the-background-so-variables-datasets-and-estimation-results-persist-across-cells.-prerequisites--stata-installed-on-your-machine-se-mp-or-be-version-14-or-later-recommended--python-3.6-with-jupyter-pip-install-jupyter-or-via-anaconda--a-valid-stata-license-activated-on-your-system-installationinstall-the-stata_kernel-package-and-register-it-with-jupyterbashpip-install-stata_kernelpython--m-stata_kernel.installif-you-use-conda-you-can-install-from-conda-forge-insteadbashconda-install--c-conda-forge-stata_kernel-configurationafter-installation-edit-or-create-the-configuration-file-.stata_kernel.conf-to-point-to-your-stata-executableinistata_kernel-path-to-stata-executable-adjust-for-your-system-macos-examplesstata_path-applicationsstatastatase.appcontentsmacosstatase-stata_path-applicationsstatastatamp.appcontentsmacosstatamp-windows-examples-stata_path-cprogram-filesstata18statase-64.exe-linux-examples-stata_path-usrlocalstata18stata-se-verify-the-installationrun-the-following-in-a-terminal-to-confirm-the-kernel-is-registeredbashjupyter-kernelspec-listyou-should-see-stata-in-the-output.-then-open-a-new-jupyter-notebook-select-the-stata-kernel-and-run-a-simple-command-like-display-hello-from-stata-to-confirm-it-works.-basic-usage-tips-feature-description-state-persistence-variables-datasets-and-scalars-carry-over-from-cell-to-cell-like-a-live-stata-session-graphics-stata-graphs-display-inline-automatically-help-magic-type-help-regress-to-display-stata-help-in-the-notebook-browse-magic-type-browse-to-view-the-current-dataset-head-tail-preview-the-first-or-last-rows-of-the-dataset-long-commands-use-for-line-continuation-just-as-in-a-.do-file-troubleshooting-problem-solution-kernel-not-found-re-run-python--m-stata_kernel.install-and-restart-jupyter-stata-not-found-error-check-that-stata_path-in-.stata_kernel.conf-points-to-the-correct-executable-license-error-ensure-stata-is-activated-try-launching-stata-normally-first-slow-startup-the-first-cell-may-take-a-few-seconds-while-stata-initializes-subsequent-cells-run-faster-graph-export-fails-stata-requires-a-display-server-on-linux-use-xvfb-run-jupyter-notebook-if-running-headless">0. Running Stata in Jupyter NotebooksThis notebook uses the <a href="https://kylebarron.dev/stata_kernel/"><strong>stata_kernel</strong></a> package, which lets you run Stata code natively inside Jupyter notebooks. Each code cell works like the Stata command window — the kernel maintains a live Stata session in the background, so variables, datasets, and estimation results persist across cells.### Prerequisites- <strong>Stata</strong> installed on your machine (SE, MP, or BE — version 14 or later recommended)- <strong>Python 3.6+</strong> with <strong>Jupyter</strong> (<code>pip install jupyter</code> or via Anaconda)- A valid Stata license activated on your system### InstallationInstall the <code>stata_kernel</code> package and register it with Jupyter:<code>bashpip install stata_kernelpython -m stata_kernel.install</code>If you use <strong>conda</strong>, you can install from conda-forge instead:<code>bashconda install -c conda-forge stata_kernel</code>### ConfigurationAfter installation, edit (or create) the configuration file <code>~/.stata_kernel.conf</code> to point to your Stata executable:<code>ini[stata_kernel]# Path to Stata executable (adjust for your system)# macOS examples:stata_path = /Applications/Stata/StataSE.app/Contents/MacOS/StataSE# stata_path = /Applications/Stata/StataMP.app/Contents/MacOS/StataMP# Windows examples:# stata_path = C:\Program Files\Stata18\StataSE-64.exe# Linux examples:# stata_path = /usr/local/stata18/stata-se</code>### Verify the installationRun the following in a terminal to confirm the kernel is registered:<code>bashjupyter kernelspec list</code>You should see <code>stata</code> in the output. Then open a new Jupyter notebook, select the <strong>Stata</strong> kernel, and run a simple command like <code>display "Hello from Stata!"</code> to confirm it works.### Basic usage tips| Feature | Description ||—|—|| <strong>State persistence</strong> | Variables, datasets, and scalars carry over from cell to cell (like a live Stata session) || <strong>Graphics</strong> | Stata graphs display inline automatically || <strong><code>%help</code> magic</strong> | Type <code>%help regress</code> to display Stata help in the notebook || <strong><code>%browse</code> magic</strong> | Type <code>%browse</code> to view the current dataset || <strong><code>%head</code> / <code>%tail</code></strong> | Preview the first or last rows of the dataset || <strong>Long commands</strong> | Use <code>///</code> for line continuation, just as in a <code>.do</code> file |### Troubleshooting| Problem | Solution ||—|—|| <strong>Kernel not found</strong> | Re-run <code>python -m stata_kernel.install</code> and restart Jupyter || <strong>“Stata not found” error</strong> | Check that <code>stata_path</code> in <code>~/.stata_kernel.conf</code> points to the correct executable || <strong>License error</strong> | Ensure Stata is activated — try launching Stata normally first || <strong>Slow startup</strong> | The first cell may take a few seconds while Stata initializes; subsequent cells run faster || <strong><code>graph export</code> fails</strong> | Stata requires a display server on Linux; use <code>xvfb-run jupyter notebook</code> if running headless |</h2>
+</section>
 <section id="background-context" class="level2">
 <h2 class="anchored" data-anchor-id="background-context">1. Background &amp; Context</h2>
 <p>The cell below documents the research context as inline Stata comments. Key points:</p>
@@ -334,8 +509,8 @@
 <li><strong>Controls:</strong> 16 variables capturing terrain, climate, demographics, infrastructure, and human capital</li>
 <li><strong>Spatial weights:</strong> <code>W6nn</code> — the row-normalized 6NN matrix loaded from <code>W_matrix.dta</code></li>
 </ul>
-<div class="cell-container"><div class="cell-decorator"><pre>In [1]:</pre></div><div id="cell-3" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:32.979194Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:32.978843Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:33.021624Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:33.015434Z&quot;}" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*==============================================================================</span></span>
+<div class="cell-container"><div class="cell-decorator"><pre>In [1]:</pre></div><div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:32.979194Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:32.978843Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:33.021624Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:33.015434Z&quot;}}" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*==============================================================================</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">   Spatial Convergence Analysis of NTL in India</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">   -------------------------------------------</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">   Purpose:</span></span>
@@ -381,7 +556,7 @@
 <span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="co">     • light_growth96_10rcr_cap</span></span>
 <span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="co">     • log_light96_rcr_cap</span></span>
 <span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="co">     • W6nn: Spatial weights matrix (row-normalized)</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="co">------------------------------------------------------------------------------*/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="co">------------------------------------------------------------------------------*/</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 </section>
 <section id="setup" class="level2">
@@ -392,8 +567,8 @@
 <li><p><strong><code>india520.dta</code></strong> — The main analysis dataset with 520 district-level observations. After loading, we <code>encode</code> the <code>state</code> string variable to a numeric factor (needed for fixed effects) and register the spatial ID with <code>spset</code>.</p></li>
 </ol>
 <p>The <strong>16 control variables</strong> are stored in the global macro <code>$controls</code> for reuse across conditional models (Models 5–8).</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div id="cell-5" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:33.025695Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:33.025480Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:33.275239Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:33.274171Z&quot;}" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*==============================================================================</span></span>
+<div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:33.025695Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:33.025480Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:33.275239Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:33.274171Z&quot;}}" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*==============================================================================</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">   2. SETUP</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">   ======================================</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">   Purpose: </span></span>
@@ -465,7 +640,7 @@
 <span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"india520.dta"</span>, <span class="kw">clear</span></span>
 <span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span> state, <span class="kw">generate</span>(state_encoded)</span>
 <span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> id = <span class="dt">_n</span></span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>spset id</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>spset id</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 
@@ -533,8 +708,8 @@ Linked shapefile: &lt;none&gt;
 <p>For each model we store: - The estimation results via <code>eststo</code> (for potential use with <code>esttab</code>) - The AIC via <code>estat ic</code> for model comparison - Scalar coefficients and standard errors for the summary table</p>
 <p>For <strong>SDM models</strong>, <code>estat impact</code> decomposes the marginal effect of <code>log_light96_rcr_cap</code> into: - <strong>Direct effect:</strong> The impact of a district’s own initial light on its own growth - <strong>Indirect effect:</strong> The spillover impact from neighbors’ initial light - <strong>Total effect:</strong> Direct + Indirect</p>
 <p>For <strong>OLS models</strong>, the coefficient <em>is</em> the direct (and total) effect; indirect effects are not applicable.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div id="cell-7" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:33.279694Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:33.279395Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:33.328929Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:33.328072Z&quot;}" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*==============================================================================</span></span>
+<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:33.279694Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:33.279395Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:33.328929Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:33.328072Z&quot;}}" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*==============================================================================</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">   3. MAIN ANALYSIS</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">   ======================================</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">   Purpose:</span></span>
@@ -544,7 +719,7 @@ Linked shapefile: &lt;none&gt;
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">   - Assess spatial impacts for SDM specifications.</span></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">==============================================================================*/</span></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>* We'll <span class="kw">use</span> eststo/estadd from the estout package to <span class="kw">store</span> results (<span class="fu">e</span>.g. AIC).</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>* We'll <span class="kw">use</span> eststo/estadd from the estout package to <span class="kw">store</span> results (<span class="fu">e</span>.g. AIC).</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 <section id="unconditional-models" class="level3">
 <h3 class="anchored" data-anchor-id="unconditional-models">3.1 Unconditional Models</h3>
@@ -556,8 +731,8 @@ Linked shapefile: &lt;none&gt;
 <li><strong>Model 4</strong> (SDM + State FE): Full spatial model with state fixed effects</li>
 </ul>
 <p>After each SDM estimation, <code>estat impact</code> computes the direct/indirect/total effects. These are saved into scalars for the summary table.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div id="cell-9" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:33.332788Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:33.332469Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:33.893048Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:33.891386Z&quot;}" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
+<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:33.332788Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:33.332469Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:33.893048Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:33.891386Z&quot;}}" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>* MODEL 1: Unconditional OLS</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> light_growth96_10rcr_cap log_light96_rcr_cap, <span class="kw">robust</span></span>
@@ -567,7 +742,7 @@ Linked shapefile: &lt;none&gt;
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> estadd <span class="fu">scalar</span> AIC = <span class="fu">s</span>[1,5]</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m1_d_b  = _b[log_light96_rcr_cap]</span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m1_d_se = _se[log_light96_rcr_cap]</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m1_aic  = <span class="fu">s</span>[1,5]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m1_aic  = <span class="fu">s</span>[1,5]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 
@@ -602,8 +777,8 @@ Note: BIC uses N = number of observations. See [R] IC note.
 </code></pre>
 </div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div id="cell-10" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:33.896878Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:33.896598Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:36.763192Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:36.762439Z&quot;}" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
+<div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:33.896878Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:33.896598Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:36.763192Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:36.762439Z&quot;}}" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>* MODEL 2: Unconditional SDM</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> spregress light_growth96_10rcr_cap <span class="co">///</span></span>
@@ -629,7 +804,7 @@ Note: BIC uses N = number of observations. See [R] IC note.
 <span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m2_i_se = <span class="fu">sqrt</span>(_Vi[1,1])</span>
 <span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m2_t_b  = _bt[1,1]</span>
 <span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m2_t_se = <span class="fu">sqrt</span>(_Vt[1,1])</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m2_aic  = <span class="fu">s</span>[1,5]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m2_aic  = <span class="fu">s</span>[1,5]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 
@@ -679,8 +854,8 @@ log_light96~p |  -.0217392   .0057028    -3.81   0.000    -.0329165   -.0105619
 </code></pre>
 </div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div id="cell-11" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:36.774071Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:36.773828Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:37.043677Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:37.041514Z&quot;}" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
+<div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div id="cell-12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:36.774071Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:36.773828Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:37.043677Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:37.041514Z&quot;}}" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>* MODEL 3: Unconditional OLS with State FE</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> light_growth96_10rcr_cap log_light96_rcr_cap i.state_encoded, <span class="kw">robust</span></span>
@@ -690,7 +865,7 @@ log_light96~p |  -.0217392   .0057028    -3.81   0.000    -.0329165   -.0105619
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> estadd <span class="fu">scalar</span> AIC = <span class="fu">s</span>[1,5]</span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m3_d_b  = _b[log_light96_rcr_cap]</span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m3_d_se = _se[log_light96_rcr_cap]</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m3_aic  = <span class="fu">s</span>[1,5]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m3_aic  = <span class="fu">s</span>[1,5]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 
@@ -755,8 +930,8 @@ Note: BIC uses N = number of observations. See [R] IC note.
 </code></pre>
 </div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div id="cell-12" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:37.054561Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:37.054210Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:48.548163Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:48.547006Z&quot;}" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
+<div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:37.054561Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:37.054210Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:48.548163Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:48.547006Z&quot;}}" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>* MODEL 4: Unconditional SDM with State FE</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> spregress light_growth96_10rcr_cap <span class="co">///</span></span>
@@ -782,7 +957,7 @@ Note: BIC uses N = number of observations. See [R] IC note.
 <span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m4_i_se = <span class="fu">sqrt</span>(_Vi[1,1])</span>
 <span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m4_t_b  = _bt[1,1]</span>
 <span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m4_t_se = <span class="fu">sqrt</span>(_Vt[1,1])</span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m4_aic  = <span class="fu">s</span>[1,5]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m4_aic  = <span class="fu">s</span>[1,5]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 
@@ -927,8 +1102,8 @@ Uttar Prad..  |  -.0413533   .0123487    -3.35   0.001    -.0655563   -.0171502
 <p>These models test for <strong>conditional (beta) convergence</strong> — whether districts converge <em>after controlling for</em> structural differences in terrain, climate, demographics, infrastructure, and human capital.</p>
 <p>The 16 controls stored in <code>$controls</code> include: - <strong>Geography:</strong> soil suitability, rainfall, malaria risk, temperature, ruggedness, distance to coast, latitude - <strong>Demographics:</strong> rural share, population density, SC/ST shares, worker participation - <strong>Human capital:</strong> literacy rate, higher education share - <strong>Infrastructure:</strong> electrification rate, pucca (paved) road density</p>
 <p>Models 5–8 mirror Models 1–4 but include these controls: - <strong>Model 5</strong> (OLS): Conditional convergence - <strong>Model 6</strong> (SDM): Conditional with spatial spillovers - <strong>Model 7</strong> (OLS + State FE): Conditional with state fixed effects - <strong>Model 8</strong> (SDM + State FE): Full model — the preferred specification</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [8]:</pre></div><div id="cell-14" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:48.552793Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:48.552591Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:48.785257Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:48.783982Z&quot;}" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>*------------------------------------------------------------------------------</span>
+<div class="cell-container"><div class="cell-decorator"><pre>In [8]:</pre></div><div id="cell-15" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:48.552793Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:48.552591Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:48.785257Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:48.783982Z&quot;}}" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>*------------------------------------------------------------------------------</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>* (3.2) Conditional Models</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>*     - Models that <span class="kw">include</span> the controls stored <span class="kw">in</span> <span class="ot">$controls</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>*------------------------------------------------------------------------------</span>
@@ -946,7 +1121,7 @@ Uttar Prad..  |  -.0413533   .0123487    -3.35   0.001    -.0655563   -.0171502
 <span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> estadd <span class="fu">scalar</span> AIC = <span class="fu">s</span>[1,5]</span>
 <span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m5_d_b  = _b[log_light96_rcr_cap]</span>
 <span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m5_d_se = _se[log_light96_rcr_cap]</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m5_aic  = <span class="fu">s</span>[1,5]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m5_aic  = <span class="fu">s</span>[1,5]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 
@@ -997,8 +1172,8 @@ Note: BIC uses N = number of observations. See [R] IC note.
 </code></pre>
 </div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [9]:</pre></div><div id="cell-15" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:48.788892Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:48.788676Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:54.125419Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:54.124412Z&quot;}" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
+<div class="cell-container"><div class="cell-decorator"><pre>In [9]:</pre></div><div id="cell-16" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:48.788892Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:48.788676Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:54.125419Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:54.124412Z&quot;}}" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>* MODEL 6: Conditional SDM</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> spregress light_growth96_10rcr_cap <span class="co">///</span></span>
@@ -1025,7 +1200,7 @@ Note: BIC uses N = number of observations. See [R] IC note.
 <span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m6_i_se = <span class="fu">sqrt</span>(_Vi[1,1])</span>
 <span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m6_t_b  = _bt[1,1]</span>
 <span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m6_t_se = <span class="fu">sqrt</span>(_Vt[1,1])</span>
-<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m6_aic  = <span class="fu">s</span>[1,5]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m6_aic  = <span class="fu">s</span>[1,5]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 
@@ -1124,8 +1299,8 @@ log_puccaro~s |   .0174706   .0059118     2.96   0.003     .0058837    .0290575
 </code></pre>
 </div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [10]:</pre></div><div id="cell-16" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:54.130482Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:54.130225Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:54.309428Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:54.308271Z&quot;}" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
+<div class="cell-container"><div class="cell-decorator"><pre>In [10]:</pre></div><div id="cell-17" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:54.130482Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:54.130225Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:57:54.309428Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:57:54.308271Z&quot;}}" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>* MODEL 7: Conditional OLS with State FE</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> light_growth96_10rcr_cap <span class="co">///</span></span>
@@ -1139,7 +1314,7 @@ log_puccaro~s |   .0174706   .0059118     2.96   0.003     .0058837    .0290575
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> estadd <span class="fu">scalar</span> AIC = <span class="fu">s</span>[1,5]</span>
 <span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m7_d_b  = _b[log_light96_rcr_cap]</span>
 <span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m7_d_se = _se[log_light96_rcr_cap]</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m7_aic  = <span class="fu">s</span>[1,5]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m7_aic  = <span class="fu">s</span>[1,5]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 
@@ -1220,8 +1395,8 @@ Note: BIC uses N = number of observations. See [R] IC note.
 </code></pre>
 </div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [11]:</pre></div><div id="cell-17" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:54.314805Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:54.314454Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:58:22.182043Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:58:22.181299Z&quot;}" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
+<div class="cell-container"><div class="cell-decorator"><pre>In [11]:</pre></div><div id="cell-18" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:57:54.314805Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:57:54.314454Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:58:22.182043Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:58:22.181299Z&quot;}}" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>* MODEL 8: Conditional SDM with State FE</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>***************************************************************</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> spregress light_growth96_10rcr_cap <span class="co">///</span></span>
@@ -1252,7 +1427,7 @@ Note: BIC uses N = number of observations. See [R] IC note.
 <span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m8_i_se = <span class="fu">sqrt</span>(_Vi[1,1])</span>
 <span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m8_t_b  = _bt[1,1]</span>
 <span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m8_t_se = <span class="fu">sqrt</span>(_Vt[1,1])</span>
-<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m8_aic  = <span class="fu">s</span>[1,5]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> m8_aic  = <span class="fu">s</span>[1,5]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 
@@ -1451,8 +1626,8 @@ Uttar Prad..  |  -.0561818   .0206838    -2.72   0.007    -.0967214   -.0156422
 <li><p><strong>Cell formatting loops</strong> — Iterates over OLS models (direct = coefficient, indirect = n/a) and SDM models (direct/indirect/total from <code>estat impact</code> results)</p></li>
 <li><p><strong>Output</strong> — The table is both displayed in the Stata log and written to a markdown file at <code>code/c04_spillover_modeling_table.md</code></p></li>
 </ol>
-<div class="cell-container"><div class="cell-decorator"><pre>In [12]:</pre></div><div id="cell-19" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:58:22.192441Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:58:22.192228Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:58:22.526642Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:58:22.525737Z&quot;}" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*==============================================================================</span></span>
+<div class="cell-container"><div class="cell-decorator"><pre>In [12]:</pre></div><div id="cell-20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:58:22.192441Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:58:22.192228Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:58:22.526642Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:58:22.525737Z&quot;}}" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*==============================================================================</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">   4. COMPILE RESULTS TABLE</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">   ======================================</span></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">   Purpose:</span></span>
@@ -1549,7 +1724,7 @@ Uttar Prad..  |  -.0561818   .0206838    -2.72   0.007    -.0967214   -.0156422
 <span id="cb21-95"><a href="#cb21-95" aria-hidden="true" tabindex="-1"></a><span class="kw">display</span> %10s <span class="st">"AIC"</span>      %11s <span class="st">"`aic1'"</span> %11s <span class="st">"`aic2'"</span> %11s <span class="st">"`aic3'"</span> %11s <span class="st">"`aic4'"</span> %11s <span class="st">"`aic5'"</span> %11s <span class="st">"`aic6'"</span> %11s <span class="st">"`aic7'"</span> %11s <span class="st">"`aic8'"</span></span>
 <span id="cb21-96"><a href="#cb21-96" aria-hidden="true" tabindex="-1"></a><span class="kw">display</span> <span class="st">"{hline 90}"</span></span>
 <span id="cb21-97"><a href="#cb21-97" aria-hidden="true" tabindex="-1"></a><span class="kw">display</span> <span class="st">"Note: Robust SE in parentheses. ***p&lt;0.01, **p&lt;0.05, *p&lt;0.10."</span></span>
-<span id="cb21-98"><a href="#cb21-98" aria-hidden="true" tabindex="-1"></a><span class="kw">display</span> <span class="st">"SDM = Spatial Durbin Model (ML). OLS Indirect = not applicable."</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-98"><a href="#cb21-98" aria-hidden="true" tabindex="-1"></a><span class="kw">display</span> <span class="st">"SDM = Spatial Durbin Model (ML). OLS Indirect = not applicable."</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 
@@ -1613,8 +1788,8 @@ Note: Robust SE in parentheses. ***p&lt;0.01, **p&lt;0.05, *p&lt;0.10.
 SDM = Spatial Durbin Model (ML). OLS Indirect = not applicable.</code></pre>
 </div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [13]:</pre></div><div id="cell-20" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:58:22.531220Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:58:22.531004Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:58:22.673937Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:58:22.673101Z&quot;}" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>*----------------------------------------------------------------------</span>
+<div class="cell-container"><div class="cell-decorator"><pre>In [13]:</pre></div><div id="cell-21" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:58:22.531220Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:58:22.531004Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:58:22.673937Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:58:22.673101Z&quot;}}" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>*----------------------------------------------------------------------</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>* (4.4) Write markdown <span class="kw">table</span> to file</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>*----------------------------------------------------------------------</span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> tbl <span class="st">"../tables/c04_spillover_modeling_table.md"</span></span>
@@ -1639,7 +1814,7 @@ SDM = Spatial Durbin Model (ML). OLS Indirect = not applicable.</code></pre>
 <span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>file write <span class="ot">`fh'</span> <span class="st">": Unconditional and conditional convergence across districts. {#tbl-models}"</span> <span class="dt">_n</span></span>
 <span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>file <span class="kw">close</span> <span class="ot">`fh'</span></span>
-<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a><span class="kw">display</span> <span class="dt">_n</span> <span class="st">"Table written to: `tbl'"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a><span class="kw">display</span> <span class="dt">_n</span> <span class="st">"Table written to: `tbl'"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 
@@ -1664,8 +1839,8 @@ SDM = Spatial Durbin Model (ML). OLS Indirect = not applicable.</code></pre>
 Table written to: ../tables/c04_spillover_modeling_table.md</code></pre>
 </div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [14]:</pre></div><div id="cell-21" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:58:22.678136Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:58:22.677928Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:58:22.782996Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:58:22.782267Z&quot;}" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span> <span class="kw">close</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [14]:</pre></div><div id="cell-22" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-12T13:58:22.678136Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-12T13:58:22.677928Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-12T13:58:22.782996Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-12T13:58:22.782267Z&quot;}}" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span> <span class="kw">close</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      name:  &lt;unnamed&gt;
        log:  /Users/carlos/GitHub/project2025s/data/../code/c04_spillover_modeli
@@ -1678,434 +1853,307 @@ Table written to: ../tables/c04_spillover_modeling_table.md</code></pre>
 </section>
      </main>
 <!-- /main column -->  <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
     }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
       return false;
     }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-    clipboardModal.on('success', onCopySuccess);
-  }
-  const viewSource = window.document.getElementById('quarto-view-source') ||
-                     window.document.getElementById('quarto-code-tools-source');
-  if (viewSource) {
-    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-    viewSource.addEventListener("click", function(e) {
-      if (sourceUrl) {
-        // rstudio viewer pane
-        if (/\bcapabilities=\b/.test(window.location)) {
-          window.open(sourceUrl);
-        } else {
-          window.location.href = sourceUrl;
-        }
-      } else {
-        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-        modal.show();
-      }
-      return false;
-    });
-  }
-  function toggleCodeHandler(show) {
-    return function(e) {
-      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-      for (let i=0; i<detailsSrc.length; i++) {
-        const details = detailsSrc[i].parentElement;
-        if (show) {
-          details.open = true;
-        } else {
-          details.removeAttribute("open");
-        }
-      }
-      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-      const fromCls = show ? "hidden" : "unhidden";
-      const toCls = show ? "unhidden" : "hidden";
-      for (let i=0; i<cellCodeDivs.length; i++) {
-        const codeDiv = cellCodeDivs[i];
-        if (codeDiv.classList.contains(fromCls)) {
-          codeDiv.classList.remove(fromCls);
-          codeDiv.classList.add(toCls);
-        } 
-      }
-      return false;
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-  }
-  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-  if (hideAllCode) {
-    hideAllCode.addEventListener("click", toggleCodeHandler(false));
-  }
-  const showAllCode = window.document.getElementById("quarto-show-all-code");
-  if (showAllCode) {
-    showAllCode.addEventListener("click", toggleCodeHandler(true));
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
           } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
         }
-        return container.innerHTML
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -2113,185 +2161,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>  </div> <!-- /content --> 
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>  </div> <!-- /content --> 
   
 <script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

@@ -41,6 +41,8 @@ The `./legacy/` folder contains a complete snapshot of the original project stru
 - ALWAYS copy from `./legacy/` when you need original files
 - If reorganizing, copy files to new locations (never move)
 
+**MECA bundle exclusion:** The `legacy/` and `log/` directories are excluded from the MECA bundle (`index-meca.zip`) because they are too large or unnecessary for replication. This is enforced in two places: `!legacy/` and `!log/` in `project.render` in `_quarto.yml`, and `zip -d` post-processing steps in `scripts/clean-render.sh`.
+
 ### 4. STAY WITHIN THIS DIRECTORY
 
 Under no circumstances are you ever to GO UP OUT OF THIS ONE FOLDER. All work must remain within this project directory.
@@ -181,6 +183,7 @@ This clears all three cache layers and re-renders from scratch. For manuscript-o
 - **Do NOT** render notebooks in isolation (`quarto render notebooks/X.qmd`) as a substitute for rendering the manuscript — the manuscript render is what updates embeds
 - **Always** use `bash scripts/clean-render.sh` (not plain `quarto render index.qmd`) after notebook changes — Quarto's embed cache (`.quarto/embed/`) is not invalidated by a regular render
 - **Do NOT** manually delete individual cache files — use `scripts/clean-render.sh` for a clean sweep
+- **Do NOT** render all formats with a single `quarto render index.qmd` — this silently degrades the REGION PDF (only 2 LaTeX passes instead of the required 4, breaking natbib/region.bst citation processing). The `clean-render.sh` script renders each PDF format separately to avoid this.
 
 ### When Compilation Errors Occur
 
@@ -395,6 +398,61 @@ When template isn't applying:
    - Open both PDFs side-by-side
    - Check for distinct visual markers
    - Confirm different citation styles
+
+### Critical: Render PDF Formats Separately
+
+**Problem discovered:** When Quarto renders all formats at once (`quarto render index.qmd`), the REGION PDF only gets 2 lualatex passes instead of the required 4. This means:
+
+- `natbib` + `region.bst` bibliography processing is incomplete
+- The REGION template may silently fall back to standard formatting
+- Both PDFs can end up with identical page sizes (Letter instead of A4 for REGION)
+
+**Solution:** The `scripts/clean-render.sh` script renders each PDF format separately:
+
+```bash
+# REGION first (needs 4 LaTeX passes for natbib/region.bst)
+quarto render index.qmd --to region-ersa/REGION-pdf
+mv index.tex index-REGION.tex   # Preserve REGION LaTeX (Quarto always writes to index.tex)
+
+# Standard PDF (2 passes, scrartcl/letter)
+quarto render index.qmd --to pdf
+# index.tex is now the standard LaTeX source
+
+# Other formats together (no conflict)
+quarto render index.qmd --to html --to docx --to jats
+```
+
+**Note on LaTeX sources:** Quarto always writes the intermediate LaTeX to `index.tex` regardless of the `output-file` setting. The `mv` step after the REGION render preserves it as `index-REGION.tex` before the standard render overwrites it. After a full build you should have both:
+
+- `index-REGION.tex` — REGION journal LaTeX (article, A4, natbib/region.bst)
+- `index.tex` — Standard LaTeX (scrartcl, Letter, numeric citations)
+
+**Verification after rendering:**
+
+| Check | REGION (`index-REGION`) | Standard (`index`) |
+|-------|------------------------|-------------------|
+| Page size | A4 (595 × 842 pts) | Letter (612 × 792 pts) |
+| LaTeX passes | 4 | 2 |
+| Document class | `article` | `scrartcl` |
+| Bibliography | `region.bst` (author-year) | numeric |
+| Line numbers | Yes (review mode) | No |
+| LaTeX source | `index-REGION.tex` | `index.tex` |
+| PDF output | `index-REGION.pdf` | `index.pdf` |
+
+Quick diagnostics:
+
+```bash
+# Verify page sizes
+mdls -name kMDItemPageHeight -name kMDItemPageWidth index-REGION.pdf index.pdf
+# REGION: 841.89 × 595.28 (A4)
+# Standard: 792 × 612 (Letter)
+
+# Verify LaTeX sources are distinct
+grep "documentclass" index-REGION.tex   # → article, a4paper
+grep "documentclass" index.tex          # → scrartcl, letterpaper
+grep "usepackage{region" index-REGION.tex  # → should match
+grep "usepackage{region" index.tex         # → should NOT match
+```
 
 ### Reference Documentation
 

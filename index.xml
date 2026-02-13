@@ -856,10 +856,18 @@ visualizations, and spillover modeling.</p>
     interactions profoundly influence the convergence process, rendering
     it imperative to incorporate spatial effects in empirical
     analyses.</p>
+        <fig id="fig-wmatrix6nn">
+          <caption>
+            <p>Figure 4: Spatial connectivity structure based on six
+      nearest neighbors Note: See Spatial dependence notebook for source
+      code. Source: Data from Chanda and Kabiraj (2000).</p>
+          </caption>
+          <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/notebooks-c03_spatial_dependence_lisa-fig-wmatrix6nn-output-1.png"/>
+        </fig>
         <p>This is a new figure.</p>
         <fig id="fig-dependence-initial">
           <caption>
-            <p>Figure 4: Spatial dependence in the initial level of
+            <p>Figure 5: Spatial dependence in the initial level of
       luminosity Note: See Regional convergence notebook for source
       code. Source: Data from Chanda and Kabiraj (2000).</p>
           </caption>
@@ -868,7 +876,7 @@ visualizations, and spillover modeling.</p>
         <p>This is another new figure.</p>
         <fig id="fig-dependence-growth">
           <caption>
-            <p>Figure 5: Spatial dependence in the growth rate of
+            <p>Figure 6: Spatial dependence in the growth rate of
       luminosity Note: See Regional convergence notebook for source
       code. Source: Data from Chanda and Kabiraj (2000).</p>
           </caption>
@@ -1920,8 +1928,8 @@ visualizations, and spillover modeling.</p>
       </fn>
     </fn-group>
   </back>
-  <!-- (F2ED4C6E)[nb-1]:/Users/carlos/GitHub/project2025s/notebooks/c01_view_from_space.qmd -->
-  <!-- (F2ED4C6E)[nb-2]:/Users/carlos/GitHub/project2025s/notebooks/c02_regional_convergence_sc.qmd -->
-  <!-- (F2ED4C6E)[nb-3]:/Users/carlos/GitHub/project2025s/notebooks/c03_spatial_dependence_lisa.ipynb -->
-  <!-- (F2ED4C6E)[nb-4]:/Users/carlos/GitHub/project2025s/notebooks/c04_spillover_modeling_6nn.ipynb -->
+  <!-- (F2ED4C6E)[nb-1]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/c01_view_from_space.qmd -->
+  <!-- (F2ED4C6E)[nb-2]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/c02_regional_convergence_sc.qmd -->
+  <!-- (F2ED4C6E)[nb-3]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/c03_spatial_dependence_lisa.ipynb -->
+  <!-- (F2ED4C6E)[nb-4]:/Users/carlosmendez/Documents/GitHub/project2025s/notebooks/c04_spillover_modeling_6nn.ipynb -->
 </article>

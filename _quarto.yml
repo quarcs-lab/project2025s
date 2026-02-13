@@ -1,6 +1,10 @@
 project:
   type: manuscript
   output-dir: .
+  render:
+    - "*.qmd"
+    - "!legacy/"
+    - "!log/"
 
 manuscript:
   article: index.qmd
