@@ -2,10 +2,10 @@
 # clean-render.sh — Clear all Quarto caches and re-render the manuscript
 #
 # Pipeline:
-#   1. Clear all Quarto caches (_freeze, .quarto/embed, embed previews)
-#   2. Render REGION PDF separately (4 LaTeX passes for natbib/region.bst)
-#   3. Render Standard PDF separately (2 LaTeX passes, scrartcl)
-#   4. Render HTML, DOCX, JATS together (JATS creates MECA bundle)
+#   1. Clear all Quarto caches and intermediates
+#   2. Full manuscript render (HTML + notebook previews + all formats)
+#   3. Re-render REGION PDF (4 LaTeX passes for natbib/region.bst)
+#   4. Re-render Standard PDF (restores index.tex as standard LaTeX)
 #   5. Strip legacy/ and log/ from MECA bundle
 #   6. Upload MECA to GitHub Release (tag: meca-bundle)
 #   7. Update MECA link in index.html to point to release URL
@@ -31,22 +31,24 @@ rm -f notebooks/*-preview.html
 
 echo "Rendering manuscript..."
 
-# Render REGION PDF separately (requires 4 LaTeX passes with natbib;
-# the combined quarto render only runs 2, which drops the REGION template)
-echo "  [1/3] REGION journal PDF..."
+# Step 1: Full manuscript render (generates notebook preview pages + all formats)
+# In Quarto manuscript projects, notebook preview HTML pages (the rendered notebooks
+# that readers click on) are ONLY generated during a full project render — not when
+# using --to flags. This step produces everything but REGION PDF gets only 2 LaTeX
+# passes (insufficient for natbib/region.bst), which is fixed in step 2.
+echo "  [1/3] Full manuscript render (HTML + notebook previews + all formats)..."
+quarto render index.qmd
+
+# Step 2: Re-render REGION PDF with 4 LaTeX passes (fixes natbib/region.bst)
+# The full render in step 1 only gives REGION 2 passes, breaking bibliography.
+echo "  [2/3] REGION journal PDF (4 passes)..."
 quarto render index.qmd --to region-ersa/REGION-pdf
-# Quarto writes the intermediate LaTeX to index.tex regardless of output-file.
-# Rename it now before the standard PDF render overwrites it.
 mv index.tex index-REGION.tex
 
-# Render standard PDF separately
-echo "  [2/3] Standard PDF..."
+# Step 3: Re-render standard PDF to restore index.tex as standard LaTeX source
+# Step 2 overwrote index.tex with REGION LaTeX; this restores it.
+echo "  [3/3] Standard PDF (restore LaTeX source)..."
 quarto render index.qmd --to pdf
-# index.tex is now the standard LaTeX source (kept via keep-tex: true)
-
-# Render remaining formats together
-echo "  [3/3] HTML, DOCX, JATS..."
-quarto render index.qmd --to html --to docx --to jats
 
 # Strip legacy/ from MECA bundle (too large, not needed for replication)
 if [ -f index-meca.zip ]; then
