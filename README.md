@@ -1,486 +1,513 @@
-# Spatial Convergence Analysis of Nighttime Lights in India (1996-2010)
+# Spatial Convergence of Nighttime Lights in India (1996--2010)
 
-A reproducible data science project analyzing regional economic convergence using satellite nighttime light data across 520 Indian administrative districts.
+**A reproducible research project** analyzing regional economic convergence across 520 Indian districts using satellite nighttime light data and spatial econometric methods.
 
-## Overview
+| Resource | Link |
+| -------- | ---- |
+| Interactive manuscript | [quarcs-lab.github.io/project2025s](https://quarcs-lab.github.io/project2025s/) |
+| Standard PDF | [`index.pdf`](index.pdf) |
+| REGION journal PDF | [`index-REGION.pdf`](index-REGION.pdf) |
+| Repository | [github.com/quarcs-lab/project2025s](https://github.com/quarcs-lab/project2025s) |
 
-This project investigates regional economic convergence in India by analyzing nighttime light (NTL) data from the Defense Meteorological Satellite Program (DMSP) as a proxy for economic activity. Using spatial econometric methods, we examine how initial luminosity levels and neighboring regions' characteristics affect regional growth patterns.
+---
 
-**Key Research Questions:**
+## Why Reproducible Research?
 
-- Do Indian regions exhibit β-convergence in nighttime luminosity (1996-2010)?
-- How do neighboring regions' luminosity levels influence local growth?
-- What spatial spillover effects exist in regional development patterns?
+Scientific results should be **verifiable**. When a reader encounters a figure or a statistical estimate, they should be able to trace it back to the raw data, run the same code, and arrive at the same result. This is the idea behind **reproducible research**.
 
-## Reproducibility Philosophy
+In practice, reproducibility means:
 
-**This project exemplifies reproducible research using Quarto's single-source publishing paradigm.**
+1. **Data** is openly available (or clearly documented)
+2. **Code** that produces every result is included alongside the paper
+3. **Environment** (software versions, dependencies) is recorded so the code runs the same way everywhere
+4. **Outputs** (figures, tables, manuscript) are generated automatically from code --- not copy-pasted manually
 
-### Single-Source Authoring
+This project implements all four principles. The diagram below shows how they connect:
 
-**Write once, publish everywhere:**
+```mermaid
+flowchart LR
+    A["Raw Data<br/><i>india520.dta</i>"] --> B["Analysis Code<br/><i>Jupyter Notebooks</i>"]
+    B --> C["Results<br/><i>Figures & Tables</i>"]
+    C --> D["Manuscript<br/><i>index.qmd</i>"]
+    D --> E["Publications<br/><i>HTML, PDF, DOCX</i>"]
+    E --> F["Anyone Can<br/>Verify"]
+    F -.->|re-run| B
 
-- Author writes in **one file**: [index.qmd](index.qmd)
-- Quarto automatically generates **multiple outputs**: PDF, HTML, DOCX, XML, JATS
-- Each format optimized for its purpose (journal submission, web viewing, collaboration)
-
-### Computational Transparency
-
-**All analyses are fully reproducible:**
-
-- **Computational notebooks** ([notebooks/](notebooks/)) contain all data processing and analysis code
-- **Interactive HTML manuscript** links directly to executable notebooks
-- **Readers can verify** every figure, table, and result by running the notebooks
-- **No black boxes**: Complete chain from raw data to final results
-
-### Key Benefits
-
-1. **Reproducibility**: Everything generated from source code and data
-2. **Transparency**: All computational steps documented in notebooks
-3. **Accessibility**: HTML version with embedded interactive content
-4. **Collaboration**: Multiple formats from single source
-5. **Efficiency**: Update once, regenerate all outputs automatically
-
-This workflow embodies open science principles: transparent methods, reproducible results, and accessible research outputs.
-
-## Data
-
-**Main Dataset:** [`data/india520.dta`](data/india520.dta) (Stata format, 1.2 MB)
-
-- **Observations:** 520 Indian administrative districts
-- **Time Period:** 1996-2010
-- **Data Source:** DMSP-OLS Nighttime Lights (calibrated via Google Earth Engine)
-
-**Key Variables:**
-
-- `light_growth96_10rcr_cap` - Luminosity growth rate (dependent variable)
-- `log_light96_10rcr_cap` - Initial luminosity level (log-transformed)
-- `SL_light_growth96_10rcr_cap` - Spatial lag of growth
-- `SL_log_light96_10rcr_cap` - Spatial lag of initial luminosity
-- **Geographic controls:** Terrain, rainfall, temperature, ruggedness
-- **Demographic controls:** Literacy, education, electrification rates
-- **Economic controls:** Population density, road infrastructure
-
-**Spatial Weights Matrix:**
-
-- Type: Queen adjacency matrix (row-normalized)
-- Dimensions: 520 × 520
-- Variable: `WqueenS_fromStata15`
-
-## Methods
-
-### Statistical Approaches
-
-1. **OLS Regression** - Unconditional β-convergence testing
-2. **Spatial Durbin Model (SDM)** - Spatial spillover analysis
-3. **Fixed Effects Models** - State-level heterogeneity controls
-4. **Spatial Dependence Testing** - Moran's I and related diagnostics
-
-### Model Specifications
-
-```text
-Growth = β₀ + β₁(Initial Luminosity) + β₂(Spatial Lag Growth) +
-         β₃(Spatial Lag Initial) + β₄(Controls) + ε
+    style A fill:#e8f4fd,stroke:#2874A6
+    style B fill:#e8f4fd,stroke:#2874A6
+    style C fill:#e8f4fd,stroke:#2874A6
+    style D fill:#e8f4fd,stroke:#2874A6
+    style E fill:#d5f5e3,stroke:#229954
+    style F fill:#d5f5e3,stroke:#229954
 ```
+
+> **Key insight:** The manuscript, figures, and tables are never created by hand. They are always *generated* from code and data. If the data changes, one command regenerates everything.
+
+---
+
+## About This Project
+
+Nighttime satellite images reveal how brightly lit a region is after dark. Brighter lights generally mean more economic activity --- more factories, shops, and infrastructure. Researchers use this **nighttime light (NTL)** data as a proxy for economic output, especially in developing countries where GDP statistics at the district level may be unreliable.
+
+This project asks three questions about India's 520 administrative districts between 1996 and 2010:
+
+1. **Convergence:** Do poorer districts (dimmer lights) grow faster than richer ones (brighter lights)?
+2. **Spatial dependence:** Do neighboring districts have similar luminosity patterns?
+3. **Spillovers:** Does a neighbor's brightness help or hinder local growth?
+
+**Key findings:**
+
+- Districts exhibit **beta-convergence** --- initially dimmer districts grew faster
+- Strong **spatial clustering** exists (Moran's I = 0.73 for initial levels, 0.60 for growth)
+- **Spatial spillovers increase convergence speed by ~36%** compared to non-spatial models
+
+---
+
+## The Tool Stack
+
+This project combines several open-source tools. Each one plays a specific role in the reproducibility pipeline:
+
+| Tool | What it does | Why we use it |
+| ---- | ------------ | ------------- |
+| [**Quarto**](https://quarto.org) | Renders the manuscript from a single source file into HTML, PDF, DOCX, and XML | Write once, publish everywhere --- one command generates all output formats |
+| [**uv**](https://docs.astral.sh/uv/) | Manages Python packages and virtual environments | Deterministic builds --- `uv.lock` ensures everyone installs identical package versions |
+| [**Jupytext**](https://jupytext.readthedocs.io/) | Pairs notebooks (`.ipynb`) with readable Markdown files (`.md`) | Edit code in clean text files instead of JSON blobs; better for version control |
+| [**Jupyter**](https://jupyter.org) | Runs computational notebooks interactively | Mix code, output, and narrative in a single document |
+| [**Python**](https://www.python.org) | Geospatial analysis (PySAL, GeoPandas) and visualization | Rich ecosystem for spatial statistics and mapping |
+| [**R**](https://www.r-project.org) | Convergence regression and scatter plots | Established statistical computing language |
+| [**Stata**](https://www.stata.com) | Spatial Durbin Model estimation | Industry-standard for spatial econometrics |
+| [**Git / GitHub**](https://github.com) | Version control and hosting | Track every change; GitHub Pages hosts the live manuscript |
+
+---
+
+## Quick Start
+
+### Prerequisites
+
+- [uv](https://docs.astral.sh/uv/getting-started/installation/) (Python package manager)
+- [Quarto](https://quarto.org/docs/get-started/) (manuscript rendering)
+- [R](https://cran.r-project.org) (for the convergence notebook)
+- [Stata](https://www.stata.com) (optional, for the spillover notebook)
+
+### 4 Steps to Reproduce
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/quarcs-lab/project2025s.git
+cd project2025s
+
+# 2. Install Python dependencies (creates .venv/ automatically)
+uv sync
+
+# 3. Launch Jupyter to explore the notebooks
+uv run jupyter notebook
+
+# 4. Build the entire manuscript (HTML + PDF + DOCX + XML)
+bash scripts/clean-render.sh
+```
+
+That's it. Step 2 reads `pyproject.toml` and `uv.lock` to install the exact same package versions used to produce the published results. Step 4 runs all notebooks and generates every output format.
+
+---
 
 ## Project Structure
 
 ```text
 project2025s/
-├── code/                    # Modular code and scripts
-├── data/                    # Raw data files
-│   └── india520.dta        # Main dataset (520 districts, 1996-2010)
-├── figures/                 # Generated visualizations
-├── notebooks/              # Analysis notebooks (QMD and Jupyter)
-│   ├── c01_view_from_space.qmd      # Interactive GEE visualization
-│   ├── c02_regional_convergence_sc.qmd         # Convergence analysis
-│   ├── c03_spatial_dependence_lisa.ipynb  # Spatial dependence (LISA)
-│   └── c04_spillover_modeling.ipynb # Spatial Durbin Models
-├── slides/                 # Quarto presentations
-├── tables/                 # Generated tables
-├── legacy/                 # Original project archive (Archive.zip)
-├── log/                    # Progress logs across sessions
-├── index.qmd              # Main manuscript source
-├── index.html             # Manuscript HTML (GitHub Pages)
-├── index.pdf              # Standard PDF format
-├── index-REGION.pdf       # REGION journal PDF format
-├── index.docx             # Manuscript MS Word format
-├── index.xml              # Manuscript JATS XML format
-├── site_libs/             # Quarto web dependencies
-├── index_files/           # Supporting files (plots, figures)
-├── images/                # Manuscript images
-├── config.py              # Python configuration
-├── config.R               # R configuration
-├── requirements.txt       # Python dependencies
-├── CLAUDE.md              # AI assistant guidelines
-└── README.md              # This file
+│
+├── index.qmd                  # Manuscript source (the ONE file you write in)
+│
+├── notebooks/                 # Computational notebooks
+│   ├── c01_view_from_space.ipynb      # N1: Interactive GEE visualization
+│   ├── c01_view_from_space.md         #     ↔ MyST Markdown (editable)
+│   ├── c02_regional_convergence_sc.ipynb  # N2: Beta-convergence (R)
+│   ├── c02_regional_convergence_sc.md     #     ↔ MyST Markdown (editable)
+│   ├── c03_spatial_dependence_lisa.ipynb   # N3: LISA cluster maps (Python)
+│   ├── c03_spatial_dependence_lisa.md      #     ↔ MyST Markdown (editable)
+│   ├── c04_spillover_modeling_6nn.ipynb    # N4: Spatial Durbin Models (Stata)
+│   └── c04_spillover_modeling_6nn.md       #     ↔ MyST Markdown (editable)
+│
+├── data/                      # Raw data (never modified by code)
+│   ├── india520.dta           #   Main dataset: 520 districts, 1996-2010
+│   ├── india520.geojson       #   District boundary polygons
+│   └── W_matrix.csv           #   Spatial weights matrix (Queen adjacency)
+│
+├── scripts/
+│   └── clean-render.sh        # Master build script (one command does everything)
+│
+├── figures/                   # Generated figures (LISA cluster maps)
+├── tables/                    # Generated tables (regression results)
+├── images/                    # Static images for the manuscript
+├── slides/                    # Quarto presentations
+│
+├── _quarto.yml                # Quarto project configuration
+├── _extensions/               # REGION journal LaTeX template
+├── references.bib             # Bibliography
+│
+├── pyproject.toml             # Python dependencies (source of truth)
+├── uv.lock                    # Locked dependency versions (reproducibility)
+├── .python-version            # Python version pin (3.10)
+├── requirements.txt           # Legacy fallback for pip / Google Colab
+├── jupytext.toml              # Jupytext pairing convention
+├── config.py                  # Python paths and random seed
+├── config.R                   # R paths and random seed
+│
+├── index.html                 # Output: interactive web manuscript
+├── index.pdf                  # Output: standard PDF (Letter)
+├── index-REGION.pdf           # Output: REGION journal PDF (A4)
+├── index.docx                 # Output: Microsoft Word
+├── index.xml                  # Output: JATS XML
+│
+├── legacy/                    # Immutable archive of original project
+├── log/                       # Session progress logs
+├── CLAUDE.md                  # AI assistant guidelines
+└── README.md                  # This file
 ```
 
-## Requirements
+**Design principle:** Source files (`.qmd`, `.ipynb`, `.md`, data) live in the repository. Output files (`.html`, `.pdf`, `.docx`) are *generated* from source and committed for transparency --- readers can access them directly on GitHub without running any code.
 
-### Python Dependencies
+---
 
-Install via `pip install -r requirements.txt`:
+## The Write-Once-Publish-Everywhere Workflow
 
-**Core packages:**
-
-- numpy==1.26.4
-- pandas==2.2.0
-- matplotlib==3.8.2
-- seaborn==0.13.2
-- scikit-learn==1.4.0
-- statsmodels==0.14.6
-- jupyter==1.0.0
-
-**Geospatial packages:**
-
-- geopandas>=1.1.2
-- pysal==24.1
-- libpysal==4.9.2
-- esda==2.5.1
-- mgwr==2.2.1 (Multiscale Geographically Weighted Regression)
-- rasterio==1.3.9
-- contextily==1.5.0
-- mapclassify==2.6.1
-- folium>=0.20.0
-
-**Reporting:**
-
-- stargazer==0.0.7 (regression tables)
-
-### R Dependencies
-
-See [`config.R`](config.R) for automatic package installation and setup.
-
-### Other Tools
-
-- **Stata:** For spatial econometric models (optional)
-- **Quarto:** For rendering notebooks and presentations
-- **Google Earth Engine:** For interactive NTL visualization
-
-## Usage
-
-### Quick Start
-
-1. **Clone the repository**
-
-   ```bash
-   git clone <repository-url>
-   cd project2025s
-   ```
-
-2. **Install Python dependencies**
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Run analyses**
-
-   - Open Jupyter notebooks in [`notebooks/`](notebooks/)
-   - Render Quarto documents: `quarto render notebooks/scatterplots.qmd`
-
-### Configuration
-
-Both Python and R configurations set:
-
-- `RANDOM_SEED = 42` (reproducibility)
-- Automatic directory creation
-- Consistent path management across languages
-
-**Python:** Import `config.py` for paths and seed setting
-
-**R:** Source `config.R` for environment setup
-
-## Workflow
-
-This project follows a simplified, transparent workflow for open science.
-
-### 1. Edit Content
-
-Edit the main manuscript file: [index.qmd](index.qmd)
-
-Make your changes to:
-- YAML front matter (metadata, authors, keywords, JEL codes)
-- Introduction, Methods, Results, Conclusions sections
-- Embedded figures and tables
-- References and citations
-
-### 2. Render Manuscript
-
-Compile all formats with a single command:
+The entire project is built from a **single command**:
 
 ```bash
-quarto render index.qmd
+bash scripts/clean-render.sh
 ```
 
-The project uses `freeze: auto`, so Quarto automatically re-executes only notebooks whose source has changed. Unchanged notebooks use cached results for faster builds.
+This script clears all caches, runs every notebook, and generates six output formats from the manuscript source (`index.qmd`). Here is what happens under the hood:
 
-This generates all outputs directly in the repository root:
-- **`index.html`** - Web version (served by GitHub Pages)
-- **`index.pdf`** - Standard PDF (Letter size, KOMA-Script, numeric citations)
-- **`index-REGION.pdf`** - REGION journal PDF (A4, author-year citations, line numbers)
-- **`index.docx`** - Microsoft Word format
-- **`index.xml`** - JATS XML format
-- **`site_libs/`** - Quarto web dependencies
-- **`index_files/`** - Supporting files (plots, figures)
-- **`images/`** - Manuscript images
-- **`notebooks/`** - Notebook HTML previews
+```mermaid
+flowchart TB
+    subgraph edit ["1. Edit"]
+        A["Edit .md files<br/><i>(MyST Markdown)</i>"]
+        B["Edit index.qmd<br/><i>(manuscript text)</i>"]
+    end
 
-**Note on PDF Formats:**
+    subgraph sync ["2. Sync"]
+        C["jupytext --sync<br/><i>Updates .ipynb from .md</i>"]
+    end
 
-The project generates two distinct PDFs with different formatting:
+    subgraph render ["3. Render"]
+        D["Quarto renders index.qmd"]
+        D --> E["Executes changed<br/>notebooks"]
+        E --> F["Embeds figures &<br/>tables into manuscript"]
+    end
 
-1. **Standard PDF (`index.pdf`)**:
-   - Letter paper (8.5" × 11")
-   - KOMA-Script document class (scrartcl)
-   - Numeric citations: [1], [2], [3]
-   - No line numbers
-   - General-purpose format for sharing
+    subgraph outputs ["4. Outputs"]
+        G["index.html<br/><i>GitHub Pages</i>"]
+        H["index.pdf<br/><i>Standard PDF</i>"]
+        I["index-REGION.pdf<br/><i>Journal PDF</i>"]
+        J["index.docx<br/><i>MS Word</i>"]
+        K["index.xml<br/><i>JATS XML</i>"]
+        L["index-meca.zip<br/><i>MECA Bundle</i>"]
+    end
 
-2. **REGION Journal PDF (`index-REGION.pdf`)**:
-   - A4 paper (8.27" × 11.69")
-   - REGION journal template (article class)
-   - Author-year citations: (Chanda and Kabiraj 2020)
-   - Line numbers (review mode)
-   - ERSA branding and journal styling
-   - Ready for journal submission
+    A --> C --> D
+    B --> D
+    F --> G & H & I & J & K & L
 
-**IMPORTANT - Template Verification:**
-
-To verify the REGION template is properly applied, check for these markers:
-
-- **Line numbers** on left margin (starting page 2)
-- **Author-year citations** in text: (Author YYYY)
-- **Bibliography style** using region.bst (4 LaTeX passes during compilation)
-- **ERSA logo** in footer
-- **Journal ISSN** (2409-5370) in footer
-
-If `index-REGION.pdf` looks identical to `index.pdf`, see the [troubleshooting guide](log/20260205_1245_fix_region_template.md) for detailed debugging steps.
-
-**Optional: Render specific formats**
-
-```bash
-# Standard PDF only
-quarto render index.qmd --to pdf
-
-# REGION journal PDF only
-quarto render index.qmd --to region-ersa/REGION-pdf
-
-# HTML only
-quarto render index.qmd --to html
-
-# MS Word only
-quarto render index.qmd --to docx
+    style edit fill:#fef9e7,stroke:#f39c12
+    style sync fill:#e8f4fd,stroke:#2874A6
+    style render fill:#e8f4fd,stroke:#2874A6
+    style outputs fill:#d5f5e3,stroke:#229954
 ```
 
-### Working with Notebooks
+### What `clean-render.sh` does (step by step)
 
-The computational analyses live in `notebooks/`. The manuscript (`index.qmd`) pulls specific figures and tables from these notebooks using Quarto's embed shortcode. When the manuscript is rendered, Quarto executes any changed notebooks, extracts the embedded content, and inlines it into all output formats.
+| Step | Command | Purpose |
+| ---- | ------- | ------- |
+| 1 | `rm -rf _freeze/ .quarto/embed/ ...` | Clear all caches for a clean build |
+| 2 | `quarto render index.qmd` | Full render: HTML + notebook previews + all formats |
+| 3 | `quarto render --to region-ersa/REGION-pdf` | Re-render REGION PDF with 4 LaTeX passes (fixes bibliography) |
+| 4 | `quarto render --to pdf` | Re-render standard PDF (restores LaTeX source) |
+| 5 | `zip -d index-meca.zip ...` | Strip `legacy/` and `log/` from MECA bundle |
+| 6 | `gh release upload ...` | Upload MECA bundle to GitHub Release |
+| 7 | `sed -i '' ...` | Fix MECA download link in `index.html` |
 
-#### Current notebooks
+> **Why 3 render passes instead of 1?** When Quarto renders all formats at once, the REGION journal PDF only gets 2 LaTeX passes instead of the 4 required for its `natbib`/`region.bst` bibliography processing. Rendering each PDF format separately avoids this issue.
+
+---
+
+## Computational Notebooks
+
+The analysis is organized into four Jupyter notebooks, each using the language best suited for the task:
 
 | Notebook | Title | Language | Embedded in manuscript |
-| --- | --- | --- | --- |
-| `c01_view_from_space.qmd` | View from outer space | GEE/JavaScript | No (supplementary) |
-| `c02_regional_convergence_sc.qmd` | Regional convergence | R | Yes — `fig-convergence` |
-| `c03_spatial_dependence_lisa.ipynb` | Spatial dependence (LISA) | Python | Yes — `fig-dependence-initial`, `fig-dependence-growth` |
-| `c04_spillover_modeling.ipynb` | Econometric models | Stata | No (supplementary) |
+| -------- | ----- | -------- | ---------------------- |
+| `c01_view_from_space` | View from outer space | Python | No (supplementary) |
+| `c02_regional_convergence_sc` | Regional convergence | R | Yes --- `fig-convergence` |
+| `c03_spatial_dependence_lisa` | Spatial dependence (LISA) | Python | Yes --- `fig-dependence-initial`, `fig-dependence-growth` |
+| `c04_spillover_modeling_6nn` | Spillover modeling | Stata | No (supplementary) |
 
-#### Editing an existing notebook
+### How notebooks feed into the manuscript
 
-1. Edit the `.qmd` or `.ipynb` file in `notebooks/`
-2. Run `bash scripts/clean-render.sh`
-3. The script clears Quarto's embed caches, re-executes changed notebooks, and rebuilds all outputs
-4. All outputs (HTML, PDF, DOCX, XML) update with the new content
+Quarto's `{{< embed >}}` shortcode pulls specific labeled figures from notebooks directly into the manuscript:
 
-#### Adding a new notebook
+```mermaid
+flowchart LR
+    subgraph notebooks ["Notebooks"]
+        NB2["c02: R notebook<br/><code>#| label: fig-convergence</code>"]
+        NB3["c03: Python notebook<br/><code>#| label: fig-dependence-initial</code><br/><code>#| label: fig-dependence-growth</code>"]
+    end
 
-1. Create the notebook file in `notebooks/` (`.qmd` for R, `.ipynb` for Python/Stata)
-2. Add labeled figures or tables you want to embed (e.g., `#| label: fig-myplot`)
-3. Register it in `_quarto.yml` under `manuscript.notebooks`:
+    subgraph manuscript ["Manuscript"]
+        QMD["index.qmd<br/><code>{{&lt; embed c02#fig-convergence &gt;}}</code><br/><code>{{&lt; embed c03#fig-dependence-initial &gt;}}</code><br/><code>{{&lt; embed c03#fig-dependence-growth &gt;}}</code>"]
+    end
+
+    NB2 -->|"fig-convergence"| QMD
+    NB3 -->|"fig-dependence-*"| QMD
+
+    style notebooks fill:#e8f4fd,stroke:#2874A6
+    style manuscript fill:#d5f5e3,stroke:#229954
+```
+
+This means you never copy-paste figures into the paper. When the data or analysis changes, the figures update automatically on the next render.
+
+### Jupytext: Edit MyST Markdown instead of raw notebooks
+
+Jupyter notebooks (`.ipynb`) are JSON files --- functional but hard to read and impossible to diff meaningfully in Git. [Jupytext](https://jupytext.readthedocs.io/) solves this by pairing each notebook with a **MyST Markdown** (`.md`) file.
+
+| Notebook (`.ipynb`) | MyST Markdown (`.md`) | Kernel |
+| -------------------- | --------------------- | ------ |
+| `c01_view_from_space.ipynb` | `c01_view_from_space.md` | Python |
+| `c02_regional_convergence_sc.ipynb` | `c02_regional_convergence_sc.md` | R |
+| `c03_spatial_dependence_lisa.ipynb` | `c03_spatial_dependence_lisa.md` | Python |
+| `c04_spillover_modeling_6nn.ipynb` | `c04_spillover_modeling_6nn.md` | Stata |
+
+**What does a MyST Markdown file look like?**
+
+````markdown
+---
+jupytext:
+  formats: ipynb,md:myst
+kernelspec:
+  display_name: Project 2025s (Python 3.10)
+  name: project2025s
+---
+
+# Spatial Dependence Analysis
+
+This notebook examines spatial patterns of nighttime lights
+across 520 Indian districts using Local Moran's I...
+
+## Setup
+
+```{code-cell} ipython3
+import numpy as np
+import geopandas as gpd
+from esda.moran import Moran_Local
+```
+
+## Load Data
+
+```{code-cell} ipython3
+gdf = gpd.read_file("../data/india520.geojson")
+```
+````
+
+Notice how the Markdown is just *regular Markdown* --- not commented-out code. Code cells use clean ```` ```{code-cell} ```` fenced blocks. The file reads like a document, not a program.
+
+**The sync workflow:**
+
+```bash
+# After editing a .md file, sync it to the .ipynb:
+uv run jupytext --sync notebooks/<file>
+
+# After editing a .ipynb in Jupyter, the .md updates automatically
+# (if the Jupytext server extension is enabled)
+```
+
+---
+
+## How to Edit and Rebuild
+
+### Editing the manuscript text
+
+1. Open [`index.qmd`](index.qmd) in any text editor
+2. Make your changes (introduction, methods, conclusions, citations...)
+3. Render: `quarto render index.qmd`
+
+For text-only changes, you don't need `clean-render.sh` --- a plain `quarto render` is faster.
+
+### Editing a notebook
+
+1. Open the `.md` file in your editor (e.g., `notebooks/c03_spatial_dependence_lisa.md`)
+2. Edit the code or narrative
+3. Sync to the notebook: `uv run jupytext --sync notebooks/c03_spatial_dependence_lisa.md`
+4. Rebuild the manuscript: `bash scripts/clean-render.sh`
+
+The build script clears Quarto's embed caches, re-executes changed notebooks, and regenerates all outputs.
+
+### Adding a new notebook
+
+1. Create a `.ipynb` file in `notebooks/`
+2. Pair it with Jupytext: `uv run jupytext --set-formats "ipynb,md:myst" --sync notebooks/my_notebook.ipynb`
+3. Add labeled outputs in the notebook (e.g., `#| label: fig-myplot`)
+4. Register it in [`_quarto.yml`](_quarto.yml):
 
    ```yaml
    manuscript:
-     article: index.qmd
      notebooks:
-       - notebooks/c01_view_from_space.qmd
-       - notebooks/c02_regional_convergence_sc.qmd
-       - notebooks/c03_spatial_dependence_lisa.ipynb
-       - notebooks/c04_spillover_modeling.ipynb
-       - notebooks/my_new_notebook.qmd  # <-- add here
+       - notebook: notebooks/my_notebook.ipynb
+         title: "N5: My new analysis"
    ```
 
-4. Embed its outputs in `index.qmd` using the shortcode:
+5. Embed its outputs in `index.qmd`:
 
    ```markdown
-   {{< embed notebooks/my_new_notebook.qmd#fig-myplot >}}
+   {{< embed notebooks/my_notebook.ipynb#fig-myplot >}}
    ```
 
-5. Run `bash scripts/clean-render.sh`
+6. Build: `bash scripts/clean-render.sh`
 
-#### Why use `clean-render.sh` instead of `quarto render`?
+---
 
-Quarto maintains three cache layers: `_freeze/` (execution results), `.quarto/embed/` (internal embed cache), and `notebooks/*.embed-preview.html` (embed previews). The `freeze: auto` setting only invalidates `_freeze/` when source changes — it does **not** clear the `.quarto/embed/` cache, which can leave embed previews stale even after notebook edits.
+## Data
 
-`scripts/clean-render.sh` clears all three cache layers before rendering, guaranteeing that notebook changes propagate to the manuscript. Use it whenever you edit notebooks. For manuscript-only edits (changes to `index.qmd` text), plain `quarto render index.qmd` is sufficient.
+**Main dataset:** [`data/india520.dta`](data/india520.dta) (Stata format, 1.2 MB)
 
-### 3. Commit and Push
+| Property | Value |
+| -------- | ----- |
+| Observations | 520 Indian administrative districts |
+| Time period | 1996--2010 |
+| Source | DMSP-OLS radiance-calibrated nighttime lights via Google Earth Engine |
+| Spatial weights | Queen adjacency matrix, row-normalized (520 x 520) |
+
+**Key variables:**
+
+| Variable | Description |
+| -------- | ----------- |
+| `light_growth96_10rcr_cap` | Luminosity growth rate per capita (dependent variable) |
+| `log_light96_10rcr_cap` | Log initial luminosity per capita |
+| `SL_light_growth96_10rcr_cap` | Spatial lag of growth |
+| `SL_log_light96_10rcr_cap` | Spatial lag of initial luminosity |
+| Geographic controls | Terrain ruggedness, rainfall, temperature |
+| Demographic controls | Literacy rate, education, electrification |
+| Economic controls | Population density, road infrastructure |
+
+---
+
+## Output Formats
+
+One source file produces six output formats, each optimized for a different purpose:
+
+| Output | Format | Purpose |
+| ------ | ------ | ------- |
+| [`index.html`](https://quarcs-lab.github.io/project2025s/) | Interactive HTML | Web reading, embedded notebooks, GitHub Pages |
+| [`index.pdf`](index.pdf) | Standard PDF (Letter) | General sharing, KOMA-Script, numeric citations |
+| [`index-REGION.pdf`](index-REGION.pdf) | REGION Journal PDF (A4) | Journal submission, author-year citations, line numbers |
+| [`index.docx`](index.docx) | Microsoft Word | Collaboration and commenting |
+| [`index.xml`](index.xml) | JATS XML | Machine-readable scholarly metadata |
+| `index-meca.zip` | MECA Bundle | Complete replication package for journal exchange |
+
+### Two PDF formats explained
+
+The project generates **two distinct PDFs** because academic publishing has different needs:
+
+| Property | Standard PDF | REGION Journal PDF |
+| -------- | ------------ | ------------------ |
+| Page size | Letter (8.5" x 11") | A4 (8.27" x 11.69") |
+| Document class | `scrartcl` (KOMA-Script) | `article` (REGION template) |
+| Citations | Numeric: [1], [2] | Author-year: (Chanda and Kabiraj 2020) |
+| Line numbers | No | Yes (review mode) |
+| Branding | None | ERSA logo, journal ISSN |
+| Use case | General distribution | Peer review submission |
+
+---
+
+## Configuration
+
+### Python environment
+
+| File | Purpose |
+| ---- | ------- |
+| [`pyproject.toml`](pyproject.toml) | Python dependencies --- **source of truth** |
+| [`uv.lock`](uv.lock) | Locked versions for deterministic builds |
+| [`.python-version`](.python-version) | Pins Python 3.10 |
+| [`requirements.txt`](requirements.txt) | Legacy fallback for pip / Google Colab |
+
+**Common commands:**
 
 ```bash
-# Stage all changes
-git add index.qmd index.html index.pdf index-REGION.pdf index.docx index.xml site_libs/ index_files/ images/ notebooks/
-
-# Commit with descriptive message
-git commit -m "Update manuscript: [describe changes]"
-
-# Push to GitHub
-git push
+uv sync                    # Create .venv/ and install all dependencies
+uv add <package>           # Add a new dependency
+uv run python script.py    # Run a script in the project's venv
+uv run jupyter notebook    # Launch Jupyter in the project's venv
 ```
 
-**GitHub Pages automatically updates within 1-2 minutes.**
+### Analysis settings
 
-### 4. View Live Website
+Both [`config.py`](config.py) and [`config.R`](config.R) set:
 
-Visit: **[https://quarcs-lab.github.io/project2025s/](https://quarcs-lab.github.io/project2025s/)**
+- `RANDOM_SEED = 42` for reproducibility
+- Consistent directory paths for data, figures, and tables
+- Automatic directory creation on import/source
 
-All files are public and accessible for transparent, reproducible science.
+### Quarto configuration
 
-### Document Modes
+[`_quarto.yml`](_quarto.yml) defines:
 
-The REGION PDF template supports two document modes. Edit [_quarto.yml](_quarto.yml) line 18:
+- Project type: `manuscript`
+- Registered notebooks and their display titles
+- All six output formats and their settings
+- `freeze: auto` --- only re-execute notebooks whose source has changed
 
-```yaml
-# For peer review (anonymized, line numbers)
-docstatus: review
+---
 
-# For publication (full metadata, no line numbers)
-docstatus: final
-```
+## Interactive Tools
 
-Then recompile: `quarto render index.qmd --to REGION-pdf`
+**Google Earth Engine web app** --- explore India's nighttime lights interactively:
 
-## Key Outputs
+- App: <https://carlos-mendez.projects.earthengine.app/view/rc-dmsp-ntl>
+- Source code: <https://code.earthengine.google.com/87ac51fc81a194c7a1dfa299f3251a95>
 
-### Visualizations
+---
 
-Generated in [`figures/`](figures/):
+## License
 
-- `fig-convergence-1.png` - Regional luminosity convergence scatter plot
-- `fig-dependence1-1.png` - Spatial dependence in growth rates
-- `fig-dependence2-1.png` - Spatial dependence in initial levels
-- `fig-dependence-combined-1.png` - Combined spatial analysis
+This work is licensed under a [Creative Commons Attribution 4.0 International License (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
 
-### Manuscript
+[![CC BY 4.0](https://licensebuttons.net/l/by/4.0/88x31.png)](https://creativecommons.org/licenses/by/4.0/)
 
-All manuscript outputs are in the repository root:
+You are free to:
 
-- [index.html](index.html) - Interactive web version (GitHub Pages)
-- [index.pdf](index.pdf) - REGION journal PDF (12 MB)
-- [index.docx](index.docx) - Microsoft Word version (9.4 MB)
-- [index.xml](index.xml) - JATS XML format
-- [images/luminosity_map.png](images/luminosity_map.png) - India luminosity visualization
+- **Share** --- copy and redistribute the material in any medium or format
+- **Adapt** --- remix, transform, and build upon the material for any purpose, even commercially
 
-### Interactive Tools
+Under the following terms:
 
-**Google Earth Engine Web App:**
+- **Attribution** --- You must give appropriate credit, provide a link to the license, and indicate if changes were made.
 
-- URL: <https://carlos-mendez.projects.earthengine.app/view/rc-dmsp-ntl>
-- Source: <https://code.earthengine.google.com/87ac51fc81a194c7a1dfa299f3251a95>
-- Features: Interactive NTL visualization (1996 vs 2010)
-
-## Reproducibility
-
-### Random Seed
-
-All analyses use `RANDOM_SEED = 42` for reproducibility.
-
-### Legacy Folder
-
-The [`legacy/`](legacy/) folder contains a complete snapshot (Archive.zip, 96.5 MB) of the original project state created on 2026-01-20. This archive is **immutable** and serves as a backup.
-
-### Progress Logs
-
-Session-by-session progress is documented in [`log/`](log/) using timestamped entries (format: `YYYYMMDD_HHMM.md`).
-
-## Repository Rules
-
-**Critical Guidelines (see [CLAUDE.md](CLAUDE.md) for full details):**
-
-1. ❌ **NEVER DELETE DATA** - Protected formats: `.dta`, `.sav`, `.csv`, `.xlsx`, `.shp`, `.db`, `.json`, `.parquet`
-2. ❌ **NEVER DELETE PROGRAMS** - Protected formats: `.do`, `.R`, `.py`, `.ipynb`, `.qmd`, `.yaml`, `.md`
-3. 📁 **USE LEGACY FOLDER** - Copy from `legacy/` when needed (never modify)
-4. 🏠 **STAY WITHIN PROJECT** - All work remains in this directory
-5. 📋 **COPY, DON'T MOVE** - Copy files between directories (don't move)
-6. 📝 **MAINTAIN LOGS** - Document progress in `log/` with timestamps
-
-## Analysis Workflow
-
-1. **Data Preparation** - Load and clean NTL data from GEE
-2. **Exploratory Analysis** - Convergence scatter plots and spatial dependence
-3. **Model Estimation** - OLS and Spatial Durbin Models
-4. **Diagnostics** - Spatial autocorrelation tests
-5. **Interpretation** - Direct and indirect spatial effects
-6. **Reporting** - Generate figures, tables, and manuscript
-
-## Key Findings
-
-- **β-Convergence:** Negative relationship between initial luminosity and growth indicates convergence
-- **Spatial Spillovers:** Neighboring regions' luminosity significantly affects local growth
-- **Model Performance:** SDM specifications outperform OLS (lower AIC)
-- **Fixed Effects:** State-level controls improve model fit
-
-## Project Status
-
-**Current State (February 2026):**
-
-- ✅ **Analysis Complete** - All spatial convergence analyses finished
-- ✅ **Manuscript Ready** - Formatted for REGION journal peer review submission
-- ✅ **GitHub Pages Live** - Interactive HTML version hosted at: [https://quarcs-lab.github.io/project2025s/](https://quarcs-lab.github.io/project2025s/)
-- ✅ **Multiple Formats** - PDF, HTML, DOCX, and JATS outputs available
-
-**Manuscript Modes:**
-
-- **Review Mode (Current)** - Anonymized for peer review, includes line numbers, no watermark
-- **Final Mode** - Full author metadata, ready for publication
-
-**Next Steps:**
-
-- Submit PDF to REGION journal
-- Share GitHub Pages link for interactive exploration
-- Prepare revisions based on peer review feedback
-
-## Authors
-
-- **Carlos Mendez** (Corresponding) - <carlosmendez777@gmail.com> - Nagoya University
-- **Sujana Kabiraj** - Shiv Nadar University
-- **Jiaqi Li** - Nagoya University
-
-Repository: [https://github.com/quarcs-lab/project2025s](https://github.com/quarcs-lab/project2025s)
+---
 
 ## Citation
 
 ```bibtex
-@misc{mendez2026india,
-  author = {Mendez, Carlos and Kabiraj, Sujana and Li, Jiaqi},
-  title = {Spatial Convergence Analysis of Nighttime Lights in India (1996-2010)},
-  year = {2026},
-  howpublished = {\url{https://github.com/quarcs-lab/project2025s}}
+@article{mendez2026spatial,
+  author  = {Mendez, Carlos and Kabiraj, Sujana and Li, Jiaqi},
+  title   = {Spatial Convergence of Nighttime Lights in India (1996--2010)},
+  year    = {2026},
+  url     = {https://github.com/quarcs-lab/project2025s}
 }
 ```
 
-## License
+---
 
-[Specify license here]
+## Authors
+
+- **Carlos Mendez** (Corresponding) --- Nagoya University --- <carlosmendez777@gmail.com>
+- **Sujana Kabiraj** --- Shiv Nadar University
+- **Jiaqi Li** --- Nagoya University
 
 ## Acknowledgments
 
-- DMSP-OLS Nighttime Lights data from Google Earth Engine
-- Indian district boundary data from geoBoundaries
-- Spatial econometric methods from PySAL and R spatial packages
+- DMSP-OLS Nighttime Lights data from [Google Earth Engine](https://earthengine.google.com)
+- Indian district boundary data from [geoBoundaries](https://www.geoboundaries.org)
+- Spatial econometric methods from [PySAL](https://pysal.org) and R spatial packages
+- Quarto publishing system by [Posit](https://quarto.org)
 
 ---
 
-**Last Updated:** February 5, 2026
-
-**Git Commit:** 9486c04 (add tables)
+**Last updated:** February 22, 2026

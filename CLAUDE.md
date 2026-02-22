@@ -89,8 +89,65 @@ The `./log/` directory contains progress logs that preserve conversation context
 - **Legacy Directory:** `./legacy/`
 - **Log Directory:** `./log/`
 - **Primary Tools:** Quarto, Python, R, Stata, GitHub CLI (`gh`), Claude Code
+- **Python Package Manager:** [uv](https://docs.astral.sh/uv/)
 - **Authors:** Carlos Mendez, Sujana Kabiraj, Jiaqi Li
 - **Primary Goal:** **Reproducible research using Quarto's single-source publishing paradigm**
+
+### Python Environment (uv)
+
+This project uses **uv** as its Python package manager. All Python dependencies are declared in `pyproject.toml` and locked in `uv.lock`.
+
+**Key files:**
+
+- `pyproject.toml` — Project metadata and dependencies (**source of truth**)
+- `uv.lock` — Deterministic lockfile (committed to git for reproducibility)
+- `.python-version` — Pins Python 3.10
+- `requirements.txt` — Kept for backward compatibility (Google Colab installs)
+
+**Common commands:**
+
+```bash
+uv sync                    # Create .venv/ and install all dependencies
+uv add <package>           # Add a new Python dependency
+uv remove <package>        # Remove a dependency
+uv run python script.py    # Run a script in the project's venv
+uv run jupyter notebook    # Launch Jupyter in the project's venv
+```
+
+**Rules:**
+
+- When adding a new Python dependency, use `uv add <package>` (NOT `pip install`). This updates both `pyproject.toml` and `uv.lock`.
+- `pyproject.toml` is the canonical source for dependencies. Do NOT manually edit `requirements.txt` to add packages.
+- The `.venv/` directory is gitignored and should never be committed.
+- Always use `uv run` to execute Python commands to ensure the correct virtual environment is used.
+
+### Jupytext (Notebook ↔ Script Pairing)
+
+Each notebook in `notebooks/` is paired with a MyST Markdown (`.md`) file via [Jupytext](https://jupytext.readthedocs.io/). This enables editing code and markdown in clean, readable text files instead of JSON notebook blobs.
+
+**Paired files:**
+
+| Notebook (`.ipynb`) | MyST Markdown (`.md`) | Language |
+|---------------------|----------------------|----------|
+| `c01_view_from_space.ipynb` | `c01_view_from_space.md` | Python |
+| `c02_regional_convergence_sc.ipynb` | `c02_regional_convergence_sc.md` | R |
+| `c03_spatial_dependence_lisa.ipynb` | `c03_spatial_dependence_lisa.md` | Python |
+| `c04_spillover_modeling_6nn.ipynb` | `c04_spillover_modeling_6nn.md` | Stata |
+
+**Commands:**
+
+```bash
+uv run jupytext --sync notebooks/<file>   # Sync .md ↔ .ipynb after editing either
+```
+
+**Rules:**
+
+- When editing notebook content, prefer editing the paired `.md` file
+- After editing a `.md` file, always run `uv run jupytext --sync notebooks/<file>` to update the `.ipynb`
+- Cell outputs (plots, tables) are stored only in the `.ipynb` — `.md` files contain just code and markdown
+- After syncing, re-execute the notebook to regenerate outputs
+- The pairing format metadata is stored in each notebook's metadata (set via `--set-formats`)
+- `jupytext.toml` at project root documents the pairing convention
 
 ### Core Reproducibility Principles
 

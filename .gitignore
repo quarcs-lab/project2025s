@@ -20,6 +20,9 @@ index.blg
 __pycache__/
 *.pyc
 
+# Virtual environment (managed by uv)
+.venv/
+
 # Old output directories (no longer used)
 _manuscript/
 
