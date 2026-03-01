@@ -83,7 +83,7 @@ vscode:
   languageId: r
 ---
 #| label: fig-convergence
-#| fig-cap: "Regional luminosity convergence across districts in India <br> Note: See Regional convergence notebook for source code. <br> Source: Data from Chanda and Kabiraj (2000)."
+#| fig-cap: "Regional luminosity convergence across districts in India <br> Notes: Each point represents one of the 520 districts. The regression line shows the estimated beta-convergence relationship. Outlier districts are labeled. <br> Source: Data from Chanda and Kabiraj (2020). See [Regional convergence](notebooks/c02_regional_convergence_sc.ipynb) notebook for source code."
 
 # Identify outlier districts for labeling
 outliers <- data[

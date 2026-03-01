@@ -7,15 +7,14 @@ jupytext:
     format_version: 0.13
     jupytext_version: 1.19.1
 kernelspec:
-  display_name: Project 2025s (Python 3.10)
+  display_name: geo2
   language: python
-  name: project2025s
+  name: python3
 ---
 
 <a href="https://colab.research.google.com/github/quarcs-lab/project2025s/blob/master/notebooks/c03_spatial_dependence_lisa.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a>
 
 +++
-
 
 This notebook examines spatial dependence in nighttime luminosity across 520 Indian districts using Local Indicators of Spatial Association (LISA). We apply Local Moran's I to both the initial level and the growth rate of luminosity per capita, and visualize the results as cluster maps identifying statistically significant spatial clusters (HH, LL) and outliers (HL, LH).
 
@@ -39,6 +38,7 @@ import pandas as pd
 pd.set_option('display.max_columns', None)
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg  # Importing matplotlib image for image plotting
+import matplotlib.colors as mcolors
 import seaborn as sns
 
 import plotly.express as px
@@ -133,6 +133,84 @@ gdf.explore(
 )
 ```
 
+```{code-cell} ipython3
+#| label: fig-chorophleths
+#| fig-cap: "Spatial distribution of initial luminosity and luminosity growth <br> Notes: Districts are classified into five categories using Fisher-Jenks natural breaks. Panel (a) shows log of luminosity per capita in 1996. Panel (b) shows luminosity growth per capita over 1996–2010. <br> Source: Data from Chanda and Kabiraj (2020). See [Spatial dependence](notebooks/c03_spatial_dependence_lisa.ipynb) notebook for source code."
+
+
+# Reproject once to Web Mercator for basemap overlay
+_gdf = gdf.to_crs(epsg=3857).copy()
+
+# Classify both variables (Fisher-Jenks, k=5)
+clf_init = mc.FisherJenks(_gdf["log_initial"], k=5)
+clf_growth = mc.FisherJenks(_gdf["growth"], k=5)
+
+_gdf["init_class"] = clf_init.yb
+_gdf["growth_class"] = clf_growth.yb
+
+# Discrete colormap with 5 bins (close to the interactive map style)
+cmap = plt.get_cmap("coolwarm", 5)
+bounds = np.arange(-0.5, 5.5, 1)
+norm = mcolors.BoundaryNorm(bounds, cmap.N)
+
+# Plot: two panels
+fig, ax = plt.subplots(1, 2, figsize=(16, 8))
+
+# Left: initial luminosity (log)
+_gdf.plot(
+    column="init_class",
+    cmap=cmap,
+    norm=norm,
+    linewidth=0.25,
+    edgecolor="gray",
+    ax=ax[0],
+)
+cx.add_basemap(ax[0], source=cx.providers.CartoDB.Positron, attribution=False)
+cx.add_basemap(ax[0], source=cx.providers.CartoDB.PositronOnlyLabels, attribution=False)
+ax[0].set_axis_off()
+ax[0].set_title("(a) Initial luminosity per capita (log, 1996)")
+
+# Right: growth
+_gdf.plot(
+    column="growth_class",
+    cmap=cmap,
+    norm=norm,
+    linewidth=0.25,
+    edgecolor="gray",
+    ax=ax[1],
+)
+cx.add_basemap(ax[1], source=cx.providers.CartoDB.Positron, attribution=False)
+cx.add_basemap(ax[1], source=cx.providers.CartoDB.PositronOnlyLabels, attribution=False)
+ax[1].set_axis_off()
+ax[1].set_title("(b) Luminosity growth per capita (1996–2010)")
+
+# Legends (one per panel, with variable-specific breaks)
+handles = [
+    plt.Line2D([0], [0], marker='s', linestyle='', markersize=9,
+               markerfacecolor=cmap(i), markeredgecolor='none')
+    for i in range(5)
+]
+
+# Left legend labels
+init_min = float(_gdf["log_initial"].min())
+init_labels = [
+    f"{(clf_init.bins[i-1] if i>0 else init_min):.2f} to {clf_init.bins[i]:.2f}"
+    for i in range(5)
+]
+ax[0].legend(handles, init_labels, title="Initial luminosity", loc="lower left", frameon=True)
+
+# Right legend labels
+growth_min = float(_gdf["growth"].min())
+growth_labels = [
+    f"{(clf_growth.bins[i-1] if i>0 else growth_min):.2f} to {clf_growth.bins[i]:.2f}"
+    for i in range(5)
+]
+ax[1].legend(handles, growth_labels, title="Luminosity growth", loc="lower left", frameon=True)
+
+plt.tight_layout()
+plt.show()
+```
+
 ## Spatial weights and lags
 
 We construct a Queen contiguity weights matrix directly from the district geometries and row-normalize it, consistent with the weights used in the main econometric analysis.
@@ -162,7 +240,7 @@ W.transform = 'r'
 
 ```{code-cell} ipython3
 #| label: fig-Wmatrix6nn
-#| fig-cap: "Spatial connectivity structure based on six nearest neighbors <br> Note: See Spatial dependence notebook for source code. <br> Source: Data from Chanda and Kabiraj (2000)."
+#| fig-cap: "Spatial connectivity structure based on six nearest neighbors <br> Notes: Each node represents a district centroid. Each edge connects a district to one of its six geographically closest neighbors. The weight matrix is row-standardized. <br> Source: Data from Chanda and Kabiraj (2020). See [Spatial dependence](notebooks/c03_spatial_dependence_lisa.ipynb) notebook for source code."
 
 # Plot the spatial weights matrix
 # This will visualize the spatial relationships between observations defined by the weights matrix W
@@ -224,7 +302,7 @@ moranLocal = Moran_Local(gdf['log_initial'], W, permutations=999, seed=12345)
 
 ```{code-cell} ipython3
 #| label: fig-dependence-initial
-#| fig-cap: "Spatial dependence in the initial level of luminosity <br> Note: See Regional convergence notebook for source code. <br> Source: Data from Chanda and Kabiraj (2000)."
+#| fig-cap: "Spatial dependence in the initial level of luminosity <br> Notes: Panel (a) shows the Moran scatterplot with Global Moran's I statistic. Panel (b) shows the LISA cluster map with statistically significant clusters at p < 0.05 based on 999 permutations. <br> Source: Data from Chanda and Kabiraj (2020). See [Spatial dependence](notebooks/c03_spatial_dependence_lisa.ipynb) notebook for source code."
 
 # Initialize the subplots
 f, ax = plt.subplots(1, 2, figsize=(14, 7))
@@ -302,7 +380,7 @@ moranLocal2 = Moran_Local(gdf['growth'], W, permutations=999, seed=12345)
 
 ```{code-cell} ipython3
 #| label: fig-dependence-growth
-#| fig-cap: "Spatial dependence in the growth rate of luminosity <br> Note: See Regional convergence notebook for source code. <br> Source: Data from Chanda and Kabiraj (2000)."
+#| fig-cap: "Spatial dependence in the growth rate of luminosity <br> Notes: Panel (a) shows the Moran scatterplot with Global Moran's I statistic. Panel (b) shows the LISA cluster map with statistically significant clusters at p < 0.05 based on 999 permutations. <br> Source: Data from Chanda and Kabiraj (2020). See [Spatial dependence](notebooks/c03_spatial_dependence_lisa.ipynb) notebook for source code."
 
 
 # Initialize the subplots
