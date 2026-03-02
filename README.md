@@ -108,6 +108,16 @@ bash scripts/clean-render.sh
 
 That's it. Step 2 reads `pyproject.toml` and `uv.lock` to install the exact same package versions used to produce the published results. Step 4 runs all notebooks and generates every output format.
 
+### Editor setup (optional)
+
+VS Code settings are **not tracked** because they contain machine-specific paths. A template is provided instead:
+
+```bash
+cp .vscode/settings.json.template .vscode/settings.json
+```
+
+This configures the Python interpreter and Jupytext extension to use the project's virtual environment. The template uses `${workspaceFolder}`, which VS Code resolves to your local project path automatically.
+
 ---
 
 ## Project Structure
@@ -154,6 +164,9 @@ project2025s/
 ├── index.pdf                  # Output: standard PDF (Letter)
 ├── index-REGION.pdf           # Output: REGION journal PDF (A4)
 ├── index.docx                 # Output: Microsoft Word
+│
+├── .vscode/
+│   └── settings.json.template # VS Code settings template (copy to settings.json)
 │
 ├── legacy/                    # Immutable archive of original project
 ├── log/                       # Session progress logs
