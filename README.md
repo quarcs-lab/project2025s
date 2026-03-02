@@ -69,7 +69,7 @@ This project combines several open-source tools. Each one plays a specific role 
 
 | Tool | What it does | Why we use it |
 | ---- | ------------ | ------------- |
-| [**Quarto**](https://quarto.org) | Renders the manuscript from a single source file into HTML, PDF, DOCX, and XML | Write once, publish everywhere --- one command generates all output formats |
+| [**Quarto**](https://quarto.org) | Renders the manuscript from a single source file into HTML, PDF, and DOCX | Write once, publish everywhere --- one command generates all output formats |
 | [**uv**](https://docs.astral.sh/uv/) | Manages Python packages and virtual environments | Deterministic builds --- `uv.lock` ensures everyone installs identical package versions |
 | [**Jupytext**](https://jupytext.readthedocs.io/) | Pairs notebooks (`.ipynb`) with readable Markdown files (`.md`) | Edit code in clean text files instead of JSON blobs; better for version control |
 | [**Jupyter**](https://jupyter.org) | Runs computational notebooks interactively | Mix code, output, and narrative in a single document |
@@ -102,7 +102,7 @@ uv sync
 # 3. Launch Jupyter to explore the notebooks
 uv run jupyter notebook
 
-# 4. Build the entire manuscript (HTML + PDF + DOCX + XML)
+# 4. Build the entire manuscript (HTML + PDF + DOCX)
 bash scripts/clean-render.sh
 ```
 
@@ -149,14 +149,11 @@ project2025s/
 ├── .python-version            # Python version pin (3.10)
 ├── requirements.txt           # Legacy fallback for pip / Google Colab
 ├── jupytext.toml              # Jupytext pairing convention
-├── config.py                  # Python paths and random seed
-├── config.R                   # R paths and random seed
 │
 ├── index.html                 # Output: interactive web manuscript
 ├── index.pdf                  # Output: standard PDF (Letter)
 ├── index-REGION.pdf           # Output: REGION journal PDF (A4)
 ├── index.docx                 # Output: Microsoft Word
-├── index.xml                  # Output: JATS XML
 │
 ├── legacy/                    # Immutable archive of original project
 ├── log/                       # Session progress logs
@@ -176,7 +173,7 @@ The entire project is built from a **single command**:
 bash scripts/clean-render.sh
 ```
 
-This script clears all caches, runs every notebook, and generates six output formats from the manuscript source (`index.qmd`). Here is what happens under the hood:
+This script clears all caches, runs every notebook, and generates four output formats from the manuscript source (`index.qmd`). Here is what happens under the hood:
 
 ```mermaid
 flowchart TB
@@ -200,13 +197,11 @@ flowchart TB
         H["index.pdf<br/><i>Standard PDF</i>"]
         I["index-REGION.pdf<br/><i>Journal PDF</i>"]
         J["index.docx<br/><i>MS Word</i>"]
-        K["index.xml<br/><i>JATS XML</i>"]
-        L["index-meca.zip<br/><i>MECA Bundle</i>"]
     end
 
     A --> C --> D
     B --> D
-    F --> G & H & I & J & K & L
+    F --> G & H & I & J
 
     style edit fill:#fef9e7,stroke:#f39c12
     style sync fill:#e8f4fd,stroke:#2874A6
@@ -222,9 +217,6 @@ flowchart TB
 | 2 | `quarto render index.qmd` | Full render: HTML + notebook previews + all formats |
 | 3 | `quarto render --to region-ersa/REGION-pdf` | Re-render REGION PDF with 4 LaTeX passes (fixes bibliography) |
 | 4 | `quarto render --to pdf` | Re-render standard PDF (restores LaTeX source) |
-| 5 | `zip -d index-meca.zip ...` | Strip `legacy/` and `log/` from MECA bundle |
-| 6 | `gh release upload ...` | Upload MECA bundle to GitHub Release |
-| 7 | `sed -i '' ...` | Fix MECA download link in `index.html` |
 
 > **Why 3 render passes instead of 1?** When Quarto renders all formats at once, the REGION journal PDF only gets 2 LaTeX passes instead of the 4 required for its `natbib`/`region.bst` bibliography processing. Rendering each PDF format separately avoids this issue.
 
@@ -391,7 +383,7 @@ The build script clears Quarto's embed caches, re-executes changed notebooks, an
 
 ## Output Formats
 
-One source file produces six output formats, each optimized for a different purpose:
+One source file produces four output formats, each optimized for a different purpose:
 
 | Output | Format | Purpose |
 | ------ | ------ | ------- |
@@ -399,8 +391,6 @@ One source file produces six output formats, each optimized for a different purp
 | [`index.pdf`](index.pdf) | Standard PDF (Letter) | General sharing, KOMA-Script, numeric citations |
 | [`index-REGION.pdf`](index-REGION.pdf) | REGION Journal PDF (A4) | Journal submission, author-year citations, line numbers |
 | [`index.docx`](index.docx) | Microsoft Word | Collaboration and commenting |
-| [`index.xml`](index.xml) | JATS XML | Machine-readable scholarly metadata |
-| `index-meca.zip` | MECA Bundle | Complete replication package for journal exchange |
 
 ### Two PDF formats explained
 
@@ -437,21 +427,13 @@ uv run python script.py    # Run a script in the project's venv
 uv run jupyter notebook    # Launch Jupyter in the project's venv
 ```
 
-### Analysis settings
-
-Both [`config.py`](config.py) and [`config.R`](config.R) set:
-
-- `RANDOM_SEED = 42` for reproducibility
-- Consistent directory paths for data, figures, and tables
-- Automatic directory creation on import/source
-
 ### Quarto configuration
 
 [`_quarto.yml`](_quarto.yml) defines:
 
 - Project type: `manuscript`
 - Registered notebooks and their display titles
-- All six output formats and their settings
+- All four output formats and their settings
 - `freeze: auto` --- only re-execute notebooks whose source has changed
 
 ---
@@ -510,4 +492,4 @@ Under the following terms:
 
 ---
 
-**Last updated:** February 22, 2026
+**Last updated:** March 2, 2026

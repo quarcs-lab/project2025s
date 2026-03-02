@@ -25,15 +25,22 @@ __pycache__/
 
 # Old output directories (no longer used)
 _manuscript/
-
-# MECA bundle (too large for GitHub)
 index-meca.zip
+
+# REGION extension format-resources (auto-copied to root during render)
+region.sty
+region.bst
+ERSA_logo.png
+CC-BY-88x31.png
+
+# Stata notebook build artifacts
+notebooks/c04_spillover_modeling.log
+notebooks/c04_spillover_modeling_table.md
 
 # Keep compiled outputs for transparency:
 # index.html
 # index.pdf
 # index.docx
-# index.xml
 # site_libs/
 # index_files/
 # images/

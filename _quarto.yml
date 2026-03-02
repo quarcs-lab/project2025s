@@ -24,6 +24,7 @@ format:
     keep-tex: true
     docstatus: review  # Options: review, final, uncorrected
     output-file: index-REGION
+    notebook-links: false
 
   # Main HTML format for GitHub Pages
   html:
@@ -60,8 +61,8 @@ format:
     # Format Links
     format-links: true
 
-  docx: default
-  jats: default
+  docx:
+    notebook-links: false
 
   # Standard PDF (distinct from REGION format)
   pdf:
@@ -71,6 +72,7 @@ format:
     colorlinks: true
     keep-tex: true  # For debugging/comparison
     output-file: index
+    notebook-links: false
 
 execute:
   freeze: auto

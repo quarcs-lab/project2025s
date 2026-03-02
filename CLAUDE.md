@@ -41,8 +41,6 @@ The `./legacy/` folder contains a complete snapshot of the original project stru
 - ALWAYS copy from `./legacy/` when you need original files
 - If reorganizing, copy files to new locations (never move)
 
-**MECA bundle:** The `legacy/` and `log/` directories are excluded from the MECA bundle. The MECA bundle is hosted via GitHub Releases (not in the repo). See the [MECA Bundle Hosting](#meca-bundle-hosting) section below for full details.
-
 ### 4. STAY WITHIN THIS DIRECTORY
 
 Under no circumstances are you ever to GO UP OUT OF THIS ONE FOLDER. All work must remain within this project directory.
@@ -88,7 +86,7 @@ The `./log/` directory contains progress logs that preserve conversation context
 - **Project Directory:** `/Users/carlosmendez/Documents/GitHub/project2025s`
 - **Legacy Directory:** `./legacy/`
 - **Log Directory:** `./log/`
-- **Primary Tools:** Quarto, Python, R, Stata, GitHub CLI (`gh`), Claude Code
+- **Primary Tools:** Quarto, Python, R, Stata, Claude Code
 - **Python Package Manager:** [uv](https://docs.astral.sh/uv/)
 - **Authors:** Carlos Mendez, Sujana Kabiraj, Jiaqi Li
 - **Primary Goal:** **Reproducible research using Quarto's single-source publishing paradigm**
@@ -161,8 +159,6 @@ uv run jupytext --sync notebooks/<file>   # Sync .md ↔ .ipynb after editing ei
      - `index-REGION.pdf` - REGION journal PDF (A4, author-year citations, line numbers)
      - `index.html` - Interactive web version (GitHub Pages)
      - `index.docx` - Microsoft Word format
-     - `index.xml` - JATS XML format
-     - `index-meca.zip` - MECA bundle (hosted via [GitHub Release](#meca-bundle-hosting))
    - Each format optimized for its purpose (submission, web, collaboration)
 
 2. **Computational Transparency**
@@ -187,7 +183,7 @@ uv run jupytext --sync notebooks/<file>   # Sync .md ↔ .ipynb after editing ei
 Edit index.qmd → Run "bash scripts/clean-render.sh" → All outputs generated automatically
 ```
 
-The script handles everything: cache clearing, separate PDF rendering, MECA stripping, release upload, and HTML link fixup.
+The script handles everything: cache clearing, separate PDF rendering, and LaTeX source preservation.
 
 **DO NOT complicate this workflow.** The simplicity is intentional and supports reproducibility.
 
@@ -488,7 +484,7 @@ quarto render index.qmd --to pdf
 # index.tex is now the standard LaTeX source
 
 # Other formats together (no conflict)
-quarto render index.qmd --to html --to docx --to jats
+quarto render index.qmd --to html --to docx
 ```
 
 **Note on LaTeX sources:** Quarto always writes the intermediate LaTeX to `index.tex` regardless of the `output-file` setting. The `mv` step after the REGION render preserves it as `index-REGION.tex` before the standard render overwrites it. After a full build you should have both:
@@ -521,57 +517,6 @@ grep "documentclass" index-REGION.tex   # → article, a4paper
 grep "documentclass" index.tex          # → scrartcl, letterpaper
 grep "usepackage{region" index-REGION.tex  # → should match
 grep "usepackage{region" index.tex         # → should NOT match
-```
-
-### MECA Bundle Hosting
-
-The MECA bundle (`index-meca.zip`) is the Manuscript Exchange Common Approach archive created automatically when Quarto renders the JATS format. It packages the article, source files, notebooks, and data for journal submission.
-
-#### Why it's not in the repo
-
-The MECA bundle exceeds GitHub's 100 MB file size limit (~102 MB after stripping `legacy/` and `log/`). It is listed in `.gitignore` and **must not** be committed to the repo.
-
-#### How it's hosted
-
-The bundle is hosted as a GitHub Release asset:
-
-- **Release tag:** `meca-bundle` (fixed, reused across builds)
-- **Download URL:** `https://github.com/quarcs-lab/project2025s/releases/download/meca-bundle/index-meca.zip`
-- **HTML link:** The `clean-render.sh` script post-processes `index.html` to replace the relative `href="index-meca.zip"` with the absolute release URL
-
-This ensures the "MECA Bundle" link in the HTML manuscript on GitHub Pages works for readers.
-
-#### What `clean-render.sh` does for MECA
-
-After rendering all formats, the script performs three MECA steps:
-
-1. **Strips excluded directories:** `zip -d` removes `source/legacy/*` and `source/log/*` from the bundle
-2. **Uploads to GitHub Release:** Creates the `meca-bundle` release if needed, then uploads/overwrites the asset via `gh release upload --clobber`
-3. **Fixes HTML link:** `sed` replaces the relative MECA link in `index.html` with the release URL
-
-#### Prerequisites
-
-- **`gh` CLI** must be installed and authenticated (`gh auth login`)
-- The `gh` token needs `repo` scope (to create releases and upload assets)
-- Without `gh` authentication, the build will fail at the upload step
-
-#### Verification
-
-```bash
-# Check release exists
-gh release view meca-bundle --repo quarcs-lab/project2025s
-
-# Verify HTML link points to release
-grep "meca" index.html
-# Should show: href="https://github.com/quarcs-lab/project2025s/releases/download/meca-bundle/index-meca.zip"
-
-# Verify no legacy/log in bundle
-python3 -c "
-import zipfile; z=zipfile.ZipFile('index-meca.zip')
-print('legacy:', [n for n in z.namelist() if 'legacy' in n])
-print('log:', [n for n in z.namelist() if '/log/' in n])
-"
-# Both should be []
 ```
 
 ### Reference Documentation
