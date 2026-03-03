@@ -183,6 +183,20 @@ The `slides/` folder contains Quarto RevealJS presentations for showcasing resul
 
 ---
 
+## Skills (Slash Commands)
+
+The `.claude/skills/` directory contains reusable workflows invoked as slash commands:
+
+| Command | Purpose |
+|---------|---------|
+| `/render` | Clean-render all manuscript outputs (HTML, PDF, REGION PDF, DOCX) |
+| `/proofread` | Academic tone audit with structured report and approval workflow |
+| `/bibtex-check` | Audit cited references for completeness; DOI-based metadata lookup |
+| `/sync-notebooks` | Sync Jupytext `.md` <-> `.ipynb` pairs |
+| `/log-progress` | Create a timestamped session log in `./log/` |
+
+---
+
 ## Session Workflow
 
 **Start:** Read `CLAUDE.md` -> Check `./log/` for recent progress -> Understand current state.

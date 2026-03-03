@@ -347,19 +347,19 @@
 %% SECTION 15: SPATIAL ECONOMETRICS AND REGIONAL ANALYSIS
 %% ========================================================================
 
-@article{lesage_pace_spatial_econometrics,
+@book{lesage_pace_spatial_econometrics,
   author = {LeSage, James P. and Pace, R. Kelley},
   title = {Introduction to Spatial Econometrics},
-  journal = {Chapman and Hall/CRC},
+  publisher = {Chapman and Hall/CRC},
   year = {2009},
   doi = {10.1201/9781420064254},
   abstract = {This book provides a comprehensive introduction to spatial econometric methods, covering both theoretical foundations and practical applications, with emphasis on proper interpretation of spatial models and the computation of direct, indirect, and total effects that correctly account for spatial feedback loops. The motivation for spatial econometrics stems from the recognition that economic and social phenomena often exhibit spatial dependence—the tendency for observations at nearby locations to be more similar than distant observations—and spatial heterogeneity—systematic variation in relationships across space. Ignoring spatial dependence can lead to biased and inconsistent parameter estimates, invalid inference, and incorrect policy conclusions, while failing to account for spatial heterogeneity can result in misspecified models that mask important local variations. Spatial econometric methods provide tools to model and test for these spatial patterns, to estimate models that incorporate spatial interactions, and to interpret results in ways that properly account for spatial spillovers and feedback effects. The book covers several classes of spatial models: the spatial autoregressive (SAR) or spatial lag model, which includes a spatially lagged dependent variable to capture spillovers where outcomes in one location directly affect outcomes in neighboring locations; the spatial error model (SEM), which allows for spatial correlation in the error term to account for unobserved spatially correlated factors; the spatial Durbin model (SDM), which includes both a spatial lag of the dependent variable and spatial lags of the independent variables, providing a flexible specification that nests SAR and SEM as special cases; and spatial panel models that extend these specifications to panel data with both spatial and temporal dimensions. A key methodological contribution emphasized throughout the book is the proper interpretation of spatial models through impact measures rather than naive inspection of regression coefficients. In spatial models with feedback loops, a change in an explanatory variable in one location affects not only the outcome in that location (the direct effect) but also outcomes in other locations through spatial spillovers (the indirect effect), and those spillover effects feed back to the original location, creating a spatial multiplier. The total effect is the sum of direct and indirect effects and represents the full impact of a variable change accounting for all spatial interactions. The authors develop formulas for computing these impact measures from estimated spatial models and provide software implementations that make the calculations accessible to practitioners. The book also covers practical issues in spatial econometric modeling: the construction and choice of spatial weight matrices that define the connectivity structure among observations, including contiguity-based weights, distance-based weights, and k-nearest-neighbor weights, along with guidance on how the choice of weights affects results and how to conduct sensitivity analysis; estimation methods for spatial models, including maximum likelihood, instrumental variables, and Bayesian approaches, with discussion of computational algorithms and software; specification testing to determine which spatial model is most appropriate for a given application, including tests for spatial dependence, tests for spatial error correlation, and model selection criteria; and handling of endogeneity, measurement error, and other econometric challenges in spatial settings. Applications covered in the book span regional economics, urban economics, real estate, transportation, environmental economics, and development economics, illustrating how spatial econometric methods can be applied to diverse empirical questions. The book provides numerous worked examples with real data and code, making it accessible to graduate students and applied researchers. Theoretical foundations are developed rigorously but with an emphasis on intuition and practical implementation rather than mathematical abstraction. The contribution of this work is to provide a unified and accessible treatment of spatial econometric methods that bridges theory and practice, to establish best practices for estimating and interpreting spatial models, and to equip researchers with the tools needed to properly account for spatial interactions in empirical work. The book has become a standard reference in spatial econometrics and is widely used in graduate courses and applied research. It has been particularly influential in promoting the use of impact measures for interpreting spatial models, which has become the standard approach in the literature and has corrected widespread misinterpretations of spatial regression coefficients. The methods and software developed in this book have been applied in thousands of studies across economics, geography, regional science, and related fields, and they have improved the rigor and credibility of empirical research on spatial phenomena. For researchers using nighttime lights and other spatially referenced data to study regional growth, convergence, and inequality, the spatial econometric methods covered in this book are essential tools for properly modeling spatial dependence, testing for spillovers, and interpreting results in ways that account for spatial feedback effects.}
 }
 
-@article{anselin_spatial_analysis,
+@book{anselin_spatial_analysis,
   author = {Anselin, Luc},
   title = {Spatial Econometrics: Methods and Models},
-  journal = {Springer},
+  publisher = {Springer},
   year = {1988},
   doi = {10.1007/978-94-015-7799-1},
   abstract = {This foundational book establishes the theoretical and methodological framework for spatial econometrics, providing rigorous treatments of spatial dependence, spatial heterogeneity, and the econometric challenges they pose, along with maximum likelihood and instrumental variables estimation methods for spatial models. The work is motivated by the observation that classical econometric methods, which assume independent and identically distributed observations, are often inappropriate for spatial data where observations are inherently interconnected through geographic proximity, economic linkages, or social networks. Spatial dependence violates the independence assumption and can arise from several sources: spatial spillovers where actions or outcomes in one location directly affect neighboring locations, common shocks that affect nearby locations similarly, and measurement error or aggregation that induces spatial correlation. Spatial heterogeneity refers to systematic variation in model parameters across space, reflecting differences in local conditions, institutions, or preferences. Both phenomena require specialized econometric methods to ensure consistent and efficient estimation and valid inference. The book develops the spatial autoregressive model as a core framework, where the dependent variable in one location depends on the dependent variable in neighboring locations through a spatial lag term, and the strength of spatial dependence is governed by a spatial autoregressive parameter and a spatial weight matrix that defines the connectivity structure. The spatial weight matrix is a key modeling choice that encodes assumptions about which locations interact and how strongly, and the book discusses various specifications including binary contiguity weights, inverse distance weights, and row-standardized weights that ensure each row sums to one. The spatial error model is developed as an alternative specification where spatial correlation enters through the error term rather than the dependent variable, which is appropriate when spatial dependence arises from unobserved spatially correlated factors rather than direct spillovers. The book also introduces the spatial Durbin model and other extensions that allow for richer patterns of spatial interaction. Estimation methods are a central focus: the book derives maximum likelihood estimators for spatial models, showing that ordinary least squares is inconsistent in the presence of spatial lags of the dependent variable due to endogeneity, and developing concentrated likelihood functions that can be maximized numerically. Instrumental variables and two-stage least squares methods are also developed as alternatives that can provide consistent estimates under certain conditions. The book addresses computational challenges in spatial econometrics, including the need to compute determinants of large matrices and to handle sparse weight matrices efficiently, and it provides algorithms and approximations that make estimation feasible for large datasets. Specification testing is covered extensively: the book develops Lagrange multiplier tests for spatial dependence that can be computed from OLS residuals and used to test whether spatial models are needed, tests for spatial error correlation versus spatial lag dependence to guide model selection, and tests for spatial heterogeneity and parameter instability across space. These tests have become standard diagnostic tools in applied spatial econometrics. The book also discusses issues of spatial heterogeneity and spatial regimes, where parameters vary systematically across regions, and it develops methods for estimating and testing regime-switching models. Applications to regional economics, urban economics, and real estate are used throughout to illustrate the methods and to motivate the theoretical developments. The contribution of this work is to provide the first comprehensive and rigorous treatment of spatial econometric theory and methods, to establish the mathematical and statistical foundations for spatial regression models, and to develop practical estimation and testing procedures that can be implemented by applied researchers. The book has been foundational for the field of spatial econometrics and has influenced generations of researchers working on spatial data. It established key concepts such as spatial weight matrices, spatial autoregressive processes, and the importance of accounting for spatial dependence in econometric modeling, and it provided the theoretical basis for subsequent methodological advances including Bayesian spatial models, spatial panel methods, and spatial models for limited dependent variables. For researchers using nighttime lights and other spatial data to study regional development, the methods developed in this book are essential for properly modeling spatial interactions, for testing whether spatial dependence is present, and for ensuring that parameter estimates and inference are valid in the presence of spatial correlation. The book remains a standard reference and is widely cited in applied work that uses spatial econometric methods.}
@@ -573,7 +573,7 @@
   publisher = {IOS Press}
 }
 
-@software{allaire_quarto,
+@misc{allaire_quarto,
   author = {Allaire, J.J. and Teague, Charles and Scheidegger, Carlos and Xie, Yihui and Dervieux, Christophe},
   title = {Quarto},
   year = {2024},
@@ -675,7 +675,10 @@
   author = {Mendez, Carlos and Santos-Marquez, Felipe},
   title = {Regional Convergence and Spatial Dependence across Subnational Regions of {ASEAN}: {Evidence} from Satellite Nighttime Light Data},
   journal = {Regional Science Policy and Practice},
-  year = {2020},
+  year = {2021},
+  volume = {13},
+  number = {6},
+  pages = {1750--1777},
   doi = {10.1111/rsp3.12335}
 }
 
@@ -703,6 +706,8 @@
   title = {Convergence Clubs and Spatial Structural Change in the {European Union}},
   journal = {Structural Change and Economic Dynamics},
   year = {2023},
+  volume = {67},
+  pages = {167--181},
   doi = {10.1016/j.strueco.2023.07.009}
 }
 
@@ -710,7 +715,10 @@
   author = {Tipayalai, Katikar and Mendez, Carlos},
   title = {Regional Convergence and Spatial Dependence in {Thailand}: {Global} and Local Assessments},
   journal = {Journal of the Asia Pacific Economy},
-  year = {2022},
+  year = {2024},
+  volume = {29},
+  number = {2},
+  pages = {693--720},
   doi = {10.1080/13547860.2022.2041286}
 }
 
@@ -718,7 +726,10 @@
   author = {Ursavas, Ugur and Mendez, Carlos},
   title = {Regional Income Convergence and Conditioning Factors in {Turkey}: {Revisiting} the Role of Spatial Dependence and Neighbor Effects},
   journal = {Annals of Regional Science},
-  year = {2022},
+  year = {2023},
+  volume = {71},
+  number = {2},
+  pages = {363--389},
   doi = {10.1007/s00168-022-01168-0}
 }
 
@@ -726,7 +737,10 @@
   author = {Miranti, Cani and Mendez, Carlos},
   title = {Social and Economic Convergence across Districts in {Indonesia}: {A} Spatial Econometric Approach},
   journal = {Bulletin of Indonesian Economic Studies},
-  year = {2022},
+  year = {2023},
+  volume = {59},
+  number = {3},
+  pages = {421--445},
   doi = {10.1080/00074918.2022.2071415}
 }
 
@@ -735,6 +749,9 @@
   title = {Can Higher-Quality Nighttime Lights Predict Sectoral {GDP} across Subnational Regions? {Urban} and Rural Luminosity across Provinces in {T\"urkiye}},
   journal = {Letters in Spatial and Resource Sciences},
   year = {2024},
+  volume = {17},
+  number = {1},
+  pages = {1--21},
   doi = {10.1007/s12076-024-00375-x}
 }
 
@@ -743,6 +760,9 @@
   title = {Predicting Subnational {GDP} in {Vietnam} with Remote Sensing Data: {A} Machine Learning Approach},
   journal = {Letters in Spatial and Resource Sciences},
   year = {2025},
+  volume = {18},
+  number = {1},
+  pages = {1--12},
   doi = {10.1007/s12076-025-00397-z}
 }
 
@@ -751,6 +771,8 @@
   title = {Mapping the Dimensions of Poverty through Big Data, Socioeconomic Surveys and Machine Learning in {Cambodia}},
   journal = {Social Indicators Research},
   year = {2025},
+  volume = {180},
+  pages = {1593--1618},
   doi = {10.1007/s11205-025-03718-3}
 }
 
