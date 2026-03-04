@@ -2,28 +2,8 @@
 title: "Regional growth, convergence, and spatial spillovers in India:"
 subtitle: "A reproducible view from outer space"
 
-# REGION-compatible author format
 author:
-  - name: "Carlos Mendez"
-    affiliations:
-      - name: "Nagoya University"
-        city: "Nagoya"
-        country: "Japan"
-    orcid: "0000-0001-7978-2815"
-    email: "carlosmendez777@gmail.com"
-    corresponding: true
-  - name: "Sujana Kabiraj"
-    affiliations:
-      - name: "Shiv Nadar University"
-        city: "Greater Noida"
-        country: "India"
-    orcid: "0000-0002-3844-1197"
-  - name: "Jiaqi Li"
-    affiliations:
-      - name: "Nagoya University"
-        city: "Nagoya"
-        country: "Japan"
-    orcid: "0000-0002-8888-1234"
+  - name: "Anonymous"
 
 abstract: |
   Using satellite nighttime light data as a proxy for economic activity, Chanda and Kabiraj (2020, World Development) studied regional growth and convergence across 520 districts in India.
@@ -531,5 +511,5 @@ The authors declare no conflict of interest.
 
 ## Data and Code Availability {.appendix}
 
-All data and computational code used in this study are available in the project repository: <https://github.com/quarcs-lab/project2025s>.
+All data and computational code used in this study are available in the project repository: [Repository URL removed for blind review].
 Also, the interactive HTML version of this manuscript (<https://quarcs-lab.github.io/project2025s/>) embeds the computational notebooks, allowing readers to inspect the complete analytical pipeline from raw data to published results.
