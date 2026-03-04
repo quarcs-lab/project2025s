@@ -53,7 +53,6 @@ import contextily as cx
 
 import libpysal
 from libpysal  import weights
-from libpysal.weights import Queen
 
 # Exploratory Spatial Data Analysis (ESDA) tools
 import mapclassify as mc
@@ -213,7 +212,7 @@ plt.show()
 
 ## Spatial weights and lags
 
-We construct a Queen contiguity weights matrix directly from the district geometries and row-normalize it, consistent with the weights used in the main econometric analysis.
+We construct a 6 nearest neighbors (6NN) spatial weights matrix from the district geometries and row-normalize it, consistent with the weights used in the main econometric analysis.
 
 +++
 
@@ -330,7 +329,7 @@ ax[1].set_axis_off()
 
 plt.tight_layout()
 try:
-    plt.savefig("../figures/lisaMAP1.png", dpi=150, bbox_inches='tight')
+    plt.savefig("../images/lisaMAP1.png", dpi=150, bbox_inches='tight')
 except OSError:
     pass  # Skip file export when running in Colab
 plt.show()
@@ -409,7 +408,7 @@ ax[1].set_axis_off()
 
 plt.tight_layout()
 try:
-    plt.savefig("../figures/lisaMAP2.png", dpi=150, bbox_inches='tight')
+    plt.savefig("../images/lisaMAP2.png", dpi=150, bbox_inches='tight')
 except OSError:
     pass  # Skip file export when running in Colab
 plt.show()

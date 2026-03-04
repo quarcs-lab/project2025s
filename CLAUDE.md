@@ -102,6 +102,12 @@ Edit index.qmd -> Run "bash scripts/clean-render.sh" -> All outputs generated
 
 **DO NOT complicate this workflow.**
 
+### Manuscript Formatting (`index.qmd`)
+
+- **One sentence per line** — each sentence starts on its own line (improves git diffs and collaborative editing)
+- **Blank lines** separate paragraphs and sections
+- **Exception:** Figure/table captions and YAML frontmatter may contain multiple sentences on one line
+
 ### How Notebooks Feed Into the Manuscript
 
 - Notebooks registered in `_quarto.yml` under `manuscript.notebooks`
@@ -111,6 +117,8 @@ Edit index.qmd -> Run "bash scripts/clean-render.sh" -> All outputs generated
 Current embeds:
 ```
 {{< embed notebooks/c02_regional_convergence_sc.ipynb#fig-convergence >}}
+{{< embed notebooks/c03_spatial_dependence_lisa.ipynb#fig-chorophleths >}}
+{{< embed notebooks/c03_spatial_dependence_lisa.ipynb#fig-Wmatrix6nn >}}
 {{< embed notebooks/c03_spatial_dependence_lisa.ipynb#fig-dependence-initial >}}
 {{< embed notebooks/c03_spatial_dependence_lisa.ipynb#fig-dependence-growth >}}
 ```
@@ -149,6 +157,7 @@ Preview pages are only generated during a full `quarto render` (no `--to` flags)
 - **Do NOT** use plain `quarto render index.qmd` after notebook changes (embed cache not invalidated)
 - **Do NOT** manually delete individual cache files — use `scripts/clean-render.sh`
 - **Do NOT** render all formats with a single `quarto render` — this silently degrades the REGION PDF (2 LaTeX passes instead of required 4). The script renders each PDF separately.
+- **Compilation errors?** Check [Quarto docs](https://quarto.org/docs/) and [GitHub Issues](https://github.com/quarto-dev/quarto-cli/issues) first. Verify version with `quarto --version`.
 
 ---
 
@@ -169,20 +178,6 @@ For detailed troubleshooting: [docs/region-troubleshooting.md](docs/region-troub
 
 ---
 
-## When Compilation Errors Occur
-
-**FIRST:** Check latest Quarto docs at <https://quarto.org/docs/> and GitHub Issues at <https://github.com/quarto-dev/quarto-cli/issues>. Verify version with `quarto --version`. Only then proceed with project-specific troubleshooting.
-
----
-
-## Slides Folder
-
-The `slides/` folder contains Quarto RevealJS presentations for showcasing results.
-
-**Style:** Titles in blue (#2874A6), bold emphasis in green (#229954), custom CSS embedded in `.qmd` files.
-
----
-
 ## Skills (Slash Commands)
 
 The `.claude/skills/` directory contains reusable workflows invoked as slash commands:
@@ -194,17 +189,10 @@ The `.claude/skills/` directory contains reusable workflows invoked as slash com
 | `/bibtex-check` | Audit cited references for completeness; DOI-based metadata lookup |
 | `/sync-notebooks` | Sync Jupytext `.md` <-> `.ipynb` pairs |
 | `/log-progress` | Create a timestamped session log in `./log/` |
+| `/one-sentence-per-line` | Reformat `index.qmd` to enforce one sentence per line |
 
 ---
 
-## Session Workflow
+## Session Checklist
 
-**Start:** Read `CLAUDE.md` -> Check `./log/` for recent progress -> Understand current state.
-
-**During:** Copy from `./legacy/` (never move) -> Save intermediate results -> Document decisions.
-
-**End:** Create `./log/YYYYMMDD_HHMM.md` with work summary, decisions, and next steps.
-
----
-
-**Remember:** Copy, don't move. Log your progress. When in doubt, ask.
+**Start:** Check `./log/` for recent entries. **End:** Write `./log/YYYYMMDD_HHMM.md`. **Always:** Copy, don't move. When in doubt, ask.

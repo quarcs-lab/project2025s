@@ -137,21 +137,22 @@ project2025s/
 │   ├── c04_spillover_modeling_6nn.ipynb    # N4: Spatial Durbin Models (Stata)
 │   └── c04_spillover_modeling_6nn.md       #     ↔ MyST Markdown (editable)
 │
-├── data/                      # Raw data (never modified by code)
+├── data/                      # Data (raw inputs + generated weights matrix)
 │   ├── india520.dta           #   Main dataset: 520 districts, 1996-2010
 │   ├── india520.geojson       #   District boundary polygons
-│   └── W_matrix.csv           #   Spatial weights matrix (Queen adjacency)
+│   ├── W_matrix.csv           #   Spatial weights matrix (6NN, row-normalized)
+│   ├── W_matrix.dta           #   Spatial weights matrix (Stata format)
+│   └── maps/                  #   GeoPackage files for mapping
 │
 ├── scripts/
 │   └── clean-render.sh        # Master build script (one command does everything)
 │
-├── figures/                   # Generated figures (LISA cluster maps)
-├── tables/                    # Generated tables (regression results)
-├── images/                    # Static images for the manuscript
-├── slides/                    # Quarto presentations
+├── images/                    # Manuscript images (luminosity maps + LISA cluster maps)
+├── tables/                    # Markdown table definitions
 │
 ├── _quarto.yml                # Quarto project configuration
 ├── _extensions/               # REGION journal LaTeX template
+├── docs/                      # Documentation (troubleshooting guides)
 ├── references.bib             # Bibliography
 │
 ├── pyproject.toml             # Python dependencies (source of truth)
@@ -378,7 +379,7 @@ The build script clears Quarto's embed caches, re-executes changed notebooks, an
 | Observations | 520 Indian administrative districts |
 | Time period | 1996--2010 |
 | Source | DMSP-OLS radiance-calibrated nighttime lights via Google Earth Engine |
-| Spatial weights | Queen adjacency matrix, row-normalized (520 x 520) |
+| Spatial weights | 6 nearest neighbors (6NN) matrix, row-normalized (520 x 520) |
 
 **Key variables:**
 
@@ -505,4 +506,4 @@ Under the following terms:
 
 ---
 
-**Last updated:** March 2, 2026
+**Last updated:** March 4, 2026
