@@ -521,7 +521,7 @@ The entire analytical pipeline is documented in computational Jupyter notebooks 
 Research results are automatically embedded within the manuscript through Quarto's publishing framework.
 Moreover, a single manuscript source generates multiple output formats: HTML, PDF, Microsoft Word, among others.
 The interactive HTML version is particulary useful as it allows readers to engage with interactive visualizations, easily inspect the code of multiple computational notebooks, and reevaluate the results in light of their source code.
-By hosting the complete codebase and data in a public Github repository and making the Python and R notebooks executable through Google Colaboratory, we aim to lower the barriers to replication and extensions.
+Finally, by hosting the complete codebase and data in a public Github repository and making the Python and R notebooks executable in the cloud through Google Colaboratory, we aim to encourage other researchers to further adopt reproducible open science practices that can strengthen the credibility and extendability of scientific research.
 
 
 ## Acknowledgments {.appendix}
