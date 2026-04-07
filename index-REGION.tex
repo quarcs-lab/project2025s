@@ -1096,6 +1096,102 @@ performance.
 
 \section{Discussion}\label{discussion}
 
+\subsection{Beyond the economy: Luminosity and cultural
+factors}\label{beyond-the-economy-luminosity-and-cultural-factors}
+
+Nighttime lights capture not just GDP but a composite of
+electrification, urbanization, infrastructure, and broader socioeconomic
+conditions
+\citep{henderson_storeygard_weil_lights, mellander_etal_lights_gdp}.
+This multi-dimensional nature invites exploration of how luminosity
+relates to socioeconomic indicators beyond strictly economic output.
+
+A growing literature argues that regional cultural attitudes constitute
+an independent factor in economic development, not merely a by-product
+of income or institutions. \citet{tubadji_cultural_entropy} proposes a
+Culture-Based Development framework demonstrating that cultural
+participation patterns---measured through revealed preferences in
+household expenditure and survey data---predict regional economic
+trajectories independently of standard economic variables. For India,
+the National Sample Survey (NSS) 47th Round (1991--92) provides
+state-level data on six dimensions of cultural participation: live
+cultural performance, cultural telecast (TV/media), socio-cultural
+participation, cultural heritage and religion, live cultural shows, and
+sports.
+
+With nighttime lights data for the same period (1992) now available for
+all 32 Indian states and union territories, we can examine the extent to
+which luminosity is associated with regional cultural patterns.
+Figure~\ref{fig-culture-scatter} presents the relationship between log
+nighttime lights per capita and the two cultural dimensions that show
+statistically significant associations. Cultural telecast (TV/media)
+exhibits a positive association (Spearman \(\rho\) = 0.370, \(p\) =
+0.037): states with higher luminosity consume more culture through
+television and media. Socio-cultural participation, by contrast, shows a
+significant negative association (Pearson \(r\) = \$-\$0.476, \(p\) =
+0.006): community-based cultural engagement is stronger in less luminous
+states.
+
+::: \{.cell \_sphinx\_cell\_id=`9142a698-d0a7-431c-b2f8-39059527779b'
+quarto-private-1=`\{``key'':``execution'',``value'':\{``iopub.execute\_input'':``2026-04-07T12:48:36.114102Z'',``iopub.status.busy'':``2026-04-07T12:48:36.113779Z'',``iopub.status.idle'':``2026-04-07T12:48:36.755002Z'',``shell.execute\_reply'':``2026-04-07T12:48:36.752945Z''\}\}'
+execution\_count=15\}
+
+\begin{figure}[H]
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-latex/notebooks-c06_spatial_culture-fig-culture-scatter-output-1.png}}
+
+}
+
+\caption{\label{fig-culture-scatter}Relationship between nightlight
+luminosity and cultural participation across 32 Indian states}
+
+\end{figure}%
+
+:::
+
+Figure~\ref{fig-culture-lisa} presents LISA cluster maps for these two
+cultural variables. Both dimensions exhibit significant spatial
+autocorrelation, indicating that cultural participation is not randomly
+distributed across Indian states but follows distinct geographic
+patterns. The spatial clustering of cultural telecast broadly mirrors
+the economic geography documented in earlier sections of this article,
+with states in the western and southern regions forming high-high
+clusters while northeastern and eastern states form distinct
+community-participation clusters.
+
+::: \{.cell \_sphinx\_cell\_id=`a32b1986-b694-4d46-8515-10330843efc7'
+quarto-private-1=`\{``key'':``execution'',``value'':\{``iopub.execute\_input'':``2026-04-07T12:48:36.757818Z'',``iopub.status.busy'':``2026-04-07T12:48:36.757511Z'',``iopub.status.idle'':``2026-04-07T12:48:41.012648Z'',``shell.execute\_reply'':``2026-04-07T12:48:41.011236Z''\}\}'
+execution\_count=16\}
+
+\begin{figure}[H]
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-latex/notebooks-c06_spatial_culture-fig-culture-lisa-output-1.png}}
+
+}
+
+\caption{\label{fig-culture-lisa}LISA cluster maps of cultural
+participation across 32 Indian states}
+
+\end{figure}%
+
+:::
+
+These patterns suggest that economic development does not uniformly
+increase or decrease cultural participation but rather transforms its
+character. More luminous regions consume culture through modern media
+infrastructure, while less luminous regions sustain culture through
+community and religious engagement. The full exploration of all six
+cultural indicators, including correlation analysis and additional
+spatial clustering maps, is available in the accompanying computational
+notebook. This preliminary evidence points to a richer relationship
+between luminosity and socioeconomic life than GDP alone captures,
+opening a direction for future research that integrates cultural
+economics with satellite-based measurement.
+
 \subsection{Better luminosity data from
 VIIRS}\label{better-luminosity-data-from-viirs}
 
