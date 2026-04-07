@@ -390,7 +390,7 @@
        <p>This notebook examines the relationship between economic development (nighttime lights per capita, 1992) and cultural participation (NSS 47th Round, 1991-92) across all 32 Indian states and union territories. It extends the analysis in c05 by using a newly compiled NTL dataset that covers all 32 regions, resolving the previous data limitation of 7 missing states.</p>
 <section id="setup-and-data-loading" class="level2">
 <h2 class="anchored" data-anchor-id="setup-and-data-loading">1. Setup and Data Loading</h2>
-<p>::: {#a3 .cell _sphinx_cell_id=‘cf972694-1142-45a6-aba6-f25f970e7fc0’ quarto-private-1=‘{“key”:“execution”,“value”:{“iopub.execute_input”:“2026-04-07T12:48:21.194750Z”,“iopub.status.busy”:“2026-04-07T12:48:21.194218Z”,“iopub.status.idle”:“2026-04-07T12:48:25.729149Z”,“shell.execute_reply”:“2026-04-07T12:48:25.727015Z”}}’ execution_count=1}</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [1]:</pre></div><div id="a3" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
@@ -401,8 +401,8 @@
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> esda.moran <span class="im">import</span> Moran, Moran_Local</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> splot.esda <span class="im">import</span> moran_scatterplot, lisa_cluster</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> contextily <span class="im">as</span> cx</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>:::</p>
-<p>::: {#a4 .cell _sphinx_cell_id=‘74b2c96c-91c5-4ac0-8a41-dfefdeb69d0e’ quarto-private-1=‘{“key”:“execution”,“value”:{“iopub.execute_input”:“2026-04-07T12:48:25.732194Z”,“iopub.status.busy”:“2026-04-07T12:48:25.731770Z”,“iopub.status.idle”:“2026-04-07T12:48:25.894430Z”,“shell.execute_reply”:“2026-04-07T12:48:25.892510Z”}}’ execution_count=2}</p>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div id="a4" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load cultural data (NSS 47th Round, 1991-92)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df_culture <span class="op">=</span> pd.read_stata(<span class="st">"../data/Cultural_Data_India/Final_state_LC_CH.dta"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Cultural data: </span><span class="sc">{</span>df_culture<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> states, </span><span class="sc">{</span>df_culture<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> columns"</span>)</span>
@@ -419,8 +419,8 @@
 NTL data: 32 states, 6 columns
 Map: 32 regions</code></pre>
 </div>
-<p>:::</p>
-<p>::: {#a5 .cell _sphinx_cell_id=‘264697db-3baf-451b-b83c-1b6d5f87eeae’ quarto-private-1=‘{“key”:“execution”,“value”:{“iopub.execute_input”:“2026-04-07T12:48:25.897074Z”,“iopub.status.busy”:“2026-04-07T12:48:25.896729Z”,“iopub.status.idle”:“2026-04-07T12:48:25.909126Z”,“shell.execute_reply”:“2026-04-07T12:48:25.908067Z”}}’ execution_count=3}</p>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div id="a5" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge all three datasets</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>gdf <span class="op">=</span> gdf32.merge(df_culture, left_on<span class="op">=</span><span class="st">"region"</span>, right_on<span class="op">=</span><span class="st">"State_num"</span>, how<span class="op">=</span><span class="st">"left"</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>gdf <span class="op">=</span> gdf.merge(df_ntl[[<span class="st">"region"</span>, <span class="st">"ln_ntl_pc"</span>]], on<span class="op">=</span><span class="st">"region"</span>, how<span class="op">=</span><span class="st">"left"</span>)</span>
@@ -451,12 +451,12 @@ States with NTL data: 32/32
 Log NTL per capita: range [6.713, 9.608]
 Mean: 8.286, Std: 0.768</code></pre>
 </div>
-<p>:::</p>
+</div></div>
 </section>
 <section id="choropleth-maps-log-ntl-vs-cultural-variables" class="level2">
 <h2 class="anchored" data-anchor-id="choropleth-maps-log-ntl-vs-cultural-variables">2. Choropleth Maps — Log NTL vs Cultural Variables</h2>
 <p>Comparing the spatial distribution of economic development (log NTL per capita) with key cultural participation variables across all 32 states.</p>
-<p>::: {#a7 .cell _sphinx_cell_id=‘d96be8b0-64d4-4148-869e-868fb1ac442f’ quarto-private-1=‘{“key”:“execution”,“value”:{“iopub.execute_input”:“2026-04-07T12:48:25.911896Z”,“iopub.status.busy”:“2026-04-07T12:48:25.911651Z”,“iopub.status.idle”:“2026-04-07T12:48:27.213463Z”,“shell.execute_reply”:“2026-04-07T12:48:27.212498Z”}}’ execution_count=4}</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div id="a7" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cultural_compare <span class="op">=</span> [<span class="st">"LC_Telecast"</span>, <span class="st">"CH_relig"</span>, <span class="st">"SC"</span>]</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>cultural_labels <span class="op">=</span> {</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"LC_Telecast"</span>: <span class="st">"Cultural Telecast (TV/Media)"</span>,</span>
@@ -496,18 +496,18 @@ Mean: 8.286, Std: 0.768</code></pre>
 <span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(hspace<span class="op">=</span><span class="fl">0.15</span>, wspace<span class="op">=</span><span class="fl">0.05</span>)</span>
 <span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div>
+<div class="">
 <figure class="figure">
-<p><a href="c06_spatial_culture_files/figure-html/cell-5-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="c06_spatial_culture_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></a></p>
+<p class=""><a href="c06_spatial_culture_files/figure-html/cell-5-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="c06_spatial_culture_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
-<p>:::</p>
+</div></div>
 </section>
 <section id="scatter-plots-log-ntl-vs-cultural-variables" class="level2">
 <h2 class="anchored" data-anchor-id="scatter-plots-log-ntl-vs-cultural-variables">3. Scatter Plots — Log NTL vs Cultural Variables</h2>
 <p>Each scatter plot shows the relationship between log NTL per capita (x-axis) and a cultural participation variable (y-axis) for all 32 states.</p>
-<p>::: {#a9 .cell _sphinx_cell_id=‘23659dad-f0ba-4c15-81e2-38b15b8a0c41’ quarto-private-1=‘{“key”:“execution”,“value”:{“iopub.execute_input”:“2026-04-07T12:48:27.220148Z”,“iopub.status.busy”:“2026-04-07T12:48:27.219562Z”,“iopub.status.idle”:“2026-04-07T12:48:28.663573Z”,“shell.execute_reply”:“2026-04-07T12:48:28.661950Z”}}’ execution_count=5}</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div id="a9" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">13</span>))</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>axes <span class="op">=</span> axes.flatten()</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -551,18 +551,18 @@ Mean: 8.286, Std: 0.768</code></pre>
 <span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(hspace<span class="op">=</span><span class="fl">0.35</span>, wspace<span class="op">=</span><span class="fl">0.3</span>)</span>
 <span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div>
+<div class="">
 <figure class="figure">
-<p><a href="c06_spatial_culture_files/figure-html/cell-6-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="c06_spatial_culture_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></a></p>
+<p class=""><a href="c06_spatial_culture_files/figure-html/cell-6-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="c06_spatial_culture_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
-<p>:::</p>
+</div></div>
 </section>
 <section id="correlation-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="correlation-analysis">4. Correlation Analysis</h2>
 <p>Pearson and Spearman correlation matrices, plus a significance table comparing all cultural variables with log NTL per capita.</p>
-<p>::: {#a11 .cell _sphinx_cell_id=‘c530fafa-8d92-4e16-8180-2e79b6fdc331’ quarto-private-1=‘{“key”:“execution”,“value”:{“iopub.execute_input”:“2026-04-07T12:48:28.669680Z”,“iopub.status.busy”:“2026-04-07T12:48:28.668909Z”,“iopub.status.idle”:“2026-04-07T12:48:29.316936Z”,“shell.execute_reply”:“2026-04-07T12:48:29.315946Z”}}’ execution_count=6}</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div id="a11" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>corr_vars <span class="op">=</span> [<span class="st">"ln_ntl_pc"</span>] <span class="op">+</span> variables</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>corr_labels <span class="op">=</span> {</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ln_ntl_pc"</span>: <span class="st">"Log NTL p.c."</span>,</span>
@@ -600,14 +600,14 @@ Mean: 8.286, Std: 0.768</code></pre>
 <span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(wspace<span class="op">=</span><span class="fl">0.4</span>)</span>
 <span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div>
+<div class="">
 <figure class="figure">
-<p><a href="c06_spatial_culture_files/figure-html/cell-7-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="c06_spatial_culture_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></a></p>
+<p class=""><a href="c06_spatial_culture_files/figure-html/cell-7-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="c06_spatial_culture_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
-<p>:::</p>
-<p>::: {#a12 .cell _sphinx_cell_id=‘50241277-19ee-48ee-b62a-5bfd4f1d25e6’ quarto-private-1=‘{“key”:“execution”,“value”:{“iopub.execute_input”:“2026-04-07T12:48:29.319080Z”,“iopub.status.busy”:“2026-04-07T12:48:29.318852Z”,“iopub.status.idle”:“2026-04-07T12:48:29.336346Z”,“shell.execute_reply”:“2026-04-07T12:48:29.335061Z”}}’ execution_count=7}</p>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div id="a12" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Significance table</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Correlation of Log NTL per Capita (1992) with Cultural Variables"</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">75</span>)</span>
@@ -643,12 +643,12 @@ Sports Participation                   -0.046       0.801      -0.020       0.91
 Significance: * p &lt; 0.05, . p &lt; 0.10
 N = 32 states</code></pre>
 </div>
-<p>:::</p>
+</div></div>
 </section>
 <section id="lisa-cluster-maps-log-ntl-vs-cultural-variables" class="level2">
 <h2 class="anchored" data-anchor-id="lisa-cluster-maps-log-ntl-vs-cultural-variables">5. LISA Cluster Maps — Log NTL vs Cultural Variables</h2>
 <p>Local Indicators of Spatial Association (LISA) for log NTL per capita and cultural variables. Spatial weights: 6-nearest neighbors, row-standardized. Permutations: 999, p &lt; 0.05.</p>
-<p>::: {#a14 .cell _sphinx_cell_id=‘cd8b6c38-1109-4c02-b2b9-3c8a6d4b9aab’ quarto-private-1=‘{“key”:“execution”,“value”:{“iopub.execute_input”:“2026-04-07T12:48:29.339617Z”,“iopub.status.busy”:“2026-04-07T12:48:29.339319Z”,“iopub.status.idle”:“2026-04-07T12:48:29.348122Z”,“shell.execute_reply”:“2026-04-07T12:48:29.347002Z”}}’ execution_count=8}</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [8]:</pre></div><div id="a14" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build spatial weights matrix (6-nearest neighbors)</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>W <span class="op">=</span> weights.KNN.from_dataframe(gdf, k<span class="op">=</span><span class="dv">6</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>W.transform <span class="op">=</span> <span class="st">"r"</span></span>
@@ -656,8 +656,8 @@ N = 32 states</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Spatial weights: 32 regions, k=6, row-standardized</code></pre>
 </div>
-<p>:::</p>
-<p>::: {#a15 .cell _sphinx_cell_id=‘94364241-678e-4d83-8411-a3c708621a15’ quarto-private-1=‘{“key”:“execution”,“value”:{“iopub.execute_input”:“2026-04-07T12:48:29.350909Z”,“iopub.status.busy”:“2026-04-07T12:48:29.350665Z”,“iopub.status.idle”:“2026-04-07T12:48:29.475104Z”,“shell.execute_reply”:“2026-04-07T12:48:29.473682Z”}}’ execution_count=9}</p>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [9]:</pre></div><div id="a15" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Global Moran's I for log NTL and all cultural variables</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>all_vars <span class="op">=</span> [<span class="st">"ln_ntl_pc"</span>] <span class="op">+</span> variables</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>all_var_labels <span class="op">=</span> {<span class="st">"ln_ntl_pc"</span>: <span class="st">"Log NTL per Capita (1992)"</span>}</span>
@@ -690,8 +690,8 @@ Live Cultural Shows                    -0.083     0.289           No
 Sports Participation                    0.196     0.012        Yes *
 -----------------------------------------------------------------</code></pre>
 </div>
-<p>:::</p>
-<p>::: {#a16 .cell _sphinx_cell_id=‘cad90b83-21ec-449b-b741-d8369b921276’ quarto-private-1=‘{“key”:“execution”,“value”:{“iopub.execute_input”:“2026-04-07T12:48:29.479146Z”,“iopub.status.busy”:“2026-04-07T12:48:29.478817Z”,“iopub.status.idle”:“2026-04-07T12:48:34.649540Z”,“shell.execute_reply”:“2026-04-07T12:48:34.648039Z”}}’ execution_count=10}</p>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [10]:</pre></div><div id="a16" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute LISA for log NTL and each cultural variable</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>lisa_ntl <span class="op">=</span> Moran_Local(gdf[<span class="st">"ln_ntl_pc"</span>].values, W, permutations<span class="op">=</span><span class="dv">999</span>, seed<span class="op">=</span><span class="dv">12345</span>)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -732,14 +732,14 @@ Sports Participation                    0.196     0.012        Yes *
 <span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(hspace<span class="op">=</span><span class="fl">0.12</span>, wspace<span class="op">=</span><span class="fl">0.05</span>)</span>
 <span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div>
+<div class="">
 <figure class="figure">
-<p><a href="c06_spatial_culture_files/figure-html/cell-11-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="c06_spatial_culture_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></a></p>
+<p class=""><a href="c06_spatial_culture_files/figure-html/cell-11-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="c06_spatial_culture_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
-<p>:::</p>
-<p>::: {#a17 .cell _sphinx_cell_id=‘713df627-a32d-41f9-8624-247c8448f8cf’ quarto-private-1=‘{“key”:“execution”,“value”:{“iopub.execute_input”:“2026-04-07T12:48:34.654418Z”,“iopub.status.busy”:“2026-04-07T12:48:34.653960Z”,“iopub.status.idle”:“2026-04-07T12:48:35.701000Z”,“shell.execute_reply”:“2026-04-07T12:48:35.699281Z”}}’ execution_count=11}</p>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [11]:</pre></div><div id="a17" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Moran scatterplots</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>all_lisa <span class="op">=</span> {<span class="st">"ln_ntl_pc"</span>: lisa_ntl}</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>all_lisa.update(lisa_cultural)</span>
@@ -772,18 +772,18 @@ Sports Participation                    0.196     0.012        Yes *
 <span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(hspace<span class="op">=</span><span class="fl">0.45</span>, wspace<span class="op">=</span><span class="fl">0.3</span>)</span>
 <span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div>
+<div class="">
 <figure class="figure">
-<p><a href="c06_spatial_culture_files/figure-html/cell-12-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="c06_spatial_culture_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></a></p>
+<p class=""><a href="c06_spatial_culture_files/figure-html/cell-12-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="c06_spatial_culture_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
-<p>:::</p>
+</div></div>
 </section>
 <section id="high-vs-low-development-cultural-profiles" class="level2">
 <h2 class="anchored" data-anchor-id="high-vs-low-development-cultural-profiles">6. High vs Low Development: Cultural Profiles</h2>
 <p>Comparing the average cultural participation of states above and below the median log NTL per capita.</p>
-<p>::: {#a19 .cell _sphinx_cell_id=‘3a38bf12-b620-42b9-9155-0ce0dd009962’ quarto-private-1=‘{“key”:“execution”,“value”:{“iopub.execute_input”:“2026-04-07T12:48:35.705202Z”,“iopub.status.busy”:“2026-04-07T12:48:35.704899Z”,“iopub.status.idle”:“2026-04-07T12:48:35.915339Z”,“shell.execute_reply”:“2026-04-07T12:48:35.914134Z”}}’ execution_count=12}</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [12]:</pre></div><div id="a19" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split states into high/low development groups</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>median_ntl <span class="op">=</span> gdf[<span class="st">"ln_ntl_pc"</span>].median()</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>gdf[<span class="st">"dev_group"</span>] <span class="op">=</span> np.where(</span>
@@ -850,9 +850,9 @@ Live Cultural Shows             0.1159  -0.0422
 Sports Participation           -0.0258   0.0112</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<div>
+<div class="">
 <figure class="figure">
-<p><a href="c06_spatial_culture_files/figure-html/cell-13-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="c06_spatial_culture_files/figure-html/cell-13-output-2.png" class="img-fluid figure-img"></a></p>
+<p class=""><a href="c06_spatial_culture_files/figure-html/cell-13-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="c06_spatial_culture_files/figure-html/cell-13-output-2.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -867,12 +867,12 @@ Cultural Heritage &amp; Religion        U =    100  p = 0.300
 Live Cultural Shows                 U =    175  p = 0.080  .
 Sports Participation                U =    115  p = 0.638   </code></pre>
 </div>
-<p>:::</p>
+</div></div>
 </section>
 <section id="summary-and-comparison-with-c05" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-comparison-with-c05">7. Summary and Comparison with c05</h2>
 <p>The table below compares the Pearson correlations between NTL and cultural variables from c05 (25 states, district-aggregated NTL from 1996) and this notebook (32 states, state-level NTL from 1992).</p>
-<p>::: {#a21 .cell _sphinx_cell_id=‘1523da13-5ee7-4640-964d-8554915d1b1e’ quarto-private-1=‘{“key”:“execution”,“value”:{“iopub.execute_input”:“2026-04-07T12:48:35.918153Z”,“iopub.status.busy”:“2026-04-07T12:48:35.917904Z”,“iopub.status.idle”:“2026-04-07T12:48:35.929772Z”,“shell.execute_reply”:“2026-04-07T12:48:35.927745Z”}}’ execution_count=13}</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [13]:</pre></div><div id="a21" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># c05 results (N=25, NTL Index from district-aggregated 1996 data)</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>c05_results <span class="op">=</span> {</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"LC_Performance"</span>:  {<span class="st">"r"</span>:  <span class="fl">0.165</span>, <span class="st">"p"</span>: <span class="fl">0.432</span>},</span>
@@ -922,8 +922,8 @@ Sports Participation                  0.085    0.687      -0.046    0.801
 Significance: * p &lt; 0.05, . p &lt; 0.10
 c05: N=25, district-aggregated NTL (1996) | c06: N=32, state-level NTL (1992)</code></pre>
 </div>
-<p>:::</p>
-<p>::: {#a22 .cell _sphinx_cell_id=‘fb045c9b-676a-4370-b8d7-f3fb368e1e82’ quarto-private-1=‘{“key”:“execution”,“value”:{“iopub.execute_input”:“2026-04-07T12:48:35.933682Z”,“iopub.status.busy”:“2026-04-07T12:48:35.933197Z”,“iopub.status.idle”:“2026-04-07T12:48:36.111072Z”,“shell.execute_reply”:“2026-04-07T12:48:36.110037Z”}}’ execution_count=14}</p>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [14]:</pre></div><div id="a22" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visual comparison: c05 vs c06 correlations</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="bu">len</span>(variables))</span>
@@ -961,13 +961,13 @@ c05: N=25, district-aggregated NTL (1996) | c06: N=32, state-level NTL (1992)</c
 <span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div>
+<div class="">
 <figure class="figure">
-<p><a href="c06_spatial_culture_files/figure-html/cell-15-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="c06_spatial_culture_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></a></p>
+<p class=""><a href="c06_spatial_culture_files/figure-html/cell-15-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="c06_spatial_culture_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
-<p>:::</p>
+</div></div>
 </section>
 <section id="findings" class="level2">
 <h2 class="anchored" data-anchor-id="findings">Findings</h2>
@@ -989,7 +989,7 @@ c05: N=25, district-aggregated NTL (1996) | c06: N=32, state-level NTL (1992)</c
 <li><strong>Figure 1</strong> shows the scatter-plot relationship for the two key cultural variables.</li>
 <li><strong>Figure 2</strong> compares LISA spatial clusters of economic activity with those of the key cultural variables.</li>
 </ul>
-<p>::: {#cell-fig-culture-scatter .cell _sphinx_cell_id=‘9142a698-d0a7-431c-b2f8-39059527779b’ quarto-private-1=‘{“key”:“execution”,“value”:{“iopub.execute_input”:“2026-04-07T12:48:36.114102Z”,“iopub.status.busy”:“2026-04-07T12:48:36.113779Z”,“iopub.status.idle”:“2026-04-07T12:48:36.755002Z”,“shell.execute_reply”:“2026-04-07T12:48:36.752945Z”}}’ execution_count=15}</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [15]:</pre></div><div id="cell-fig-culture-scatter" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Key variables for the core message</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>key_vars <span class="op">=</span> [<span class="st">"LC_Telecast"</span>, <span class="st">"SC"</span>]</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>key_labels <span class="op">=</span> {</span>
@@ -1059,7 +1059,7 @@ c05: N=25, district-aggregated NTL (1996) | c06: N=32, state-level NTL (1992)</c
 <div class="cell-output cell-output-display">
 <div id="fig-culture-scatter" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-culture-scatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="fig-culture-scatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
 <a href="c06_spatial_culture_files/figure-html/fig-culture-scatter-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Figure&nbsp;1: Relationship between nightlight luminosity and cultural participation across 32 Indian states"><img src="c06_spatial_culture_files/figure-html/fig-culture-scatter-output-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-culture-scatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1068,8 +1068,8 @@ Figure&nbsp;1: Relationship between nightlight luminosity and cultural participa
 </figure>
 </div>
 </div>
-<p>:::</p>
-<p>::: {#cell-fig-culture-lisa .cell _sphinx_cell_id=‘a32b1986-b694-4d46-8515-10330843efc7’ quarto-private-1=‘{“key”:“execution”,“value”:{“iopub.execute_input”:“2026-04-07T12:48:36.757818Z”,“iopub.status.busy”:“2026-04-07T12:48:36.757511Z”,“iopub.status.idle”:“2026-04-07T12:48:41.012648Z”,“shell.execute_reply”:“2026-04-07T12:48:41.011236Z”}}’ execution_count=16}</p>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [16]:</pre></div><div id="cell-fig-culture-lisa" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reproject to Web Mercator for basemap overlay</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>gdf_wm <span class="op">=</span> gdf.to_crs(epsg<span class="op">=</span><span class="dv">3857</span>)</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1129,7 +1129,7 @@ Figure&nbsp;1: Relationship between nightlight luminosity and cultural participa
 <div class="cell-output cell-output-display">
 <div id="fig-culture-lisa" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-culture-lisa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="fig-culture-lisa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
 <a href="c06_spatial_culture_files/figure-html/fig-culture-lisa-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Figure&nbsp;2: LISA cluster maps of cultural participation across 32 Indian states"><img src="c06_spatial_culture_files/figure-html/fig-culture-lisa-output-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-culture-lisa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1138,7 +1138,7 @@ Figure&nbsp;2: LISA cluster maps of cultural participation across 32 Indian stat
 </figure>
 </div>
 </div>
-<p>:::</p>
+</div></div>
 </section>
      </main>
 <!-- /main column -->  <script id="quarto-html-after-body" type="application/javascript">
