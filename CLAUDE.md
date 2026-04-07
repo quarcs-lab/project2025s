@@ -71,6 +71,8 @@ Each notebook in `notebooks/` is paired with a MyST Markdown `.md` file via [Jup
 | `c02_regional_convergence_sc.ipynb` | `c02_regional_convergence_sc.md` | R |
 | `c03_spatial_dependence_lisa.ipynb` | `c03_spatial_dependence_lisa.md` | Python |
 | `c04_spillover_modeling_6nn.ipynb` | `c04_spillover_modeling_6nn.md` | Stata |
+| `c05_spatial_culture.ipynb` | — (no Jupytext pair) | Python |
+| `c06_spatial_culture.ipynb` | — (no Jupytext pair) | Python |
 
 ```bash
 uv run jupytext --sync notebooks/<file>   # Sync .md <-> .ipynb
@@ -121,6 +123,8 @@ Current embeds:
 {{< embed notebooks/c03_spatial_dependence_lisa.ipynb#fig-Wmatrix6nn >}}
 {{< embed notebooks/c03_spatial_dependence_lisa.ipynb#fig-dependence-initial >}}
 {{< embed notebooks/c03_spatial_dependence_lisa.ipynb#fig-dependence-growth >}}
+{{< embed notebooks/c06_spatial_culture.ipynb#fig-culture-scatter >}}
+{{< embed notebooks/c06_spatial_culture.ipynb#fig-culture-lisa >}}
 ```
 
 ### Updating Notebooks
@@ -134,6 +138,24 @@ Current embeds:
 2. Add to `manuscript.notebooks` in `_quarto.yml`
 3. Add `{{< embed >}}` references in `index.qmd`
 4. Run `bash scripts/clean-render.sh`
+
+### Notebook Execution Metadata (IMPORTANT)
+
+`jupyter execute --inplace` injects `_sphinx_cell_id` and `execution` timestamps into cell metadata. Quarto renders these as raw HTML div attributes, polluting both the manuscript and notebook preview pages. **Always strip metadata after execution, before render:**
+
+```python
+import json
+with open('notebooks/NOTEBOOK.ipynb') as f:
+    nb = json.load(f)
+for cell in nb['cells']:
+    for key in list(cell.get('metadata', {}).keys()):
+        if key in ('_sphinx_cell_id', 'execution', 'scrolled'):
+            del cell['metadata'][key]
+with open('notebooks/NOTEBOOK.ipynb', 'w') as f:
+    json.dump(nb, f, indent=1)
+```
+
+**Quarto cell labels (`#| label:`) must be the FIRST line** of a code cell — no imports or blank lines before them, or `{{< embed >}}` will fail with "cell does not exist."
 
 ### Cache Architecture
 
@@ -152,6 +174,7 @@ Preview pages are only generated during a full `quarto render` (no `--to` flags)
 
 ### Important Warnings
 
+- **Python 3.10 f-strings** cannot nest quotes or contain backslashes inside expressions. Use `.format()` for complex formatting.
 - **Do NOT** change `freeze: auto` to `freeze: true`
 - **Do NOT** render notebooks in isolation as a substitute for manuscript render
 - **Do NOT** use plain `quarto render index.qmd` after notebook changes (embed cache not invalidated)
