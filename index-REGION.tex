@@ -230,7 +230,7 @@ Anonymous}
 \begin{abstract}
 Using satellite nighttime light data as a proxy for economic activity,
 Chanda and Kabiraj (2020, World Development) studied regional growth and
-convergence across 520 districts in India. Based on a reproducible
+convergence across 520 districts in India. Adopting a reproducible
 open-science approach, this article builds on their work by extending
 their main findings on three fronts. First, we illustrate regional
 convergence patterns using an interactive tool for satellite imagery
@@ -277,9 +277,9 @@ detect in static visualizations. Second, we formally test for spatial
 dependence in both the dependent and independent variables of the
 convergence equations. Our tests highlight that spatial autocorrelation
 is a relevant feature of satellite data and the regional convergence
-process. Third, we employ a spatial Durbin model that explicitly
-accounts for spatial spillovers and quantify how neighbors can influence
-the speed of regional convergence.
+process. Third, we employ a spatial Durbin model to explicitly account
+for spatial spillovers and quantify how neighbors can influence the
+speed of regional convergence.
 
 Our results contribute to the understanding of regional convergence in
 India on three fronts. First, interactive visualization tools reveal
@@ -678,10 +678,10 @@ convergence. The matrix \(\boldsymbol{X_t}\) is an \(N\text{-by-}k\)
 collection of observations on control variables for each region. The
 vector \(\boldsymbol{\alpha}\), with dimensions \(k \times 1\), captures
 the regression coefficients for these variables. Additionally,
-\(\boldsymbol{WX_t}\) denotes an \(N \times k\) matrix of spatially
-lagged observations, composed of a linear combination of neighboring
-values for the variables of interest in each region. The vector
-\(\boldsymbol{\gamma}\) represents the regression coefficients
+\(\boldsymbol{W}\boldsymbol{X_t}\) denotes an \(N \times k\) matrix of
+spatially lagged observations, composed of a linear combination of
+neighboring values for the variables of interest in each region. The
+vector \(\boldsymbol{\gamma}\) represents the regression coefficients
 associated with these spatial lags. The terms
 \(\boldsymbol{W} \boldsymbol{x_{t-1}}\) and
 \(\boldsymbol{W} \boldsymbol{g_t}\) refer to \(N\text{-by-}1\) vectors
@@ -739,7 +739,7 @@ relationship between per-capita growth in nighttime lights and initial
 per-capita nighttime light. The scatterplot shows an inverse
 relationship, suggesting a \(\beta\)-convergence rate of approximately
 2\%, consistent with the seminal finding of
-\citet{barro_sala_convergence} about convergence.
+\citet{barro_sala_convergence}.
 
 \begin{figure}[H]
 
@@ -1108,29 +1108,32 @@ relates to socioeconomic indicators beyond strictly economic output.
 
 A growing literature argues that regional cultural attitudes constitute
 an independent factor in economic development, not merely a by-product
-of income or institutions. \citet{tubadji_cultural_entropy} proposes a
+of income or institutions. \citet{tubadji_cultural_entropy} advances a
 Culture-Based Development framework demonstrating that cultural
 participation patterns---measured through revealed preferences in
 household expenditure and survey data---predict regional economic
 trajectories independently of standard economic variables. For India,
-the National Sample Survey (NSS) 47th Round (1991--92) provides
-state-level data on six dimensions of cultural participation: live
-cultural performance, cultural telecast (TV/media), socio-cultural
+the National Sample Survey (NSS) 47th Round (July--December 1991)
+provides state-level data on six dimensions of cultural participation:
+live cultural performance, cultural telecast (TV/media), socio-cultural
 participation, cultural heritage and religion, live cultural shows, and
 sports.
 
-With nighttime lights data for the same period (1992) now available for
-all 32 Indian states and union territories, we can examine the extent to
-which luminosity is associated with regional cultural patterns.
-Figure~\ref{fig-culture-scatter} presents the relationship between log
-nighttime lights per capita and the two cultural dimensions that show
-statistically significant associations. Cultural telecast (TV/media)
-exhibits a positive association (Spearman \(\rho\) = 0.370, \(p\) =
-0.037): states with higher luminosity consume more culture through
-television and media. Socio-cultural participation, by contrast, shows a
-significant negative association (Pearson \(r\) = \$-\$0.476, \(p\) =
-0.006): community-based cultural engagement is stronger in less luminous
-states.
+With nighttime lights data for an adjacent period (1992) now available
+for all 32 Indian states and union territories, we can examine the
+extent to which luminosity is associated with regional cultural
+patterns. Given the small sample size (N = 32) and the potential
+leverage of small territories at the extremes of the distribution on
+linear correlation measures, we report Spearman rank correlations
+throughout this section. Figure~\ref{fig-culture-scatter} presents the
+relationship between log nighttime lights per capita and the two
+cultural dimensions that show statistically significant rank-order
+associations. Cultural telecast (TV/media) exhibits a positive
+association (Spearman \(\rho\) = 0.370, \(p\) = 0.037): states with
+higher luminosity consume more culture through television and media.
+Socio-cultural participation, by contrast, shows a significant negative
+association (Spearman \(\rho\) = \$-\$0.404, \(p\) = 0.022):
+community-based cultural engagement is stronger in less luminous states.
 
 \begin{figure}[H]
 
@@ -1169,16 +1172,21 @@ participation across 32 Indian states}
 \end{figure}%
 
 These patterns suggest that economic development does not uniformly
-increase or decrease cultural participation but rather transforms its
-character. More luminous regions consume culture through modern media
-infrastructure, while less luminous regions sustain culture through
-community and religious engagement. The full exploration of all six
-cultural indicators, including correlation analysis and additional
-spatial clustering maps, is available in the accompanying computational
-notebook. This preliminary evidence points to a richer relationship
-between luminosity and socioeconomic life than GDP alone captures,
-opening a direction for future research that integrates cultural
-economics with satellite-based measurement.
+increase or decrease cultural participation but rather reshapes its
+character. Socio-cultural participation is the most consistently
+significant association, confirmed across both a 25-state sample using
+district-aggregated luminosity and the full 32-state sample presented
+here. Cultural telecast shows a consistent positive sign across both
+samples, though its statistical significance is sensitive to sample
+composition and the choice of correlation method. More luminous regions
+consume culture through modern media infrastructure, while less luminous
+regions sustain culture through community engagement. The full
+exploration of all six cultural indicators, including correlation
+analysis and additional spatial clustering maps, is available in the
+accompanying computational notebook. This preliminary evidence points to
+a richer relationship between luminosity and socioeconomic life than GDP
+alone captures, opening a direction for future research that integrates
+cultural economics with satellite-based measurement.
 
 \subsection{Better luminosity data from
 VIIRS}\label{better-luminosity-data-from-viirs}
@@ -1365,7 +1373,7 @@ developing world. The ongoing transition from DMSP-OLS to the
 higher-resolution VIIRS sensor should yield more precise measurement of
 subnational economic activity in future studies.
 
-This study also illustrates how reproducible open science practices can
+This study also illustrates how reproducible open-science practices can
 strengthen the credibility and extendability of scientific research. The
 entire analytical pipeline is documented in computational Jupyter
 notebooks using Python, R, and Stata code. Research results are
@@ -1378,7 +1386,7 @@ computational notebooks, and reevaluate the results in light of their
 source code. By hosting the complete codebase and data in a public
 GitHub repository and making the Python and R notebooks executable in
 the cloud through Google Colaboratory, we aim to encourage other
-researchers to further adopt reproducible open science practices that
+researchers to further adopt reproducible open-science practices that
 can strengthen the credibility and extendability of scientific research.
 
 \section{Acknowledgments}\label{acknowledgments}

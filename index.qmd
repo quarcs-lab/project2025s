@@ -7,7 +7,7 @@ author:
 
 abstract: |
   Using satellite nighttime light data as a proxy for economic activity, Chanda and Kabiraj (2020, World Development) studied regional growth and convergence across 520 districts in India.
-  Based on a reproducible open-science approach, this article builds on their work by extending their main findings on three fronts.
+  Adopting a reproducible open-science approach, this article builds on their work by extending their main findings on three fronts.
   First, we illustrate regional convergence patterns using an interactive tool for satellite imagery visualization.
   Second, we assess the degree of spatial dependence in their main econometric specification.
   Third, we employ a spatial Durbin model to measure the role of spatial spillovers in the convergence process.
@@ -58,7 +58,7 @@ First, we develop an interactive visualization tool that allows researchers to e
 This tool helps identify converging regions and growth hotspots that may be difficult to detect in static visualizations.
 Second, we formally test for spatial dependence in both the dependent and independent variables of the convergence equations.
 Our tests highlight that spatial autocorrelation is a relevant feature of satellite data and the regional convergence process.
-Third, we employ a spatial Durbin model that explicitly accounts for spatial spillovers and quantify how neighbors can influence the speed of regional convergence.
+Third, we employ a spatial Durbin model to explicitly account for spatial spillovers and quantify how neighbors can influence the speed of regional convergence.
 
 Our results contribute to the understanding of regional convergence in India on three fronts.
 First, interactive visualization tools reveal clear spatial patterns in both the initial distribution and subsequent growth of nighttime lights.
@@ -96,7 +96,7 @@ They find that national accounts better capture aggregate economic growth.
 Similarly, @lessmann_seidel_regional_inequality leverage NTL data to estimate GDP per capita and spatial inequality globally.
 
 NTL data have been applied to a range of research questions in India.
-For example, @cook_shah_nregs use NTL data to analyze the impact of public welfare programs. 
+For example, @cook_shah_nregs use NTL data to analyze the impact of public welfare programs.
 @jha_talathi_colonial_india examine the effects of colonial institutions.
 @chanda_cook_demonetization investigate the impact of demonetization.
 @beyer_jain_sinha_covid employ NTL data to study the effects of COVID-19.
@@ -120,7 +120,7 @@ For this study, we utilize the "radiance-calibrated" nighttime lights data.[^1]
 
 ### Jupyter and Quarto for reproducible open science
 
-Jupyter notebooks have become an essential tool for reproducible open science. 
+Jupyter notebooks have become an essential tool for reproducible open science.
 They allow researchers to integrate executable code, explanatory narrative, and computational outputs within a single self-contained document [@kluyver_jupyter].
 This integration ensures that every step of the analytical workflow---from data ingestion and processing to statistical modeling and visualization---is transparently documented and can be independently verified by other researchers.
 Unlike traditional workflows where code, results, and interpretation are separated across different files and software environments, Jupyter notebooks preserve the complete chain of reasoning.
@@ -284,7 +284,7 @@ The vector $\boldsymbol{x_{t-1}}$ represents an $N\text{-by-}1$ vector of observ
 The parameter $\beta_1$ is a regression coefficient that indicates the direction and strength of regional convergence.
 The matrix $\boldsymbol{X_t}$ is an $N\text{-by-}k$ collection of observations on control variables for each region.
 The vector $\boldsymbol{\alpha}$, with dimensions $k \times 1$, captures the regression coefficients for these variables.
-Additionally, $\boldsymbol{WX_t}$ denotes an $N \times k$ matrix of spatially lagged observations, composed of a linear combination of neighboring values for the variables of interest in each region.
+Additionally, $\boldsymbol{W}\boldsymbol{X_t}$ denotes an $N \times k$ matrix of spatially lagged observations, composed of a linear combination of neighboring values for the variables of interest in each region.
 The vector $\boldsymbol{\gamma}$ represents the regression coefficients associated with these spatial lags.
 The terms $\boldsymbol{W} \boldsymbol{x_{t-1}}$ and $\boldsymbol{W} \boldsymbol{g_t}$ refer to $N\text{-by-}1$ vectors capturing the spatial lags of initial (log) per-capita NTL, and the per-capita NTL growth, respectively.
 Finally, $\boldsymbol{\varepsilon_t}$ represents a vector of idiosyncratic error terms.
@@ -309,7 +309,7 @@ Focusing on some of the poorest regions in the country, we show an increase in n
 The maps show a noticeable increase in brightness across most parts of India in 2010.
 Since nighttime lights serve as a proxy for economic activity, this increase in luminosity reflects economic growth over the period.
 @fig-convergence illustrates the relationship between per-capita growth in nighttime lights and initial per-capita nighttime light.
-The scatterplot shows an inverse relationship, suggesting a $\beta$-convergence rate of approximately 2%, consistent with the seminal finding of @barro_sala_convergence about convergence.
+The scatterplot shows an inverse relationship, suggesting a $\beta$-convergence rate of approximately 2%, consistent with the seminal finding of @barro_sala_convergence.
 
 {{< embed notebooks/c02_regional_convergence_sc.ipynb#fig-convergence >}}
 
@@ -419,13 +419,14 @@ Nighttime lights capture not just GDP but a composite of electrification, urbani
 This multi-dimensional nature invites exploration of how luminosity relates to socioeconomic indicators beyond strictly economic output.
 
 A growing literature argues that regional cultural attitudes constitute an independent factor in economic development, not merely a by-product of income or institutions.
-@tubadji_cultural_entropy proposes a Culture-Based Development framework demonstrating that cultural participation patterns---measured through revealed preferences in household expenditure and survey data---predict regional economic trajectories independently of standard economic variables.
-For India, the National Sample Survey (NSS) 47th Round (1991--92) provides state-level data on six dimensions of cultural participation: live cultural performance, cultural telecast (TV/media), socio-cultural participation, cultural heritage and religion, live cultural shows, and sports.
+@tubadji_cultural_entropy advances a Culture-Based Development framework demonstrating that cultural participation patterns---measured through revealed preferences in household expenditure and survey data---predict regional economic trajectories independently of standard economic variables.
+For India, the National Sample Survey (NSS) 47th Round (July--December 1991) provides state-level data on six dimensions of cultural participation: live cultural performance, cultural telecast (TV/media), socio-cultural participation, cultural heritage and religion, live cultural shows, and sports.
 
-With nighttime lights data for the same period (1992) now available for all 32 Indian states and union territories, we can examine the extent to which luminosity is associated with regional cultural patterns.
-@fig-culture-scatter presents the relationship between log nighttime lights per capita and the two cultural dimensions that show statistically significant associations.
+With nighttime lights data for an adjacent period (1992) now available for all 32 Indian states and union territories, we can examine the extent to which luminosity is associated with regional cultural patterns.
+Given the small sample size (N = 32) and the potential leverage of small territories at the extremes of the distribution on linear correlation measures, we report Spearman rank correlations throughout this section.
+@fig-culture-scatter presents the relationship between log nighttime lights per capita and the two cultural dimensions that show statistically significant rank-order associations.
 Cultural telecast (TV/media) exhibits a positive association (Spearman $\rho$ = 0.370, $p$ = 0.037): states with higher luminosity consume more culture through television and media.
-Socio-cultural participation, by contrast, shows a significant negative association (Pearson $r$ = $-$0.476, $p$ = 0.006): community-based cultural engagement is stronger in less luminous states.
+Socio-cultural participation, by contrast, shows a significant negative association (Spearman $\rho$ = $-$0.404, $p$ = 0.022): community-based cultural engagement is stronger in less luminous states.
 
 {{< embed notebooks/c06_spatial_culture.ipynb#fig-culture-scatter >}}
 
@@ -435,8 +436,10 @@ The spatial clustering of cultural telecast broadly mirrors the economic geograp
 
 {{< embed notebooks/c06_spatial_culture.ipynb#fig-culture-lisa >}}
 
-These patterns suggest that economic development does not uniformly increase or decrease cultural participation but rather transforms its character.
-More luminous regions consume culture through modern media infrastructure, while less luminous regions sustain culture through community and religious engagement.
+These patterns suggest that economic development does not uniformly increase or decrease cultural participation but rather reshapes its character.
+Socio-cultural participation is the most consistently significant association, confirmed across both a 25-state sample using district-aggregated luminosity and the full 32-state sample presented here.
+Cultural telecast shows a consistent positive sign across both samples, though its statistical significance is sensitive to sample composition and the choice of correlation method.
+More luminous regions consume culture through modern media infrastructure, while less luminous regions sustain culture through community engagement.
 The full exploration of all six cultural indicators, including correlation analysis and additional spatial clustering maps, is available in the accompanying computational notebook.
 This preliminary evidence points to a richer relationship between luminosity and socioeconomic life than GDP alone captures, opening a direction for future research that integrates cultural economics with satellite-based measurement.
 
@@ -494,7 +497,7 @@ As @donaldson_storeygard_remotesensing note, the processing of satellite data re
 Each methodological choice in the pipeline, from sensor inter-calibration to spatial weight matrix construction, can affect empirical conclusions.
 This underscores the need for transparent computational workflows that allow other researchers to verify and build upon published findings.
 
-This article adopts a reproducible research approach through Jupyter notebooks and the Quarto publishing framework. 
+This article adopts a reproducible research approach through Jupyter notebooks and the Quarto publishing framework.
 All computational analyses are documented in embedded notebooks that readers can inspect alongside the results they produce.
 The interactive visualization tool, built on Google Earth Engine, allows researchers to explore the spatial and temporal patterns in satellite nighttime light data.
 
@@ -518,12 +521,12 @@ Radiance-calibrated nighttime light data allowed us to analyze 520 Indian distri
 This data-driven approach is potentially transferable to other data-poor contexts across the developing world.
 The ongoing transition from DMSP-OLS to the higher-resolution VIIRS sensor should yield more precise measurement of subnational economic activity in future studies.
 
-This study also illustrates how reproducible open science practices can strengthen the credibility and extendability of scientific research.
+This study also illustrates how reproducible open-science practices can strengthen the credibility and extendability of scientific research.
 The entire analytical pipeline is documented in computational Jupyter notebooks using Python, R, and Stata code.
 Research results are automatically embedded within the manuscript through Quarto's publishing framework.
 Moreover, a single manuscript source generates multiple output formats: HTML, PDF, Microsoft Word, among others.
 The HTML version is particularly useful as it allows readers to engage with interactive visualizations, easily inspect the code of multiple computational notebooks, and reevaluate the results in light of their source code.
-By hosting the complete codebase and data in a public GitHub repository and making the Python and R notebooks executable in the cloud through Google Colaboratory, we aim to encourage other researchers to further adopt reproducible open science practices that can strengthen the credibility and extendability of scientific research.
+By hosting the complete codebase and data in a public GitHub repository and making the Python and R notebooks executable in the cloud through Google Colaboratory, we aim to encourage other researchers to further adopt reproducible open-science practices that can strengthen the credibility and extendability of scientific research.
 
 
 ## Acknowledgments {.appendix}
