@@ -34,11 +34,13 @@ __pycache__/
 _manuscript/
 index-meca.zip
 
-# REGION extension format-resources (auto-copied to root during render)
-region.sty
-region.bst
-ERSA_logo.png
-CC-BY-88x31.png
+# REGION extension format-resources (auto-copied to root during render).
+# Anchored with / so they only match at the repo root — legitimate copies
+# inside legacy/ submission bundles should still be tracked.
+/region.sty
+/region.bst
+/ERSA_logo.png
+/CC-BY-88x31.png
 
 # Stata notebook build artifacts
 notebooks/c04_spillover_modeling.log
