@@ -169,7 +169,9 @@ project2025s/
 ├── .vscode/
 │   └── settings.json.template # VS Code settings template (copy to settings.json)
 │
-├── legacy/                    # Immutable archive of original project
+├── legacy/                    # Immutable archive + frozen submission bundles
+│   ├── (original project snapshot)
+│   └── submission-YYYYMMDD/   # Self-contained journal submission bundles
 ├── log/                       # Session progress logs
 ├── CLAUDE.md                  # AI assistant guidelines
 └── README.md                  # This file
@@ -421,6 +423,35 @@ The project generates **two distinct PDFs** because academic publishing has diff
 
 ---
 
+## Journal Submission Bundles
+
+When the manuscript is ready to be sent to a journal editor, the project produces a **frozen, self-contained submission bundle** at `legacy/submission-YYYYMMDD/`. Each bundle is a dated snapshot that can be delivered to the editor as a single directory without any external dependencies.
+
+**What's in a bundle:**
+
+```text
+legacy/submission-YYYYMMDD/
+├── README.md                       # Bundle manifest (blind)
+├── CoverLetter.md                  # Editor correspondence (non-blind)
+├── manuscript-REGION.pdf           # Primary submission PDF (blind)
+├── manuscript.docx                 # Word version (blind)
+├── manuscript-standalone.html      # Single-file HTML with embedded assets (blind)
+└── latex-manuscript/               # Self-contained LaTeX source tree (blind)
+    ├── manuscript.tex              #   Rewritten from index-REGION.tex
+    ├── references.bib
+    ├── regart.cls, region.sty, region.bst
+    ├── titlepage_*.pdf, ERSA_logo.png, wutext.pdf, fwf.pdf
+    └── figures/                    #   All ten manuscript figures
+```
+
+**Blind vs non-blind:** every file in the bundle is anonymized for reviewer distribution *except* `CoverLetter.md`, which is addressed to the editor and contains corresponding-author contact info. The editor distributes only the manuscript files to reviewers.
+
+**How to create a bundle:** invoke the `/prepare-region-submission` skill. It runs nine phases end to end: preflight checks, author-config load, anonymization audit of `index.qmd`, full manuscript render, standalone HTML generation, bundle assembly with figure-path flattening and case-sensitive filename fixes, cover letter and README generation from templates, and a three-gate verification (standalone LaTeX must compile with `lualatex` + `bibtex`, a recursive blindness grep must return zero matches outside `CoverLetter.md`, and the PDF metadata must not contain author names). The skill stops at verification and leaves the git commit to the user.
+
+**Author metadata** used by the cover letter lives in [`.claude/author-config.yml`](.claude/author-config.yml). The skill reads it at invocation time and prompts interactively for any missing fields.
+
+---
+
 ## Configuration
 
 ### Python environment
@@ -506,4 +537,4 @@ Under the following terms:
 
 ---
 
-**Last updated:** March 4, 2026
+**Last updated:** April 10, 2026

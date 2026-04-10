@@ -213,6 +213,7 @@ The `.claude/skills/` directory contains reusable workflows invoked as slash com
 | `/sync-notebooks` | Sync Jupytext `.md` <-> `.ipynb` pairs |
 | `/log-progress` | Create a timestamped session log in `./log/` |
 | `/one-sentence-per-line` | Reformat `index.qmd` to enforce one sentence per line |
+| `/prepare-region-submission` | Freeze a blind, self-contained submission bundle at `legacy/submission-YYYYMMDD/` with REGION PDF, DOCX, standalone HTML, standalone LaTeX tree, and a non-blind cover letter for the editor |
 
 ---
 
