@@ -335,7 +335,9 @@ on aggregate economic activity below the state level. To address this
 issue, a growing body of literature, pioneered by
 \citet{henderson_storeygard_weil_lights}, has utilized satellite
 nighttime light data as a proxy for economic activity at subnational
-levels.
+levels. This approach exploits the strong empirical correlation between
+the intensity of artificial light observed from satellites and the level
+of economic output on the ground \citep{chen_nordhaus_luminosity_gdp}.
 
 Nighttime light (hereafter NTL) data have been widely used to
 investigate economic growth and convergence across national and
@@ -589,7 +591,9 @@ The specification of the spatial weights matrix \(\mathbf{W}\) is
 crucial for capturing the underlying spatial structure. We employ a
 \(k\)-nearest neighbors weight matrix with \(k = 6\), whereby for each
 district, the six geographically closest districts are identified as its
-neighbors:
+neighbors. This specification ensures a fixed number of connections per
+district regardless of the heterogeneity in district sizes across the
+country:
 
 \[
 \mathbf{W}=\left[\begin{array}{ccccc}
@@ -605,7 +609,10 @@ neighbors of district \(i\), and \(w_{ij} = 0\) otherwise. Following
 standard practice, we row-normalize the weights matrix so that each row
 sums to one. This ensures that the spatial lag of a variable,
 \(\mathbf{W} \mathbf{x}\), represents the average value among a
-district's neighbors.
+district's neighbors. The choice of \(k = 6\) provides a balance between
+capturing local spatial interactions and avoiding the inclusion of
+geographically distant districts that are unlikely to exert meaningful
+economic influence.
 
 The detection of significant spatial dependence would justify the use of
 spatial econometric techniques. In particular,
@@ -1104,7 +1111,9 @@ electrification, urbanization, infrastructure, and broader socioeconomic
 conditions
 \citep{henderson_storeygard_weil_lights, mellander_etal_lights_gdp}.
 This multi-dimensional nature invites exploration of how luminosity
-relates to socioeconomic indicators beyond strictly economic output.
+relates to socioeconomic indicators beyond strictly economic output. In
+this section, we examine the association between luminosity and cultural
+participation patterns across Indian states.
 
 A growing literature argues that regional cultural attitudes constitute
 an independent factor in economic development, not merely a by-product
@@ -1426,11 +1435,13 @@ The authors declare no conflict of interest.
 \section{Data and Code Availability}\label{data-and-code-availability}
 
 All data and computational code used in this study are available in the
-project repository: {[}Repository URL removed for blind review{]}. Also,
-the interactive HTML version of this manuscript
+project repository: {[}Repository URL removed for blind review{]}. The
+interactive HTML version of this manuscript
 (\url{https://quarcs-lab.github.io/project2025s/}) embeds the
 computational notebooks, allowing readers to inspect the complete
-analytical pipeline from raw data to published results.
+analytical pipeline from raw data to published results. All Python and R
+notebooks can be executed in the cloud using Google Colaboratory without
+requiring local software installation.
 
 
 \bibliography{references.bib}

@@ -88,6 +88,7 @@ Finally, Section 4 offers some concluding remarks.
 
 One of the key challenges in studying economic growth in developing countries like India is the limited availability and reliability of data on aggregate economic activity below the state level.
 To address this issue, a growing body of literature, pioneered by @henderson_storeygard_weil_lights, has utilized satellite nighttime light data as a proxy for economic activity at subnational levels.
+This approach exploits the strong empirical correlation between the intensity of artificial light observed from satellites and the level of economic output on the ground [@chen_nordhaus_luminosity_gdp].
 
 Nighttime light (hereafter NTL) data have been widely used to investigate economic growth and convergence across national and subnational regions in various countries.
 For instance, @adhikari_dhital_decentralization examine the impact of decentralization on regional convergence using NTL data.
@@ -229,7 +230,8 @@ Taken together, the HH and LL categories identify spatial clusters, while the HL
 Statistical significance of each local statistic is assessed through conditional permutation tests, with only statistically significant locations (typically at $p < 0.05$) reported in the LISA cluster maps.
 
 The specification of the spatial weights matrix $\mathbf{W}$ is crucial for capturing the underlying spatial structure.
-We employ a $k$-nearest neighbors weight matrix with $k = 6$, whereby for each district, the six geographically closest districts are identified as its neighbors:
+We employ a $k$-nearest neighbors weight matrix with $k = 6$, whereby for each district, the six geographically closest districts are identified as its neighbors.
+This specification ensures a fixed number of connections per district regardless of the heterogeneity in district sizes across the country:
 
 $$
 \mathbf{W}=\left[\begin{array}{ccccc}
@@ -243,6 +245,7 @@ $$
 where $w_{ij} = 1$ if district $j$ is among the six nearest neighbors of district $i$, and $w_{ij} = 0$ otherwise.
 Following standard practice, we row-normalize the weights matrix so that each row sums to one.
 This ensures that the spatial lag of a variable, $\mathbf{W} \mathbf{x}$, represents the average value among a district's neighbors.
+The choice of $k = 6$ provides a balance between capturing local spatial interactions and avoiding the inclusion of geographically distant districts that are unlikely to exert meaningful economic influence.
 
 The detection of significant spatial dependence would justify the use of spatial econometric techniques.
 In particular, @ertur_koch_spatial_growth and @fischer_spatial_mrw argue that the spatial Durbin model can appropriately account for spatial dependence in the convergence process.
@@ -417,6 +420,7 @@ Ignoring these interactions leads to both underestimated convergence speeds and 
 
 Nighttime lights capture not just GDP but a composite of electrification, urbanization, infrastructure, and broader socioeconomic conditions [@henderson_storeygard_weil_lights; @mellander_etal_lights_gdp].
 This multi-dimensional nature invites exploration of how luminosity relates to socioeconomic indicators beyond strictly economic output.
+In this section, we examine the association between luminosity and cultural participation patterns across Indian states.
 
 A growing literature argues that regional cultural attitudes constitute an independent factor in economic development, not merely a by-product of income or institutions.
 @tubadji_cultural_entropy advances a Culture-Based Development framework demonstrating that cultural participation patterns---measured through revealed preferences in household expenditure and survey data---predict regional economic trajectories independently of standard economic variables.
@@ -542,4 +546,5 @@ The authors declare no conflict of interest.
 ## Data and Code Availability {.appendix}
 
 All data and computational code used in this study are available in the project repository: [Repository URL removed for blind review].
-Also, the interactive HTML version of this manuscript (<https://quarcs-lab.github.io/project2025s/>) embeds the computational notebooks, allowing readers to inspect the complete analytical pipeline from raw data to published results.
+The interactive HTML version of this manuscript (<https://quarcs-lab.github.io/project2025s/>) embeds the computational notebooks, allowing readers to inspect the complete analytical pipeline from raw data to published results.
+All Python and R notebooks can be executed in the cloud using Google Colaboratory without requiring local software installation.
