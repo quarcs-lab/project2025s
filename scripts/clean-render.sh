@@ -23,6 +23,27 @@ rm -rf notebooks/*.embed_files/
 rm -f notebooks/*.out.ipynb
 rm -f notebooks/*-preview.html
 
+echo "Stripping execution metadata from notebooks..."
+python3 -c "
+import json, glob
+for path in glob.glob('notebooks/*.ipynb'):
+    with open(path) as f:
+        nb = json.load(f)
+    changed = False
+    for cell in nb['cells']:
+        for key in list(cell.get('metadata', {}).keys()):
+            if key in ('_sphinx_cell_id', 'execution', 'scrolled'):
+                del cell['metadata'][key]
+                changed = True
+        if cell.get('execution_count') is not None:
+            cell['execution_count'] = None
+            changed = True
+    if changed:
+        with open(path, 'w') as f:
+            json.dump(nb, f, indent=1)
+        print(f'  Stripped: {path}')
+"
+
 echo "Rendering manuscript..."
 
 # Step 1: Full manuscript render (generates notebook preview pages + all formats)

@@ -568,7 +568,7 @@ Figure&nbsp;1: Regional luminosity in India: 1996 vs 2010 <br> Notes: Luminosity
 </div>
 <p><a href="#fig-map" class="quarto-xref">Figure&nbsp;1</a> presents static maps (captured from our interactive application) of luminosity for the initial and final years (1996 and 2010). The maps show a noticeable increase in brightness across most parts of India in 2010. Since nighttime lights serve as a proxy for economic activity, this increase in luminosity reflects economic growth over the period. <a href="#fig-convergence" class="quarto-xref">Figure&nbsp;2</a> illustrates the relationship between per-capita growth in nighttime lights and initial per-capita nighttime light. The scatterplot shows an inverse relationship, suggesting a <span class="math inline">\(\beta\)</span>-convergence rate of approximately 2%, consistent with the seminal finding of <span class="citation" data-cites="barro_sala_convergence">Barro and Sala-i-Martin (<a href="#ref-barro_sala_convergence" role="doc-biblioref">1992</a>)</span>.</p>
 <div class="quarto-embed-nb-cell">
-<div id="cell-fig-convergence" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="5">
+<div id="cell-fig-convergence" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}">
 <div class="cell-output cell-output-display">
 <div id="fig-convergence" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -599,7 +599,7 @@ Figure&nbsp;3: Some illustrative examples of regional convergence <br> Notes: Lu
 <h3 class="anchored" data-anchor-id="spatial-dependence-is-a-feature-of-the-convergence-process">Spatial dependence is a feature of the convergence process</h3>
 <p>Before proceeding with formal econometric analysis, we examine the spatial distribution of the variables under study. Choropleth maps provide a natural tool for this purpose, as they allow researchers to visualize how a variable of interest varies across geographic units. They also help identify spatial patterns that may not be apparent from summary statistics alone. <a href="#fig-chorophleths" class="quarto-xref">Figure&nbsp;4</a> presents the spatial distribution of initial luminosity in 1996 and the subsequent growth rate of luminosity over the 1996–2010 period across the 520 districts in our sample.</p>
 <div class="quarto-embed-nb-cell">
-<div id="cell-fig-chorophleths" class="cell" data-execution_count="6">
+<div id="cell-fig-chorophleths" class="cell">
 <div class="cell-output cell-output-display">
 <div id="fig-chorophleths" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -617,7 +617,7 @@ Figure&nbsp;4: Spatial distribution of initial luminosity and luminosity growth 
 <p>The choropleth maps in <a href="#fig-chorophleths" class="quarto-xref">Figure&nbsp;4</a> reveal a distinct spatial pattern. Panel (a) shows that initial luminosity levels are concentrated in specific geographic corridors, with higher values clustered along western coastal areas while large portions of central and eastern India exhibit markedly lower luminosity. Panel (b), which displays the growth rate of luminosity per capita over the study period, presents a pattern that is largely the inverse of the initial distribution. Districts that were initially bright tend to exhibit lower growth rates, whereas districts that were initially dim tend to grow at a faster rate. This spatial inversion provides a first visual indication that regional convergence in India may have an important spatial dimension.</p>
 <p>While the choropleth maps visually suggest the presence of spatial structures in both variables, a formal analysis of spatial dependence requires the definition of a neighborhood for each district. This neighborhood structure is specified through a spatial weight matrix, which encodes the connectivity between geographic units. In this study, we adopt a six nearest neighbors weight matrix, whereby for each of the 520 districts, the six geographically closest districts are identified as its neighbors. This connectivity structure is visualized as a network in <a href="#fig-wmatrix6nn" class="quarto-xref">Figure&nbsp;5</a>, where each node represents a district centroid and each edge connects a district to one of its six nearest neighbors.</p>
 <div class="quarto-embed-nb-cell">
-<div id="cell-fig-Wmatrix6nn" class="cell" data-execution_count="9">
+<div id="cell-fig-Wmatrix6nn" class="cell">
 <div class="cell-output cell-output-display">
 <div id="fig-wmatrix6nn" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -635,7 +635,7 @@ Figure&nbsp;5: Spatial connectivity structure based on six nearest neighbors <br
 <p>With the neighborhood of each district defined, we can formally assess the degree of spatial dependence in the variables. The notion of spatial dependence can be understood through two complementary concepts. The first is the overall degree of spatial clustering in the data, and the second is the specific locations of statistically significant clusters and spatial outliers. The Global Moran’s I statistic captures the first of these concepts. It typically ranges from <span class="math inline">\(-1\)</span> (indicating perfect spatial dispersion) to <span class="math inline">\(+1\)</span> (indicating perfect spatial clustering), with values near zero suggesting spatial randomness. In the context of our data, the Moran’s I for initial luminosity per capita is 0.73 (<span class="math inline">\(p = 0.001\)</span>), indicating a strong degree of positive spatial autocorrelation. Districts with high (low) initial luminosity tend to be surrounded by districts that also exhibit high (low) initial luminosity. Similarly, the Moran’s I for luminosity growth is 0.60 (<span class="math inline">\(p = 0.001\)</span>), confirming that the growth rates of neighboring districts are also significantly correlated. Together, these statistics provide further evidence that both the initial level and subsequent growth of luminosity exhibit substantial spatial clustering.</p>
 <p>While the Global Moran’s I confirms the overall presence of spatial dependence, it does not reveal the location of statistically significant clusters and outliers. To address this limitation, we employ Local Indicators of Spatial Association (LISA). These indicators decompose the global statistic into district-level contributions and classify each district into one of four categories. High-High (HH) indicates a district with a high value surrounded by neighbors with similarly high values, while Low-Low (LL) indicates a low-value district surrounded by low-value neighbors. High-Low (HL) is a spatial outlier where a high-value district is surrounded by low-value neighbors, and Low-High (LH) is the opposite spatial outlier. <a href="#fig-dependence-initial" class="quarto-xref">Figure&nbsp;6</a> presents the Moran scatterplot and LISA cluster map for initial luminosity per capita. The cluster map identifies distinct geographic concentrations: HH clusters mark the most luminous regions and their bright neighbors, while LL clusters highlight contiguous areas of low luminosity, predominantly in central and eastern India.</p>
 <div class="quarto-embed-nb-cell">
-<div id="cell-fig-dependence-initial" class="cell" data-execution_count="15">
+<div id="cell-fig-dependence-initial" class="cell">
 <div class="cell-output cell-output-display">
 <div id="fig-dependence-initial" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -652,7 +652,7 @@ Figure&nbsp;6: Spatial dependence in the initial level of luminosity <br> Notes:
 </div>
 <p>The same LISA analysis applied to luminosity growth rates reveals a geographic pattern that is largely the inverse of the initial luminosity clusters, as shown in <a href="#fig-dependence-growth" class="quarto-xref">Figure&nbsp;7</a>. Regions that were classified as HH clusters in initial luminosity—the brightest districts and their neighbors—tend to appear as LL clusters in luminosity growth. This indicates that these initially prosperous areas experienced relatively slower growth over the study period. Conversely, districts that formed LL clusters in initial luminosity—the dimmest regions—tend to emerge as HH clusters in growth, reflecting faster catch-up growth in initially lagging areas. This spatial inversion between the initial level and subsequent growth of luminosity is the spatial signature of the convergence process: red regions in the initial luminosity map become blue regions in the growth map, and vice versa. These local spatial patterns provide visual evidence that spatial dependence is a prominent feature of the regional convergence process observed in India. This finding motivates the use of spatial econometric methods to formally account for these strong spatial interdependencies.</p>
 <div class="quarto-embed-nb-cell">
-<div id="cell-fig-dependence-growth" class="cell" data-execution_count="20">
+<div id="cell-fig-dependence-growth" class="cell">
 <div class="cell-output cell-output-display">
 <div id="fig-dependence-growth" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -832,7 +832,7 @@ Table&nbsp;1: Unconditional and conditional convergence across districts.
 <p>A growing literature argues that regional cultural attitudes constitute an independent factor in economic development, not merely a by-product of income or institutions. In particular, <span class="citation" data-cites="tubadji_cultural_entropy">Tubadji (<a href="#ref-tubadji_cultural_entropy" role="doc-biblioref">2025</a>)</span> proposes a Culture-Based Development framework arguing that regional cultural participation patterns—measured through revealed preferences in household expenditure and survey data—predict regional development patterns. For India, the National Sample Survey (NSS) 47th Round (July–December 1991) provides state-level data on six dimensions of cultural participation: live cultural performance, cultural telecast (TV/media), socio-cultural participation, cultural heritage and religion, live cultural shows, and sports.</p>
 <p>With nighttime lights data for an adjacent period (1992) now available for 32 Indian states and union territories, we can examine the extent to which luminosity is associated with regional cultural patterns (see <a href="./notebooks/c06_spatial_culture-preview.html">Spatial culture</a> notebook for details and extended analyses). Given the small sample size (N = 32) and the potential leverage of small territories at the extremes of the distribution on linear correlation measures, we report Spearman rank correlations throughout this section. <a href="#fig-culture-scatter" class="quarto-xref">Figure&nbsp;8</a> presents the relationship between log nighttime lights per capita and the two cultural dimensions that show statistically significant associations.</p>
 <div class="quarto-embed-nb-cell">
-<p>::: {#cell-fig-culture-scatter .cell _sphinx_cell_id=‘628a30a8-01c4-4750-91a1-0eaa3f12cade’ execution_count=13}</p>
+<div id="cell-fig-culture-scatter" class="cell">
 <div class="cell-output cell-output-display">
 <div id="fig-culture-scatter" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -846,12 +846,12 @@ Figure&nbsp;8: Relationship between nightlight luminosity and cultural participa
 </div>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>Cultural telecast (TV/media) exhibits a positive association (Spearman <span class="math inline">\(\rho\)</span> = 0.370, <span class="math inline">\(p\)</span> = 0.037) with nighttime light luminosity. That is, states with higher luminosity consume more culture through television and media. This link is intuitive: access to television depends on electrification and urbanization, which are closely tied to luminosity.</p>
 <p>In contrast, socio-cultural participation shows a significant negative association (Spearman <span class="math inline">\(\rho\)</span> = $-$0.404, <span class="math inline">\(p\)</span> = 0.022). That is, community-based cultural engagement is stronger in states with less luminosity. This suggests that less urbanized regions rely more on collective, in-person forms of cultural participation rather than on media infrastructure.</p>
 <p><a href="#fig-culture-lisa" class="quarto-xref">Figure&nbsp;9</a> presents spatial distribution of these two cultural variables through the lens of a LISA analysis. Both dimensions exhibit significant spatial autocorrelation, indicating that cultural participation is not randomly distributed across Indian states. The spatial clustering of cultural telecast broadly mirrors the economic geography distribution. States in the western and southern regions form high-high clusters while northeastern and eastern states form distinct community-participation clusters.</p>
 <div class="quarto-embed-nb-cell">
-<p>::: {#cell-fig-culture-lisa .cell _sphinx_cell_id=‘c7118db1-4bab-4d2d-b98d-8fc005a1d6e3’ execution_count=14}</p>
+<div id="cell-fig-culture-lisa" class="cell">
 <div class="cell-output cell-output-display">
 <div id="fig-culture-lisa" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -865,7 +865,7 @@ Figure&nbsp;9: LISA cluster maps of cultural participation across 32 Indian stat
 </div>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>Together, these two results reveal a contrast in how regions engage with culture: more luminous states favor media-based consumption, while less luminous states sustain community-based participation. The remaining four cultural dimensions—live cultural performance, cultural heritage and religion, live cultural shows, and sports—show no statistically significant association with luminosity. However, these findings are based on a small cross-section of 32 states observed at a single point in time. Further investigation with larger datasets covering more regions and additional time periods is needed to establish whether these patterns are robust.</p>
 </section>
 <section id="better-luminosity-data-from-viirs" class="level3">
