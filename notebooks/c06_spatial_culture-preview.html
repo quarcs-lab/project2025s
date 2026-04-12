@@ -382,9 +382,7 @@
   <li><a href="#correlation-analysis" id="toc-correlation-analysis" class="nav-link" data-scroll-target="#correlation-analysis">4. Correlation Analysis</a></li>
   <li><a href="#lisa-cluster-maps-log-ntl-vs-cultural-variables" id="toc-lisa-cluster-maps-log-ntl-vs-cultural-variables" class="nav-link" data-scroll-target="#lisa-cluster-maps-log-ntl-vs-cultural-variables">5. LISA Cluster Maps — Log NTL vs Cultural Variables</a></li>
   <li><a href="#high-vs-low-development-cultural-profiles" id="toc-high-vs-low-development-cultural-profiles" class="nav-link" data-scroll-target="#high-vs-low-development-cultural-profiles">6. High vs Low Development: Cultural Profiles</a></li>
-  <li><a href="#summary-and-comparison-with-c05" id="toc-summary-and-comparison-with-c05" class="nav-link" data-scroll-target="#summary-and-comparison-with-c05">7. Summary and Comparison with c05</a></li>
-  <li><a href="#findings" id="toc-findings" class="nav-link" data-scroll-target="#findings">Findings</a></li>
-  <li><a href="#key-graphs" id="toc-key-graphs" class="nav-link" data-scroll-target="#key-graphs">8. Key Graphs</a></li>
+  <li><a href="#key-graphs" id="toc-key-graphs" class="nav-link" data-scroll-target="#key-graphs">7. Key Graphs</a></li>
   </ul>
 </nav>
 </div>
@@ -392,13 +390,13 @@
 </div>
 <main class="content quarto-banner-title-block" id="quarto-document-content">        
 
-       <p>This notebook examines the relationship between economic development (nighttime lights per capita, 1992) and cultural participation (NSS 47th Round, July–December 1991) across all 32 Indian states and union territories. It extends the analysis in c05 by using a newly compiled NTL dataset that covers all 32 regions, resolving the previous data limitation of 7 missing states.</p>
+       <p>This notebook examines the relationship between economic development (nighttime lights per capita, 1992) and cultural participation (NSS 47th Round, July–December 1991) across all 32 Indian states and union territories.</p>
 <section id="data-sources" class="level3">
 <h3 class="anchored" data-anchor-id="data-sources">Data sources</h3>
 <ul>
 <li><strong>Nighttime lights (NTL):</strong> Consistent and Corrected Nighttime Light dataset (CCNL 1992-2013) derived from DMSP-OLS satellite imagery (Zhao, Cao, Chen, &amp; Cui, 2022; Zenodo doi:<a href="https://doi.org/10.5281/zenodo.6644980">10.5281/zenodo.6644980</a>). Also accessible via Google Earth Engine as <code>BNU/FGS/CCNL/v1</code>. Population data from the GlobPOP Global Gridded Population dataset (1992). Zonal statistics were computed at each dataset’s native spatial resolution via GEE (see <code>data/ntl/GEE_ntl_percapita_1992.js</code>).</li>
-<li><strong>Cultural participation:</strong> National Sample Survey (NSS) 47th Round (July – December 1991), Schedule 30, conducted by the Central Statistics Office of India. This household-level survey covers cultural participation across multiple dimensions. Six cultural factors were derived via Principal Component Analysis (PCA) following the Culture-Based Development framework advanced by Tubadji (2025).</li>
-<li><strong>Geographic boundaries:</strong> 32-region map derived from a 36-region GeoJSON by dissolving four states created after the survey period (Chhattisgarh, Jharkhand, Uttarakhand, Telangana) into their parent states. Constructed in notebook c05.</li>
+<li><strong>Cultural participation:</strong> National Sample Survey (NSS) 47th Round (July – December 1991), Schedule 30, conducted by the Central Statistics Office of India. This household-level survey covers cultural participation across multiple dimensions. Six cultural factors were derived via Principal Component Analysis (PCA) following the Culture-Based Development framework of Tubadji (2025).</li>
+<li><strong>Geographic boundaries:</strong> 32-region map derived from a 36-region GeoJSON by dissolving four states created after the survey period (Chhattisgarh, Jharkhand, Uttarakhand, Telangana) into their parent states.</li>
 </ul>
 </section>
 <section id="setup-and-data-loading" class="level2">
@@ -478,7 +476,7 @@
 </tbody>
 </table>
 <p>The six cultural factors were extracted via Principal Component Analysis (PCA) with varimax rotation on 20 survey items (B7_q3 through B7_q20) from NSS Schedule 30. Predicted factor scores were then collapsed to state-level means (see <code>data/Cultural_Data_India/CulturalData.do</code>).</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [1]:</pre></div><div id="a3" class="cell" data-execution_count="1">
+<p>::: {#a3 .cell _sphinx_cell_id=‘e4c77584-c165-4459-85d0-eddeda9f6195’ execution_count=1}</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
@@ -489,8 +487,8 @@
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> esda.moran <span class="im">import</span> Moran, Moran_Local</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> splot.esda <span class="im">import</span> moran_scatterplot, lisa_cluster</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> contextily <span class="im">as</span> cx</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div id="a4" class="cell" data-execution_count="2">
+<p>:::</p>
+<p>::: {#a4 .cell _sphinx_cell_id=‘fa30eb77-2f49-4905-9411-8633185910a2’ execution_count=2}</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load cultural data (NSS 47th Round, July-December 1991)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df_culture <span class="op">=</span> pd.read_stata(<span class="st">"../data/Cultural_Data_India/Final_state_LC_CH.dta"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Cultural data: </span><span class="sc">{</span>df_culture<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> states, </span><span class="sc">{</span>df_culture<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> columns"</span>)</span>
@@ -507,8 +505,8 @@
 NTL data: 32 states, 6 columns
 Map: 32 regions</code></pre>
 </div>
-</div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div id="a5" class="cell" data-execution_count="3">
+<p>:::</p>
+<p>::: {#a5 .cell _sphinx_cell_id=‘c2ed1d8a-a088-4f7d-976a-b7ef18294d97’ execution_count=3}</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge all three datasets</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>gdf <span class="op">=</span> gdf32.merge(df_culture, left_on<span class="op">=</span><span class="st">"region"</span>, right_on<span class="op">=</span><span class="st">"State_num"</span>, how<span class="op">=</span><span class="st">"left"</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>gdf <span class="op">=</span> gdf.merge(df_ntl[[<span class="st">"region"</span>, <span class="st">"ln_ntl_pc"</span>]], on<span class="op">=</span><span class="st">"region"</span>, how<span class="op">=</span><span class="st">"left"</span>)</span>
@@ -539,7 +537,7 @@ States with NTL data: 32/32
 Log NTL per capita: range [6.713, 9.608]
 Mean: 8.286, Std: 0.768</code></pre>
 </div>
-</div></div>
+<p>:::</p>
 </section>
 <section id="data-merge-summary" class="level3">
 <h3 class="anchored" data-anchor-id="data-merge-summary">Data merge summary</h3>
@@ -553,7 +551,7 @@ Mean: 8.286, Std: 0.768</code></pre>
 <section id="choropleth-maps-log-ntl-vs-cultural-variables" class="level2">
 <h2 class="anchored" data-anchor-id="choropleth-maps-log-ntl-vs-cultural-variables">2. Choropleth Maps — Log NTL vs Cultural Variables</h2>
 <p>Comparing the spatial distribution of economic development (log NTL per capita) with key cultural participation variables across all 32 states. Similar geographic clustering across maps may indicate spatial association between luminosity and cultural patterns, which is tested formally in Section 5.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div id="a7" class="cell" data-execution_count="4">
+<p>::: {#a7 .cell _sphinx_cell_id=‘13dfda2b-9671-41d7-9c56-48eb1cd44a9f’ execution_count=4}</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cultural_compare <span class="op">=</span> [<span class="st">"LC_Telecast"</span>, <span class="st">"CH_relig"</span>, <span class="st">"SC"</span>]</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>cultural_labels <span class="op">=</span> {</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"LC_Telecast"</span>: <span class="st">"Cultural Telecast (TV/Media)"</span>,</span>
@@ -588,23 +586,23 @@ Mean: 8.286, Std: 0.768</code></pre>
 <span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>fig.suptitle(</span>
 <span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Economic Development vs Cultural Participation </span><span class="ch">\u2014</span><span class="st"> All 32 States"</span>,</span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, y<span class="op">=</span><span class="fl">1.01</span>,</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, y<span class="op">=</span><span class="fl">1.0</span>,</span>
 <span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(hspace<span class="op">=</span><span class="fl">0.15</span>, wspace<span class="op">=</span><span class="fl">0.05</span>)</span>
 <span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div class="">
+<div>
 <figure class="figure">
-<p class=""><a href="c06_spatial_culture_files/figure-html/cell-5-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="c06_spatial_culture_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></a></p>
+<p><a href="c06_spatial_culture_files/figure-html/cell-5-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="c06_spatial_culture_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
-</div></div>
+<p>:::</p>
 </section>
 <section id="scatter-plots-log-ntl-vs-cultural-variables" class="level2">
 <h2 class="anchored" data-anchor-id="scatter-plots-log-ntl-vs-cultural-variables">3. Scatter Plots — Log NTL vs Cultural Variables</h2>
 <p>Each scatter plot shows the relationship between log NTL per capita (x-axis) and a cultural participation variable (y-axis) for all 32 states.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div id="a9" class="cell" data-execution_count="5">
+<p>::: {#a9 .cell _sphinx_cell_id=‘632efa87-571c-41fb-a2b6-3a5be80c6ede’ execution_count=5}</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">13</span>))</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>axes <span class="op">=</span> axes.flatten()</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -643,23 +641,23 @@ Mean: 8.286, Std: 0.768</code></pre>
 <span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>fig.suptitle(</span>
 <span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Log NTL per Capita vs Cultural Participation (N = 32)"</span>,</span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, y<span class="op">=</span><span class="fl">1.01</span>,</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, y<span class="op">=</span><span class="fl">1.0</span>,</span>
 <span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(hspace<span class="op">=</span><span class="fl">0.35</span>, wspace<span class="op">=</span><span class="fl">0.3</span>)</span>
 <span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div class="">
+<div>
 <figure class="figure">
-<p class=""><a href="c06_spatial_culture_files/figure-html/cell-6-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="c06_spatial_culture_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></a></p>
+<p><a href="c06_spatial_culture_files/figure-html/cell-6-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="c06_spatial_culture_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
-</div></div>
+<p>:::</p>
 </section>
 <section id="correlation-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="correlation-analysis">4. Correlation Analysis</h2>
 <p>Pearson and Spearman correlation matrices, plus a significance table comparing all cultural variables with log NTL per capita. Both coefficients are reported because Pearson captures linear association while Spearman captures monotonic relationships and is robust to outliers — an important consideration with N = 32 and potential leverage from small island territories at the extremes of the NTL distribution. For the manuscript, we adopt Spearman as the primary measure given these outlier concerns.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div id="a11" class="cell" data-execution_count="6">
+<p>::: {#a11 .cell _sphinx_cell_id=‘80da6512-b668-46de-9b2c-fb90df04393c’ execution_count=6}</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>corr_vars <span class="op">=</span> [<span class="st">"ln_ntl_pc"</span>] <span class="op">+</span> variables</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>corr_labels <span class="op">=</span> {</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ln_ntl_pc"</span>: <span class="st">"Log NTL p.c."</span>,</span>
@@ -692,19 +690,19 @@ Mean: 8.286, Std: 0.768</code></pre>
 <span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>fig.suptitle(</span>
 <span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Correlations: Log NTL per Capita </span><span class="ch">\u00d7</span><span class="st"> Cultural Participation (N = 32)"</span>,</span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, y<span class="op">=</span><span class="fl">1.02</span>,</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, y<span class="op">=</span><span class="fl">1.0</span>,</span>
 <span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(wspace<span class="op">=</span><span class="fl">0.4</span>)</span>
 <span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div class="">
+<div>
 <figure class="figure">
-<p class=""><a href="c06_spatial_culture_files/figure-html/cell-7-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="c06_spatial_culture_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></a></p>
+<p><a href="c06_spatial_culture_files/figure-html/cell-7-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="c06_spatial_culture_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
-</div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div id="a12" class="cell" data-execution_count="7">
+<p>:::</p>
+<p>::: {#a12 .cell _sphinx_cell_id=‘620f1b8e-28df-4638-ba06-db55bfd29670’ execution_count=7}</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Significance table</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Correlation of Log NTL per Capita (1992) with Cultural Variables"</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">75</span>)</span>
@@ -740,13 +738,13 @@ Sports Participation                   -0.046       0.801      -0.020       0.91
 Significance: * p &lt; 0.05, . p &lt; 0.10
 N = 32 states</code></pre>
 </div>
-</div></div>
+<p>:::</p>
 </section>
 <section id="lisa-cluster-maps-log-ntl-vs-cultural-variables" class="level2">
 <h2 class="anchored" data-anchor-id="lisa-cluster-maps-log-ntl-vs-cultural-variables">5. LISA Cluster Maps — Log NTL vs Cultural Variables</h2>
 <p>Local Indicators of Spatial Association (LISA) for log NTL per capita and cultural variables. Spatial weights: 6-nearest neighbors (k = 6), row-standardized. Permutations: 999, significance threshold: p &lt; 0.05.</p>
 <p>The choice of k = 6 follows the spatial weights specification used in the main convergence analysis (notebooks c03–c04), ensuring methodological consistency across the manuscript.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [8]:</pre></div><div id="a14" class="cell" data-execution_count="8">
+<p>::: {#a14 .cell _sphinx_cell_id=‘6490854e-eb49-4a4a-b27a-4e43765b1a36’ execution_count=8}</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build spatial weights matrix (6-nearest neighbors)</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>W <span class="op">=</span> weights.KNN.from_dataframe(gdf, k<span class="op">=</span><span class="dv">6</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>W.transform <span class="op">=</span> <span class="st">"r"</span></span>
@@ -760,8 +758,8 @@ Note: KNN distances computed on WGS84 centroids. Island territories
 (A&amp;N Islands, Lakshdweep) are linked to nearest mainland states by
 centroid distance, which may not reflect meaningful spatial adjacency.</code></pre>
 </div>
-</div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [9]:</pre></div><div id="a15" class="cell" data-execution_count="9">
+<p>:::</p>
+<p>::: {#a15 .cell _sphinx_cell_id=‘25b18650-2a9c-49f1-a095-7194ecfe2520’ execution_count=9}</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Global Moran's I for log NTL and all cultural variables</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>all_vars <span class="op">=</span> [<span class="st">"ln_ntl_pc"</span>] <span class="op">+</span> variables</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>all_var_labels <span class="op">=</span> {<span class="st">"ln_ntl_pc"</span>: <span class="st">"Log NTL per Capita (1992)"</span>}</span>
@@ -786,16 +784,16 @@ centroid distance, which may not reflect meaningful spatial adjacency.</code></p
 Variable                               Moran I    p-value  Significant
 -----------------------------------------------------------------
 Log NTL per Capita (1992)               0.444     0.001        Yes *
-Live Cultural Performance              -0.005     0.300           No
-Cultural Telecast (TV/Media)            0.177     0.012        Yes *
+Live Cultural Performance              -0.005     0.310           No
+Cultural Telecast (TV/Media)            0.177     0.016        Yes *
 Socio-Cultural Participation            0.188     0.002        Yes *
-Cultural Heritage &amp; Religion            0.248     0.008        Yes *
-Live Cultural Shows                    -0.083     0.288           No
-Sports Participation                    0.196     0.015        Yes *
+Cultural Heritage &amp; Religion            0.248     0.006        Yes *
+Live Cultural Shows                    -0.083     0.254           No
+Sports Participation                    0.196     0.020        Yes *
 -----------------------------------------------------------------</code></pre>
 </div>
-</div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [10]:</pre></div><div id="a16" class="cell" data-execution_count="10">
+<p>:::</p>
+<p>::: {#a16 .cell _sphinx_cell_id=‘261f08b2-1176-455d-8098-b06cd09b04da’ execution_count=10}</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute LISA for log NTL and each cultural variable</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>lisa_ntl <span class="op">=</span> Moran_Local(gdf[<span class="st">"ln_ntl_pc"</span>].values, W, permutations<span class="op">=</span><span class="dv">999</span>, seed<span class="op">=</span><span class="dv">12345</span>)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -831,19 +829,19 @@ Sports Participation                    0.196     0.015        Yes *
 <span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>fig.suptitle(</span>
 <span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">"LISA Cluster Maps: Log NTL vs Cultural Variables</span><span class="ch">\n</span><span class="st">(p &lt; 0.05, 6-nearest neighbors, N = 32)"</span>,</span>
-<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, y<span class="op">=</span><span class="fl">1.01</span>,</span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, y<span class="op">=</span><span class="fl">1.0</span>,</span>
 <span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(hspace<span class="op">=</span><span class="fl">0.12</span>, wspace<span class="op">=</span><span class="fl">0.05</span>)</span>
 <span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div class="">
+<div>
 <figure class="figure">
-<p class=""><a href="c06_spatial_culture_files/figure-html/cell-11-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="c06_spatial_culture_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></a></p>
+<p><a href="c06_spatial_culture_files/figure-html/cell-11-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="c06_spatial_culture_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
-</div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [11]:</pre></div><div id="a17" class="cell" data-execution_count="11">
+<p>:::</p>
+<p>::: {#a17 .cell _sphinx_cell_id=‘27494e70-24eb-4892-b6b5-8f63dbc2e9ae’ execution_count=11}</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Moran scatterplots</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>all_lisa <span class="op">=</span> {<span class="st">"ln_ntl_pc"</span>: lisa_ntl}</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>all_lisa.update(lisa_cultural)</span>
@@ -871,23 +869,23 @@ Sports Participation                    0.196     0.015        Yes *
 <span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>fig.suptitle(</span>
 <span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Moran Scatterplots: Log NTL and Cultural Variables (N = 32)"</span>,</span>
-<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, y<span class="op">=</span><span class="fl">1.01</span>,</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, y<span class="op">=</span><span class="fl">1.0</span>,</span>
 <span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(hspace<span class="op">=</span><span class="fl">0.45</span>, wspace<span class="op">=</span><span class="fl">0.3</span>)</span>
 <span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div class="">
+<div>
 <figure class="figure">
-<p class=""><a href="c06_spatial_culture_files/figure-html/cell-12-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="c06_spatial_culture_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></a></p>
+<p><a href="c06_spatial_culture_files/figure-html/cell-12-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="c06_spatial_culture_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
-</div></div>
+<p>:::</p>
 </section>
 <section id="high-vs-low-development-cultural-profiles" class="level2">
 <h2 class="anchored" data-anchor-id="high-vs-low-development-cultural-profiles">6. High vs Low Development: Cultural Profiles</h2>
 <p>Comparing the average cultural participation of states above and below the median log NTL per capita. This median split provides a non-parametric complement to the continuous correlation analysis, offering an intuitive summary of how cultural profiles differ between more and less economically developed states.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [12]:</pre></div><div id="a19" class="cell" data-execution_count="12">
+<p>::: {#a19 .cell _sphinx_cell_id=‘1fdfb456-6fa9-49f8-ad75-647f7e4f538b’ execution_count=12}</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split states into high/low development groups</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>median_ntl <span class="op">=</span> gdf[<span class="st">"ln_ntl_pc"</span>].median()</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>gdf[<span class="st">"dev_group"</span>] <span class="op">=</span> np.where(</span>
@@ -954,9 +952,9 @@ Live Cultural Shows             0.1159  -0.0422
 Sports Participation           -0.0258   0.0112</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<div class="">
+<div>
 <figure class="figure">
-<p class=""><a href="c06_spatial_culture_files/figure-html/cell-13-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="c06_spatial_culture_files/figure-html/cell-13-output-2.png" class="img-fluid figure-img"></a></p>
+<p><a href="c06_spatial_culture_files/figure-html/cell-13-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="c06_spatial_culture_files/figure-html/cell-13-output-2.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -971,201 +969,88 @@ Cultural Heritage &amp; Religion        U =    100  p = 0.300
 Live Cultural Shows                 U =    175  p = 0.080  .
 Sports Participation                U =    115  p = 0.638   </code></pre>
 </div>
-</div></div>
-</section>
-<section id="summary-and-comparison-with-c05" class="level2">
-<h2 class="anchored" data-anchor-id="summary-and-comparison-with-c05">7. Summary and Comparison with c05</h2>
-<p>The table below compares the Pearson correlations between NTL and cultural variables from c05 (25 states, district-aggregated NTL from 1996) and this notebook (32 states, state-level NTL from 1992).</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [13]:</pre></div><div id="a21" class="cell" data-execution_count="13">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># c05 results (N=25, NTL Index from district-aggregated 1996 data)</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>c05_results <span class="op">=</span> {</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"LC_Performance"</span>:  {<span class="st">"r"</span>:  <span class="fl">0.165</span>, <span class="st">"p"</span>: <span class="fl">0.432</span>},</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"LC_Telecast"</span>:     {<span class="st">"r"</span>:  <span class="fl">0.493</span>, <span class="st">"p"</span>: <span class="fl">0.012</span>},</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SC"</span>:              {<span class="st">"r"</span>: <span class="op">-</span><span class="fl">0.451</span>, <span class="st">"p"</span>: <span class="fl">0.024</span>},</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CH_relig"</span>:        {<span class="st">"r"</span>: <span class="op">-</span><span class="fl">0.384</span>, <span class="st">"p"</span>: <span class="fl">0.058</span>},</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"LC_shows"</span>:        {<span class="st">"r"</span>:  <span class="fl">0.385</span>, <span class="st">"p"</span>: <span class="fl">0.057</span>},</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sports"</span>:          {<span class="st">"r"</span>:  <span class="fl">0.085</span>, <span class="st">"p"</span>: <span class="fl">0.687</span>},</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co"># c06 results (N=32)</span></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>c06_results <span class="op">=</span> {}</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> variables:</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    r, p <span class="op">=</span> stats.pearsonr(gdf[<span class="st">"ln_ntl_pc"</span>], gdf[var])</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    c06_results[var] <span class="op">=</span> {<span class="st">"r"</span>: r, <span class="st">"p"</span>: p}</span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparison table</span></span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Comparison: c05 (N=25) vs c06 (N=32) </span><span class="ch">\u2014</span><span class="st"> Pearson Correlations with NTL"</span>)</span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">85</span>)</span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">{:&lt;35}</span><span class="st"> </span><span class="sc">{:&gt;8}</span><span class="st"> </span><span class="sc">{:&gt;8}</span><span class="st"> </span><span class="sc">{:&gt;3}</span><span class="st">  </span><span class="sc">{:&gt;8}</span><span class="st"> </span><span class="sc">{:&gt;8}</span><span class="st"> </span><span class="sc">{:&gt;3}</span><span class="st">"</span>.<span class="bu">format</span>(</span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Variable"</span>, <span class="st">"c05 r"</span>, <span class="st">"c05 p"</span>, <span class="st">""</span>, <span class="st">"c06 r"</span>, <span class="st">"c06 p"</span>, <span class="st">""</span>))</span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">85</span>)</span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> variables:</span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>    c5 <span class="op">=</span> c05_results[var]</span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>    c6 <span class="op">=</span> c06_results[var]</span>
-<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>    sig5 <span class="op">=</span> <span class="st">"*"</span> <span class="cf">if</span> c5[<span class="st">"p"</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> (<span class="st">"."</span> <span class="cf">if</span> c5[<span class="st">"p"</span>] <span class="op">&lt;</span> <span class="fl">0.10</span> <span class="cf">else</span> <span class="st">" "</span>)</span>
-<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>    sig6 <span class="op">=</span> <span class="st">"*"</span> <span class="cf">if</span> c6[<span class="st">"p"</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> (<span class="st">"."</span> <span class="cf">if</span> c6[<span class="st">"p"</span>] <span class="op">&lt;</span> <span class="fl">0.10</span> <span class="cf">else</span> <span class="st">" "</span>)</span>
-<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>    label <span class="op">=</span> var_labels[var]</span>
-<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>label<span class="sc">:&lt;35}</span><span class="ss"> </span><span class="sc">{</span>c5[<span class="st">'r'</span>]<span class="sc">:&gt;7.3f}</span><span class="ss"> </span><span class="sc">{</span>c5[<span class="st">'p'</span>]<span class="sc">:&gt;8.3f}</span><span class="ss"> </span><span class="sc">{</span>sig5<span class="sc">:&gt;2}</span><span class="ss">  </span><span class="sc">{</span>c6[<span class="st">'r'</span>]<span class="sc">:&gt;7.3f}</span><span class="ss"> </span><span class="sc">{</span>c6[<span class="st">'p'</span>]<span class="sc">:&gt;8.3f}</span><span class="ss"> </span><span class="sc">{</span>sig6<span class="sc">:&gt;2}</span><span class="ss">"</span>)</span>
-<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">85</span>)</span>
-<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Significance: * p &lt; 0.05, . p &lt; 0.10"</span>)</span>
-<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"c05: N=25, district-aggregated NTL (1996) | c06: N=32, state-level NTL (1992)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Comparison: c05 (N=25) vs c06 (N=32) — Pearson Correlations with NTL
-=====================================================================================
-Variable                               c05 r    c05 p         c06 r    c06 p    
--------------------------------------------------------------------------------------
-Live Cultural Performance             0.165    0.432       0.203    0.265   
-Cultural Telecast (TV/Media)          0.493    0.012  *    0.295    0.101   
-Socio-Cultural Participation         -0.451    0.024  *   -0.476    0.006  *
-Cultural Heritage &amp; Religion         -0.384    0.058  .   -0.283    0.116   
-Live Cultural Shows                   0.385    0.057  .    0.148    0.419   
-Sports Participation                  0.085    0.687      -0.046    0.801   
--------------------------------------------------------------------------------------
-Significance: * p &lt; 0.05, . p &lt; 0.10
-c05: N=25, district-aggregated NTL (1996) | c06: N=32, state-level NTL (1992)</code></pre>
-</div>
-</div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [14]:</pre></div><div id="a22" class="cell" data-execution_count="14">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visual comparison: c05 vs c06 correlations</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="bu">len</span>(variables))</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>width <span class="op">=</span> <span class="fl">0.35</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>c05_r <span class="op">=</span> [c05_results[v][<span class="st">"r"</span>] <span class="cf">for</span> v <span class="kw">in</span> variables]</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>c06_r <span class="op">=</span> [c06_results[v][<span class="st">"r"</span>] <span class="cf">for</span> v <span class="kw">in</span> variables]</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>c05_sig <span class="op">=</span> [c05_results[v][<span class="st">"p"</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">for</span> v <span class="kw">in</span> variables]</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>c06_sig <span class="op">=</span> [c06_results[v][<span class="st">"p"</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">for</span> v <span class="kw">in</span> variables]</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>bars1 <span class="op">=</span> ax.bar(x <span class="op">-</span> width <span class="op">/</span> <span class="dv">2</span>, c05_r, width, label<span class="op">=</span><span class="st">"c05 (N=25)"</span>,</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>               color<span class="op">=</span><span class="st">"lightcoral"</span>, edgecolor<span class="op">=</span><span class="st">"black"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>bars2 <span class="op">=</span> ax.bar(x <span class="op">+</span> width <span class="op">/</span> <span class="dv">2</span>, c06_r, width, label<span class="op">=</span><span class="st">"c06 (N=32)"</span>,</span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>               color<span class="op">=</span><span class="st">"steelblue"</span>, edgecolor<span class="op">=</span><span class="st">"black"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Mark significant bars</span></span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (s5, s6) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(c05_sig, c06_sig)):</span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> s5:</span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>        ax.text(i <span class="op">-</span> width <span class="op">/</span> <span class="dv">2</span>, c05_r[i] <span class="op">+</span> <span class="fl">0.02</span> <span class="op">*</span> np.sign(c05_r[i]),</span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>                <span class="st">"*"</span>, ha<span class="op">=</span><span class="st">"center"</span>, fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, color<span class="op">=</span><span class="st">"darkred"</span>)</span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> s6:</span>
-<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>        ax.text(i <span class="op">+</span> width <span class="op">/</span> <span class="dv">2</span>, c06_r[i] <span class="op">+</span> <span class="fl">0.02</span> <span class="op">*</span> np.sign(c06_r[i]),</span>
-<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>                <span class="st">"*"</span>, ha<span class="op">=</span><span class="st">"center"</span>, fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, color<span class="op">=</span><span class="st">"darkblue"</span>)</span>
-<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Pearson r"</span>)</span>
-<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Robustness Check: NTL </span><span class="ch">\u00d7</span><span class="st"> Cultural Correlations (c05 vs c06)"</span>,</span>
-<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, pad<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(x)</span>
-<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels([var_labels[v] <span class="cf">for</span> v <span class="kw">in</span> variables], rotation<span class="op">=</span><span class="dv">25</span>, ha<span class="op">=</span><span class="st">"right"</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">"upper left"</span>)</span>
-<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">"gray"</span>, linestyle<span class="op">=</span><span class="st">"-"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>ax.grid(axis<span class="op">=</span><span class="st">"y"</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="fl">0.6</span>, <span class="fl">0.6</span>)</span>
-<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div class="">
-<figure class="figure">
-<p class=""><a href="c06_spatial_culture_files/figure-html/cell-15-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="c06_spatial_culture_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
-</div>
-</div></div>
-</section>
-<section id="findings" class="level2">
-<h2 class="anchored" data-anchor-id="findings">Findings</h2>
-<p><strong>Do the c05 findings hold with full 32-state coverage?</strong></p>
-<p>The comparison table above shows whether the key relationships between economic development and cultural participation are robust across the two datasets. The sign pattern is broadly consistent (5 of 6 variables match in direction), but statistical significance generally weakened with the larger 32-state sample. Results by variable:</p>
-<ul>
-<li><p><strong>Socio-Cultural Participation:</strong> The most robust finding. Consistently negative and statistically significant in both c05 (r = -0.451, p = 0.024) and c06 (r = -0.476, p = 0.006). Community-based cultural engagement is stronger in less developed states.</p></li>
-<li><p><strong>Cultural Telecast (TV/Media):</strong> Positive in both analyses and the strongest positive correlate in c05 (r = 0.493, p = 0.012). In c06, the Pearson coefficient weakens (r = 0.295, p = 0.101) due to influential outliers among small territories, but the Spearman rank correlation remains significant (rho = 0.370, p = 0.037). The direction is consistent; the significance is sensitive to method and sample composition.</p></li>
-<li><p><strong>Cultural Heritage &amp; Religion:</strong> Negative in both analyses, but the association weakened from marginally significant in c05 (r = -0.384, p = 0.058) to non-significant in c06 (r = -0.283, p = 0.116).</p></li>
-<li><p><strong>Live Cultural Shows:</strong> Positive in both analyses, but weakened from marginally significant in c05 (r = 0.385, p = 0.057) to weak and non-significant in c06 (r = 0.148, p = 0.419).</p></li>
-<li><p><strong>Live Cultural Performance and Sports:</strong> Weak and inconsistent across both datasets — these dimensions of culture do not align clearly with the development gradient. Sports changes sign between the two samples, though neither estimate is significant.</p></li>
-</ul>
-<p><strong>Overall:</strong> The directional pattern from c05 is broadly confirmed — economic development appears to reshape the character of cultural participation rather than uniformly increasing or decreasing it. However, only socio-cultural participation shows a robustly significant association across both samples. The cultural telecast finding is suggestive but sensitive to outliers. Given the exploratory nature of this analysis across six cultural dimensions, the p-values should be interpreted with appropriate caution regarding multiple comparisons.</p>
+<p>:::</p>
 </section>
 <section id="key-graphs" class="level2">
-<h2 class="anchored" data-anchor-id="key-graphs">8. Key Graphs</h2>
+<h2 class="anchored" data-anchor-id="key-graphs">7. Key Graphs</h2>
 <p>The two figures below are designed for inclusion in the manuscript. They illustrate the core finding: economic development (proxied by nighttime lights per capita) is <strong>positively</strong> associated with media-based cultural consumption and <strong>negatively</strong> associated with community-based cultural participation.</p>
 <ul>
 <li><strong>Figure 1</strong> shows the scatter-plot relationship for the two key cultural variables.</li>
 <li><strong>Figure 2</strong> compares LISA spatial clusters of economic activity with those of the key cultural variables.</li>
 </ul>
-<div class="cell-container"><div class="cell-decorator"><pre>In [15]:</pre></div><div id="cell-fig-culture-scatter" class="cell" data-execution_count="15">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Key variables for the core message</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>key_vars <span class="op">=</span> [<span class="st">"LC_Telecast"</span>, <span class="st">"SC"</span>]</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>key_labels <span class="op">=</span> {</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"LC_Telecast"</span>: <span class="st">"Cultural Telecast (TV/Media)"</span>,</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SC"</span>: <span class="st">"Socio-Cultural Participation"</span>,</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>panel_titles <span class="op">=</span> [<span class="st">"(a) Cultural Telecast (TV/Media)"</span>, <span class="st">"(b) Socio-Cultural Participation"</span>]</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">7</span>))</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, var <span class="kw">in</span> <span class="bu">enumerate</span>(key_vars):</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> axes[i]</span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> gdf[<span class="st">"ln_ntl_pc"</span>]</span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> gdf[var]</span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Scatter points (steelblue to match manuscript style)</span></span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>    ax.scatter(x, y, s<span class="op">=</span><span class="dv">45</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, color<span class="op">=</span><span class="st">"steelblue"</span>, edgecolors<span class="op">=</span><span class="st">"black"</span>, linewidth<span class="op">=</span><span class="fl">0.3</span>, zorder<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Regression line with confidence band</span></span>
-<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>    slope, intercept, r_val, p_val, se <span class="op">=</span> stats.linregress(x, y)</span>
-<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>    x_line <span class="op">=</span> np.linspace(x.<span class="bu">min</span>() <span class="op">-</span> <span class="fl">0.1</span>, x.<span class="bu">max</span>() <span class="op">+</span> <span class="fl">0.1</span>, <span class="dv">200</span>)</span>
-<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>    y_line <span class="op">=</span> intercept <span class="op">+</span> slope <span class="op">*</span> x_line</span>
-<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>    ax.plot(x_line, y_line, color<span class="op">=</span><span class="st">"black"</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>, zorder<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Confidence band (95%)</span></span>
-<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(x)</span>
-<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>    x_mean <span class="op">=</span> x.mean()</span>
-<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>    se_fit <span class="op">=</span> np.sqrt(((y <span class="op">-</span> (intercept <span class="op">+</span> slope <span class="op">*</span> x))<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>() <span class="op">/</span> (n <span class="op">-</span> <span class="dv">2</span>)) <span class="op">*</span> <span class="op">\</span></span>
-<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>             np.sqrt(<span class="dv">1</span><span class="op">/</span>n <span class="op">+</span> (x_line <span class="op">-</span> x_mean)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> ((x <span class="op">-</span> x_mean)<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>())</span>
-<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>    t_crit <span class="op">=</span> stats.t.ppf(<span class="fl">0.975</span>, n <span class="op">-</span> <span class="dv">2</span>)</span>
-<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>    ax.fill_between(x_line, y_line <span class="op">-</span> t_crit <span class="op">*</span> se_fit, y_line <span class="op">+</span> t_crit <span class="op">*</span> se_fit,</span>
-<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>                    alpha<span class="op">=</span><span class="fl">0.15</span>, color<span class="op">=</span><span class="st">"gray"</span>, zorder<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Label each state</span></span>
-<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _, row <span class="kw">in</span> gdf.iterrows():</span>
-<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a>        ax.annotate(</span>
-<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a>            row[<span class="st">"region"</span>], (row[<span class="st">"ln_ntl_pc"</span>], row[var]),</span>
-<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a>            fontsize<span class="op">=</span><span class="fl">5.5</span>, alpha<span class="op">=</span><span class="fl">0.65</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"bottom"</span>,</span>
-<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a>            xytext<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">3</span>), textcoords<span class="op">=</span><span class="st">"offset points"</span>,</span>
-<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Spearman correlation</span></span>
-<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a>    rho, p_spearman <span class="op">=</span> stats.spearmanr(x, y)</span>
-<span id="cb23-44"><a href="#cb23-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-45"><a href="#cb23-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Annotation box (top-left or top-right depending on slope sign)</span></span>
-<span id="cb23-46"><a href="#cb23-46" aria-hidden="true" tabindex="-1"></a>    box_x <span class="op">=</span> <span class="fl">0.95</span> <span class="cf">if</span> slope <span class="op">&lt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="fl">0.05</span></span>
-<span id="cb23-47"><a href="#cb23-47" aria-hidden="true" tabindex="-1"></a>    box_ha <span class="op">=</span> <span class="st">"right"</span> <span class="cf">if</span> slope <span class="op">&lt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">"left"</span></span>
-<span id="cb23-48"><a href="#cb23-48" aria-hidden="true" tabindex="-1"></a>    ax.annotate(</span>
-<span id="cb23-49"><a href="#cb23-49" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Slope = </span><span class="sc">{</span>slope<span class="sc">:.3f}</span><span class="ch">\n</span><span class="ss">"</span></span>
-<span id="cb23-50"><a href="#cb23-50" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Spearman </span><span class="ch">\u03c1</span><span class="ss"> = </span><span class="sc">{</span>rho<span class="sc">:.3f}</span><span class="ss"> (p = </span><span class="sc">{</span>p_spearman<span class="sc">:.3f}</span><span class="ss">)</span><span class="ch">\n</span><span class="ss">"</span></span>
-<span id="cb23-51"><a href="#cb23-51" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Pearson r = </span><span class="sc">{</span>r_val<span class="sc">:.3f}</span><span class="ss"> (p = </span><span class="sc">{</span>p_val<span class="sc">:.3f}</span><span class="ss">)"</span>,</span>
-<span id="cb23-52"><a href="#cb23-52" aria-hidden="true" tabindex="-1"></a>        xy<span class="op">=</span>(box_x, <span class="fl">0.95</span>), xycoords<span class="op">=</span><span class="st">"axes fraction"</span>,</span>
-<span id="cb23-53"><a href="#cb23-53" aria-hidden="true" tabindex="-1"></a>        fontsize<span class="op">=</span><span class="dv">9</span>, ha<span class="op">=</span>box_ha, va<span class="op">=</span><span class="st">"top"</span>,</span>
-<span id="cb23-54"><a href="#cb23-54" aria-hidden="true" tabindex="-1"></a>        bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">"round,pad=0.4"</span>, facecolor<span class="op">=</span><span class="st">"white"</span>, edgecolor<span class="op">=</span><span class="st">"gray"</span>, alpha<span class="op">=</span><span class="fl">0.85</span>),</span>
-<span id="cb23-55"><a href="#cb23-55" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb23-56"><a href="#cb23-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-57"><a href="#cb23-57" aria-hidden="true" tabindex="-1"></a>    ax.set_title(panel_titles[i], fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb23-58"><a href="#cb23-58" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">"Log of nighttime lights per capita (1992)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb23-59"><a href="#cb23-59" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(key_labels[var], fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb23-60"><a href="#cb23-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-61"><a href="#cb23-61" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Minimal style</span></span>
-<span id="cb23-62"><a href="#cb23-62" aria-hidden="true" tabindex="-1"></a>    ax.spines[<span class="st">"top"</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb23-63"><a href="#cb23-63" aria-hidden="true" tabindex="-1"></a>    ax.spines[<span class="st">"right"</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb23-64"><a href="#cb23-64" aria-hidden="true" tabindex="-1"></a>    ax.tick_params(labelsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb23-65"><a href="#cb23-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-66"><a href="#cb23-66" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb23-67"><a href="#cb23-67" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>::: {#cell-fig-culture-scatter .cell _sphinx_cell_id=‘628a30a8-01c4-4750-91a1-0eaa3f12cade’ execution_count=13}</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Key variables for the core message</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>key_vars <span class="op">=</span> [<span class="st">"LC_Telecast"</span>, <span class="st">"SC"</span>]</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>key_labels <span class="op">=</span> {</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"LC_Telecast"</span>: <span class="st">"Cultural Telecast (TV/Media)"</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SC"</span>: <span class="st">"Socio-Cultural Participation"</span>,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>panel_titles <span class="op">=</span> [<span class="st">"(a) Cultural Telecast (TV/Media)"</span>, <span class="st">"(b) Socio-Cultural Participation"</span>]</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">7</span>))</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, var <span class="kw">in</span> <span class="bu">enumerate</span>(key_vars):</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> axes[i]</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> gdf[<span class="st">"ln_ntl_pc"</span>]</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> gdf[var]</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Scatter points (steelblue to match manuscript style)</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    ax.scatter(x, y, s<span class="op">=</span><span class="dv">45</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, color<span class="op">=</span><span class="st">"steelblue"</span>, edgecolors<span class="op">=</span><span class="st">"black"</span>, linewidth<span class="op">=</span><span class="fl">0.3</span>, zorder<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Regression line with confidence band</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    slope, intercept, r_val, p_val, se <span class="op">=</span> stats.linregress(x, y)</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>    x_line <span class="op">=</span> np.linspace(x.<span class="bu">min</span>() <span class="op">-</span> <span class="fl">0.1</span>, x.<span class="bu">max</span>() <span class="op">+</span> <span class="fl">0.1</span>, <span class="dv">200</span>)</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>    y_line <span class="op">=</span> intercept <span class="op">+</span> slope <span class="op">*</span> x_line</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>    ax.plot(x_line, y_line, color<span class="op">=</span><span class="st">"black"</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>, zorder<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Confidence band (95%)</span></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(x)</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>    x_mean <span class="op">=</span> x.mean()</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>    se_fit <span class="op">=</span> np.sqrt(((y <span class="op">-</span> (intercept <span class="op">+</span> slope <span class="op">*</span> x))<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>() <span class="op">/</span> (n <span class="op">-</span> <span class="dv">2</span>)) <span class="op">*</span> <span class="op">\</span></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>             np.sqrt(<span class="dv">1</span><span class="op">/</span>n <span class="op">+</span> (x_line <span class="op">-</span> x_mean)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> ((x <span class="op">-</span> x_mean)<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>())</span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>    t_crit <span class="op">=</span> stats.t.ppf(<span class="fl">0.975</span>, n <span class="op">-</span> <span class="dv">2</span>)</span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>    ax.fill_between(x_line, y_line <span class="op">-</span> t_crit <span class="op">*</span> se_fit, y_line <span class="op">+</span> t_crit <span class="op">*</span> se_fit,</span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>                    alpha<span class="op">=</span><span class="fl">0.15</span>, color<span class="op">=</span><span class="st">"gray"</span>, zorder<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Label each state</span></span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _, row <span class="kw">in</span> gdf.iterrows():</span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>        ax.annotate(</span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>            row[<span class="st">"region"</span>], (row[<span class="st">"ln_ntl_pc"</span>], row[var]),</span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>            fontsize<span class="op">=</span><span class="fl">5.5</span>, alpha<span class="op">=</span><span class="fl">0.65</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"bottom"</span>,</span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a>            xytext<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">3</span>), textcoords<span class="op">=</span><span class="st">"offset points"</span>,</span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Spearman correlation</span></span>
+<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>    rho, p_spearman <span class="op">=</span> stats.spearmanr(x, y)</span>
+<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Annotation box (top-left or top-right depending on slope sign)</span></span>
+<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a>    box_x <span class="op">=</span> <span class="fl">0.95</span> <span class="cf">if</span> slope <span class="op">&lt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="fl">0.05</span></span>
+<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a>    box_ha <span class="op">=</span> <span class="st">"right"</span> <span class="cf">if</span> slope <span class="op">&lt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">"left"</span></span>
+<span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a>    ax.annotate(</span>
+<span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Slope = </span><span class="sc">{</span>slope<span class="sc">:.3f}</span><span class="ch">\n</span><span class="ss">"</span></span>
+<span id="cb20-50"><a href="#cb20-50" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Spearman </span><span class="ch">\u03c1</span><span class="ss"> = </span><span class="sc">{</span>rho<span class="sc">:.3f}</span><span class="ss"> (p = </span><span class="sc">{</span>p_spearman<span class="sc">:.3f}</span><span class="ss">)</span><span class="ch">\n</span><span class="ss">"</span></span>
+<span id="cb20-51"><a href="#cb20-51" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Pearson r = </span><span class="sc">{</span>r_val<span class="sc">:.3f}</span><span class="ss"> (p = </span><span class="sc">{</span>p_val<span class="sc">:.3f}</span><span class="ss">)"</span>,</span>
+<span id="cb20-52"><a href="#cb20-52" aria-hidden="true" tabindex="-1"></a>        xy<span class="op">=</span>(box_x, <span class="fl">0.95</span>), xycoords<span class="op">=</span><span class="st">"axes fraction"</span>,</span>
+<span id="cb20-53"><a href="#cb20-53" aria-hidden="true" tabindex="-1"></a>        fontsize<span class="op">=</span><span class="dv">9</span>, ha<span class="op">=</span>box_ha, va<span class="op">=</span><span class="st">"top"</span>,</span>
+<span id="cb20-54"><a href="#cb20-54" aria-hidden="true" tabindex="-1"></a>        bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">"round,pad=0.4"</span>, facecolor<span class="op">=</span><span class="st">"white"</span>, edgecolor<span class="op">=</span><span class="st">"gray"</span>, alpha<span class="op">=</span><span class="fl">0.85</span>),</span>
+<span id="cb20-55"><a href="#cb20-55" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb20-56"><a href="#cb20-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-57"><a href="#cb20-57" aria-hidden="true" tabindex="-1"></a>    ax.set_title(panel_titles[i], fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb20-58"><a href="#cb20-58" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">"Log of nighttime lights per capita (1992)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb20-59"><a href="#cb20-59" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(key_labels[var], fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb20-60"><a href="#cb20-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-61"><a href="#cb20-61" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Minimal style</span></span>
+<span id="cb20-62"><a href="#cb20-62" aria-hidden="true" tabindex="-1"></a>    ax.spines[<span class="st">"top"</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb20-63"><a href="#cb20-63" aria-hidden="true" tabindex="-1"></a>    ax.spines[<span class="st">"right"</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb20-64"><a href="#cb20-64" aria-hidden="true" tabindex="-1"></a>    ax.tick_params(labelsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb20-65"><a href="#cb20-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-66"><a href="#cb20-66" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb20-67"><a href="#cb20-67" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-culture-scatter" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-culture-scatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="c06_spatial_culture_files/figure-html/fig-culture-scatter-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Figure&nbsp;1: Relationship between nightlight luminosity and cultural participation across 32 Indian states   Notes: Each point represents one of the 32 Indian states and union territories. Panel (a) shows the bivariate relationship between log nighttime lights per capita and cultural telecast (TV/media); Panel (b) shows the relationship with socio-cultural participation. Solid line is the OLS regression; gray band shows the 95% confidence interval (t-distribution, 30 df). Annotations report regression slope, Spearman rank correlation, and Pearson correlation.   Source: Nighttime lights from CCNL DMSP-OLS (Zhao et al., 2022). Cultural participation from NSS 47th Round (July–December 1991). See Spatial culture notebook for source code."><img src="c06_spatial_culture_files/figure-html/fig-culture-scatter-output-1.png" class="img-fluid figure-img"></a>
+<div aria-describedby="fig-culture-scatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="c06_spatial_culture_files/figure-html/fig-culture-scatter-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figure&nbsp;1: Relationship between nightlight luminosity and cultural participation across 32 Indian states   Notes: Each point represents one of the 32 Indian states and union territories. Panel (a) shows the bivariate relationship between log nighttime lights per capita and cultural telecast (TV/media); Panel (b) shows the relationship with socio-cultural participation. Solid line is the OLS regression; gray band shows the 95% confidence interval (t-distribution, 30 df). Annotations report regression slope, Spearman rank correlation, and Pearson correlation.   Source: Nighttime lights from CCNL DMSP-OLS (Zhao et al., 2022). Cultural participation from NSS 47th Round (July–December 1991). See Spatial culture notebook for source code."><img src="c06_spatial_culture_files/figure-html/fig-culture-scatter-output-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-culture-scatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Relationship between nightlight luminosity and cultural participation across 32 Indian states <br> Notes: Each point represents one of the 32 Indian states and union territories. Panel (a) shows the bivariate relationship between log nighttime lights per capita and cultural telecast (TV/media); Panel (b) shows the relationship with socio-cultural participation. Solid line is the OLS regression; gray band shows the 95% confidence interval (t-distribution, 30 df). Annotations report regression slope, Spearman rank correlation, and Pearson correlation. <br> Source: Nighttime lights from CCNL DMSP-OLS (Zhao et al., 2022). Cultural participation from NSS 47th Round (July–December 1991). See <a href="notebooks/c06_spatial_culture.ipynb">Spatial culture</a> notebook for source code.
@@ -1173,69 +1058,69 @@ Figure&nbsp;1: Relationship between nightlight luminosity and cultural participa
 </figure>
 </div>
 </div>
-</div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [16]:</pre></div><div id="cell-fig-culture-lisa" class="cell" data-execution_count="16">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reproject to Web Mercator for basemap overlay</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>gdf_wm <span class="op">=</span> gdf.to_crs(epsg<span class="op">=</span><span class="dv">3857</span>)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Two key cultural variables only</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>lisa_vars <span class="op">=</span> [<span class="st">"LC_Telecast"</span>, <span class="st">"SC"</span>]</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>lisa_labels <span class="op">=</span> {</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"LC_Telecast"</span>: <span class="st">"Cultural Telecast (TV/Media)"</span>,</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SC"</span>: <span class="st">"Socio-Cultural Participation"</span>,</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>panel_rows <span class="op">=</span> [<span class="st">"(a)"</span>, <span class="st">"(b)"</span>]</span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute LISA for each variable</span></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>lisa_objects <span class="op">=</span> {}</span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>moran_globals <span class="op">=</span> {}</span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> lisa_vars:</span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    lisa_objects[var] <span class="op">=</span> Moran_Local(gdf_wm[var].values, W, permutations<span class="op">=</span><span class="dv">999</span>, seed<span class="op">=</span><span class="dv">12345</span>)</span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>    moran_globals[var] <span class="op">=</span> Moran(gdf_wm[var].values, W, permutations<span class="op">=</span><span class="dv">999</span>)</span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 2-row x 2-column figure</span></span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">14</span>))</span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, var <span class="kw">in</span> <span class="bu">enumerate</span>(lisa_vars):</span>
-<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>    moranI <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>moran_globals[var]<span class="sc">.</span>I<span class="sc">:.2f}</span><span class="ss">"</span></span>
-<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Left panel: Moran scatterplot</span></span>
-<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>    moran_scatterplot(lisa_objects[var], p<span class="op">=</span><span class="fl">0.05</span>, zstandard<span class="op">=</span><span class="va">False</span>, aspect_equal<span class="op">=</span><span class="va">False</span>, ax<span class="op">=</span>axes[i, <span class="dv">0</span>])</span>
-<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>    axes[i, <span class="dv">0</span>].set_title(</span>
-<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>panel_rows[i]<span class="sc">}</span><span class="ss"> Moran scatterplot (Moran's I = </span><span class="sc">{</span>moranI<span class="sc">}</span><span class="ss">)"</span>, fontsize<span class="op">=</span><span class="dv">14</span></span>
-<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>    axes[i, <span class="dv">0</span>].set_xlabel(lisa_labels[var], fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>    axes[i, <span class="dv">0</span>].set_ylabel(<span class="ss">f"</span><span class="sc">{</span>lisa_labels[var]<span class="sc">}</span><span class="ss"> in neighboring regions"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>    axes[i, <span class="dv">0</span>].tick_params(labelsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Right panel: LISA cluster map</span></span>
-<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>    lisa_cluster(</span>
-<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>        lisa_objects[var], gdf_wm, p<span class="op">=</span><span class="fl">0.05</span>,</span>
-<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a>        legend_kwds<span class="op">=</span>{<span class="st">"bbox_to_anchor"</span>: (<span class="fl">1.05</span>, <span class="dv">1</span>), <span class="st">"loc"</span>: <span class="st">"upper left"</span>},</span>
-<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a>        ax<span class="op">=</span>axes[i, <span class="dv">1</span>],</span>
-<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>    axes[i, <span class="dv">1</span>].set_title(</span>
-<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>panel_rows[i]<span class="sc">}</span><span class="ss"> LISA Cluster Map (p &lt; 0.05)"</span>, fontsize<span class="op">=</span><span class="dv">14</span></span>
-<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add CartoDB basemap (matching manuscript style)</span></span>
-<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a>    cx.add_basemap(</span>
-<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a>        axes[i, <span class="dv">1</span>], crs<span class="op">=</span>gdf_wm.crs.to_string(),</span>
-<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a>        source<span class="op">=</span>cx.providers.CartoDB.Positron, attribution<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb24-48"><a href="#cb24-48" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb24-49"><a href="#cb24-49" aria-hidden="true" tabindex="-1"></a>    cx.add_basemap(</span>
-<span id="cb24-50"><a href="#cb24-50" aria-hidden="true" tabindex="-1"></a>        axes[i, <span class="dv">1</span>], crs<span class="op">=</span>gdf_wm.crs.to_string(),</span>
-<span id="cb24-51"><a href="#cb24-51" aria-hidden="true" tabindex="-1"></a>        source<span class="op">=</span>cx.providers.CartoDB.PositronOnlyLabels, attribution<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb24-52"><a href="#cb24-52" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb24-53"><a href="#cb24-53" aria-hidden="true" tabindex="-1"></a>    axes[i, <span class="dv">1</span>].set_axis_off()</span>
-<span id="cb24-54"><a href="#cb24-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-55"><a href="#cb24-55" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb24-56"><a href="#cb24-56" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>:::</p>
+<p>::: {#cell-fig-culture-lisa .cell _sphinx_cell_id=‘c7118db1-4bab-4d2d-b98d-8fc005a1d6e3’ execution_count=14}</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reproject to Web Mercator for basemap overlay</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>gdf_wm <span class="op">=</span> gdf.to_crs(epsg<span class="op">=</span><span class="dv">3857</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Two key cultural variables only</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>lisa_vars <span class="op">=</span> [<span class="st">"LC_Telecast"</span>, <span class="st">"SC"</span>]</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>lisa_labels <span class="op">=</span> {</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"LC_Telecast"</span>: <span class="st">"Cultural Telecast (TV/Media)"</span>,</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SC"</span>: <span class="st">"Socio-Cultural Participation"</span>,</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>panel_rows <span class="op">=</span> [<span class="st">"(a)"</span>, <span class="st">"(b)"</span>]</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute LISA for each variable</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>lisa_objects <span class="op">=</span> {}</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>moran_globals <span class="op">=</span> {}</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> lisa_vars:</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    lisa_objects[var] <span class="op">=</span> Moran_Local(gdf_wm[var].values, W, permutations<span class="op">=</span><span class="dv">999</span>, seed<span class="op">=</span><span class="dv">12345</span>)</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    moran_globals[var] <span class="op">=</span> Moran(gdf_wm[var].values, W, permutations<span class="op">=</span><span class="dv">999</span>)</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 2-row x 2-column figure</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">14</span>))</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, var <span class="kw">in</span> <span class="bu">enumerate</span>(lisa_vars):</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>    moranI <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>moran_globals[var]<span class="sc">.</span>I<span class="sc">:.2f}</span><span class="ss">"</span></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Left panel: Moran scatterplot</span></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>    moran_scatterplot(lisa_objects[var], p<span class="op">=</span><span class="fl">0.05</span>, zstandard<span class="op">=</span><span class="va">False</span>, aspect_equal<span class="op">=</span><span class="va">False</span>, ax<span class="op">=</span>axes[i, <span class="dv">0</span>])</span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>    axes[i, <span class="dv">0</span>].set_title(</span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>panel_rows[i]<span class="sc">}</span><span class="ss"> Moran scatterplot (Moran's I = </span><span class="sc">{</span>moranI<span class="sc">}</span><span class="ss">)"</span>, fontsize<span class="op">=</span><span class="dv">14</span></span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>    axes[i, <span class="dv">0</span>].set_xlabel(lisa_labels[var], fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>    axes[i, <span class="dv">0</span>].set_ylabel(<span class="ss">f"</span><span class="sc">{</span>lisa_labels[var]<span class="sc">}</span><span class="ss"> in neighboring regions"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>    axes[i, <span class="dv">0</span>].tick_params(labelsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Right panel: LISA cluster map</span></span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>    lisa_cluster(</span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>        lisa_objects[var], gdf_wm, p<span class="op">=</span><span class="fl">0.05</span>,</span>
+<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a>        legend_kwds<span class="op">=</span>{<span class="st">"bbox_to_anchor"</span>: (<span class="fl">1.05</span>, <span class="dv">1</span>), <span class="st">"loc"</span>: <span class="st">"upper left"</span>},</span>
+<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a>        ax<span class="op">=</span>axes[i, <span class="dv">1</span>],</span>
+<span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a>    axes[i, <span class="dv">1</span>].set_title(</span>
+<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>panel_rows[i]<span class="sc">}</span><span class="ss"> LISA Cluster Map (p &lt; 0.05)"</span>, fontsize<span class="op">=</span><span class="dv">14</span></span>
+<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add CartoDB basemap (matching manuscript style)</span></span>
+<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a>    cx.add_basemap(</span>
+<span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a>        axes[i, <span class="dv">1</span>], crs<span class="op">=</span>gdf_wm.crs.to_string(),</span>
+<span id="cb21-47"><a href="#cb21-47" aria-hidden="true" tabindex="-1"></a>        source<span class="op">=</span>cx.providers.CartoDB.Positron, attribution<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb21-48"><a href="#cb21-48" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb21-49"><a href="#cb21-49" aria-hidden="true" tabindex="-1"></a>    cx.add_basemap(</span>
+<span id="cb21-50"><a href="#cb21-50" aria-hidden="true" tabindex="-1"></a>        axes[i, <span class="dv">1</span>], crs<span class="op">=</span>gdf_wm.crs.to_string(),</span>
+<span id="cb21-51"><a href="#cb21-51" aria-hidden="true" tabindex="-1"></a>        source<span class="op">=</span>cx.providers.CartoDB.PositronOnlyLabels, attribution<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb21-52"><a href="#cb21-52" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb21-53"><a href="#cb21-53" aria-hidden="true" tabindex="-1"></a>    axes[i, <span class="dv">1</span>].set_axis_off()</span>
+<span id="cb21-54"><a href="#cb21-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-55"><a href="#cb21-55" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb21-56"><a href="#cb21-56" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-culture-lisa" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-culture-lisa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="c06_spatial_culture_files/figure-html/fig-culture-lisa-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Figure&nbsp;2: LISA cluster maps of cultural participation across 32 Indian states   Notes: Panel (a) shows results for cultural telecast (TV/media); Panel (b) for socio-cultural participation. Left subpanels show Moran scatterplots with the Global Moran’s I statistic. Right subpanels show LISA cluster maps with statistically significant clusters at p < 0.05 based on 999 permutations and a 6-nearest-neighbors spatial weights matrix. Region labels are overlaid from the CartoDB Positron basemap.   Source: Cultural participation data from NSS 47th Round (July–December 1991). See Spatial culture notebook for source code."><img src="c06_spatial_culture_files/figure-html/fig-culture-lisa-output-1.png" class="img-fluid figure-img"></a>
+<div aria-describedby="fig-culture-lisa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="c06_spatial_culture_files/figure-html/fig-culture-lisa-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Figure&nbsp;2: LISA cluster maps of cultural participation across 32 Indian states   Notes: Panel (a) shows results for cultural telecast (TV/media); Panel (b) for socio-cultural participation. Left subpanels show Moran scatterplots with the Global Moran’s I statistic. Right subpanels show LISA cluster maps with statistically significant clusters at p < 0.05 based on 999 permutations and a 6-nearest-neighbors spatial weights matrix. Region labels are overlaid from the CartoDB Positron basemap.   Source: Cultural participation data from NSS 47th Round (July–December 1991). See Spatial culture notebook for source code."><img src="c06_spatial_culture_files/figure-html/fig-culture-lisa-output-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-culture-lisa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: LISA cluster maps of cultural participation across 32 Indian states <br> Notes: Panel (a) shows results for cultural telecast (TV/media); Panel (b) for socio-cultural participation. Left subpanels show Moran scatterplots with the Global Moran’s I statistic. Right subpanels show LISA cluster maps with statistically significant clusters at p &lt; 0.05 based on 999 permutations and a 6-nearest-neighbors spatial weights matrix. Region labels are overlaid from the CartoDB Positron basemap. <br> Source: Cultural participation data from NSS 47th Round (July–December 1991). See <a href="notebooks/c06_spatial_culture.ipynb">Spatial culture</a> notebook for source code.
@@ -1243,7 +1128,7 @@ Figure&nbsp;2: LISA cluster maps of cultural participation across 32 Indian stat
 </figure>
 </div>
 </div>
-</div></div>
+<p>:::</p>
 </section>
      </main>
 <!-- /main column -->  <script id="quarto-html-after-body" type="application/javascript">

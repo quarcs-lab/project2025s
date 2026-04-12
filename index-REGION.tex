@@ -275,11 +275,11 @@ convergence using satellite nighttime light data. This tool helps
 identify converging regions and growth hotspots that may be difficult to
 detect in static visualizations. Second, we formally test for spatial
 dependence in both the dependent and independent variables of the
-convergence equations. Our tests highlight that spatial autocorrelation
-is a relevant feature of satellite data and the regional convergence
-process. Third, we employ a spatial Durbin model to explicitly account
-for spatial spillovers and quantify how neighbors can influence the
-speed of regional convergence.
+convergence equations. Our tests show that spatial autocorrelation is a
+relevant feature of satellite data and the regional convergence process.
+Third, we employ a spatial Durbin model to explicitly account for
+spatial spillovers and quantify how neighbors can influence the speed of
+regional convergence.
 
 Our results contribute to the understanding of regional convergence in
 India on three fronts. First, interactive visualization tools reveal
@@ -302,16 +302,16 @@ target districts through spatial multiplier effects, potentially
 increasing their cost-effectiveness.
 
 In addition to these methodological contributions, this article adopts a
-reproducible open-science approach by leveraging Jupyter notebooks and
-the Quarto publishing system. Jupyter notebooks integrate executable
-code, narrative text, and computational outputs within a single
-document, supporting multiple programming languages such as Python, R,
-and Stata. Quarto is an open-source publishing system that generates
-multiple output formats---including HTML, PDF, and Word---from a single
-source file, ensuring consistency across all versions of a document.
-Together, these tools foster scientific reproducibility and open science
-by making every analytical step transparent, verifiable, and accessible
-to other researchers.
+reproducible open-science approach by using Jupyter notebooks and the
+Quarto publishing system. Jupyter notebooks integrate executable code,
+narrative text, and computational outputs within a single document,
+supporting multiple programming languages such as Python, R, and Stata.
+Quarto is an open-source publishing system that generates multiple
+output formats---including HTML, PDF, and Word---from a single source
+file, ensuring consistency across all versions of a document. Together,
+these tools foster scientific reproducibility and open science by making
+every analytical step transparent, verifiable, and accessible to other
+researchers.
 
 The rest of this article is organized as follows. Section 2 provides an
 overview of the data and methods, describing the use of nighttime light
@@ -347,8 +347,8 @@ decentralization on regional convergence using NTL data.
 \citet{pinkovskiy_salaimartin_lights_poverty} use NTL data to adjudicate
 between national accounts and household surveys. They find that national
 accounts better capture aggregate economic growth. Similarly,
-\citet{lessmann_seidel_regional_inequality} leverage NTL data to
-estimate GDP per capita and spatial inequality globally.
+\citet{lessmann_seidel_regional_inequality} use NTL data to estimate GDP
+per capita and spatial inequality globally.
 
 NTL data have been applied to a range of research questions in India.
 For example, \citet{cook_shah_nregs} use NTL data to analyze the impact
@@ -386,30 +386,29 @@ data.\footnote{Following \citet{chanda_kabiraj_district_convergence},
 \subsection{Jupyter and Quarto for reproducible open
 science}\label{jupyter-and-quarto-for-reproducible-open-science}
 
-Jupyter notebooks have become an essential tool for reproducible open
+Jupyter notebooks have become a widely used tool for reproducible open
 science. They allow researchers to integrate executable code,
 explanatory narrative, and computational outputs within a single
 self-contained document \citep{kluyver_jupyter}. This integration
 ensures that every step of the analytical workflow---from data ingestion
 and processing to statistical modeling and visualization---is
 transparently documented and can be independently verified by other
-researchers. Unlike traditional workflows where code, results, and
-interpretation are separated across different files and software
-environments, Jupyter notebooks preserve the complete chain of
-reasoning. This unified format can be shared, inspected, and
+researchers. Unlike traditional workflows that separate code, results,
+and interpretation across files, Jupyter notebooks preserve the complete
+chain of reasoning. This unified format can be shared, inspected, and
 re-executed. In this article, we employ Jupyter notebooks with three
 distinct computational kernels---Python, R, and Stata---to document our
-data processing, analysis, and visualization steps. This approach
-enables readers to trace each result back to the code that produced it.
+data processing, analysis, and visualization steps. This approach allows
+readers to trace each result back to the code that produced it.
 Moreover, Python and R notebooks can be executed in the cloud using
 Google Colaboratory. While Stata is not open-source software, its
-integration with the Jupyter environment provides a rich interactive
+integration with the Jupyter environment provides a flexible interactive
 interface. This integration brings the same benefits of literate
 programming and transparent documentation to proprietary statistical
 software \citep{knuth_literate}.
 
 Quarto is an open-source scientific and technical publishing system that
-extends the capabilities of computational notebooks into a comprehensive
+extends the capabilities of computational notebooks into a versatile
 manuscript preparation framework \citep{allaire_quarto}. Its
 single-source publishing approach enables researchers to generate
 multiple output formats from a single source file. These formats include
@@ -424,7 +423,7 @@ computational results, Quarto lowers the technical barriers to producing
 publication-quality research.
 
 The combination of Jupyter notebooks and Quarto's manuscript framework
-creates a rich infrastructure for reproducible research. In this
+creates an integrated infrastructure for reproducible research. In this
 article, the figures and tables that appear in the manuscript are
 programmatically embedded from specific Jupyter notebook cells. This
 ensures that every empirical finding presented in the text is directly
@@ -438,10 +437,10 @@ other researchers to build upon our work \citep{peng_reproducible}.
 visualizations}\label{google-earth-engine-for-interactive-spatial-visualizations}
 
 Interactive visualizations of nighttime lights imagery offer
-methodological advantages over static representations, particularly when
+methodological advantages over static representations, especially when
 analyzing temporal and spatial heterogeneity in economic activity
 \citep{donaldson_storeygard_remotesensing}. The dynamic nature of these
-visualizations enables researchers to simultaneously examine multiple
+visualizations allows researchers to simultaneously examine multiple
 dimensions of the data. These dimensions include temporal variations in
 light intensity, the spatial distribution of economic activity, and the
 relationship between nighttime lights and other georeferenced variables.
@@ -455,14 +454,13 @@ accessible platform for analyzing satellite data \citep{gorelick_gee}.
 The platform's browser-based integrated development environment supports
 the creation of interactive web applications without requiring extensive
 infrastructure or specialized software installation. This capability is
-especially valuable for reproducible research, as it enables the
+especially valuable for reproducible research, as it supports the
 development of web applications that can be shared with other
 researchers. The platform's ability to handle large-scale geospatial
-computations significantly streamlines the workflow from raw data to
-interactive visualization. Its extensive catalog of pre-processed
-nighttime lights datasets, including the DMSP-OLS and VIIRS collections,
-further reduces the storage and processing burden
-\citep{tamiminia_gee_review}.
+computations streamlines the workflow from raw data to interactive
+visualization. Its extensive catalog of pre-processed nighttime lights
+datasets, including the DMSP-OLS and VIIRS collections, further reduces
+the storage and processing burden \citep{tamiminia_gee_review}.
 
 Interactive visualizations of nighttime lights data are especially
 useful for identifying and analyzing patterns of regional convergence in
@@ -580,15 +578,14 @@ high-value location surrounded by high-value neighbors, while Low-Low
 (LL) indicates a low-value location surrounded by low-value neighbors.
 High-Low (HL) is a spatial outlier where a high-value location is
 surrounded by low-value neighbors, and Low-High (LH) is the opposite
-spatial outlier. Taken together, the HH and LL categories identify
-spatial clusters, while the HL and LH categories identify spatial
-outliers. Statistical significance of each local statistic is assessed
-through conditional permutation tests, with only statistically
-significant locations (typically at \(p < 0.05\)) reported in the LISA
-cluster maps.
+spatial outlier. The HH and LL categories identify spatial clusters,
+while the HL and LH categories identify spatial outliers. Statistical
+significance of each local statistic is assessed through conditional
+permutation tests, with only statistically significant locations
+(typically at \(p < 0.05\)) reported in the LISA cluster maps.
 
 The specification of the spatial weights matrix \(\mathbf{W}\) is
-crucial for capturing the underlying spatial structure. We employ a
+important for capturing the underlying spatial structure. We employ a
 \(k\)-nearest neighbors weight matrix with \(k = 6\), whereby for each
 district, the six geographically closest districts are identified as its
 neighbors. This specification ensures a fixed number of connections per
@@ -800,15 +797,15 @@ notebook for source code.}
 \subsection{Spatial dependence is a feature of the convergence
 process}\label{spatial-dependence-is-a-feature-of-the-convergence-process}
 
-Before proceeding with formal econometric analysis, it is instructive to
-examine the spatial distribution of the variables under study.
-Choropleth maps provide a natural tool for this purpose, as they allow
-researchers to visualize how a variable of interest varies across
-geographic units. They also help identify spatial patterns that may not
-be apparent from summary statistics alone. Figure~\ref{fig-chorophleths}
-presents the spatial distribution of initial luminosity in 1996 and the
-subsequent growth rate of luminosity over the 1996--2010 period across
-the 520 districts in our sample.
+Before proceeding with formal econometric analysis, we examine the
+spatial distribution of the variables under study. Choropleth maps
+provide a natural tool for this purpose, as they allow researchers to
+visualize how a variable of interest varies across geographic units.
+They also help identify spatial patterns that may not be apparent from
+summary statistics alone. Figure~\ref{fig-chorophleths} presents the
+spatial distribution of initial luminosity in 1996 and the subsequent
+growth rate of luminosity over the 1996--2010 period across the 520
+districts in our sample.
 
 \begin{figure}[H]
 
@@ -1077,7 +1074,7 @@ spatial dependence. In our fully specified model (Model 4), the total
 convergence effect in the spatial Durbin model (-0.037) is approximately
 48\% larger than the OLS estimate (-0.025). This gap is even more
 pronounced in Model 3, where the SDM total effect (-0.041) exceeds the
-corresponding OLS estimate (-0.025) by 64\%, highlighting that spatial
+corresponding OLS estimate (-0.025) by 64\%, showing that spatial
 spillovers can constitute a considerable share of the overall
 convergence process. These differences indicate that conventional
 non-spatial approaches may significantly underestimate the speed of
@@ -1117,32 +1114,31 @@ participation patterns across Indian states.
 
 A growing literature argues that regional cultural attitudes constitute
 an independent factor in economic development, not merely a by-product
-of income or institutions. \citet{tubadji_cultural_entropy} advances a
-Culture-Based Development framework demonstrating that cultural
-participation patterns---measured through revealed preferences in
-household expenditure and survey data---predict regional economic
-trajectories independently of standard economic variables. For India,
-the National Sample Survey (NSS) 47th Round (July--December 1991)
+of income or institutions. In particular,
+\citet{tubadji_cultural_entropy} proposes a Culture-Based Development
+framework arguing that regional cultural participation
+patterns---measured through revealed preferences in household
+expenditure and survey data---predict regional development patterns. For
+India, the National Sample Survey (NSS) 47th Round (July--December 1991)
 provides state-level data on six dimensions of cultural participation:
 live cultural performance, cultural telecast (TV/media), socio-cultural
 participation, cultural heritage and religion, live cultural shows, and
 sports.
 
 With nighttime lights data for an adjacent period (1992) now available
-for all 32 Indian states and union territories, we can examine the
-extent to which luminosity is associated with regional cultural
-patterns. Given the small sample size (N = 32) and the potential
-leverage of small territories at the extremes of the distribution on
-linear correlation measures, we report Spearman rank correlations
-throughout this section. Figure~\ref{fig-culture-scatter} presents the
-relationship between log nighttime lights per capita and the two
-cultural dimensions that show statistically significant rank-order
-associations. Cultural telecast (TV/media) exhibits a positive
-association (Spearman \(\rho\) = 0.370, \(p\) = 0.037): states with
-higher luminosity consume more culture through television and media.
-Socio-cultural participation, by contrast, shows a significant negative
-association (Spearman \(\rho\) = \$-\$0.404, \(p\) = 0.022):
-community-based cultural engagement is stronger in less luminous states.
+for 32 Indian states and union territories, we can examine the extent to
+which luminosity is associated with regional cultural patterns (see
+\href{notebooks/c06_spatial_culture.ipynb}{Spatial culture} notebook for
+details and extended analyses). Given the small sample size (N = 32) and
+the potential leverage of small territories at the extremes of the
+distribution on linear correlation measures, we report Spearman rank
+correlations throughout this section. Figure~\ref{fig-culture-scatter}
+presents the relationship between log nighttime lights per capita and
+the two cultural dimensions that show statistically significant
+associations.
+
+::: \{.cell \_sphinx\_cell\_id=`628a30a8-01c4-4750-91a1-0eaa3f12cade'
+execution\_count=13\}
 
 \begin{figure}[H]
 
@@ -1168,15 +1164,33 @@ source code.}
 
 \end{figure}%
 
-Figure~\ref{fig-culture-lisa} presents LISA cluster maps for these two
-cultural variables. Both dimensions exhibit significant spatial
-autocorrelation, indicating that cultural participation is not randomly
-distributed across Indian states but follows distinct geographic
-patterns. The spatial clustering of cultural telecast broadly mirrors
-the economic geography documented in earlier sections of this article,
-with states in the western and southern regions forming high-high
-clusters while northeastern and eastern states form distinct
+:::
+
+Cultural telecast (TV/media) exhibits a positive association (Spearman
+\(\rho\) = 0.370, \(p\) = 0.037) with nighttime light luminosity. That
+is, states with higher luminosity consume more culture through
+television and media. This link is intuitive: access to television
+depends on electrification and urbanization, which are closely tied to
+luminosity.
+
+In contrast, socio-cultural participation shows a significant negative
+association (Spearman \(\rho\) = \$-\$0.404, \(p\) = 0.022). That is,
+community-based cultural engagement is stronger in states with less
+luminosity. This suggests that less urbanized regions rely more on
+collective, in-person forms of cultural participation rather than on
+media infrastructure.
+
+Figure~\ref{fig-culture-lisa} presents spatial distribution of these two
+cultural variables through the lens of a LISA analysis. Both dimensions
+exhibit significant spatial autocorrelation, indicating that cultural
+participation is not randomly distributed across Indian states. The
+spatial clustering of cultural telecast broadly mirrors the economic
+geography distribution. States in the western and southern regions form
+high-high clusters while northeastern and eastern states form distinct
 community-participation clusters.
+
+::: \{.cell \_sphinx\_cell\_id=`c7118db1-4bab-4d2d-b98d-8fc005a1d6e3'
+execution\_count=14\}
 
 \begin{figure}[H]
 
@@ -1200,22 +1214,18 @@ source code.}
 
 \end{figure}%
 
-These patterns suggest that economic development does not uniformly
-increase or decrease cultural participation but rather reshapes its
-character. Socio-cultural participation is the most consistently
-significant association, confirmed across both a 25-state sample using
-district-aggregated luminosity and the full 32-state sample presented
-here. Cultural telecast shows a consistent positive sign across both
-samples, though its statistical significance is sensitive to sample
-composition and the choice of correlation method. More luminous regions
-consume culture through modern media infrastructure, while less luminous
-regions sustain culture through community engagement. The full
-exploration of all six cultural indicators, including correlation
-analysis and additional spatial clustering maps, is available in the
-accompanying computational notebook. This preliminary evidence points to
-a richer relationship between luminosity and socioeconomic life than GDP
-alone captures, opening a direction for future research that integrates
-cultural economics with satellite-based measurement.
+:::
+
+Together, these two results reveal a contrast in how regions engage with
+culture: more luminous states favor media-based consumption, while less
+luminous states sustain community-based participation. The remaining
+four cultural dimensions---live cultural performance, cultural heritage
+and religion, live cultural shows, and sports---show no statistically
+significant association with luminosity. However, these findings are
+based on a small cross-section of 32 states observed at a single point
+in time. Further investigation with larger datasets covering more
+regions and additional time periods is needed to establish whether these
+patterns are robust.
 
 \subsection{Better luminosity data from
 VIIRS}\label{better-luminosity-data-from-viirs}
@@ -1244,7 +1254,7 @@ assessments recommend VIIRS as the preferred product for cross-sectional
 and recent time-series studies \citep{gibson_etal_ntl_measurement}.
 Future extensions of our convergence analysis using VIIRS data could
 yield more precise estimates of both direct and indirect effects,
-particularly in districts where blooming effects may have distorted the
+especially in districts where blooming effects may have distorted the
 true spillover effects.
 
 A practical challenge for extending long-run convergence studies is the
@@ -1317,7 +1327,7 @@ deep learning can considerably improve poverty prediction in data-scarce
 settings. Similarly, \citet{keola_etal_lights_poverty} showed that
 integrating nighttime lights with land cover data improves economic
 measurement in agricultural areas where lights alone provide weak
-signals. These alternative data sources enable the construction of
+signals. These alternative data sources allow the construction of
 multi-dimensional proxies for regional economic activity that go beyond
 what nighttime lights alone can capture. Recent applications demonstrate
 the practical potential of these advances for subnational economic
@@ -1389,34 +1399,33 @@ of regional convergence. Additionally, it suggests that place-based
 development interventions may have broader impacts, as their benefits
 can extend to neighboring districts through spatial spillover effects.
 
-Our results also illustrate the usefulness of satellite nighttime lights
-for studying economic dynamics in countries where subnational data are
-scarce, infrequent, or unreliable. Conventional economic statistics at
-the district level are often unavailable or inconsistent across
-administrative boundaries, particularly in large developing economies.
-Radiance-calibrated nighttime light data allowed us to analyze 520
-Indian districts at a spatial granularity that would be difficult to
-achieve with traditional national accounts. This data-driven approach is
-potentially transferable to other data-poor contexts across the
-developing world. The ongoing transition from DMSP-OLS to the
-higher-resolution VIIRS sensor should yield more precise measurement of
-subnational economic activity in future studies.
+Our results also demonstrate the usefulness of satellite nighttime
+lights for studying economic dynamics in countries where subnational
+data are scarce, infrequent, or unreliable. Conventional economic
+statistics at the district level are often unavailable or inconsistent
+across administrative boundaries, especially in large developing
+economies. Radiance-calibrated nighttime light data allowed us to
+analyze 520 Indian districts at a spatial granularity that would be
+difficult to achieve with traditional national accounts. This
+data-driven approach is potentially transferable to other data-poor
+contexts across the developing world. The ongoing transition from
+DMSP-OLS to the higher-resolution VIIRS sensor should yield more precise
+measurement of subnational economic activity in future studies.
 
-This study also illustrates how reproducible open-science practices can
-strengthen the credibility and extendability of scientific research. The
-entire analytical pipeline is documented in computational Jupyter
-notebooks using Python, R, and Stata code. Research results are
-automatically embedded within the manuscript through Quarto's publishing
-framework. Moreover, a single manuscript source generates multiple
-output formats: HTML, PDF, Microsoft Word, among others. The HTML
-version is particularly useful as it allows readers to engage with
-interactive visualizations, easily inspect the code of multiple
-computational notebooks, and reevaluate the results in light of their
-source code. By hosting the complete codebase and data in a public
-GitHub repository and making the Python and R notebooks executable in
-the cloud through Google Colaboratory, we aim to encourage other
-researchers to further adopt reproducible open-science practices that
-can strengthen the credibility and extendability of scientific research.
+This study also shows how reproducible open-science practices can
+strengthen the credibility and reach of scientific research. The entire
+analytical pipeline is documented in computational Jupyter notebooks
+using Python, R, and Stata code. Research results are automatically
+embedded within the manuscript through Quarto's publishing framework.
+Moreover, a single manuscript source generates multiple output formats:
+HTML, PDF, Microsoft Word, among others. The HTML version is
+particularly useful as it allows readers to engage with interactive
+visualizations, easily inspect the code of multiple computational
+notebooks, and reevaluate the results in light of their source code. By
+hosting the complete codebase and data in a public GitHub repository and
+making the Python and R notebooks executable in the cloud through Google
+Colaboratory, we aim to encourage broader adoption of reproducible
+open-science practices.
 
 \section{Acknowledgments}\label{acknowledgments}
 
